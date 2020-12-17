@@ -1,76 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MqttActivity">
 
-    <EditText
-        android:id="@+id/edt_send_message"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/shape_text_field"
-        android:ems="10"
-        android:gravity="top|start"
-        android:hint="请输入发送内容"
-        android:inputType="text"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_subscribe_topic" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edt_send_message"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_text_field"
+            android:ems="10"
+            android:gravity="top|start"
+            android:hint="请输入发送内容"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_subscribe_topic" />
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="发送"
-        app:layout_constraintEnd_toEndOf="@+id/edt_send_message"
-        app:layout_constraintTop_toBottomOf="@+id/edt_send_message" />
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="发送"
+            app:layout_constraintEnd_toEndOf="@+id/edt_send_message"
+            app:layout_constraintTop_toBottomOf="@+id/edt_send_message" />
 
-    <Button
-        android:id="@+id/btn_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="连接"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btn_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="连接"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_subscribe_topic"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:hint="请输入订阅主题"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_subscribe_topic"
-        app:layout_constraintEnd_toStartOf="@+id/btn_subscribe_topic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_connect" />
+        <EditText
+            android:id="@+id/edt_subscribe_topic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="请输入订阅主题"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_subscribe_topic"
+            app:layout_constraintEnd_toStartOf="@+id/btn_subscribe_topic"
+            app:layout_constraintStart_toEndOf="@+id/tv_subscribe_status"
+            app:layout_constraintTop_toBottomOf="@+id/btn_connect" />
 
-    <Button
-        android:id="@+id/btn_subscribe_topic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="订阅"
-        app:layout_constraintEnd_toEndOf="@+id/btn_connect"
-        app:layout_constraintTop_toBottomOf="@+id/btn_connect" />
+        <Button
+            android:id="@+id/btn_subscribe_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="订阅"
+            app:layout_constraintEnd_toEndOf="@+id/btn_connect"
+            app:layout_constraintTop_toBottomOf="@+id/btn_connect" />
 
-    <Button
-        android:id="@+id/btn_disconnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:text="断开连接"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_send" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_disconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="断开连接"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_send" />
+
+        <TextView
+            android:id="@+id/tv_connect_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="未连接"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_connect"
+            app:layout_constraintEnd_toStartOf="@+id/btn_connect"
+            app:layout_constraintTop_toTopOf="@+id/btn_connect" />
+
+        <TextView
+            android:id="@+id/tv_new_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp"
+            android:minHeight="50dp"
+            android:background="@drawable/shape_text_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="新的消息"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_disconnect" />
+
+        <TextView
+            android:id="@+id/tv_subscribe_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="未订阅"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_subscribe_topic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edt_subscribe_topic" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:text="注意：未订阅主题将收不到消息"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_new_message"
+            app:layout_constraintTop_toBottomOf="@+id/tv_new_message" />
+
+        <TextView
+            android:id="@+id/tv_current_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前主题："
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_new_message"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
