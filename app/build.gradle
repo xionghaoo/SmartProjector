@@ -53,6 +53,11 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.28.3-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28.3-alpha"
 
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     // 由于mqtt不支持androidx，需要添加下面的兼容库

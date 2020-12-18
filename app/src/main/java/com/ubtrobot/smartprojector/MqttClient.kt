@@ -28,6 +28,7 @@ class MqttClient(
         success: SuccessCallback? = null,
         failure: FailureCallback? = null
     ) {
+
         mqttClient.setCallback(messageCallback)
         val options = MqttConnectOptions()
         try {

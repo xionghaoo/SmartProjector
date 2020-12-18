@@ -61,5 +61,6 @@ class MqttActivity : AppCompatActivity() {
         btn_disconnect.setOnClickListener {
             mqttClient.disconnect()
         }
+
     }
 }
