@@ -62,4 +62,7 @@ dependencies {
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     // 由于mqtt不支持androidx，需要添加下面的兼容库
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // 串口
+    implementation 'com.licheedev:android-serialport:2.1.2'
 }
