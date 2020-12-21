@@ -13,21 +13,22 @@ import retrofit2.Response
 class MainViewModel @ViewModelInject internal constructor(
     private val repo: Repository
 ) : ViewModel() {
-    fun apiTest() : LiveData<TestData> {
-        val data = MediatorLiveData<TestData>()
-        repo.test().enqueue(object : Callback<TestData> {
-            override fun onResponse(call: Call<TestData>, response: Response<TestData>) {
-                if (response.isSuccessful) {
-                    data.value = response.body()
-                } else {
-                    data.value = TestData(null)
-                }
-            }
+//    fun apiTest() : LiveData<TestData> {
+//        val data = MediatorLiveData<TestData>()
+//        repo.test().enqueue(object : Callback<TestData> {
+//            override fun onResponse(call: Call<TestData>, response: Response<TestData>) {
+//                if (response.isSuccessful) {
+//                    data.value = response.body()
+//                } else {
+//                    data.value = TestData(null)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<TestData>, t: Throwable) {
+//                data.value = TestData(null)
+//            }
+//        })
+//        return data
+//    }
 
-            override fun onFailure(call: Call<TestData>, t: Throwable) {
-                data.value = TestData(null)
-            }
-        })
-        return data
-    }
 }
