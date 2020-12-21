@@ -1,5 +1,5 @@
 package com.ubtrobot.smartprojector.repo.data
 
-class TestData {
-    val id: String? = null
-}
+data class TestData(
+    val ip: String? = null
+)
