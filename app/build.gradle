@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId "com.ubtrobot.smartprojector"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
