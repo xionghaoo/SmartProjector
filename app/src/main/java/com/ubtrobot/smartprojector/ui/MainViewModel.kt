@@ -1,4 +1,4 @@
-package com.ubtrobot.smartprojector
+package com.ubtrobot.smartprojector.ui
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -31,4 +31,5 @@ class MainViewModel @ViewModelInject internal constructor(
 //        return data
 //    }
 
+    fun apiTest() {}
 }
