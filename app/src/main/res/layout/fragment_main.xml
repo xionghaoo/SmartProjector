@@ -8,6 +8,7 @@
     tools:context=".ui.MainFragment">
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="智能投影仪"
@@ -43,10 +44,10 @@
         android:text="API请求结果: "/>
 
     <Button
-        android:id="@+id/btn_bluetooth"
+        android:id="@+id/btn_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="蓝牙测试"/>
+        android:text="视频播放测试"/>
 
 </LinearLayout>

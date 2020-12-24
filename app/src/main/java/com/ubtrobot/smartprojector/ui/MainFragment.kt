@@ -42,7 +42,12 @@ class MainFragment : Fragment() {
 //            viewModel.apiTest().observe(this, Observer {
 //                if (it.ip != null) tv_api_result.text = "API测试数据: ip = ${it.ip}"
 //            })
+            tv_title.text = "标题发生改变"
             viewModel.apiTest()
+        }
+
+        btn_video.setOnClickListener {
+            startActivity(Intent(context, VideoActivity::class.java))
         }
     }
 
