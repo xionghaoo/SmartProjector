@@ -104,7 +104,9 @@ dependencies {
     // 硬件操作工具类
     implementation 'com.licheedev:hardwareutils:1.0.0'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.12.2'
+    // exo播放器
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.12.2'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.12.2'
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 

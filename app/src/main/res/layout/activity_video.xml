@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
+    android:orientation="vertical"
     tools:context=".ui.VideoActivity">
 
-    <com.google.android.exoplayer2.ui.StyledPlayerView
+    <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view"
-        android:layout_width="320dp"
-        android:layout_height="180dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:show_shuffle_button="true"
-        app:show_subtitle_button="true" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/player_view"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        app:resize_mode="fixed_height"
+        app:show_buffering="when_playing"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -32,17 +21,27 @@
         android:layout_height="wrap_content"
         android:text="程序编辑器"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="15dp" />
 
-    <ImageView
-        android:id="@+id/iv_thumbnail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:srcCompat="@tools:sample/avatars" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_video_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/iv_video_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            tools:srcCompat="@tools:sample/avatars" />
+    </LinearLayout>
+
+</LinearLayout>

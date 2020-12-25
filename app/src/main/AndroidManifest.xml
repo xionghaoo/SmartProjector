@@ -26,7 +26,7 @@
         <activity
             android:name=".ui.VideoActivity"
             android:label="视频测试页面"
-            android:screenOrientation="landscape"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".serialport.SerialPortActivity"
             android:label="串口通信" />
