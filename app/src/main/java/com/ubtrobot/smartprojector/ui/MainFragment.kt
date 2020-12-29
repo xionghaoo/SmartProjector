@@ -49,6 +49,10 @@ class MainFragment : Fragment() {
         btn_video.setOnClickListener {
             startActivity(Intent(context, VideoActivity::class.java))
         }
+
+        btn_tuya.setOnClickListener {
+            startActivity(Intent(context, TuyaActivity::class.java))
+        }
     }
 
     companion object {

@@ -50,4 +50,11 @@
         android:layout_marginTop="20dp"
         android:text="视频播放测试"/>
 
+    <Button
+        android:id="@+id/btn_tuya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="涂鸦智能测试"/>
+
 </LinearLayout>

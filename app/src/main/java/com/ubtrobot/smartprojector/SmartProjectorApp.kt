@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector
 
 import android.app.Application
+import com.tuya.smart.home.sdk.TuyaHomeSdk
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -11,5 +12,6 @@ class SmartProjectorApp : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+        TuyaHomeSdk.init(this)
     }
 }

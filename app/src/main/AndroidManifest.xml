@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ubtrobot.smartprojector">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,11 +23,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmartProjector">
+        android:theme="@style/Theme.SmartProjector"
+        tools:replace="android:allowBackup,android:supportsRtl">
+        <activity android:name=".ui.TuyaActivity"></activity>
+        <!-- 涂鸦智能 -->
+        <meta-data
+            android:name="TUYA_SMART_APPKEY"
+            android:value="ff5uvrfpueseqfhaa3xf" />
+        <meta-data
+            android:name="TUYA_SMART_SECRET"
+            android:value="kseax57eug4vf5atfcwq9ytq3swtnav7" />
+
         <activity
             android:name=".ui.VideoActivity"
-            android:label="视频测试页面"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="视频测试页面" />
         <activity
             android:name=".serialport.SerialPortActivity"
             android:label="串口通信" />
@@ -42,6 +53,15 @@
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <service
+            android:name=".ui.VideoDownloadService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.exoplayer.downloadService.action.RESTART" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
