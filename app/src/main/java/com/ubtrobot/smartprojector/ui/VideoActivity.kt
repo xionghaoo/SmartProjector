@@ -11,9 +11,11 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
+import com.google.android.exoplayer2.source.MediaSourceFactory
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.ubtrobot.smartprojector.R
 import kotlinx.android.synthetic.main.activity_video.*
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -26,6 +28,8 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
 
     companion object {
         private const val RC_STORAGE_PERMISSION = 1
+
+        const val TEST_VIDEO = "http://vfx.mtime.cn/Video/2017/03/31/mp4/170331093811717750.mp4"
     }
 
     private var player: SimpleExoPlayer? = null
@@ -36,6 +40,12 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video)
         videoPlayTask()
+
+
+
+        btn_download.setOnClickListener {
+            VideoDownloadService.start(this)
+        }
     }
 
     override fun onPause() {
@@ -74,7 +84,10 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     }
 
     private fun initialPlayer() {
-        player = SimpleExoPlayer.Builder(applicationContext).build()
+        val mediaSourceFactory = DefaultMediaSourceFactory(VideoDownloadService.getDataSourceFactory(this))
+        player = SimpleExoPlayer.Builder(applicationContext)
+            .setMediaSourceFactory(mediaSourceFactory)
+            .build()
 
         isFullscreen = false
         btnFullscreen = player_view.findViewById(R.id.exo_fullscreen_icon)
@@ -107,6 +120,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         }
 
         player!!.addListener(this)
+        player!!.playWhenReady = true
 
         player_view.player = player
 
@@ -120,10 +134,12 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             "${Environment.DIRECTORY_DOWNLOADS}/video1.mp4"
         )
         Timber.d("download path: ${video1}")
-        val item1 = MediaItem.fromUri(video1.toUri())
-        val item2 = MediaItem.fromUri(video2.toUri())
-        player!!.addMediaItem(item1)
-        player!!.addMediaItem(item2)
+//        val item1 = MediaItem.fromUri(video1.toUri())
+//        val item2 = MediaItem.fromUri(video2.toUri())
+//        player!!.addMediaItem(item1)
+//        player!!.addMediaItem(item2)
+//        player!!.prepare()
+        player!!.addMediaItem(MediaItem.fromUri(TEST_VIDEO.toUri()))
         player!!.prepare()
 
         Glide.with(this)

@@ -44,4 +44,12 @@
             tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:text="视频下载" />
+
 </LinearLayout>

@@ -110,6 +110,7 @@ dependencies {
     // exo播放器
     implementation 'com.google.android.exoplayer:exoplayer-core:2.12.2'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.12.2'
+    implementation 'com.google.android.exoplayer:extension-cronet:2.12.2'
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
