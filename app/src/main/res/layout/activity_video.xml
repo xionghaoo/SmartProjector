@@ -52,4 +52,20 @@
         android:layout_marginStart="15dp"
         android:text="视频下载" />
 
+    <Button
+        android:id="@+id/btn_get_downloads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:text="获取缓存列表" />
+
+    <Button
+        android:id="@+id/btn_clear_cache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:text="视频缓存删除" />
+
 </LinearLayout>

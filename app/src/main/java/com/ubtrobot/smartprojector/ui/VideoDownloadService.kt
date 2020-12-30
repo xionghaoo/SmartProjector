@@ -2,7 +2,9 @@ package com.ubtrobot.smartprojector.ui
 
 import android.app.Notification
 import android.content.Context
+import android.net.Uri
 import android.os.Build
+import android.provider.MediaStore
 import androidx.core.net.toUri
 import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.MediaItem
@@ -21,8 +23,11 @@ import com.google.android.exoplayer2.upstream.cache.Cache
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
+import com.google.android.exoplayer2.util.Log
 import com.ubtrobot.smartprojector.R
+import timber.log.Timber
 import java.io.File
+import java.io.IOException
 import java.util.concurrent.Executors
 
 class VideoDownloadService : DownloadService(
@@ -57,7 +62,10 @@ class VideoDownloadService : DownloadService(
                 httpDataSourceFactory
             )
 
-            val downloadRequest = DownloadRequest.Builder(VideoActivity.TEST_VIDEO, downloadVideoUri).build()
+            val downloadRequest = DownloadRequest.Builder(
+                VideoActivity.TEST_VIDEO,
+                downloadVideoUri
+            ).build()
             sendAddDownload(
                 context,
                 VideoDownloadService::class.java,
@@ -87,6 +95,15 @@ class VideoDownloadService : DownloadService(
 
             }
         }
+
+//        @Synchronized
+//        private fun upgradeActionFile(
+//            context: Context,
+//            filename: String,
+//            downloadIndex: DefaultDownloadIndex,
+//            addNewDownloadsAsCompleted: Boolean) {
+//
+//        }
 
         @Synchronized
         fun getHttpDataSourceFactory(context: Context): HttpDataSource.Factory {
@@ -168,6 +185,49 @@ class VideoDownloadService : DownloadService(
         private fun getMyDownloadManager(context: Context) : DownloadManager? {
             ensureDownloadManagerInitialized(context)
             return downloadManager
+        }
+
+        /**
+         * 缓存列表
+         */
+        fun loadDownloads(context: Context) {
+            ensureDownloadManagerInitialized(context)
+            val downloadIndex = downloadManager!!.downloadIndex
+            val downloads = HashMap<Uri, Download>()
+            try {
+                downloadIndex.getDownloads().use { loadedDownloads ->
+                    while (loadedDownloads.moveToNext()) {
+                        val download: Download = loadedDownloads.download
+                        downloads.put(download.request.uri, download)
+                        Timber.d("download uri: ${download.request.uri}")
+                    }
+                }
+            } catch (e: IOException) {
+                Log.w(
+                    "DownloadService",
+                    "Failed to query downloads",
+                    e
+                )
+            }
+        }
+
+        /**
+         * 删除缓存
+         */
+        fun removeDownload(context: Context) {
+            sendRemoveDownload(
+                context,
+                VideoDownloadService::class.java,
+                VideoActivity.TEST_VIDEO,
+                false
+            )
+        }
+
+        fun clearCache(context: Context) {
+            Thread {
+                getDownloadCache(context).removeResource(VideoActivity.TEST_VIDEO)
+                Timber.d("clear cache")
+            }.start()
         }
     }
 

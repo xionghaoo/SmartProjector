@@ -46,6 +46,14 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         btn_download.setOnClickListener {
             VideoDownloadService.start(this)
         }
+
+        btn_get_downloads.setOnClickListener {
+            VideoDownloadService.loadDownloads(this)
+        }
+
+        btn_clear_cache.setOnClickListener {
+            VideoDownloadService.removeDownload(this)
+        }
     }
 
     override fun onPause() {
