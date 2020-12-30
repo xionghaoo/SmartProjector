@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Environment
@@ -17,6 +18,7 @@ import com.google.android.exoplayer2.source.MediaSourceFactory
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.ui.video.VideoCacheActivity
 import kotlinx.android.synthetic.main.activity_video.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -48,7 +50,8 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         }
 
         btn_get_downloads.setOnClickListener {
-            VideoDownloadService.loadDownloads(this)
+//            VideoDownloadService.loadDownloads(this)
+            startActivity(Intent(this, VideoCacheActivity::class.java))
         }
 
         btn_clear_cache.setOnClickListener {
@@ -156,7 +159,8 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             .into(iv_video_1)
 
         Glide.with(this)
-            .load(video2.toUri())
+            .load(TEST_VIDEO)
+            .thumbnail(Glide.with(this).load(TEST_VIDEO))
             .centerCrop()
             .into(iv_video_2)
 

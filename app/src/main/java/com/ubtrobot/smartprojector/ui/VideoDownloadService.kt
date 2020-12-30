@@ -190,7 +190,7 @@ class VideoDownloadService : DownloadService(
         /**
          * 缓存列表
          */
-        fun loadDownloads(context: Context) {
+        fun loadDownloads(context: Context) : HashMap<Uri, Download>? {
             ensureDownloadManagerInitialized(context)
             val downloadIndex = downloadManager!!.downloadIndex
             val downloads = HashMap<Uri, Download>()
@@ -202,12 +202,14 @@ class VideoDownloadService : DownloadService(
                         Timber.d("download uri: ${download.request.uri}")
                     }
                 }
+                return  downloads
             } catch (e: IOException) {
                 Log.w(
                     "DownloadService",
                     "Failed to query downloads",
                     e
                 )
+                return null
             }
         }
 
