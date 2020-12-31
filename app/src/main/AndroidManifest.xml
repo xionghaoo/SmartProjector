@@ -26,7 +26,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartProjector"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.video.VideoCacheActivity" android:label="缓存视频"></activity>
+        <activity android:name=".ui.FileDownloadActivity"></activity>
+        <activity
+            android:name=".ui.video.VideoCacheActivity"
+            android:label="缓存视频" />
         <activity android:name=".ui.TuyaActivity" /> <!-- 涂鸦智能 -->
         <meta-data
             android:name="TUYA_SMART_APPKEY"

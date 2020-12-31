@@ -22,7 +22,7 @@ class VideoCacheActivity : AppCompatActivity() {
 
         val items = MutableList<VideoItem>(0) {VideoItem("", "")}
         VideoDownloadService.loadDownloads(this)?.values?.forEach { download ->
-            items.add(VideoItem(title = "测试视频", url = download.request.uri.toString() ?: ""))
+            items.add(VideoItem(title = "测试视频", url = download.request.uri.toString()))
         }
 
         adapter.items = items

@@ -53,6 +53,10 @@ class MainFragment : Fragment() {
         btn_tuya.setOnClickListener {
             startActivity(Intent(context, TuyaActivity::class.java))
         }
+
+        btn_file_download.setOnClickListener {
+            startActivity(Intent(context, FileDownloadActivity::class.java))
+        }
     }
 
     companion object {

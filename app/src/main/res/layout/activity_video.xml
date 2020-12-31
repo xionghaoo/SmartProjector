@@ -15,57 +15,67 @@
         app:resize_mode="fixed_height"
         app:show_buffering="when_playing"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="程序编辑器"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/iv_video_1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="程序编辑器"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp" />
 
-        <ImageView
-            android:id="@+id/iv_video_2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            tools:srcCompat="@tools:sample/avatars" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_video_1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btn_download"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="视频下载" />
+                <ImageView
+                    android:id="@+id/iv_video_2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_get_downloads"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="获取缓存列表" />
+            <Button
+                android:id="@+id/btn_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="视频下载" />
 
-    <Button
-        android:id="@+id/btn_clear_cache"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:text="视频缓存删除" />
+            <Button
+                android:id="@+id/btn_get_downloads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="获取缓存列表" />
+
+            <Button
+                android:id="@+id/btn_clear_cache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="视频缓存删除" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
