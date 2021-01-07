@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.serialport.SerialPortActivity
+import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -28,6 +29,14 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        btn_home.setOnClickListener {
+            ToastUtil.showToast(requireContext(), "首页")
+        }
+
+        btn_education.setOnClickListener {
+            ToastUtil.showToast(requireContext(), "视频教学")
+        }
 
         btn_mqtt_test.setOnClickListener {
 //            startActivity(Intent(this, MqttActivity::class.java))
@@ -60,7 +69,6 @@ class MainFragment : Fragment() {
     }
 
     companion object {
-
         fun newInstance() = MainFragment()
     }
 }
