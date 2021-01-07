@@ -75,6 +75,7 @@ class FileDownloadActivity : AppCompatActivity() {
                     totalBytes: Int
                 ) {
                     progressTime = System.currentTimeMillis()
+                    // 下载速度
                     val speed = soFarBytes / ((progressTime - startTime) / 1000)
                     val speedTxt = if (speed > 1024) {
                         "${speed / 1024}kb/s"
