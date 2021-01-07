@@ -12,7 +12,8 @@ import com.ubtrobot.smartprojector.R
 
 class CacheVideoAdapter(
         private val context: Context,
-        var items: List<VideoItem>
+        var items: List<VideoItem>,
+        private val itemClick: (url: String) -> Unit
 ) : RecyclerView.Adapter<CacheVideoAdapter.ItemViewHolder>() {
     class ItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {}
 
@@ -25,6 +26,9 @@ class CacheVideoAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = items[position]
         val v = holder.itemView
+        v.setOnClickListener {
+            itemClick(item.url)
+        }
         val ivThumbnail = v.findViewById<ImageView>(R.id.iv_thumbnail)
         Glide.with(context)
                 .load(item.url)

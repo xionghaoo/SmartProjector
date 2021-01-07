@@ -26,11 +26,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartProjector"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.FileDownloadActivity"></activity>
+        <activity android:name=".ui.FileDownloadActivity" android:label="文件下载测试"></activity>
         <activity
             android:name=".ui.video.VideoCacheActivity"
             android:label="缓存视频" />
-        <activity android:name=".ui.TuyaActivity" /> <!-- 涂鸦智能 -->
+        <activity android:name=".ui.TuyaActivity" android:label="登录服务测试" /> <!-- 涂鸦智能 -->
         <meta-data
             android:name="TUYA_SMART_APPKEY"
             android:value="ff5uvrfpueseqfhaa3xf" />
@@ -41,6 +41,7 @@
         <activity
             android:name=".ui.VideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
             android:label="视频测试页面" />
         <activity
             android:name=".serialport.SerialPortActivity"

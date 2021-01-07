@@ -1,11 +1,7 @@
-package com.ubtrobot.smartprojector.ui
+package com.ubtrobot.smartprojector.ui.video
 
-import android.app.Notification
 import android.content.Context
 import android.net.Uri
-import android.os.Build
-import android.provider.MediaStore
-import androidx.core.net.toUri
 import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.database.DatabaseProvider
@@ -13,8 +9,6 @@ import com.google.android.exoplayer2.database.ExoDatabaseProvider
 import com.google.android.exoplayer2.ext.cronet.CronetDataSourceFactory
 import com.google.android.exoplayer2.ext.cronet.CronetEngineWrapper
 import com.google.android.exoplayer2.offline.*
-import com.google.android.exoplayer2.scheduler.PlatformScheduler
-import com.google.android.exoplayer2.scheduler.Scheduler
 import com.google.android.exoplayer2.ui.DownloadNotificationHelper
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -24,18 +18,14 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Log
-import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.ui.VideoActivity
+import com.ubtrobot.smartprojector.ui.VideoDownloadService
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.Executors
 
-class VideoDownloadService : DownloadService(
-    FOREGROUND_NOTIFICATION_ID,
-    DEFAULT_FOREGROUND_NOTIFICATION_UPDATE_INTERVAL,
-    DOWNLOAD_NOTIFICATION_CHANNEL_ID,
-    R.string.exo_download_notification_channel_name
-) {
+class VideoDownloadHelper {
     companion object {
         private const val JOB_ID = 1
         private const val FOREGROUND_NOTIFICATION_ID = 1
@@ -44,7 +34,8 @@ class VideoDownloadService : DownloadService(
 
         private var databaseProvider: ExoDatabaseProvider? = null
         private var downloadCache: Cache? = null
-        private var downloadManager: DownloadManager? = null
+        var downloadManager: DownloadManager? = null
+            private set
         private var httpDataSourceFactory: HttpDataSource.Factory? = null
         private var dataSourceFactory: DataSource.Factory? = null
 
@@ -57,21 +48,21 @@ class VideoDownloadService : DownloadService(
         fun start(context: Context, downloadVideoUri: Uri) {
             val item = MediaItem.fromUri(downloadVideoUri)
             downloadHelper = DownloadHelper.forMediaItem(
-                context,
-                item,
-                DefaultRenderersFactory(context.applicationContext),
-                httpDataSourceFactory
+                    context,
+                    item,
+                    DefaultRenderersFactory(context.applicationContext),
+                    httpDataSourceFactory
             )
 
             val downloadRequest = DownloadRequest.Builder(
-                VideoActivity.TEST_VIDEO,
-                downloadVideoUri
+                    VideoActivity.TEST_VIDEO,
+                    downloadVideoUri
             ).build()
-            sendAddDownload(
-                context,
-                VideoDownloadService::class.java,
-                downloadRequest,
-                false
+            DownloadService.sendAddDownload(
+                    context,
+                    VideoDownloadService::class.java,
+                    downloadRequest,
+                    false
             )
         }
 
@@ -90,11 +81,11 @@ class VideoDownloadService : DownloadService(
 //                        downloadIndex,  /* addNewDownloadsAsCompleted= */
 //                        true)
                 downloadManager = DownloadManager(
-                    context,
-                    getDatabaseProvider(context),
-                    getDownloadCache(context),
-                    getHttpDataSourceFactory(context),
-                    Executors.newFixedThreadPool( /* nThreads= */6)
+                        context,
+                        getDatabaseProvider(context),
+                        getDownloadCache(context),
+                        getHttpDataSourceFactory(context),
+                        Executors.newFixedThreadPool( /* nThreads= */6)
                 )
 //                downloadTracker = DownloadTracker(context, getHttpDataSourceFactory(context), downloadManager)
 
@@ -115,8 +106,8 @@ class VideoDownloadService : DownloadService(
             if (httpDataSourceFactory == null) {
                 val cronetEngineWrapper = CronetEngineWrapper(context.applicationContext)
                 httpDataSourceFactory = CronetDataSourceFactory(
-                    cronetEngineWrapper,
-                    Executors.newSingleThreadExecutor()
+                        cronetEngineWrapper,
+                        Executors.newSingleThreadExecutor()
                 )
             }
             return httpDataSourceFactory!!
@@ -134,35 +125,35 @@ class VideoDownloadService : DownloadService(
         fun getDataSourceFactory(context: Context): DataSource.Factory {
             if (dataSourceFactory == null) {
                 val upstreamFactory = DefaultDataSourceFactory(
-                    context,
-                    getHttpDataSourceFactory(context)
+                        context,
+                        getHttpDataSourceFactory(context)
                 )
                 dataSourceFactory = buildReadOnlyCacheDataSource(
-                    upstreamFactory, getDownloadCache(context)
+                        upstreamFactory, getDownloadCache(context)
                 )
             }
             return dataSourceFactory!!
         }
 
         private fun buildReadOnlyCacheDataSource(
-            upstreamFactory: DataSource.Factory, cache: Cache
+                upstreamFactory: DataSource.Factory, cache: Cache
         ): CacheDataSource.Factory {
             return CacheDataSource.Factory()
-                .setCache(cache)
-                .setUpstreamDataSourceFactory(upstreamFactory)
-                .setCacheWriteDataSinkFactory(null)
-                .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
+                    .setCache(cache)
+                    .setUpstreamDataSourceFactory(upstreamFactory)
+                    .setCacheWriteDataSinkFactory(null)
+                    .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
         }
 
         @Synchronized
         private fun getDownloadCache(context: Context): Cache {
             if (downloadCache == null) {
                 val downloadContentDirectory: File = File(
-                    getDownloadDirectory(context),
-                    DOWNLOAD_CONTENT_DIRECTORY
+                        getDownloadDirectory(context),
+                        DOWNLOAD_CONTENT_DIRECTORY
                 )
                 downloadCache = SimpleCache(
-                    downloadContentDirectory, NoOpCacheEvictor(), getDatabaseProvider(context)
+                        downloadContentDirectory, NoOpCacheEvictor(), getDatabaseProvider(context)
                 )
             }
             return downloadCache!!
@@ -180,8 +171,8 @@ class VideoDownloadService : DownloadService(
         private fun getDownloadNotificationHelper(context: Context) : DownloadNotificationHelper {
             if (downloadNotificationHelper == null) {
                 downloadNotificationHelper = DownloadNotificationHelper(
-                    context,
-                    DOWNLOAD_NOTIFICATION_CHANNEL_ID
+                        context,
+                        DOWNLOAD_NOTIFICATION_CHANNEL_ID
                 )
             }
             return downloadNotificationHelper!!
@@ -210,9 +201,9 @@ class VideoDownloadService : DownloadService(
                 return  downloads
             } catch (e: IOException) {
                 Log.w(
-                    "DownloadService",
-                    "Failed to query downloads",
-                    e
+                        "DownloadService",
+                        "Failed to query downloads",
+                        e
                 )
                 return null
             }
@@ -222,11 +213,11 @@ class VideoDownloadService : DownloadService(
          * 删除缓存
          */
         fun removeDownload(context: Context) {
-            sendRemoveDownload(
-                context,
-                VideoDownloadService::class.java,
-                VideoActivity.TEST_VIDEO,
-                false
+            DownloadService.sendRemoveDownload(
+                    context,
+                    VideoDownloadService::class.java,
+                    VideoActivity.TEST_VIDEO,
+                    false
             )
         }
 
@@ -236,30 +227,5 @@ class VideoDownloadService : DownloadService(
                 Timber.d("clear cache")
             }.start()
         }
-    }
-
-
-
-    override fun getDownloadManager(): DownloadManager {
-        val downloadManager = getMyDownloadManager(this)
-        downloadListener?.also {
-            downloadManager?.addListener(it)
-        }
-        return downloadManager!!
-    }
-
-    override fun getScheduler(): Scheduler? {
-        return if (Build.VERSION.SDK_INT >= 21) PlatformScheduler(this, JOB_ID) else null
-    }
-
-    override fun getForegroundNotification(downloads: MutableList<Download>): Notification {
-        return getDownloadNotificationHelper(this)
-            .buildProgressNotification(
-                this,
-                R.drawable.ic_launcher_foreground,
-                null,
-                null,
-                downloads
-            )
     }
 }

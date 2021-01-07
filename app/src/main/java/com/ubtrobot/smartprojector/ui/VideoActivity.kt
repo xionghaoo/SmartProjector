@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -13,8 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.offline.Download
+import com.google.android.exoplayer2.offline.DownloadManager
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.google.android.exoplayer2.source.MediaSourceFactory
+import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.ubtrobot.smartprojector.R
@@ -24,6 +28,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import java.io.File
+import java.lang.Exception
 
 
 class VideoActivity : AppCompatActivity(), Player.EventListener {
@@ -31,22 +36,32 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     companion object {
         private const val RC_STORAGE_PERMISSION = 1
 
+        private const val EXTRA_URL = "com.ubtrobot.smartprojector.VideoActivity.EXTRA_URL"
+
         const val TEST_VIDEO = "http://vfx.mtime.cn/Video/2017/03/31/mp4/170331093811717750.mp4"
+
+        fun start(context: Context?, url: String?) {
+            val intent = Intent(context, VideoActivity::class.java)
+            intent.putExtra(EXTRA_URL, url)
+            context?.startActivity(intent)
+        }
     }
 
     private var player: SimpleExoPlayer? = null
     private var btnFullscreen: ImageView? = null
     private var isFullscreen: Boolean = false
 
+    private var autoPlayUrl: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video)
         videoPlayTask()
 
-
+        autoPlayUrl = intent.getStringExtra(EXTRA_URL)
 
         btn_download.setOnClickListener {
-            VideoDownloadService.start(this)
+            VideoDownloadService.start(this, TEST_VIDEO.toUri())
         }
 
         btn_get_downloads.setOnClickListener {
@@ -59,25 +74,39 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         }
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        autoPlayUrl = intent?.getStringExtra(EXTRA_URL)
+
+        if (autoPlayUrl != null) {
+            player?.seekTo(1, 0)
+        }
+        player!!.playWhenReady = true
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
     override fun onPause() {
         super.onPause()
+//        player_view.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        player_view.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
     }
 
     override fun onDestroy() {
         player?.release()
         super.onDestroy()
     }
-
-//    override fun onConfigurationChanged(newConfig: Configuration) {
-//        super.onConfigurationChanged(newConfig)
-//
-//        // Checks the orientation of the screen
-//        if (newConfig.orientation === Configuration.ORIENTATION_LANDSCAPE) {
-//            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show()
-//        } else if (newConfig.orientation === Configuration.ORIENTATION_PORTRAIT) {
-//            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     @AfterPermissionGranted(RC_STORAGE_PERMISSION)
     private fun videoPlayTask() {
@@ -100,6 +129,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
 
+        // 全屏处理
         isFullscreen = false
         btnFullscreen = player_view.findViewById(R.id.exo_fullscreen_icon)
         btnFullscreen?.setOnClickListener {
@@ -131,8 +161,6 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         }
 
         player!!.addListener(this)
-        player!!.playWhenReady = true
-
         player_view.player = player
 
         val testVideo = "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears.mpd"
@@ -145,24 +173,17 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             "${Environment.DIRECTORY_DOWNLOADS}/video1.mp4"
         )
         Timber.d("download path: ${video1}")
-//        val item1 = MediaItem.fromUri(video1.toUri())
+        val item1 = MediaItem.fromUri(video1.toUri())
 //        val item2 = MediaItem.fromUri(video2.toUri())
-//        player!!.addMediaItem(item1)
+        player!!.addMediaItem(item1)
 //        player!!.addMediaItem(item2)
 //        player!!.prepare()
         player!!.addMediaItem(MediaItem.fromUri(TEST_VIDEO.toUri()))
+        if (autoPlayUrl != null) {
+            player?.seekTo(1, 0)
+        }
         player!!.prepare()
-
-        Glide.with(this)
-            .load(video1.toUri())
-            .centerCrop()
-            .into(iv_video_1)
-
-        Glide.with(this)
-            .load(TEST_VIDEO)
-            .thumbnail(Glide.with(this).load(TEST_VIDEO))
-            .centerCrop()
-            .into(iv_video_2)
+        player!!.playWhenReady = true
 
         iv_video_1.setOnClickListener {
             player?.seekTo(0, 0)
@@ -173,6 +194,18 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             player?.seekTo(1, 0)
             player?.playWhenReady = true
         }
+
+        // 加载视频缩略图
+        Glide.with(this)
+                .load(video1.toUri())
+                .centerCrop()
+                .into(iv_video_1)
+
+        Glide.with(this)
+                .load(TEST_VIDEO)
+                .thumbnail(Glide.with(this).load(TEST_VIDEO))
+                .centerCrop()
+                .into(iv_video_2)
     }
 
     override fun onRequestPermissionsResult(
@@ -216,4 +249,9 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     override fun onPlaybackStateChanged(state: Int) {
 
     }
+
+//    override fun onDownloadChanged(downloadManager: DownloadManager, download: Download, finalException: Exception?) {
+//        // 缓存下载变化
+//        btn_download.text = "视频缓存 ${download.percentDownloaded}"
+//    }
 }
