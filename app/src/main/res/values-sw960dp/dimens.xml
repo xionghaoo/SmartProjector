@@ -2,7 +2,7 @@
 <resources>
 	<!--sw960dp transfer from default-->
 	<dimen name="player_normal_height">168.67dp</dimen>
-    <dimen name="divider_size">0.5dp</dimen>
+    <dimen name="divider_width">0.5dp</dimen>
 	<!--adaptation size start-->
 	<dimen name="_1sp">1sp</dimen>
 	<dimen name="_2sp">1.41sp</dimen>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,48 +9,64 @@
     tools:context=".ui.MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="240dp"
         android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_dark"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/iv_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_cat"
-            android:layout_marginTop="20dp"/>
+            android:src="@drawable/ic_cat" />
 
-        <TextView
-            android:id="@+id/btn_home"
+        <LinearLayout
+            android:id="@+id/container_menu"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/white"
-            android:text="首页"
-            android:gravity="center"
-            android:layout_marginTop="15dp"/>
-
-        <TextView
-            android:id="@+id/btn_education"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/white"
-            android:text="视频教学"
-            android:gravity="center"
-            android:layout_marginTop="15dp"/>
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
     </LinearLayout>
 
     <TextView
-        android:layout_width="@dimen/divider_size"
+        android:id="@+id/textView7"
+        android:layout_width="@dimen/divider_width"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout" />
 
-    <fragment
-        android:id="@+id/main_fragment"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
-</LinearLayout>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <fragment-->
+<!--        android:id="@+id/main_fragment"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:navGraph="@navigation/nav_graph" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>

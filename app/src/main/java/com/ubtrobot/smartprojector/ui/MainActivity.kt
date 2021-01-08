@@ -6,8 +6,13 @@ import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
 
+    private var menuTitles = arrayOf("视频教学", "魔法空间")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,14 +40,31 @@ class MainActivity : AppCompatActivity() {
         val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInfo = wifiManager.connectionInfo
 
+        educationFragment = EducationFragment.newInstance()
+        magicSpaceFragment = MagicSpaceFragment.newInstance()
 
-        btn_home.setOnClickListener {
-            ToastUtil.showToast(this, "首页")
+        container_menu.removeAllViews()
+        menuTitles.forEachIndexed { index, title ->
+            val tv = TextView(this)
+            tv.text = title
+            container_menu.addView(tv)
+            val lp = tv.layoutParams as LinearLayout.LayoutParams
+            lp.height = ResourceUtil.convertDpToPixel(56f, this).toInt()
+            lp.width = LinearLayout.LayoutParams.MATCH_PARENT
+            lp.topMargin = ResourceUtil.convertDpToPixel(20f, this).toInt()
+            tv.setBackgroundColor(resources.getColor(android.R.color.holo_blue_bright))
+            tv.gravity = Gravity.CENTER
+            tv.setOnClickListener {
+                when (index) {
+                    0 -> replaceFragment(educationFragment, R.id.fragment_container)
+                    1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
+                }
+
+            }
+
         }
 
-        btn_education.setOnClickListener {
-            ToastUtil.showToast(this, "视频教学")
-        }
+        replaceFragment(educationFragment, R.id.fragment_container)
 
     }
 
