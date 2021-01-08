@@ -31,5 +31,5 @@ class MainViewModel @ViewModelInject internal constructor(
 //        return data
 //    }
 
-    fun apiTest() {}
+    fun apiTest() = repo.test()
 }

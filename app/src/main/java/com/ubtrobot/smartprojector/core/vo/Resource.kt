@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.android.example.github.vo
+package com.ubtrobot.smartprojector.core.vo
 
-import com.android.example.github.vo.Status.ERROR
-import com.android.example.github.vo.Status.LOADING
-import com.android.example.github.vo.Status.SUCCESS
+import com.ubtrobot.smartprojector.core.vo.Status.SUCCESS
+import com.ubtrobot.smartprojector.core.vo.Status.ERROR
+import com.ubtrobot.smartprojector.core.vo.Status.LOADING
 
 /**
  * A generic class that holds a value with its loading status.

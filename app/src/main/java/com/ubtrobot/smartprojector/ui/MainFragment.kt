@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.serialport.SerialPortActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +54,11 @@ class MainFragment : Fragment() {
 //                if (it.ip != null) tv_api_result.text = "API测试数据: ip = ${it.ip}"
 //            })
             tv_title.text = "标题发生改变"
-            viewModel.apiTest()
+            viewModel.apiTest().observe(viewLifecycleOwner, Observer { r ->
+                if (r.status == Status.SUCCESS && r.data != null) {
+                    if (r.data.ip != null) tv_api_result.text = "API测试数据: ip = ${r.data.ip}"
+                }
+            })
         }
 
         btn_video.setOnClickListener {

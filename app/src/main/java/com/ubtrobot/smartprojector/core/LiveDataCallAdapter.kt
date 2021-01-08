@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.ubtrobot.smartprojector.utils
+package com.ubtrobot.smartprojector.core
 
 
 import androidx.lifecycle.LiveData
+import com.ubtrobot.smartprojector.core.vo.ApiResponse
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
@@ -42,11 +43,11 @@ class LiveDataCallAdapter<R>(private val responseType: Type) :
                 if (started.compareAndSet(false, true)) {
                     call.enqueue(object : Callback<R> {
                         override fun onResponse(call: Call<R>, response: Response<R>) {
-                            postValue(ApiResponse.create(response))
+                            postValue(ApiResponse(response))
                         }
 
                         override fun onFailure(call: Call<R>, throwable: Throwable) {
-                            postValue(ApiResponse.create(throwable))
+                            postValue(ApiResponse(throwable))
                         }
                     })
                 }

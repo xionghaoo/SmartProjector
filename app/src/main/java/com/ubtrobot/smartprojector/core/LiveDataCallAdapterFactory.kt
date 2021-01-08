@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.ubtrobot.smartprojector.utils
+package com.ubtrobot.smartprojector.core
 
 import androidx.lifecycle.LiveData
+import com.ubtrobot.smartprojector.core.vo.ApiResponse
 import retrofit2.CallAdapter
 import retrofit2.CallAdapter.Factory
 import retrofit2.Retrofit

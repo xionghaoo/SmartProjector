@@ -1,9 +1,15 @@
 package com.ubtrobot.smartprojector.repo
 
+import android.content.Context
+import com.ubtrobot.smartprojector.remoteRequestStrategy
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class Repository @Inject constructor(
-    private val apiService: ApiService
+        @ApplicationContext val context: Context,
+        private val apiService: ApiService
 ) {
-    fun test() = apiService.test()
+    fun test() = remoteRequestStrategy {
+        apiService.test()
+    }
 }
