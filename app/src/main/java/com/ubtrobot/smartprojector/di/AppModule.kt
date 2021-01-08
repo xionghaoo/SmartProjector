@@ -1,11 +1,14 @@
 package com.ubtrobot.smartprojector.di
 
+import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.MqttClient
 import com.ubtrobot.smartprojector.repo.ApiService
 import com.ubtrobot.smartprojector.core.LiveDataCallAdapterFactory
+import com.ubtrobot.smartprojector.repo.PreferenceStorage
+import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -114,4 +117,8 @@ object AppModule {
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
             .create(ApiService::class.java)
+
+    @Provides
+    fun provideSharedPreferences(application: Application) : PreferenceStorage =
+        SharedPreferenceStorage(application)
 }

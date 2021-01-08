@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(
         @ApplicationContext val context: Context,
-        private val apiService: ApiService
+        private val apiService: ApiService,
+        val prefs: SharedPreferenceStorage
 ) {
     fun test() = remoteRequestStrategy {
         apiService.test()

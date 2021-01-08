@@ -1,7 +1,10 @@
 package com.ubtrobot.smartprojector
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import com.ubtrobot.smartprojector.core.RemoteRequestStrategy
 import com.ubtrobot.smartprojector.repo.Repository
@@ -142,6 +145,15 @@ inline fun <T> Repository.remoteRequestStrategy(
 //        error()
 //    }
 //}
+
+
+fun <T> Fragment.startPlainActivity(target: Class<T>) where T : AppCompatActivity {
+    startActivity(Intent(context, target))
+}
+
+fun <T> AppCompatActivity.startPlainActivity(target: Class<T>) where T : AppCompatActivity {
+    startActivity(Intent(this, target))
+}
 
 // 金额处理，分转元
 fun Int?.toYuan() : String {

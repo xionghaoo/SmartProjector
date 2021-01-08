@@ -23,4 +23,8 @@
         android:name="com.ubtrobot.smartprojector.ui.MqttFragment"
         android:label="fragment_mqtt"
         tools:layout="@layout/fragment_mqtt" />
+    <fragment
+        android:id="@+id/placeholder"
+        android:name="com.ubtrobot.smartprojector.ui.EducationFragment"
+        tools:layout="@layout/fragment_education" />
 </navigation>

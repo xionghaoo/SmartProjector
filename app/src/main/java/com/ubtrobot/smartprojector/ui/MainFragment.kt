@@ -32,14 +32,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_home.setOnClickListener {
-            ToastUtil.showToast(requireContext(), "首页")
-        }
-
-        btn_education.setOnClickListener {
-            ToastUtil.showToast(requireContext(), "视频教学")
-        }
-
         btn_mqtt_test.setOnClickListener {
 //            startActivity(Intent(this, MqttActivity::class.java))
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_mqttFragment)
