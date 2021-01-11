@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
@@ -31,9 +32,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
+    private lateinit var appMarketFragment: AppMarketFragment
     private lateinit var updateDelegate: UpdateDelegate
 
-    private var menuTitles = arrayOf("视频教学", "魔法空间")
+    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用市场")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         educationFragment = EducationFragment.newInstance()
         magicSpaceFragment = MagicSpaceFragment.newInstance()
+        appMarketFragment = AppMarketFragment.newInstance()
 
         container_menu.removeAllViews()
         menuTitles.forEachIndexed { index, title ->
@@ -60,6 +63,7 @@ class MainActivity : AppCompatActivity() {
                 when (index) {
                     0 -> replaceFragment(educationFragment, R.id.fragment_container)
                     1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
+                    2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
                 }
 
             }
