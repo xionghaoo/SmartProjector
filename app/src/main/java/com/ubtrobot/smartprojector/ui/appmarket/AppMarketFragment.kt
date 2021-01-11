@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_app_market.*
 import timber.log.Timber
 
 /**
- * App市场
+ * 已安装的App列表
  */
 class AppMarketFragment : Fragment() {
 
@@ -36,6 +36,7 @@ class AppMarketFragment : Fragment() {
 
         rc_app_list.layoutManager = GridLayoutManager(context, 6)
         adapter = AppInfoAdapter(emptyList()) { packageName ->
+            // 点击图标时启动app
             context?.packageManager?.apply {
                 val launchIntent = getLaunchIntentForPackage(packageName)
                 startActivity(launchIntent)
@@ -43,6 +44,7 @@ class AppMarketFragment : Fragment() {
         }
         rc_app_list.adapter = adapter
 
+        // 获取已安装的app列表
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_LAUNCHER)
         val packageManager = context?.packageManager
