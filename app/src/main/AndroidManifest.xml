@@ -78,6 +78,19 @@
             android:name="com.google.android.exoplayer2.scheduler.PlatformScheduler$PlatformSchedulerService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- 更新下载服务 -->
+        <service android:name=".update.DownloadService"
+            android:exported="true"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ubtrobot.smartprojector.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

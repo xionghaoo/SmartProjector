@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
+    private lateinit var updateDelegate: UpdateDelegate
 
     private var menuTitles = arrayOf("视频教学", "魔法空间")
 
@@ -65,6 +67,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         replaceFragment(educationFragment, R.id.fragment_container)
+
+        updateDelegate = UpdateDelegate(this)
+        updateDelegate.showVersionUpdateDialog(
+                url = "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
+                versionName = "test1.0.0",
+                content = "版本更新测试",
+                isForce = true,
+                cancel = {
+
+                }
+        )
 
     }
 
