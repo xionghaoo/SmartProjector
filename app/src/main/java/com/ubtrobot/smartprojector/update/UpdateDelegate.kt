@@ -84,7 +84,7 @@ class UpdateDelegate(private val context: Activity) : DownloadService.DownloadCa
         DownloadService.stopService(context, connection)
     }
 
-    override fun onError(error: String) {
+    override fun onError(error: String?) {
         context.runOnUiThread {
             tvDownload?.text = "下载失败，请重新下载"
             btnConfirm?.text = "重新下载"

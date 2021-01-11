@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 url = "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
                 versionName = "test1.0.0",
                 content = "版本更新测试",
-                isForce = true,
+                isForce = false,
                 cancel = {
 
                 }

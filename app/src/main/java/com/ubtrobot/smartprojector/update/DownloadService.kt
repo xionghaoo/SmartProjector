@@ -18,12 +18,15 @@ import okhttp3.Request
 import java.io.*
 import java.lang.Exception
 
+/**
+ * apk下载服务
+ */
 class DownloadService : Service() {
     companion object {
         private const val TAG = "DownloadService"
         private const val NOTIFICATION_ID = 2
-        private const val EXTRA_UPDATE_URL = "com.ks.common.update.EXTRA_UPDATE_URL"
-        private const val EXTRA_IS_FORCE = "com.ks.common.update.EXTRA_IS_FORCE"
+        private const val EXTRA_UPDATE_URL = "com.ubtrobot.smartprojector.update.EXTRA_UPDATE_URL"
+        private const val EXTRA_IS_FORCE = "com.ubtrobot.smartprojector.update.EXTRA_IS_FORCE"
         private const val CHANNEL_ID = "download_channel"
         private const val BUFFER_SIZE = 10 * 1024 // 8k ~ 32K
 
@@ -168,7 +171,7 @@ class DownloadService : Service() {
         isDownloadCompleted = true
     }
 
-    private fun onDownloadError(error: String) {
+    private fun onDownloadError(error: String?) {
         mCallback?.onError(error)
 
         mBuilder.setContentText("下载失败，请重新下载")
@@ -216,7 +219,7 @@ class DownloadService : Service() {
         fun onPrepare()
         fun onProgress(progress: Int)
         fun onComplete()
-        fun onError(error: String)
+        fun onError(error: String?)
     }
 
 }
