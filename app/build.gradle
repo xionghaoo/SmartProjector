@@ -6,6 +6,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: '../config.gradle'
+
 android {
     signingConfigs {
         release {
@@ -15,14 +17,14 @@ android {
             keyPassword 'ubt123'
         }
     }
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "com.ubtrobot.smartprojector"
-        minSdkVersion 21
+        minSdkVersion rootProject.minSdkVersion
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 25
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -35,8 +37,37 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            renameApk()
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        prod {
+            // 生产版本
+//            ndk {
+//                // armeabi
+//                abiFilters 'armeabi-v7a', 'arm64-v8a'
+//            }
+            buildConfigField('String', 'DOMAIN_RELEASE', rootProject.domain_prod)
+            buildConfigField('String', 'TENCENT_DOMAIN', rootProject.tecentStorageHost)
+        }
+        uat {
+            // 测试版本
+            versionCode uatVersionCode
+            versionName uatVersionName
+            buildConfigField('String', 'DOMAIN_RELEASE', rootProject.domain_uat)
+            buildConfigField('String', 'TENCENT_DOMAIN', rootProject.tecentStorageHostUat)
+        }
+        pre {
+            // 预发布环境
+            versionCode preVerisonCode
+            versionName preVersionName
+            buildConfigField('String', 'DOMAIN_RELEASE', rootProject.domain_pre)
+            buildConfigField('String', 'TENCENT_DOMAIN', rootProject.tecentStorageHost)
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -44,11 +75,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     aaptOptions{
         noCompress "mp4" // file extesion
     }
