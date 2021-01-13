@@ -37,7 +37,7 @@ class AppMarketFragment : Fragment() {
         rc_app_list.layoutManager = GridLayoutManager(context, 6)
         adapter = AppInfoAdapter(emptyList()) { packageName ->
             // 点击图标时启动app
-            context?.packageManager?.apply {
+            requireActivity().packageManager.apply {
                 val launchIntent = getLaunchIntentForPackage(packageName)
                 startActivity(launchIntent)
             }
@@ -47,22 +47,19 @@ class AppMarketFragment : Fragment() {
         // 获取已安装的app列表
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_LAUNCHER)
-        val packageManager = context?.packageManager
-        if (packageManager != null) {
-            val packageList = packageManager.queryIntentActivities(intent, 0)
+        requireActivity().packageManager.apply {
+            val packageList = queryIntentActivities(intent, 0)
             val items = ArrayList<AppInfo>()
             packageList.forEach { info ->
                 if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID) {
-                    val appInfo: ApplicationInfo = packageManager.getApplicationInfo(info.activityInfo.packageName, 0)
-                    val appName = packageManager.getApplicationLabel(appInfo).toString()
-                    val icon = packageManager.getApplicationIcon(appInfo)
+                    val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
+                    val appName = getApplicationLabel(appInfo).toString()
+                    val icon = getApplicationIcon(appInfo)
                     items.add(AppInfo(appName, icon, appInfo.packageName))
                 }
             }
             adapter.updateData(items)
         }
-
-
     }
 
     companion object {

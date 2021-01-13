@@ -7,6 +7,7 @@ import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.MqttClient
 import com.ubtrobot.smartprojector.repo.ApiService
 import com.ubtrobot.smartprojector.core.LiveDataCallAdapterFactory
+import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
 import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import dagger.Module
@@ -121,4 +122,7 @@ object AppModule {
     @Provides
     fun provideSharedPreferences(application: Application) : PreferenceStorage =
         SharedPreferenceStorage(application)
+
+    @Provides
+    fun provideConnectionStateMonitor() = ConnectionStateMonitor()
 }

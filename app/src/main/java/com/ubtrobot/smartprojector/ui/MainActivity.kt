@@ -11,13 +11,17 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
+import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -30,23 +34,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Inject
+    lateinit var connectionStateMonitor: ConnectionStateMonitor
+
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
     private lateinit var appMarketFragment: AppMarketFragment
-    private lateinit var updateDelegate: UpdateDelegate
+    private lateinit var settingsFragment: SettingsFragment
 
-    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用市场")
+    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用市场", "设置")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        val wifiInfo = wifiManager.connectionInfo
-
         educationFragment = EducationFragment.newInstance()
         magicSpaceFragment = MagicSpaceFragment.newInstance()
         appMarketFragment = AppMarketFragment.newInstance()
+        settingsFragment = SettingsFragment.newInstance()
 
         container_menu.removeAllViews()
         menuTitles.forEachIndexed { index, title ->
@@ -64,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                     0 -> replaceFragment(educationFragment, R.id.fragment_container)
                     1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
                     2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
+                    3 -> replaceFragment(settingsFragment, R.id.fragment_container)
                 }
 
             }
@@ -72,17 +78,22 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(educationFragment, R.id.fragment_container)
 
-        updateDelegate = UpdateDelegate(this)
-        updateDelegate.showVersionUpdateDialog(
-                url = "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
-                versionName = "test1.0.0",
-                content = "版本更新测试",
-                isForce = false,
-                cancel = {
+        connectionStateMonitor.setConnectStateListener { isConnected ->
+            runOnUiThread {
+                Timber.d("connectionStateMonitor: $isConnected")
+                iv_wifi_state.setImageResource(if (isConnected) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off)
+            }
+        }
+        connectionStateMonitor.enable(applicationContext)
+    }
 
-                }
-        )
+    private fun isNetworkConnected(context: Context?): Boolean {
+        if (context == null) return false
 
+        val connectivityManager =
+                context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
 
     private fun getWifiSSID() {
