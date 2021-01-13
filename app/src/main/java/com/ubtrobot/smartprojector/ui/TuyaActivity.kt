@@ -100,6 +100,8 @@ class TuyaActivity : AppCompatActivity() {
             )
         }
 
+        radar_view.start()
+
         // wifi ssid扫描
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
 
@@ -113,6 +115,11 @@ class TuyaActivity : AppCompatActivity() {
             scanFailure()
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        radar_view.stop()
     }
 
     private fun scanSuccess() {
