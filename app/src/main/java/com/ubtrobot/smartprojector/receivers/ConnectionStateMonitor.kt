@@ -30,13 +30,11 @@ class ConnectionStateMonitor : ConnectivityManager.NetworkCallback() {
 
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
-        Timber.d("onAvailable")
         onConnectStateChange?.invoke(true)
     }
 
     override fun onLost(network: Network) {
         super.onLost(network)
-        Timber.d("onLost")
         onConnectStateChange?.invoke(false)
     }
 }

@@ -40,9 +40,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
     private lateinit var appMarketFragment: AppMarketFragment
+    private lateinit var gameMarketFragment: AppMarketFragment
     private lateinit var settingsFragment: SettingsFragment
 
-    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用市场", "设置")
+    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         educationFragment = EducationFragment.newInstance()
         magicSpaceFragment = MagicSpaceFragment.newInstance()
         appMarketFragment = AppMarketFragment.newInstance()
+        gameMarketFragment = AppMarketFragment.newInstance(true)
         settingsFragment = SettingsFragment.newInstance()
 
         container_menu.removeAllViews()
@@ -69,7 +71,8 @@ class MainActivity : AppCompatActivity() {
                     0 -> replaceFragment(educationFragment, R.id.fragment_container)
                     1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
                     2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
-                    3 -> replaceFragment(settingsFragment, R.id.fragment_container)
+                    3 -> replaceFragment(gameMarketFragment, R.id.fragment_container)
+                    4 -> replaceFragment(settingsFragment, R.id.fragment_container)
                 }
 
             }
@@ -78,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(educationFragment, R.id.fragment_container)
 
+        // 监听网络状态变化
         connectionStateMonitor.setConnectStateListener { isConnected ->
             runOnUiThread {
                 Timber.d("connectionStateMonitor: $isConnected")

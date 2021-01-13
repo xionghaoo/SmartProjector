@@ -25,7 +25,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -33,7 +32,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_mqtt_test.setOnClickListener {
-//            startActivity(Intent(this, MqttActivity::class.java))
             Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_mqttFragment)
         }
 
@@ -42,9 +40,6 @@ class MainFragment : Fragment() {
         }
 
         btn_api_test.setOnClickListener {
-//            viewModel.apiTest().observe(this, Observer {
-//                if (it.ip != null) tv_api_result.text = "API测试数据: ip = ${it.ip}"
-//            })
             tv_title.text = "标题发生改变"
             viewModel.apiTest().observe(viewLifecycleOwner, Observer { r ->
                 if (r.status == Status.SUCCESS && r.data != null) {

@@ -18,10 +18,15 @@ import timber.log.Timber
  */
 class AppMarketFragment : Fragment() {
 
+    private var isGame: Boolean = false
+
     private lateinit var adapter: AppInfoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.apply {
+            isGame = getBoolean(ARG_IS_GAME)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,11 +56,18 @@ class AppMarketFragment : Fragment() {
             val packageList = queryIntentActivities(intent, 0)
             val items = ArrayList<AppInfo>()
             packageList.forEach { info ->
-                if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID) {
-                    val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
-                    val appName = getApplicationLabel(appInfo).toString()
-                    val icon = getApplicationIcon(appInfo)
-                    items.add(AppInfo(appName, icon, appInfo.packageName))
+                val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
+                val appName = getApplicationLabel(appInfo).toString()
+                val icon = getApplicationIcon(appInfo)
+                if (isGame) {
+                    if (GAME_LIST.contains(appName)) {
+                        items.add(AppInfo(appName, icon, appInfo.packageName))
+                    }
+                } else {
+                    if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID
+                        && !GAME_LIST.contains(appName)) {
+                        items.add(AppInfo(appName, icon, appInfo.packageName))
+                    }
                 }
             }
             adapter.updateData(items)
@@ -63,6 +75,12 @@ class AppMarketFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = AppMarketFragment()
+        private val GAME_LIST = arrayOf("Blockly WebView")
+        private const val ARG_IS_GAME = "ARG_IS_GAME"
+        fun newInstance(isGame: Boolean = false) = AppMarketFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean(ARG_IS_GAME, isGame)
+            }
+        }
     }
 }
