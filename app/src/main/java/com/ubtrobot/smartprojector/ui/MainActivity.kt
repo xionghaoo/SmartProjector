@@ -84,7 +84,9 @@ class MainActivity : AppCompatActivity() {
         // 监听网络状态变化
         connectionStateMonitor.setConnectStateListener { isConnected ->
             runOnUiThread {
-                Timber.d("connectionStateMonitor: $isConnected")
+                if (!isConnected) {
+                    ToastUtil.showToast(this, "您已离线，请检查网络连接")
+                }
                 iv_wifi_state.setImageResource(if (isConnected) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off)
             }
         }

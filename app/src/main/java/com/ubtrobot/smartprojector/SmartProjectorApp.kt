@@ -16,11 +16,11 @@ class SmartProjectorApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        TuyaHomeSdk.init(this)
         if (BuildConfig.DEBUG) {
+            TuyaHomeSdk.setDebugMode(true)
             Timber.plant(Timber.DebugTree())
         }
-        TuyaHomeSdk.init(this)
-        
         FileDownloader.setup(this)
     }
 }

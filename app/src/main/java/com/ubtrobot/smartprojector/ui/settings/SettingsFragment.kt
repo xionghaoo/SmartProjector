@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.ui.TuyaActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import kotlinx.android.synthetic.main.fragment_settings.*
 
@@ -38,6 +40,10 @@ class SettingsFragment : Fragment() {
 
                     }
             )
+        }
+        
+        btn_start_tuya.setOnClickListener {
+            startPlainActivity(TuyaActivity::class.java)
         }
 
     }
