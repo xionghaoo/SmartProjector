@@ -14,26 +14,26 @@ class RadarView : View {
         private var WRAP_WIDTH = 200
         private var WRAP_HEIGHT = 200
 
-        private const val STEP = 2
-        private const val CIRCLE_GAP = 40
-        private const val DELAY = 50L
-        private const val BASE_RADIUS = 100f
+        private const val STEP = 10
+        private const val CIRCLE_GAP = 100
+        private const val DELAY = 60L
+        private const val MIN_RADIUS = 100f
     }
 
     private var isStart: Boolean = false
-    private var radius: Float = BASE_RADIUS
-    private var radius2: Float = BASE_RADIUS
-    private var runnable: Runnable? = null
+    private var currentMaxRadius: Float = MIN_RADIUS
+//    private var runnable: Runnable? = null
+    private var circleNum: Int = 1
     private var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    init {
-        runnable = Runnable {
-            if (isStart) {
-                invalidate()
-                postDelayed(runnable, DELAY)
-            }
-        }
-    }
+//    init {
+//        runnable = Runnable {
+//            if (isStart) {
+//                invalidate()
+//                postDelayed(runnable, DELAY)
+//            }
+//        }
+//    }
 
     constructor(context: Context?) : super(context) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -65,56 +65,47 @@ class RadarView : View {
         val rightPadding = paddingRight
         val width = (width - leftPadding - rightPadding).toFloat()
         val height = (height - topPadding - bottomPadding).toFloat()
+        val maxRadius = width / 2
+        circleNum = ((maxRadius - MIN_RADIUS) / CIRCLE_GAP).toInt()
 
-        val circleNum: Int = ((width / 2 - BASE_RADIUS) / CIRCLE_GAP).toInt()
-
-//        for (i in 1..circleNum) {
-//            var singleRadius = radius + i * CIRCLE_GAP
-//            if (singleRadius >= width / 2) {
-//                singleRadius = width / 2
-//            }
-//            paint.alpha = (255 * (width / 2 - singleRadius) / (width / 2 - BASE_RADIUS)).roundToInt()
-//            canvas?.drawCircle(width / 2, height / 2, singleRadius, paint)
-//        }
-//        radius += SPEED
-
-        radius += STEP
-        if (radius >= width / 2) {
-            radius = width / 2
+        if (currentMaxRadius > maxRadius) {
+            currentMaxRadius -= CIRCLE_GAP
         }
-        drawCircle(canvas, radius, width, height)
 
-        if (radius >= BASE_RADIUS + CIRCLE_GAP * 2 ) {
-            Timber.d("draw circle 2")
-            radius2 += STEP
-            if (radius2 >= width / 2) {
-                radius2 = width / 2
+        Timber.d("circle num = $circleNum")
+        // 以一定步长增加半径值
+        currentMaxRadius += STEP
+        // 根据当前半径绘制剩余圆形
+        for (i in 0..circleNum) {
+            val r = currentMaxRadius - (i + 1) * CIRCLE_GAP
+            // 大于最小显示半径的圆才能绘制出来
+            if (r > MIN_RADIUS) {
+//                drawCircle(canvas, r, width, height)
+                paint.alpha = (255 * (maxRadius - r) / (maxRadius - MIN_RADIUS)).roundToInt()
+                canvas?.drawCircle(width / 2, height / 2, r, paint)
             }
-            drawCircle(canvas, radius2, width, height)
         }
 
-        if (radius >= width / 2) {
-            radius = BASE_RADIUS
+        if (isStart) {
+            postInvalidateDelayed(DELAY)
         }
-        if (radius2 >= width / 2) {
-            radius2 = BASE_RADIUS
-        }
-
     }
 
     private fun drawCircle(canvas: Canvas?, radius: Float, width: Float, height: Float) {
-        paint.alpha = (255 * (width / 2 - radius) / (width / 2 - BASE_RADIUS)).roundToInt()
+        val maxRadius = width / 2
+        paint.alpha = (255 * (maxRadius - radius) / (maxRadius - MIN_RADIUS)).roundToInt()
         canvas?.drawCircle(width / 2, height / 2, radius, paint)
     }
 
     fun start() {
-        removeCallbacks(runnable)
+//        removeCallbacks(runnable)
         isStart = true
-        postDelayed(runnable, DELAY)
+        invalidate()
+//        postDelayed(runnable, DELAY)
     }
 
     fun stop() {
         isStart = false
-        removeCallbacks(runnable)
+//        removeCallbacks(runnable)
     }
 }
