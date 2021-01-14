@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.ui.ScreenLockActivity
+import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.TuyaActivity
+import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,6 +64,10 @@ class SettingsFragment : Fragment() {
                 ToastUtil.showToast(requireContext(), "锁屏密码必须是四位数字")
             }
 
+        }
+
+        btn_white_list.setOnClickListener {
+            startPlainActivity(AppWhiteListActivity::class.java)
         }
 
     }

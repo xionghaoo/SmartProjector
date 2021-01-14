@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="color_cash">#1989FA</color>
-    <color name="color_cash_light">#7BBCFD</color>
+    <color name="color_1989FA">#1989FA</color>
+    <color name="color_7BBCFD">#7BBCFD</color>
 
     <color name="color_EEEEEE">#EEEEEE</color>
     <color name="color_DDDDDD">#DDDDDD</color>

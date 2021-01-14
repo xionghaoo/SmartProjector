@@ -3,11 +3,13 @@ package com.ubtrobot.smartprojector.di
 import android.app.Application
 import android.content.Context
 import android.widget.Toast
+import androidx.room.Room
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.MqttClient
 import com.ubtrobot.smartprojector.repo.ApiService
 import com.ubtrobot.smartprojector.core.LiveDataCallAdapterFactory
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
+import com.ubtrobot.smartprojector.repo.CacheDb
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
 import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import dagger.Module
@@ -21,17 +23,18 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
-    @Provides
+    @Provides @Singleton
     fun provideMqttClient(@ApplicationContext context: Context) : MqttClient {
         return MqttClient(context, Configs.MQTT_SERVER_URI, "app_client_1")
     }
 
-    @Provides
+    @Provides @Singleton
     fun provideOkHttpClient(@ApplicationContext context: Context) : OkHttpClient {
         val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         val client = OkHttpClient.Builder()
@@ -109,7 +112,7 @@ object AppModule {
         return client.build()
     }
 
-    @Provides
+    @Provides @Singleton
     fun provideApiService(client: OkHttpClient) : ApiService =
         Retrofit.Builder()
             .baseUrl(Configs.HOST)
@@ -119,10 +122,17 @@ object AppModule {
             .build()
             .create(ApiService::class.java)
 
-    @Provides
+    @Provides @Singleton
     fun provideSharedPreferences(application: Application) : PreferenceStorage =
         SharedPreferenceStorage(application)
 
-    @Provides
+    @Provides @Singleton
     fun provideConnectionStateMonitor() = ConnectionStateMonitor()
+
+    @Provides @Singleton
+    fun provideCacheDb(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, CacheDb::class.java, "smart-projector-cache.db")
+            .fallbackToDestructiveMigration()
+//            .addMigrations(MIGRATION_28_29)
+            .build()
 }

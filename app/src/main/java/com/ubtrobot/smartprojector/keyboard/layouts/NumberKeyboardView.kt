@@ -277,7 +277,7 @@ class NumberKeyboardView : LinearLayout {
             columnContainer, width = keyWidth,
             height = spacerWidth + keyHeight * 2,
             txtColor = R.color.white,
-            bgRes = R.drawable.selector_confirm_cash_btn
+            bgRes = R.drawable.selector_confirm_btn
         )
 
         addView(columnContainer)

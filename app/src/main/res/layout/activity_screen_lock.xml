@@ -12,7 +12,7 @@
     android:focusable="true"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context=".ui.ScreenLockActivity">
+    tools:context=".ui.restrict.ScreenLockActivity">
 
     <EditText
         android:id="@+id/edt_lock_password"

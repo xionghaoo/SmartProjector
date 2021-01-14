@@ -3,29 +3,23 @@ package com.ubtrobot.smartprojector.ui
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
-import com.ubtrobot.smartprojector.keyboard.controllers.NumberKeyboardController
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
+import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
-import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint

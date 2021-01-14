@@ -1,10 +1,9 @@
-package com.ubtrobot.smartprojector.ui
+package com.ubtrobot.smartprojector.ui.restrict
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import com.ubtrobot.smartprojector.R

@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.repo.table.ThirdApp
 import kotlinx.android.synthetic.main.fragment_app_market.*
-import timber.log.Timber
 
 /**
  * 已安装的App列表
@@ -54,19 +54,27 @@ class AppMarketFragment : Fragment() {
         intent.addCategory(Intent.CATEGORY_LAUNCHER)
         requireActivity().packageManager.apply {
             val packageList = queryIntentActivities(intent, 0)
-            val items = ArrayList<AppInfo>()
+            val items = ArrayList<ThirdApp>()
             packageList.forEach { info ->
                 val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
                 val appName = getApplicationLabel(appInfo).toString()
                 val icon = getApplicationIcon(appInfo)
                 if (isGame) {
                     if (GAME_LIST.contains(appName)) {
-                        items.add(AppInfo(appName, icon, appInfo.packageName))
+                        val app = ThirdApp()
+                        app.packageName = appInfo.packageName
+                        app.name = appName
+                        app.icon = icon
+                        items.add(app)
                     }
                 } else {
                     if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID
                         && !GAME_LIST.contains(appName)) {
-                        items.add(AppInfo(appName, icon, appInfo.packageName))
+                        val app = ThirdApp()
+                        app.packageName = appInfo.packageName
+                        app.name = appName
+                        app.icon = icon
+                        items.add(app)
                     }
                 }
             }
@@ -75,7 +83,7 @@ class AppMarketFragment : Fragment() {
     }
 
     companion object {
-        private val GAME_LIST = arrayOf("Blockly WebView")
+        val GAME_LIST = arrayOf("Blockly WebView")
         private const val ARG_IS_GAME = "ARG_IS_GAME"
         fun newInstance(isGame: Boolean = false) = AppMarketFragment().apply {
             arguments = Bundle().apply {
