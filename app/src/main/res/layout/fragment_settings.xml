@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,19 +13,42 @@
         android:id="@+id/btn_version_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="新版本检查"/>
+        android:layout_marginTop="100dp"
+        android:text="新版本检查"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_start_tuya"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20dp"
-        android:text="涂鸦测试"/>
+        android:layout_marginTop="20dp"
+        android:text="涂鸦测试"
+        app:layout_constraintEnd_toEndOf="@+id/btn_version_check"
+        app:layout_constraintStart_toStartOf="@+id/btn_version_check"
+        app:layout_constraintTop_toBottomOf="@+id/btn_version_check" />
 
     <Button
         android:id="@+id/btn_lock_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="锁屏"/>
+        android:layout_marginTop="20dp"
+        android:text="锁屏"
+        app:layout_constraintEnd_toEndOf="@+id/btn_start_tuya"
+        app:layout_constraintStart_toStartOf="@+id/btn_start_tuya"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start_tuya" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/edt_pwd"
+        android:layout_width="@dimen/_200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="请输入锁屏密码"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_lock_screen"
+        app:layout_constraintEnd_toStartOf="@+id/btn_lock_screen"
+        app:layout_constraintTop_toTopOf="@+id/btn_lock_screen" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

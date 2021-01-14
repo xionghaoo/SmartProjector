@@ -16,6 +16,7 @@ interface PreferenceStorage {
     var loginUsername: String?
     var loginPassword: String?
     var isScreenLocked: Boolean
+    var screenLockPwd: String?
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -29,7 +30,8 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
 
     override var loginUsername by StringPreference(prefs, PREF_LOGIN_USERNAME, null)
     override var loginPassword by StringPreference(prefs, PREF_LOGIN_PASSWORD, null)
-    override var isScreenLocked: Boolean by BooleanPreference(prefs, PREF_IS_SCREEN_LOCKED, false)
+    override var isScreenLocked by BooleanPreference(prefs, PREF_IS_SCREEN_LOCKED, false)
+    override var screenLockPwd by StringPreference(prefs, PREF_SCREEN_LOCK_PWD, null)
 
     // 登出时清理缓存
     fun clearCache() {
@@ -42,6 +44,7 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
         const val PREF_LOGIN_USERNAME = "pref_login_username"
         const val PREF_LOGIN_PASSWORD = "pref_login_password"
         const val PREF_IS_SCREEN_LOCKED = "pref_is_screen_locked"
+        const val PREF_SCREEN_LOCK_PWD = "pref_screen_lock_pwd"
     }
 }
 

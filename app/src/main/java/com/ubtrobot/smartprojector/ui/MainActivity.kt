@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         }
         connectionStateMonitor.enable(applicationContext)
 
+        // 检查锁屏状态
         if (repo.prefs.isScreenLocked) {
             ScreenLockActivity.lock(this)
         }

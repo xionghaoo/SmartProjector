@@ -6,19 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.TuyaActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
+import com.ubtrobot.smartprojector.utils.ToastUtil
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_settings.*
+import javax.inject.Inject
 
 /**
  * 设置页面
  */
+@AndroidEntryPoint
 class SettingsFragment : Fragment() {
 
     private lateinit var updateDelegate: UpdateDelegate
-
+    @Inject
+    lateinit var repo: Repository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -47,8 +53,16 @@ class SettingsFragment : Fragment() {
             startPlainActivity(TuyaActivity::class.java)
         }
 
+        edt_pwd.setText(repo.prefs.screenLockPwd)
         btn_lock_screen.setOnClickListener {
-            ScreenLockActivity.lock(requireContext())
+            val pwd = edt_pwd.text.toString()
+            if (pwd.isNotBlank() && pwd.length == 4) {
+                repo.prefs.screenLockPwd = pwd
+                ScreenLockActivity.lock(requireContext())
+            } else {
+                ToastUtil.showToast(requireContext(), "锁屏密码必须是四位数字")
+            }
+
         }
 
     }

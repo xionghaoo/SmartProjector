@@ -34,6 +34,9 @@ class ScreenLockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screen_lock)
 
+        // 启动前添加动画
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         repo.prefs.isScreenLocked = true
 
         number_keyboard.setController(
@@ -43,16 +46,18 @@ class ScreenLockActivity : AppCompatActivity() {
         )
         edt_lock_password.addTextChangedListener(
             onTextChanged = { text, _, _, _ ->
-                val pwd = text?.toString()
-                if (pwd == "1234") {
+                val pwd = text?.toString() ?: ""
+                if (pwd.length == 4 && pwd == repo.prefs.screenLockPwd) {
                     repo.prefs.isScreenLocked = false
                     finish()
+                    // 销毁时添加退出动画
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 }
             }
         )
     }
 
     override fun onBackPressed() {
-
+        // 锁屏页面禁止返回
     }
 }

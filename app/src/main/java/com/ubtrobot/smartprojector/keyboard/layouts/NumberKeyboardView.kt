@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
 class NumberKeyboardView : LinearLayout {
 
     enum class Type {
-        NUMBER, PHONE, CASH, POP
+        NUMBER, PHONE, CASH, POP, SCREEN_LOCK
     }
 
     companion object {
@@ -59,6 +59,7 @@ class NumberKeyboardView : LinearLayout {
                 Type.PHONE -> createPhoneKeyboard(keyboardWidth)
                 Type.CASH -> createCashKeyboard(keyboardWidth)
                 Type.POP -> createPopKeyboard(keyboardWidth)
+                Type.SCREEN_LOCK -> createScreenLockKeyboard(keyboardWidth)
             }
 
             if (type != Type.POP) {
@@ -77,6 +78,9 @@ class NumberKeyboardView : LinearLayout {
 
     private var controller: KeyboardController? = null
 
+    /**
+     * 数字键盘
+     */
     private fun createNumberKeyboard(screenWidth: Float) {
         val keyWidth = (screenWidth - spacerWidth * 3 - ResourceUtil.convertDpToPixel(15f, context) * 2) / 4
         val rowOne = LinearLayout(context)
@@ -128,6 +132,49 @@ class NumberKeyboardView : LinearLayout {
 
     }
 
+    /**
+     * 屏幕锁键盘
+     */
+    private fun createScreenLockKeyboard(screenWidth: Float) {
+        val keyWidth = (screenWidth - spacerWidth * 2 - ResourceUtil.convertDpToPixel(15f, context) * 2) / 3
+        val rowOne = LinearLayout(context)
+        rowOne.orientation = HORIZONTAL
+        createKeyView("1", '1', rowOne, width = keyWidth)
+        createKeyView("2", '2', rowOne, width = keyWidth)
+        createKeyView("3", '3', rowOne, width = keyWidth, marginEnd = 0f)
+        addView(rowOne)
+
+        createSpacer(this, height = spacerWidth)
+
+        val rowTwo = LinearLayout(context)
+        rowTwo.orientation = HORIZONTAL
+        createKeyView("4", '4', rowTwo, width = keyWidth)
+        createKeyView("5", '5', rowTwo, width = keyWidth)
+        createKeyView("6", '6', rowTwo, width = keyWidth, marginEnd = 0f)
+        addView(rowTwo)
+
+        createSpacer(this, height = spacerWidth)
+
+        val rowThree = LinearLayout(context)
+        rowThree.orientation = HORIZONTAL
+        createKeyView("7", '7', rowThree, width = keyWidth)
+        createKeyView("8", '8', rowThree, width = keyWidth)
+        createKeyView("9", '9', rowThree, width = keyWidth, marginEnd = 0f)
+        addView(rowThree)
+
+        createSpacer(this, height = spacerWidth)
+
+        val rowFour = LinearLayout(context)
+        rowFour.orientation = HORIZONTAL
+        createKeyView(".", '.', rowFour, width = keyWidth)
+        createKeyView("0", '0', rowFour, width = keyWidth)
+        createKeyView("删除", KeyboardController.SpecialKey.DELETE, rowFour, width = keyWidth, marginEnd = 0f)
+        addView(rowFour)
+    }
+
+    /**
+     * 手机号键盘
+     */
     private fun createPhoneKeyboard(screenWidth: Float) {
         val keyWidth = (screenWidth - spacerWidth * 3 - ResourceUtil.convertDpToPixel(15f, context) * 2) / 4
         val rowOne = LinearLayout(context)
