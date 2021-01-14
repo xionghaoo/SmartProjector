@@ -7,12 +7,17 @@ import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.keyboard.controllers.NumberKeyboardController
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.update.UpdateDelegate
@@ -36,6 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var connectionStateMonitor: ConnectionStateMonitor
+    @Inject
+    lateinit var repo: Repository
 
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
@@ -91,6 +98,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         connectionStateMonitor.enable(applicationContext)
+
+        if (repo.prefs.isScreenLocked) {
+            ScreenLockActivity.lock(this)
+        }
     }
 
     private fun isNetworkConnected(context: Context?): Boolean {

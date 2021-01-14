@@ -15,6 +15,7 @@ import kotlin.reflect.KProperty
 interface PreferenceStorage {
     var loginUsername: String?
     var loginPassword: String?
+    var isScreenLocked: Boolean
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -28,6 +29,7 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
 
     override var loginUsername by StringPreference(prefs, PREF_LOGIN_USERNAME, null)
     override var loginPassword by StringPreference(prefs, PREF_LOGIN_PASSWORD, null)
+    override var isScreenLocked: Boolean by BooleanPreference(prefs, PREF_IS_SCREEN_LOCKED, false)
 
     // 登出时清理缓存
     fun clearCache() {
@@ -39,6 +41,7 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
         const val PREFS_NAME = "ubt_pref"
         const val PREF_LOGIN_USERNAME = "pref_login_username"
         const val PREF_LOGIN_PASSWORD = "pref_login_password"
+        const val PREF_IS_SCREEN_LOCKED = "pref_is_screen_locked"
     }
 }
 

@@ -28,7 +28,7 @@
         <!--去掉activity启动动画-->
         <item name="android:windowAnimationStyle">@null</item>
     </style>
-    <style name="AppTheme.Login">
+    <style name="AppTheme.NoAnimation">
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>
