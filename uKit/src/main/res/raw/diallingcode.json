@@ -1,0 +1,1675 @@
+[
+	{
+		"latin": "Afghanistan",
+		"code": "AF",
+		"dial_code": "93",
+		"chineseName": "阿富汗",
+		"name": "Afghanistan"
+	},
+	{
+		"latin": "Aland Islands",
+		"code": "AX",
+		"dial_code": "358",
+		"chineseName": "奥兰群岛",
+		"name": "Åland  Islands"
+	},
+	{
+		"latin": "Albania",
+		"code": "AL",
+		"dial_code": "355",
+		"chineseName": "阿尔巴尼亚",
+		"name": "Albania"
+	},
+	{
+		"latin": "Algeria",
+		"code": "DZ",
+		"dial_code": "213",
+		"chineseName": "阿尔及利亚",
+		"name": "Algeria"
+	},
+	{
+		"latin": "AmericanSamoa",
+		"code": "AS",
+		"dial_code": "1684",
+		"chineseName": "美属萨摩亚",
+		"name": "AmericanSamoa"
+	},
+	{
+		"latin": "Andorra",
+		"code": "AD",
+		"dial_code": "376",
+		"chineseName": "安道尔",
+		"name": "Andorra"
+	},
+	{
+		"latin": "Angola",
+		"code": "AO",
+		"dial_code": "244",
+		"chineseName": "安哥拉",
+		"name": "Angola"
+	},
+	{
+		"latin": "Anguilla",
+		"code": "AI",
+		"dial_code": "1264",
+		"chineseName": "安圭拉",
+		"name": "Anguilla"
+	},
+	{
+		"latin": "Antigua and Barbuda",
+		"code": "AG",
+		"dial_code": "1268",
+		"chineseName": "安提瓜和巴布达",
+		"name": "Antigua and Barbuda"
+	},
+	{
+		"latin": "Argentina",
+		"code": "AR",
+		"dial_code": "54",
+		"chineseName": "阿根廷",
+		"name": "Argentina"
+	},
+	{
+		"latin": "Armenia",
+		"code": "AM",
+		"dial_code": "374",
+		"chineseName": "亚美尼亚",
+		"name": "Armenia"
+	},
+	{
+		"latin": "Aruba",
+		"code": "AW",
+		"dial_code": "297",
+		"chineseName": "阿鲁巴",
+		"name": "Aruba"
+	},
+	{
+		"latin": "Australia",
+		"code": "AU",
+		"dial_code": "61",
+		"chineseName": "澳大利亚",
+		"name": "Australia"
+	},
+	{
+		"latin": "Austria",
+		"code": "AT",
+		"dial_code": "43",
+		"chineseName": "奥地利",
+		"name": "Austria"
+	},
+	{
+		"latin": "Azerbaijan",
+		"code": "AZ",
+		"dial_code": "994",
+		"chineseName": "阿塞拜疆",
+		"name": "Azerbaijan"
+	},
+	{
+		"latin": "Bahamas",
+		"code": "BS",
+		"dial_code": "1242",
+		"chineseName": "巴哈马",
+		"name": "Bahamas"
+	},
+	{
+		"latin": "Bahrain",
+		"code": "BH",
+		"dial_code": "973",
+		"chineseName": "巴林",
+		"name": "Bahrain"
+	},
+	{
+		"latin": "Bangladesh",
+		"code": "BD",
+		"dial_code": "880",
+		"chineseName": "孟加拉国",
+		"name": "Bangladesh"
+	},
+	{
+		"latin": "Barbados",
+		"code": "BB",
+		"dial_code": "1246",
+		"chineseName": "巴巴多斯",
+		"name": "Barbados"
+	},
+	{
+		"latin": "Belarus",
+		"code": "BY",
+		"dial_code": "375",
+		"chineseName": "白俄罗斯",
+		"name": "Belarus"
+	},
+	{
+		"latin": "Belgium",
+		"code": "BE",
+		"dial_code": "32",
+		"chineseName": "比利时",
+		"name": "Belgium"
+	},
+	{
+		"latin": "Belize",
+		"code": "BZ",
+		"dial_code": "501",
+		"chineseName": "伯利兹",
+		"name": "Belize"
+	},
+	{
+		"latin": "Benin",
+		"code": "BJ",
+		"dial_code": "229",
+		"chineseName": "贝宁",
+		"name": "Benin"
+	},
+	{
+		"latin": "Bermuda",
+		"code": "BM",
+		"dial_code": "1441",
+		"chineseName": "百慕大",
+		"name": "Bermuda"
+	},
+	{
+		"latin": "Bhutan",
+		"code": "BT",
+		"dial_code": "975",
+		"chineseName": "不丹",
+		"name": "Bhutan"
+	},
+	{
+		"latin": "Bolivia, Plurinational State of",
+		"code": "BO",
+		"dial_code": "591",
+		"chineseName": "玻利维亚",
+		"name": "Bolivia, Plurinational State of"
+	},
+	{
+		"latin": "Bosnia and Herzegovina",
+		"code": "BA",
+		"dial_code": "387",
+		"chineseName": "波斯尼亚和黑塞哥维那",
+		"name": "Bosnia and Herzegovina"
+	},
+	{
+		"latin": "Botswana",
+		"code": "BW",
+		"dial_code": "267",
+		"chineseName": "博茨瓦纳",
+		"name": "Botswana"
+	},
+	{
+		"latin": "Brazil",
+		"code": "BR",
+		"dial_code": "55",
+		"chineseName": "巴西",
+		"name": "Brazil"
+	},
+	{
+		"latin": "British Indian Ocean Territory",
+		"code": "IO",
+		"dial_code": "246",
+		"chineseName": "英属印度洋领地",
+		"name": "British Indian Ocean Territory"
+	},
+	{
+		"latin": "Brunei Darussalam",
+		"code": "BN",
+		"dial_code": "673",
+		"chineseName": "文莱",
+		"name": "Brunei Darussalam"
+	},
+	{
+		"latin": "Bulgaria",
+		"code": "BG",
+		"dial_code": "359",
+		"chineseName": "保加利亚",
+		"name": "Bulgaria"
+	},
+	{
+		"latin": "Burkina Faso",
+		"code": "BF",
+		"dial_code": "226",
+		"chineseName": "布基纳法索",
+		"name": "Burkina Faso"
+	},
+	{
+		"latin": "Burundi",
+		"code": "BI",
+		"dial_code": "257",
+		"chineseName": "布隆迪",
+		"name": "Burundi"
+	},
+	{
+		"latin": "Cambodia",
+		"code": "KH",
+		"dial_code": "855",
+		"chineseName": "柬埔寨",
+		"name": "Cambodia"
+	},
+	{
+		"latin": "Cameroon",
+		"code": "CM",
+		"dial_code": "237",
+		"chineseName": "喀麦隆",
+		"name": "Cameroon"
+	},
+	{
+		"latin": "Canada",
+		"code": "CA",
+		"dial_code": "1",
+		"chineseName": "加拿大",
+		"name": "Canada"
+	},
+	{
+		"latin": "Cape Verde",
+		"code": "CV",
+		"dial_code": "238",
+		"chineseName": "佛得角",
+		"name": "Cape Verde"
+	},
+	{
+		"latin": "Cayman Islands",
+		"code": "KY",
+		"dial_code": "345",
+		"chineseName": "开曼群岛",
+		"name": "Cayman Islands"
+	},
+	{
+		"latin": "Central African Republic",
+		"code": "CF",
+		"dial_code": "236",
+		"chineseName": "中非共和国",
+		"name": "Central African Republic"
+	},
+	{
+		"latin": "Chad",
+		"code": "TD",
+		"dial_code": "235",
+		"chineseName": "乍得",
+		"name": "Chad"
+	},
+	{
+		"latin": "Chile",
+		"code": "CL",
+		"dial_code": "56",
+		"chineseName": "智利",
+		"name": "Chile"
+	},
+	{
+		"latin": "China",
+		"code": "CN",
+		"dial_code": "86",
+		"chineseName": "中国",
+		"name": "China"
+	},
+	{
+		"latin": "Christmas Island",
+		"code": "CX",
+		"dial_code": "61",
+		"chineseName": "圣诞岛",
+		"name": "Christmas Island"
+	},
+	{
+		"latin": "Cocos (Keeling) Islands",
+		"code": "CC",
+		"dial_code": "61",
+		"chineseName": "科科斯（基林）群岛",
+		"name": "Cocos (Keeling) Islands"
+	},
+	{
+		"latin": "Colombia",
+		"code": "CO",
+		"dial_code": "57",
+		"chineseName": "哥伦比亚",
+		"name": "Colombia"
+	},
+	{
+		"latin": "Comoros",
+		"code": "KM",
+		"dial_code": "269",
+		"chineseName": "科摩罗",
+		"name": "Comoros"
+	},
+	{
+		"latin": "Congo",
+		"code": "CG",
+		"dial_code": "242",
+		"chineseName": "刚果（布）",
+		"name": "Congo"
+	},
+	{
+		"latin": "Congo, The Democratic Republic of the",
+		"code": "CD",
+		"dial_code": "243",
+		"chineseName": "刚果（金）",
+		"name": "Congo, The Democratic Republic of the"
+	},
+	{
+		"latin": "Cook Islands",
+		"code": "CK",
+		"dial_code": "682",
+		"chineseName": "库克群岛",
+		"name": "Cook Islands"
+	},
+	{
+		"latin": "Costa Rica",
+		"code": "CR",
+		"dial_code": "506",
+		"chineseName": "哥斯达黎加",
+		"name": "Costa Rica"
+	},
+	{
+		"latin": "Cote d'Ivoire",
+		"code": "CI",
+		"dial_code": "225",
+		"chineseName": "科特迪瓦",
+		"name": "Cote d'Ivoire"
+	},
+	{
+		"latin": "Croatia",
+		"code": "HR",
+		"dial_code": "385",
+		"chineseName": "克罗地亚",
+		"name": "Croatia"
+	},
+	{
+		"latin": "Cuba",
+		"code": "CU",
+		"dial_code": "53",
+		"chineseName": "古巴",
+		"name": "Cuba"
+	},
+	{
+		"latin": "Cyprus",
+		"code": "CY",
+		"dial_code": "537",
+		"chineseName": "塞浦路斯",
+		"name": "Cyprus"
+	},
+	{
+		"latin": "Czech Republic",
+		"code": "CZ",
+		"dial_code": "420",
+		"chineseName": "捷克共和国",
+		"name": "Czech Republic"
+	},
+	{
+		"latin": "Denmark",
+		"code": "DK",
+		"dial_code": "45",
+		"chineseName": "丹麦",
+		"name": "Denmark"
+	},
+	{
+		"latin": "Djibouti",
+		"code": "DJ",
+		"dial_code": "253",
+		"chineseName": "吉布提",
+		"name": "Djibouti"
+	},
+	{
+		"latin": "Dominica",
+		"code": "DM",
+		"dial_code": "1767",
+		"chineseName": "多米尼克",
+		"name": "Dominica"
+	},
+	{
+		"latin": "Dominican Republic",
+		"code": "DO",
+		"dial_code": "1849",
+		"chineseName": "多米尼加共和国",
+		"name": "Dominican Republic"
+	},
+	{
+		"latin": "Ecuador",
+		"code": "EC",
+		"dial_code": "593",
+		"chineseName": "厄瓜多尔",
+		"name": "Ecuador"
+	},
+	{
+		"latin": "Egypt",
+		"code": "EG",
+		"dial_code": "20",
+		"chineseName": "埃及",
+		"name": "Egypt"
+	},
+	{
+		"latin": "El Salvador",
+		"code": "SV",
+		"dial_code": "503",
+		"chineseName": "萨尔瓦多",
+		"name": "El Salvador"
+	},
+	{
+		"latin": "Equatorial Guinea",
+		"code": "GQ",
+		"dial_code": "240",
+		"chineseName": "赤道几内亚",
+		"name": "Equatorial Guinea"
+	},
+	{
+		"latin": "Eritrea",
+		"code": "ER",
+		"dial_code": "291",
+		"chineseName": "厄立特里亚",
+		"name": "Eritrea"
+	},
+	{
+		"latin": "Estonia",
+		"code": "EE",
+		"dial_code": "372",
+		"chineseName": "爱沙尼亚",
+		"name": "Estonia"
+	},
+	{
+		"latin": "Ethiopia",
+		"code": "ET",
+		"dial_code": "251",
+		"chineseName": "埃塞俄比亚",
+		"name": "Ethiopia"
+	},
+	{
+		"latin": "Falkland Islands (Malvinas)",
+		"code": "FK",
+		"dial_code": "500",
+		"chineseName": "福克兰群岛",
+		"name": "Falkland Islands (Malvinas)"
+	},
+	{
+		"latin": "Faroe Islands",
+		"code": "FO",
+		"dial_code": "298",
+		"chineseName": "法罗群岛",
+		"name": "Faroe Islands"
+	},
+	{
+		"latin": "Fiji",
+		"code": "FJ",
+		"dial_code": "679",
+		"chineseName": "斐济",
+		"name": "Fiji"
+	},
+	{
+		"latin": "Finland",
+		"code": "FI",
+		"dial_code": "358",
+		"chineseName": "芬兰",
+		"name": "Finland"
+	},
+	{
+		"latin": "France",
+		"code": "FR",
+		"dial_code": "33",
+		"chineseName": "法国",
+		"name": "France"
+	},
+	{
+		"latin": "French Guiana",
+		"code": "GF",
+		"dial_code": "594",
+		"chineseName": "法属圭亚那",
+		"name": "French Guiana"
+	},
+	{
+		"latin": "French Polynesia",
+		"code": "PF",
+		"dial_code": "689",
+		"chineseName": "法属波利尼西亚",
+		"name": "French Polynesia"
+	},
+	{
+		"latin": "Gabon",
+		"code": "GA",
+		"dial_code": "241",
+		"chineseName": "加蓬",
+		"name": "Gabon"
+	},
+	{
+		"latin": "Gambia",
+		"code": "GM",
+		"dial_code": "220",
+		"chineseName": "冈比亚",
+		"name": "Gambia"
+	},
+	{
+		"latin": "Georgia",
+		"code": "GE",
+		"dial_code": "995",
+		"chineseName": "格鲁吉亚",
+		"name": "Georgia"
+	},
+	{
+		"latin": "Germany",
+		"code": "DE",
+		"dial_code": "49",
+		"chineseName": "德国",
+		"name": "Germany"
+	},
+	{
+		"latin": "Ghana",
+		"code": "GH",
+		"dial_code": "233",
+		"chineseName": "加纳",
+		"name": "Ghana"
+	},
+	{
+		"latin": "Gibraltar",
+		"code": "GI",
+		"dial_code": "350",
+		"chineseName": "直布罗陀",
+		"name": "Gibraltar"
+	},
+	{
+		"latin": "Greece",
+		"code": "GR",
+		"dial_code": "30",
+		"chineseName": "希腊",
+		"name": "Greece"
+	},
+	{
+		"latin": "Greenland",
+		"code": "GL",
+		"dial_code": "299",
+		"chineseName": "格陵兰",
+		"name": "Greenland"
+	},
+	{
+		"latin": "Grenada",
+		"code": "GD",
+		"dial_code": "1473",
+		"chineseName": "格林纳达",
+		"name": "Grenada"
+	},
+	{
+		"latin": "Guadeloupe",
+		"code": "GP",
+		"dial_code": "590",
+		"chineseName": "瓜德罗普",
+		"name": "Guadeloupe"
+	},
+	{
+		"latin": "Guam",
+		"code": "GU",
+		"dial_code": "1671",
+		"chineseName": "关岛",
+		"name": "Guam"
+	},
+	{
+		"latin": "Guatemala",
+		"code": "GT",
+		"dial_code": "502",
+		"chineseName": "危地马拉",
+		"name": "Guatemala"
+	},
+	{
+		"latin": "Guernsey",
+		"code": "GG",
+		"dial_code": "44",
+		"chineseName": "根西岛",
+		"name": "Guernsey"
+	},
+	{
+		"latin": "Guinea",
+		"code": "GN",
+		"dial_code": "224",
+		"chineseName": "几内亚",
+		"name": "Guinea"
+	},
+	{
+		"latin": "Guinea-Bissau",
+		"code": "GW",
+		"dial_code": "245",
+		"chineseName": "几内亚比绍",
+		"name": "Guinea-Bissau"
+	},
+	{
+		"latin": "Guyana",
+		"code": "GY",
+		"dial_code": "595",
+		"chineseName": "圭亚那",
+		"name": "Guyana"
+	},
+	{
+		"latin": "Haiti",
+		"code": "HT",
+		"dial_code": "509",
+		"chineseName": "海地",
+		"name": "Haiti"
+	},
+	{
+		"latin": "Holy See (Vatican City State)",
+		"code": "VA",
+		"dial_code": "379",
+		"chineseName": "梵蒂冈",
+		"name": "Holy See (Vatican City State)"
+	},
+	{
+		"latin": "Honduras",
+		"code": "HN",
+		"dial_code": "504",
+		"chineseName": "洪都拉斯",
+		"name": "Honduras"
+	},
+	{
+		"latin": "Hong Kong",
+		"code": "HK",
+		"dial_code": "852",
+		"chineseName": "香港（中国）",
+		"name": "Hong Kong(China)"
+	},
+	{
+		"latin": "Hungary",
+		"code": "HU",
+		"dial_code": "36",
+		"chineseName": "匈牙利",
+		"name": "Hungary"
+	},
+	{
+		"latin": "Iceland",
+		"code": "IS",
+		"dial_code": "354",
+		"chineseName": "冰岛",
+		"name": "Iceland"
+	},
+	{
+		"latin": "India",
+		"code": "IN",
+		"dial_code": "91",
+		"chineseName": "印度",
+		"name": "India"
+	},
+	{
+		"latin": "Indonesia",
+		"code": "ID",
+		"dial_code": "62",
+		"chineseName": "印度尼西亚",
+		"name": "Indonesia"
+	},
+	{
+		"latin": "Iran, Islamic Republic of",
+		"code": "IR",
+		"dial_code": "98",
+		"chineseName": "伊朗",
+		"name": "Iran, Islamic Republic of"
+	},
+	{
+		"latin": "Iraq",
+		"code": "IQ",
+		"dial_code": "964",
+		"chineseName": "伊拉克",
+		"name": "Iraq"
+	},
+	{
+		"latin": "Ireland",
+		"code": "IE",
+		"dial_code": "353",
+		"chineseName": "爱尔兰",
+		"name": "Ireland"
+	},
+	{
+		"latin": "Isle of Man",
+		"code": "IM",
+		"dial_code": "44",
+		"chineseName": "曼岛",
+		"name": "Isle of Man"
+	},
+	{
+		"latin": "Israel",
+		"code": "IL",
+		"dial_code": "972",
+		"chineseName": "以色列",
+		"name": "Israel"
+	},
+	{
+		"latin": "Italy",
+		"code": "IT",
+		"dial_code": "39",
+		"chineseName": "意大利",
+		"name": "Italy"
+	},
+	{
+		"latin": "Jamaica",
+		"code": "JM",
+		"dial_code": "1876",
+		"chineseName": "牙买加",
+		"name": "Jamaica"
+	},
+	{
+		"latin": "Japan",
+		"code": "JP",
+		"dial_code": "81",
+		"chineseName": "日本",
+		"name": "Japan"
+	},
+	{
+		"latin": "Jersey",
+		"code": "JE",
+		"dial_code": "44",
+		"chineseName": "泽西岛",
+		"name": "Jersey"
+	},
+	{
+		"latin": "Jordan",
+		"code": "JO",
+		"dial_code": "962",
+		"chineseName": "约旦",
+		"name": "Jordan"
+	},
+	{
+		"latin": "Kazakhstan",
+		"code": "KZ",
+		"dial_code": "77",
+		"chineseName": "哈萨克斯坦",
+		"name": "Kazakhstan"
+	},
+	{
+		"latin": "Kenya",
+		"code": "KE",
+		"dial_code": "254",
+		"chineseName": "肯尼亚",
+		"name": "Kenya"
+	},
+	{
+		"latin": "Kiribati",
+		"code": "KI",
+		"dial_code": "686",
+		"chineseName": "基里巴斯",
+		"name": "Kiribati"
+	},
+	{
+		"latin": "Korea, Democratic People's Republic of",
+		"code": "KP",
+		"dial_code": "850",
+		"chineseName": "朝鲜",
+		"name": "Korea, Democratic People's Republic of"
+	},
+	{
+		"latin": "Korea, Republic of",
+		"code": "KR",
+		"dial_code": "82",
+		"chineseName": "韩国",
+		"name": "Korea, Republic of"
+	},
+	{
+		"latin": "Kuwait",
+		"code": "KW",
+		"dial_code": "965",
+		"chineseName": "科威特",
+		"name": "Kuwait"
+	},
+	{
+		"latin": "Kyrgyzstan",
+		"code": "KG",
+		"dial_code": "996",
+		"chineseName": "吉尔吉斯斯坦",
+		"name": "Kyrgyzstan"
+	},
+	{
+		"latin": "Lao People's Democratic Republic",
+		"code": "LA",
+		"dial_code": "856",
+		"chineseName": "老挝",
+		"name": "Lao People's Democratic Republic"
+	},
+	{
+		"latin": "Latvia",
+		"code": "LV",
+		"dial_code": "371",
+		"chineseName": "拉脱维亚",
+		"name": "Latvia"
+	},
+	{
+		"latin": "Lebanon",
+		"code": "LB",
+		"dial_code": "961",
+		"chineseName": "黎巴嫩",
+		"name": "Lebanon"
+	},
+	{
+		"latin": "Lesotho",
+		"code": "LS",
+		"dial_code": "266",
+		"chineseName": "莱索托",
+		"name": "Lesotho"
+	},
+	{
+		"latin": "Liberia",
+		"code": "LR",
+		"dial_code": "231",
+		"chineseName": "利比里亚",
+		"name": "Liberia"
+	},
+	{
+		"latin": "Libyan Arab Jamahiriya",
+		"code": "LY",
+		"dial_code": "218",
+		"chineseName": "利比亚",
+		"name": "Libyan Arab Jamahiriya"
+	},
+	{
+		"latin": "Liechtenstein",
+		"code": "LI",
+		"dial_code": "423",
+		"chineseName": "列支敦士登",
+		"name": "Liechtenstein"
+	},
+	{
+		"latin": "Lithuania",
+		"code": "LT",
+		"dial_code": "370",
+		"chineseName": "立陶宛",
+		"name": "Lithuania"
+	},
+	{
+		"latin": "Luxembourg",
+		"code": "LU",
+		"dial_code": "352",
+		"chineseName": "卢森堡",
+		"name": "Luxembourg"
+	},
+	{
+		"latin": "Macao",
+		"code": "MO",
+		"dial_code": "853",
+		"chineseName": "澳门（中国）",
+		"name": "Macao(China)"
+	},
+	{
+		"latin": "Macedonia, The Former Yugoslav Republic of",
+		"code": "MK",
+		"dial_code": "389",
+		"chineseName": "马其顿",
+		"name": "Macedonia, The Former Yugoslav Republic of"
+	},
+	{
+		"latin": "Madagascar",
+		"code": "MG",
+		"dial_code": "261",
+		"chineseName": "马达加斯加",
+		"name": "Madagascar"
+	},
+	{
+		"latin": "Malawi",
+		"code": "MW",
+		"dial_code": "265",
+		"chineseName": "马拉维",
+		"name": "Malawi"
+	},
+	{
+		"latin": "Malaysia",
+		"code": "MY",
+		"dial_code": "60",
+		"chineseName": "马来西亚",
+		"name": "Malaysia"
+	},
+	{
+		"latin": "Maldives",
+		"code": "MV",
+		"dial_code": "960",
+		"chineseName": "马尔代夫",
+		"name": "Maldives"
+	},
+	{
+		"latin": "Mali",
+		"code": "ML",
+		"dial_code": "223",
+		"chineseName": "马里",
+		"name": "Mali"
+	},
+	{
+		"latin": "Malta",
+		"code": "MT",
+		"dial_code": "356",
+		"chineseName": "马耳他",
+		"name": "Malta"
+	},
+	{
+		"latin": "Marshall Islands",
+		"code": "MH",
+		"dial_code": "692",
+		"chineseName": "马绍尔群岛",
+		"name": "Marshall Islands"
+	},
+	{
+		"latin": "Martinique",
+		"code": "MQ",
+		"dial_code": "596",
+		"chineseName": "马提尼克",
+		"name": "Martinique"
+	},
+	{
+		"latin": "Mauritania",
+		"code": "MR",
+		"dial_code": "222",
+		"chineseName": "毛里塔尼亚",
+		"name": "Mauritania"
+	},
+	{
+		"latin": "Mauritius",
+		"code": "MU",
+		"dial_code": "230",
+		"chineseName": "毛里求斯",
+		"name": "Mauritius"
+	},
+	{
+		"latin": "Mayotte",
+		"code": "YT",
+		"dial_code": "262",
+		"chineseName": "马约特",
+		"name": "Mayotte"
+	},
+	{
+		"latin": "Mexico",
+		"code": "MX",
+		"dial_code": "52",
+		"chineseName": "墨西哥",
+		"name": "Mexico"
+	},
+	{
+		"latin": "Micronesia, Federated States of",
+		"code": "FM",
+		"dial_code": "691",
+		"chineseName": "密克罗尼西亚",
+		"name": "Micronesia, Federated States of"
+	},
+	{
+		"latin": "Moldova, Republic of",
+		"code": "MD",
+		"dial_code": "373",
+		"chineseName": "摩尔多瓦",
+		"name": "Moldova, Republic of"
+	},
+	{
+		"latin": "Monaco",
+		"code": "MC",
+		"dial_code": "377",
+		"chineseName": "摩纳哥",
+		"name": "Monaco"
+	},
+	{
+		"latin": "Mongolia",
+		"code": "MN",
+		"dial_code": "976",
+		"chineseName": "蒙古",
+		"name": "Mongolia"
+	},
+	{
+		"latin": "Montenegro",
+		"code": "ME",
+		"dial_code": "382",
+		"chineseName": "黑山",
+		"name": "Montenegro"
+	},
+	{
+		"latin": "Montserrat",
+		"code": "MS",
+		"dial_code": "1664",
+		"chineseName": "蒙特塞拉特",
+		"name": "Montserrat"
+	},
+	{
+		"latin": "Morocco",
+		"code": "MA",
+		"dial_code": "212",
+		"chineseName": "摩洛哥",
+		"name": "Morocco"
+	},
+	{
+		"latin": "Mozambique",
+		"code": "MZ",
+		"dial_code": "258",
+		"chineseName": "莫桑比克",
+		"name": "Mozambique"
+	},
+	{
+		"latin": "Myanmar",
+		"code": "MM",
+		"dial_code": "95",
+		"chineseName": "缅甸",
+		"name": "Myanmar"
+	},
+	{
+		"latin": "Namibia",
+		"code": "NA",
+		"dial_code": "264",
+		"chineseName": "纳米比亚",
+		"name": "Namibia"
+	},
+	{
+		"latin": "Nauru",
+		"code": "NR",
+		"dial_code": "674",
+		"chineseName": "瑙鲁",
+		"name": "Nauru"
+	},
+	{
+		"latin": "Nepal",
+		"code": "NP",
+		"dial_code": "977",
+		"chineseName": "尼泊尔",
+		"name": "Nepal"
+	},
+	{
+		"latin": "Netherlands",
+		"code": "NL",
+		"dial_code": "31",
+		"chineseName": "荷兰",
+		"name": "Netherlands"
+	},
+	{
+		"latin": "New Caledonia",
+		"code": "NC",
+		"dial_code": "687",
+		"chineseName": "新喀里多尼亚",
+		"name": "New Caledonia"
+	},
+	{
+		"latin": "New Zealand",
+		"code": "NZ",
+		"dial_code": "64",
+		"chineseName": "新西兰",
+		"name": "New Zealand"
+	},
+	{
+		"latin": "Nicaragua",
+		"code": "NI",
+		"dial_code": "505",
+		"chineseName": "尼加拉瓜",
+		"name": "Nicaragua"
+	},
+	{
+		"latin": "Niger",
+		"code": "NE",
+		"dial_code": "227",
+		"chineseName": "尼日尔",
+		"name": "Niger"
+	},
+	{
+		"latin": "Nigeria",
+		"code": "NG",
+		"dial_code": "234",
+		"chineseName": "尼日利亚",
+		"name": "Nigeria"
+	},
+	{
+		"latin": "Niue",
+		"code": "NU",
+		"dial_code": "683",
+		"chineseName": "纽埃",
+		"name": "Niue"
+	},
+	{
+		"latin": "Norfolk Island",
+		"code": "NF",
+		"dial_code": "672",
+		"chineseName": "诺福克岛",
+		"name": "Norfolk Island"
+	},
+	{
+		"latin": "Northern Mariana Islands",
+		"code": "MP",
+		"dial_code": "1670",
+		"chineseName": "北马里亚纳群岛",
+		"name": "Northern Mariana Islands"
+	},
+	{
+		"latin": "Norway",
+		"code": "NO",
+		"dial_code": "47",
+		"chineseName": "挪威",
+		"name": "Norway"
+	},
+	{
+		"latin": "Oman",
+		"code": "OM",
+		"dial_code": "968",
+		"chineseName": "阿曼",
+		"name": "Oman"
+	},
+	{
+		"latin": "Pakistan",
+		"code": "PK",
+		"dial_code": "92",
+		"chineseName": "巴基斯坦",
+		"name": "Pakistan"
+	},
+	{
+		"latin": "Palau",
+		"code": "PW",
+		"dial_code": "680",
+		"chineseName": "帕劳",
+		"name": "Palau"
+	},
+	{
+		"latin": "Palestinian Territory, Occupied",
+		"code": "PS",
+		"dial_code": "970",
+		"chineseName": "巴勒斯坦领土",
+		"name": "Palestinian Territory, Occupied"
+	},
+	{
+		"latin": "Panama",
+		"code": "PA",
+		"dial_code": "507",
+		"chineseName": "巴拿马",
+		"name": "Panama"
+	},
+	{
+		"latin": "Papua New Guinea",
+		"code": "PG",
+		"dial_code": "675",
+		"chineseName": "巴布亚新几内亚",
+		"name": "Papua New Guinea"
+	},
+	{
+		"latin": "Paraguay",
+		"code": "PY",
+		"dial_code": "595",
+		"chineseName": "巴拉圭",
+		"name": "Paraguay"
+	},
+	{
+		"latin": "Peru",
+		"code": "PE",
+		"dial_code": "51",
+		"chineseName": "秘鲁",
+		"name": "Peru"
+	},
+	{
+		"latin": "Philippines",
+		"code": "PH",
+		"dial_code": "63",
+		"chineseName": "菲律宾",
+		"name": "Philippines"
+	},
+	{
+		"latin": "Pitcairn",
+		"code": "PN",
+		"dial_code": "872",
+		"chineseName": "皮特凯恩群岛",
+		"name": "Pitcairn"
+	},
+	{
+		"latin": "Poland",
+		"code": "PL",
+		"dial_code": "48",
+		"chineseName": "波兰",
+		"name": "Poland"
+	},
+	{
+		"latin": "Portugal",
+		"code": "PT",
+		"dial_code": "351",
+		"chineseName": "葡萄牙",
+		"name": "Portugal"
+	},
+	{
+		"latin": "Puerto Rico",
+		"code": "PR",
+		"dial_code": "1939",
+		"chineseName": "波多黎各",
+		"name": "Puerto Rico"
+	},
+	{
+		"latin": "Qatar",
+		"code": "QA",
+		"dial_code": "974",
+		"chineseName": "卡塔尔",
+		"name": "Qatar"
+	},
+	{
+		"latin": "Reunion",
+		"code": "RE",
+		"dial_code": "262",
+		"chineseName": "留尼汪",
+		"name": "Réunion"
+	},
+	{
+		"latin": "Romania",
+		"code": "RO",
+		"dial_code": "40",
+		"chineseName": "罗马尼亚",
+		"name": "Romania"
+	},
+	{
+		"latin": "Russia",
+		"code": "RU",
+		"dial_code": "7",
+		"chineseName": "俄罗斯",
+		"name": "Russia"
+	},
+	{
+		"latin": "Rwanda",
+		"code": "RW",
+		"dial_code": "250",
+		"chineseName": "卢旺达",
+		"name": "Rwanda"
+	},
+	{
+		"latin": "Saint Barthelemy",
+		"code": "BL",
+		"dial_code": "590",
+		"chineseName": "圣巴泰勒米",
+		"name": "Saint Barthélemy"
+	},
+	{
+		"latin": "Saint Helena, Ascension and Tristan Da Cunha",
+		"code": "SH",
+		"dial_code": "290",
+		"chineseName": "圣赫勒拿",
+		"name": "Saint Helena, Ascension and Tristan Da Cunha"
+	},
+	{
+		"latin": "Saint Kitts and Nevis",
+		"code": "KN",
+		"dial_code": "1869",
+		"chineseName": "圣基茨和尼维斯",
+		"name": "Saint Kitts and Nevis"
+	},
+	{
+		"latin": "Saint Lucia",
+		"code": "LC",
+		"dial_code": "1758",
+		"chineseName": "圣卢西亚",
+		"name": "Saint Lucia"
+	},
+	{
+		"latin": "Saint Martin",
+		"code": "MF",
+		"dial_code": "590",
+		"chineseName": "法属圣马丁",
+		"name": "Saint Martin"
+	},
+	{
+		"latin": "Saint Pierre and Miquelon",
+		"code": "PM",
+		"dial_code": "508",
+		"chineseName": "圣皮埃尔和密克隆群岛",
+		"name": "Saint Pierre and Miquelon"
+	},
+	{
+		"latin": "Saint Vincent and the Grenadines",
+		"code": "VC",
+		"dial_code": "1784",
+		"chineseName": "圣文森特和格林纳丁斯",
+		"name": "Saint Vincent and the Grenadines"
+	},
+	{
+		"latin": "Samoa",
+		"code": "WS",
+		"dial_code": "685",
+		"chineseName": "萨摩亚",
+		"name": "Samoa"
+	},
+	{
+		"latin": "San Marino",
+		"code": "SM",
+		"dial_code": "378",
+		"chineseName": "圣马力诺",
+		"name": "San Marino"
+	},
+	{
+		"latin": "Sao Tome and Principe",
+		"code": "ST",
+		"dial_code": "239",
+		"chineseName": "圣多美和普林西比",
+		"name": "Sao Tome and Principe"
+	},
+	{
+		"latin": "Saudi Arabia",
+		"code": "SA",
+		"dial_code": "966",
+		"chineseName": "沙特阿拉伯",
+		"name": "Saudi Arabia"
+	},
+	{
+		"latin": "Senegal",
+		"code": "SN",
+		"dial_code": "221",
+		"chineseName": "塞内加尔",
+		"name": "Senegal"
+	},
+	{
+		"latin": "Serbia",
+		"code": "RS",
+		"dial_code": "381",
+		"chineseName": "塞尔维亚",
+		"name": "Serbia"
+	},
+	{
+		"latin": "Seychelles",
+		"code": "SC",
+		"dial_code": "248",
+		"chineseName": "塞舌尔",
+		"name": "Seychelles"
+	},
+	{
+		"latin": "Sierra Leone",
+		"code": "SL",
+		"dial_code": "232",
+		"chineseName": "塞拉利昂",
+		"name": "Sierra Leone"
+	},
+	{
+		"latin": "Singapore",
+		"code": "SG",
+		"dial_code": "65",
+		"chineseName": "新加坡",
+		"name": "Singapore"
+	},
+	{
+		"latin": "Slovakia",
+		"code": "SK",
+		"dial_code": "421",
+		"chineseName": "斯洛伐克",
+		"name": "Slovakia"
+	},
+	{
+		"latin": "Slovenia",
+		"code": "SI",
+		"dial_code": "386",
+		"chineseName": "斯洛文尼亚",
+		"name": "Slovenia"
+	},
+	{
+		"latin": "Solomon Islands",
+		"code": "SB",
+		"dial_code": "677",
+		"chineseName": "所罗门群岛",
+		"name": "Solomon Islands"
+	},
+	{
+		"latin": "Somalia",
+		"code": "SO",
+		"dial_code": "252",
+		"chineseName": "索马里",
+		"name": "Somalia"
+	},
+	{
+		"latin": "South Africa",
+		"code": "ZA",
+		"dial_code": "27",
+		"chineseName": "南非",
+		"name": "South Africa"
+	},
+	{
+		"latin": "South Georgia and the South Sandwich Islands",
+		"code": "GS",
+		"dial_code": "500",
+		"chineseName": "南乔治亚岛和南桑威齐群岛",
+		"name": "South Georgia and the South Sandwich Islands"
+	},
+	{
+		"latin": "Spain",
+		"code": "ES",
+		"dial_code": "34",
+		"chineseName": "西班牙",
+		"name": "Spain"
+	},
+	{
+		"latin": "Sri Lanka",
+		"code": "LK",
+		"dial_code": "94",
+		"chineseName": "斯里兰卡",
+		"name": "Sri Lanka"
+	},
+	{
+		"latin": "Sudan",
+		"code": "SD",
+		"dial_code": "249",
+		"chineseName": "苏丹",
+		"name": "Sudan"
+	},
+	{
+		"latin": "Suriname",
+		"code": "SR",
+		"dial_code": "597",
+		"chineseName": "苏里南",
+		"name": "Suriname"
+	},
+	{
+		"latin": "Svalbard and Jan Mayen",
+		"code": "SJ",
+		"dial_code": "47",
+		"chineseName": "斯瓦尔巴特和扬马延",
+		"name": "Svalbard and Jan Mayen"
+	},
+	{
+		"latin": "Swaziland",
+		"code": "SZ",
+		"dial_code": "268",
+		"chineseName": "斯威士兰",
+		"name": "Swaziland"
+	},
+	{
+		"latin": "Sweden",
+		"code": "SE",
+		"dial_code": "46",
+		"chineseName": "瑞典",
+		"name": "Sweden"
+	},
+	{
+		"latin": "Switzerland",
+		"code": "CH",
+		"dial_code": "41",
+		"chineseName": "瑞士",
+		"name": "Switzerland"
+	},
+	{
+		"latin": "Syrian Arab Republic",
+		"code": "SY",
+		"dial_code": "963",
+		"chineseName": "叙利亚",
+		"name": "Syrian Arab Republic"
+	},
+	{
+		"latin": "Taiwan, Province of China",
+		"code": "TW",
+		"dial_code": "886",
+		"chineseName": "台湾（中国）",
+		"name": "Taiwan(China)"
+	},
+	{
+		"latin": "Tajikistan",
+		"code": "TJ",
+		"dial_code": "992",
+		"chineseName": "塔吉克斯坦",
+		"name": "Tajikistan"
+	},
+	{
+		"latin": "Tanzania, United Republic of",
+		"code": "TZ",
+		"dial_code": "255",
+		"chineseName": "坦桑尼亚",
+		"name": "Tanzania, United Republic of"
+	},
+	{
+		"latin": "Thailand",
+		"code": "TH",
+		"dial_code": "66",
+		"chineseName": "泰国",
+		"name": "Thailand"
+	},
+	{
+		"latin": "Timor-Leste",
+		"code": "TL",
+		"dial_code": "670",
+		"chineseName": "东帝汶",
+		"name": "Timor-Leste"
+	},
+	{
+		"latin": "Togo",
+		"code": "TG",
+		"dial_code": "228",
+		"chineseName": "多哥",
+		"name": "Togo"
+	},
+	{
+		"latin": "Tokelau",
+		"code": "TK",
+		"dial_code": "690",
+		"chineseName": "托克劳",
+		"name": "Tokelau"
+	},
+	{
+		"latin": "Tonga",
+		"code": "TO",
+		"dial_code": "676",
+		"chineseName": "汤加",
+		"name": "Tonga"
+	},
+	{
+		"latin": "Trinidad and Tobago",
+		"code": "TT",
+		"dial_code": "1868",
+		"chineseName": "特立尼达和多巴哥",
+		"name": "Trinidad and Tobago"
+	},
+	{
+		"latin": "Tunisia",
+		"code": "TN",
+		"dial_code": "216",
+		"chineseName": "突尼斯",
+		"name": "Tunisia"
+	},
+	{
+		"latin": "Turkey",
+		"code": "TR",
+		"dial_code": "90",
+		"chineseName": "土耳其",
+		"name": "Turkey"
+	},
+	{
+		"latin": "Turkmenistan",
+		"code": "TM",
+		"dial_code": "993",
+		"chineseName": "土库曼斯坦",
+		"name": "Turkmenistan"
+	},
+	{
+		"latin": "Turks and Caicos Islands",
+		"code": "TC",
+		"dial_code": "1649",
+		"chineseName": "特克斯和凯科斯群岛",
+		"name": "Turks and Caicos Islands"
+	},
+	{
+		"latin": "Tuvalu",
+		"code": "TV",
+		"dial_code": "688",
+		"chineseName": "图瓦卢",
+		"name": "Tuvalu"
+	},
+	{
+		"latin": "Uganda",
+		"code": "UG",
+		"dial_code": "256",
+		"chineseName": "乌干达",
+		"name": "Uganda"
+	},
+	{
+		"latin": "Ukraine",
+		"code": "UA",
+		"dial_code": "380",
+		"chineseName": "乌克兰",
+		"name": "Ukraine"
+	},
+	{
+		"latin": "United Arab Emirates",
+		"code": "AE",
+		"dial_code": "971",
+		"chineseName": "阿拉伯联合酋长国",
+		"name": "United Arab Emirates"
+	},
+	{
+		"latin": "United Kingdom",
+		"code": "GB",
+		"dial_code": "44",
+		"chineseName": "英国",
+		"name": "United Kingdom"
+	},
+	{
+		"latin": "United States",
+		"code": "US",
+		"dial_code": "1",
+		"chineseName": "美国",
+		"name": "United States"
+	},
+	{
+		"latin": "Uruguay",
+		"code": "UY",
+		"dial_code": "598",
+		"chineseName": "乌拉圭",
+		"name": "Uruguay"
+	},
+	{
+		"latin": "Uzbekistan",
+		"code": "UZ",
+		"dial_code": "998",
+		"chineseName": "乌兹别克斯坦",
+		"name": "Uzbekistan"
+	},
+	{
+		"latin": "Vanuatu",
+		"code": "VU",
+		"dial_code": "678",
+		"chineseName": "瓦努阿图",
+		"name": "Vanuatu"
+	},
+	{
+		"latin": "Venezuela, Bolivarian Republic of",
+		"code": "VE",
+		"dial_code": "58",
+		"chineseName": "委内瑞拉",
+		"name": "Venezuela, Bolivarian Republic of"
+	},
+	{
+		"latin": "Viet Nam",
+		"code": "VN",
+		"dial_code": "84",
+		"chineseName": "越南",
+		"name": "Viet Nam"
+	},
+	{
+		"latin": "Virgin Islands, British",
+		"code": "VG",
+		"dial_code": "1284",
+		"chineseName": "英属维京群岛",
+		"name": "Virgin Islands, British"
+	},
+	{
+		"latin": "Virgin Islands, U.S.",
+		"code": "VI",
+		"dial_code": "1340",
+		"chineseName": "美属维京群岛",
+		"name": "Virgin Islands, U.S."
+	},
+	{
+		"latin": "Wallis and Futuna",
+		"code": "WF",
+		"dial_code": "681",
+		"chineseName": "瓦利斯和富图纳",
+		"name": "Wallis and Futuna"
+	},
+	{
+		"latin": "Yemen",
+		"code": "YE",
+		"dial_code": "967",
+		"chineseName": "也门",
+		"name": "Yemen"
+	},
+	{
+		"latin": "Zambia",
+		"code": "ZM",
+		"dial_code": "260",
+		"chineseName": "赞比亚",
+		"name": "Zambia"
+	},
+	{
+		"latin": "Zimbabwe",
+		"code": "ZW",
+		"dial_code": "263",
+		"chineseName": "津巴布韦",
+		"name": "Zimbabwe"
+	}
+]

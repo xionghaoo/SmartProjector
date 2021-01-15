@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// 命 令 号: 2003
+// 命令名称: intelligent_devscript_param_update
+// 命令描述: 设置脚本关联的变量
+// 文件名称: d2c2003_intelligent_dev_script_param_update.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevscriptParamUpdate";
+
+message IntelligentDevscriptParamUpdateRequest {
+  // ATTR: REQUSET
+  message param_t {
+    string name = 1;
+    string value = 2;
+  }
+  repeated param_t paramt = 1;
+}
+
+message IntelligentDevscriptParamUpdateResponse {
+
+}

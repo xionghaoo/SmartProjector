@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="gdpr_age_guardian_position">I will find my teacher</string>
+    <string name="gdpr_age_answer_no">No</string>
+    <string name="gdpr_age_answer_yes">Yes</string>
+    <string name="gdpr_age_guardian_desc">To complete the registration process, you will need your teacher, parent, or guardian\'s assistance.</string>
+    <string name="gdpr_age_guardian_title">Please ask your teacher for assistance</string>
+    <string name="gdpr_age_question">Are you 13 or over?</string>
+    <string name="home_tab_tutorial">Models</string>
+    <string name="menu_tab_feedback_limit">%d characters remaining</string>
+    <string name="bluetooth_not_connect_msg">The main control box is not connected. Please turn on Bluetooth and try again.</string>
+    <string name="bluetooth_connect_unmatch_title">Configuration Error</string>
+    <string name="bluetooth_connect_unmatch_msg">The number of %s do not match this model. Please check your robot and try again.</string>
+    <string name="bluetooth_connect_open_bluetooth_msg">Please turn on Bluetooth in system settings.</string>
+    <string name="bluetooth_charging_protection_msg">The device is currently in charging protection. You can turn off charging protection by going to menu settings.</string>
+    <string name="ai_developing">Interesting curriculum coming your way!</string>
+    <!--<string name="account_reset_password_desc">Please enter your mobile number or email address. We\'ll send you a code you can use to recover your password. </string>-->
+    <string name="account_login_overdue_desc">Your account has expired and your project files have been saved locally.</string>
+
+    <string name="gdpr_privacy_policy_summary_default">&#160;&#160;&#160;&#160;&#160;UBTECH Education, a division of UBTECH Robotics Corp., (hereinafter referred to as \"uKit EDU\" or \"We\") respects your privacy rights. This privacy notice explains who We are, how We collect, share and use your personal information, and how you exercise your privacy rights. This privacy notice applies to the personal information We collect through our product—the UKIT Educational products —and our services, which include mobile applications (\"Apps\"). The UKIT Educational products and services and Apps are referred to collectively in this Privacy Policy as the \"Services\".</string>
+    <string name="gdpr_privacy_policy_url_default">https://gdpr.ubtrobot.com/ukit2.0/v4.0.0/Ukit_PrivacyPolicy_na.html</string>
+    <string name="gdpr_terms_of_use_summary_default">&#160;&#160;&#160;&#160;&#160;Please read the following carefully. By clicking \"I accept\" or \"I agree\" or using the services you are entering into a binding contract with UBTECH Education, a division of Ubtech Robotics Corp., and its affiliates. (collectively, \"uKit EDU\", \"we\" or \"us\")</string>
+    <string name="gdpr_terms_of_use_url_default">https://gdpr.ubtrobot.com/ukit2.0/v4.0.0/TermsOfUse_na.html?PrivacyPolicy=Ukit_PrivacyPolicy_na.html</string>
+</resources>

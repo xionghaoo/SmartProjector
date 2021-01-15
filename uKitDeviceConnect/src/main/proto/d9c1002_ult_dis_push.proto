@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1002
+// 命令名称: ultrasonic_distance_push
+// 命令描述: 读取超声距离值
+// 文件名称: d9c1002_ult_dis_push.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbUltrasonicDistancePush";
+
+message UltrasonicDistancePushRequest {
+
+}
+
+message UltrasonicDistancePushResponse {
+  // ATTR: PUSH
+  uint32 distance = 1;   //距离值
+}

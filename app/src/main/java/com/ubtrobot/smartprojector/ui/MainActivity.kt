@@ -3,12 +3,15 @@ package com.ubtrobot.smartprojector.ui
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.tuya.smart.home.sdk.TuyaHomeSdk
+import com.ubtedu.ukit.project.bridge.BridgeCommunicator
+import com.ubtedu.ukit.project.host.ProjectHostFragment
+import com.ubtedu.ukit.project.vo.Project
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appMarketFragment: AppMarketFragment
     private lateinit var gameMarketFragment: AppMarketFragment
     private lateinit var settingsFragment: SettingsFragment
+    private lateinit var projectFragment: ProjectHostFragment
 
     private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置")
 
@@ -50,11 +54,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        BridgeCommunicator.getInstance().init()
+
         educationFragment = EducationFragment.newInstance()
         magicSpaceFragment = MagicSpaceFragment.newInstance()
         appMarketFragment = AppMarketFragment.newInstance()
         gameMarketFragment = AppMarketFragment.newInstance(true)
         settingsFragment = SettingsFragment.newInstance()
+        projectFragment = ProjectHostFragment()
+        projectFragment.setProject(Project())
 
         container_menu.removeAllViews()
         menuTitles.forEachIndexed { index, title ->
@@ -69,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             tv.gravity = Gravity.CENTER
             tv.setOnClickListener {
                 when (index) {
-                    0 -> replaceFragment(educationFragment, R.id.fragment_container)
+                    0 -> replaceFragment(projectFragment, R.id.fragment_container)
                     1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
                     2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
                     3 -> replaceFragment(gameMarketFragment, R.id.fragment_container)

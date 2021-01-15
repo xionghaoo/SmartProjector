@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 15
+// 命令名称: upload_threshold_set
+// 命令描述: 设置阈值上报的阈值
+// 文件名称: s15_upload_threshold_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbUploadThresholdSet";
+
+message UploadThresholdSetRequest {
+  // ATTR: REQUSET
+  repeated sint32 threshold = 1;
+}
+
+message UploadThresholdSetResponse {
+
+}

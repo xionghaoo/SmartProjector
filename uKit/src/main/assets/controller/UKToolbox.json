@@ -1,0 +1,24 @@
+{
+  "UKit":[
+    {
+      "categoryName":"Joystick",
+      "widgetList":["UKRoundJoystick","UKTwoWayJoystickH"]
+    },
+    {
+      "categoryName":"Button",
+      "widgetList":["UKCustomButtonV2"]
+    },
+    {
+      "categoryName":"Slider",
+      "widgetList":["UKIntSlider"]
+    },
+    {
+      "categoryName":"Switch",
+      "widgetList":["UKToggleSwitch","UKTouchSwitch"]
+    },
+    {
+      "categoryName":"Display",
+      "widgetList":["UKValueDisplay","UKColorDisplay"]
+    }
+  ]
+}

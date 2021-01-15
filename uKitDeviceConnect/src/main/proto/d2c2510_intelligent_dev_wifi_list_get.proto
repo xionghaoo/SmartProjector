@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// 命 令 号: 2510
+// 命令名称: intelligent_dev_wifi_list_get
+// 命令描述: 获取WIIF网络列表
+// 文件名称: d2c2510_intelligent_dev_wifi_list_get.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevWifiListGet";
+
+message IntelligentDevWifiListGetRequest {
+
+}
+
+message IntelligentDevWifiListGetResponse {
+  // ATTR: REQACK
+  message ap_info_t {
+    string ssid = 1; //网络名称
+    sint32 rssi = 2; //信号强度
+    sint32 authmode = 3; //信号强度
+  }
+  repeated ap_info_t ap_info = 1;//ap信息
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbMessageHeader";
+
+message Header {
+
+	enum  Attr {
+		RESERVE = 0;
+		REQUEST = 1;
+		REQACK = 2;
+		PUBLISH = 3;
+		PUBACK = 4;
+		NOTIFY = 5;
+		PUSH = 6;
+	}
+
+	uint32 		dev = 1;
+	uint32 		cmd = 2;
+	uint32 		id = 3;
+	uint32 		dataLen = 4;
+	Attr		attr = 5;
+	sint32 		ack = 6;
+	uint32		seq = 7;
+
+}

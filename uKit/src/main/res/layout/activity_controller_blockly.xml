@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bluetooth_bg">
+
+    <FrameLayout
+        android:id="@+id/project_controller_blockly_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_126px" >
+
+        <ImageView
+            android:id="@+id/project_controller_blockly_close_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_controller_nav_close_btn"
+            android:layout_marginStart="@dimen/title_btn_horizontal_margin"
+            android:layout_marginTop="@dimen/title_btn_vertical_margin"
+            android:layout_marginBottom="@dimen/title_btn_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/project_controller_blockly_confirm_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_controller_nav_confirm_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/title_btn_horizontal_margin"
+            android:layout_marginTop="@dimen/title_btn_vertical_margin"
+            android:layout_marginBottom="@dimen/title_btn_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/project_controller_blockly_title_tv"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/ubt_dimen_620px"
+        android:layout_height="@dimen/ubt_dimen_103px"
+        android:layout_marginTop="@dimen/ubt_dimen_46px"
+        android:background="@drawable/shape_project_controller_blockly_title_bg"
+        android:textSize="@dimen/ubt_font_52px"
+        android:textColor="#171E2B"
+        android:textStyle="bold"
+        tools:text="遥控器名称" />
+
+</RelativeLayout>

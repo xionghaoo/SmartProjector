@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ubt_dimen_144px"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@drawable/bluetooth_list_btn_white_nor" >
+    <TextView
+        android:id="@+id/item_batch_wifi_config_mainboard_complete_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ubt_font_46px"
+        android:textColor="#60d064" />
+
+    <ImageView
+        android:layout_marginStart="@dimen/ubt_dimen_10px"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/item_batch_wifi_config_mainboard_complete_iv"
+        android:layout_width="@dimen/ubt_dimen_69px"
+        android:layout_height="@dimen/ubt_dimen_69px"
+        android:src="@drawable/success_ic" />
+</LinearLayout>

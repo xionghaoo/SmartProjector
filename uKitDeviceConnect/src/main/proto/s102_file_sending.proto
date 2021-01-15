@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// 命 令 号: 102
+// 命令名称: file_sending
+// 命令描述: 下发每帧文件包
+// 文件名称: s102_file_sending.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbFileSending";
+
+message FileSendingRequest {
+  // ATTR: REQUSET
+  uint32 pack_idx = 1; //分包索引，从1开始
+  bytes data = 2;     //包数据内容
+}
+
+message FileSendingResponse {
+  // ATTR: REQACK
+  uint32 pack_idx = 1; //分包索引，从1开始%2c与发送一致
+}

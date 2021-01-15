@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--<ImageView-->
+        <!--android:id="@+id/image_crop_iv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scaleType="fitCenter"/>-->
+    <com.steelkiwi.cropiwa.CropIwaView
+        android:id="@+id/image_crop_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.ubtedu.alpha1x.ui.widgets.PressButton
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ubt_dimen_166px"
+            android:background="#99000000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ubt_dimen_802px"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#99000000"/>
+            <View
+                android:id="@+id/image_crop_content_view"
+                android:layout_width="@dimen/ubt_dimen_1060px"
+                android:layout_height="@dimen/ubt_dimen_802px"
+                android:layout_centerInParent="true"
+                android:background="@drawable/keep_cut_cor"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#99000000"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#99000000"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/image_crop_back_btn"
+        android:layout_width="@dimen/ubt_dimen_150px"
+        android:layout_height="@dimen/ubt_dimen_150px"
+        android:layout_marginLeft="@dimen/ubt_dimen_20px"
+        android:layout_marginStart="@dimen/ubt_dimen_20px"
+        android:background="@drawable/selector_controller_nav_close_btn"/>
+    <com.ubtedu.alpha1x.ui.widgets.PressButton
+        android:id="@+id/image_crop_submit_btn"
+        android:layout_width="@dimen/ubt_dimen_128px"
+        android:layout_height="@dimen/ubt_dimen_128px"
+        android:layout_marginRight="@dimen/ubt_dimen_20px"
+        android:layout_marginEnd="@dimen/ubt_dimen_20px"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/keep_nav_done_icon"/>
+</RelativeLayout>

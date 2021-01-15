@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 302
+// 命令名称: wifi_connect_set
+// 命令描述: 设置WIFI连接
+// 文件名称: s302_wifi_connect_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbWifiConnectSet";
+
+message WifiConnectSetRequest {
+  // ATTR: REQUSET
+  uint32 status = 1; //开关
+}
+
+message WifiConnectSetResponse {
+
+}

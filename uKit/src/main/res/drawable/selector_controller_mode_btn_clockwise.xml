@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:width="@dimen/ubt_dimen_63px" android:height="@dimen/ubt_dimen_63px" android:drawable="@drawable/project_remote_set_tab_clockwise_icon_sel" android:gravity="left|center_vertical" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:width="@dimen/ubt_dimen_63px" android:height="@dimen/ubt_dimen_63px" android:drawable="@drawable/project_remote_set_tab_clockwise_icon_nor" android:gravity="left|center_vertical" />
+        </layer-list>
+    </item>
+</selector>

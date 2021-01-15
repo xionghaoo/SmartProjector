@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// 命 令 号: 262
+// 命令名称: dev_update_stop
+// 命令描述: 停止设备升级
+// 文件名称: s262_dev_update_stop.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbDevUpdateStop";
+
+message DevUpdateStopRequest {
+
+}
+
+message DevUpdateStopResponse {
+
+}

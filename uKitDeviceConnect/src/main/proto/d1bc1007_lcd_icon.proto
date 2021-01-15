@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// 命 令 号: 1007
+// 命令名称: lcd_icon
+// 命令描述: 显示图标
+// 文件名称: d1bc1007_lcd_icon.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbLcdIcon";
+
+message LcdIconRequest {
+  // ATTR: REQUSET
+  uint32 type = 1;     //显示的图标类型
+  uint32 index = 2;    //显示的图标序号
+  uint32 post_x = 3;   //左上角 X坐标位
+  uint32 post_y = 4;   //左上角 y坐标位
+}
+
+message LcdIconResponse {
+
+}

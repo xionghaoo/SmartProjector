@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1003
+// 命令名称: motor_pwm_upper_limit_set
+// 命令描述: 获取马达pwm的上限值
+// 文件名称: d4c1003_mtr_pwm_upper_limit_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbMotorPwmUpperLimitSet";
+
+message MotorPwmUpperLimitSetRequest {
+  // ATTR: REQUSET
+  uint32 pwm_upper_limit = 1;  //pwm值
+}
+
+message MotorPwmUpperLimitSetResponse {
+
+}

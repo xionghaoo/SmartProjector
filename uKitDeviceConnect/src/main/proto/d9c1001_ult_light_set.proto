@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// 命 令 号: 1001
+// 命令名称: ultrasonic_light_set
+// 命令描述: 设置灯光
+// 文件名称: d9c1001_ult_light_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbUltrasonicLightSet";
+
+message UltrasonicLightSetRequest {
+  // ATTR: REQUSET
+  uint32 R = 1; //颜色rgb值
+  uint32 G = 2;  
+  uint32 B = 3;  
+  uint32 mode = 4;  
+  uint32 speed = 5;  
+  uint32 time = 6;   //显示时间，单位ms
+}
+
+message UltrasonicLightSetResponse {
+
+}

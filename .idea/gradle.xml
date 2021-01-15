@@ -10,7 +10,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Bridge" />
+            <option value="$PROJECT_DIR$/UBTCommon" />
+            <option value="$PROJECT_DIR$/UBTCore" />
+            <option value="$PROJECT_DIR$/UBTQRCode" />
+            <option value="$PROJECT_DIR$/UBTUI" />
+            <option value="$PROJECT_DIR$/UBTUtils" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/cropiwa" />
+            <option value="$PROJECT_DIR$/uKit" />
+            <option value="$PROJECT_DIR$/uKitDeviceConnect" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

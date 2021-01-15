@@ -1,0 +1,50 @@
+apply from: "jenkins.gradle"
+
+// 正式环境
+
+def OTA_SERVER_RELEASE = "https://upgrade.ubtrobot.com"
+def OTA_STORAGE_RELEASE = "https://edustorge.ubtrobot.com"
+
+def RELEASE_INTERNAL_URL = "https://internal.ubtrobot.com"
+def RELEASE_INTERFACE_URL = "https://interface.ubtrobot.com"
+//todo replace to the aws server url --qinicy
+def RELEASE_AWS_URL = "https://aws-api.ubtrobot.com"
+
+// 准正式环境
+def API_SERVER_PRE = "https://prerelease.ubtrobot.com"
+def OTA_SERVER_PRE = "https://upgrade.ubtrobot.com"
+def OTA_STORAGE_PRE = "https://edustorge.ubtrobot.com"
+
+// 测试环境
+def API_SERVER_TEST = "https://test79.ubtrobot.com"
+def OTA_SERVER_TEST = "http://10.10.20.71:8032"
+def OTA_STORAGE_TEST = "https://edustorge.ubtrobot.com"
+
+// 测试服和正式服对照
+
+// http://10.10.20.72:8010/user-service-rest/v2/  -->  https://apis.ubtrobot.com/user-service-rest/v2/
+// https://test79.ubtrobot.com/v2/file-service-rest/  -->  https://apis.ubtrobot.com/v2/file-service-rest/
+// http://10.10.20.71:8020/UbtInt/newlesson/  -->  http://edu.ubtrobot.com/UbtInt/newlesson/
+// http://10.10.20.71:8020/UbtInt/newgate/  -->  http://edu.ubtrobot.com/UbtInt/newgate/
+// https://test79.ubtrobot.com/community/  -->  https://apis.ubtrobot.com/community/
+// https://test79.ubtrobot.com/user-service-rest/v2/  -->  https://apis.ubtrobot.com/user-service-rest/v2/
+
+def urls = [
+        //ENV_RELEASE
+        "OTA_SERVER_RELEASE"   : OTA_SERVER_RELEASE,
+        "RELEASE_INTERNAL_URL" : RELEASE_INTERNAL_URL,
+        "RELEASE_INTERFACE_URL": RELEASE_INTERFACE_URL,
+        "OTA_STORAGE_RELEASE"  : OTA_STORAGE_RELEASE,
+        "RELEASE_AWS_URL"  : RELEASE_AWS_URL,
+        //ENV_PRERELEASE
+        "API_SERVER_PRE"       : API_SERVER_PRE,
+        "OTA_SERVER_PRE"       : OTA_SERVER_PRE,
+        "OTA_STORAGE_PRE"      : OTA_STORAGE_PRE,
+        //ENV_TEST
+        "API_SERVER_TEST"      : API_SERVER_TEST,
+        "OTA_SERVER_TEST"      : OTA_SERVER_TEST,
+        "OTA_STORAGE_TEST"     : OTA_STORAGE_TEST
+]
+ext {
+    Urls = urls
+}

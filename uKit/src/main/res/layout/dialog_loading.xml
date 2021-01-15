@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/ubt_dimen_250px"
+        android:orientation="vertical">
+        <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+            android:id="@+id/loading_dialog_lottie_view"
+            android:layout_width="@dimen/ubt_dimen_470px"
+            android:layout_height="@dimen/ubt_dimen_444px"
+            app:lottie_rawRes="@raw/refresh"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"/>
+
+        <TextView
+            android:id="@+id/loading_label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ubt_font_34px"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/ubt_font_46px"
+            tool:text="正在连接uKit_F23D"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

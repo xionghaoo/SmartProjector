@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// 命 令 号: 257
+// 命令名称: file_download_progress_report
+// 命令描述: 文件下载进度上报
+// 文件名称: s257_file_download_progress_report.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbFileDownloadProgressReport";
+
+message FileDownloadProgressReportRequest {
+
+}
+
+message FileDownloadProgressReportResponse {
+  // ATTR: PUSH
+  uint32    dev=1;
+  uint32 percent = 2;   //文件下载百分比
+  uint32 status  = 3;   //文件下载状态
+}

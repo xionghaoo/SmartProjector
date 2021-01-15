@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// 命 令 号: 1028
+// 命令名称: voice_file_play_stop
+// 命令描述: 停止播放语音文件
+// 文件名称: dec1028_vr_file_play_stop.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbVoiceFilePlayStop";
+
+message VoiceFilePlayStopRequest {
+
+}
+
+message VoiceFilePlayStopResponse {
+
+}

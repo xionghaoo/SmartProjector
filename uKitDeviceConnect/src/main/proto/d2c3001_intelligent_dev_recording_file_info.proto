@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// 命 令 号: 3001
+// 命令名称: intelligent_dev_recording_file_info
+// 命令描述: 获取录音文件列表
+// 文件名称: d2c3001_intelligent_dev_recording_file_info.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevRecordingFileInfo";
+
+message IntelligentDevRecordingFileInfoRequest {
+
+}
+
+message IntelligentDevRecordingFileInfoResponse {
+  // ATTR: REQACK
+  message file_info_t {
+    string file_name = 1;
+    uint32 duration = 2; //时长 单位：ms
+  }
+  repeated file_info_t file_info = 1;//file信息
+}

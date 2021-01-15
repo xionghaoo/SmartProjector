@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ubt_dimen_126px"
+    android:background="@drawable/selector_project_sub_list_item_bg"
+    android:gravity="center_vertical"
+    android:layout_marginTop="@dimen/ubt_dimen_12px"
+    android:layout_marginBottom="@dimen/ubt_dimen_12px">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+        <TextView
+            android:id="@+id/project_motion_list_item_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Example01afadsfasdfs"
+            android:maxLines="1"
+            android:textColor="#929AA8"
+            android:textSize="@dimen/ubt_font_40px" />
+        <ImageView
+            android:id="@+id/project_motion_list_item_name_mark"
+            android:layout_gravity="center_vertical"
+            android:layout_width="@dimen/ubt_dimen_57px"
+            android:layout_height="@dimen/ubt_dimen_57px"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_marginStart="@dimen/ubt_dimen_24px"
+            android:src="@drawable/popup_list_abnormal_icon" />
+    </LinearLayout>
+
+</RelativeLayout>

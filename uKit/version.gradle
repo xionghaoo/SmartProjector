@@ -1,0 +1,26 @@
+apply from: "jenkins.gradle"
+/**
+ * 如果不是Jenkins编译，需要手动指定以下变量
+ */
+String DEFAULT_VERSION_NAME = 'v2.2.0.15'
+int DEFAULT_VERSION_CODE = 220152
+
+
+println("Jenkins infos:${Jenkins.versionName} ${Jenkins.versionCode} ${Jenkins.channel}")
+
+String name = Jenkins.versionName
+if (name == null) {
+    name = DEFAULT_VERSION_NAME
+}
+println("versionName:" + name)
+int code = Jenkins.versionCode
+if (code < 0) {
+    code = DEFAULT_VERSION_CODE
+}
+println("versionCode:" + code)
+ext {
+    Version = [
+            code: code,
+            name: name
+    ]
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MainTabItemView">
+        <attr name="tabAnimRaw" format="reference" />
+        <attr name="tabItemText" format="string|reference" />
+        <attr name="tabItemCheck" format="boolean|reference"/>
+    </declare-styleable>
+</resources>

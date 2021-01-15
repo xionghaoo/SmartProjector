@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1003
+// 命令名称: battery_voltage
+// 命令描述: 获取电池电压
+// 文件名称: dfc1003_bat_vol.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbBatteryVoltage";
+
+message BatteryVoltageRequest {
+
+}
+
+message BatteryVoltageResponse {
+  // ATTR: REQACK
+  uint32 voltage = 1; //单位：mV
+}

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".menu.MenuActivity">
+
+    <RelativeLayout
+        android:id="@+id/menu_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_126px"
+        android:background="#E1E3E6">
+
+        <com.ubtedu.alpha1x.ui.widgets.PressButton
+            android:id="@+id/menu_back_btn"
+            android:layout_width="@dimen/ubt_dimen_126px"
+            android:layout_height="@dimen/ubt_dimen_126px"
+            android:layout_marginStart="@dimen/ubt_dimen_16px"
+            android:background="@drawable/nav_back_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/menu_title"
+            android:textColor="#171E2B"
+            android:textSize="@dimen/ubt_font_52px"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menu_tool_bar"
+        android:background="#EDEFF2"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/menu_sidebar_radiogroup"
+            android:layout_width="@dimen/ubt_dimen_420px"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/ubt_dimen_30px"
+            android:layout_marginTop="@dimen/ubt_dimen_46px"
+            android:gravity="center_horizontal|start"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/menu_sidebar_account"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_account"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_account"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/menu_sidebar_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_setting"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_settings"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/menu_sidebar_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_feedback"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_feedback"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/menu_sidebar_help"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_help"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_help"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+
+            <RadioButton
+                android:id="@+id/menu_sidebar_about"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_about"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_about"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/menu_sidebar_language"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_language"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_language"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/menu_sidebar_device"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ubt_dimen_116px"
+                android:background="@drawable/selector_menu_sidebar_device"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/ubt_dimen_120px"
+                android:paddingEnd="@dimen/ubt_dimen_36px"
+                android:text="@string/menu_tab_device"
+                android:textColor="@drawable/selector_menu_sidebar_text_color"
+                android:textSize="@dimen/ubt_font_40px"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/menu_content_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/menu_modify_avatar_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ubt_dimen_232px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/menu_modify_avatar_view_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/account_avatar_view"
+                android:textColor="#555B67"
+                android:textSize="@dimen/ubt_font_48px"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ubt_dimen_2px"
+                android:background="#929AA8" />
+
+            <TextView
+                android:id="@+id/menu_modify_avatar_modify_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/account_avatar_modify"
+                android:textColor="#555B67"
+                android:textSize="@dimen/ubt_font_48px"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

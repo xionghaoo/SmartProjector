@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// 命 令 号: 1021
+// 命令名称: voice_file_rename
+// 命令描述: 语音文件重命名
+// 文件名称: dec1021_vr_file_rename.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbVoiceFileRename";
+
+message VoiceFileRenameRequest {
+  // ATTR: REQUSET
+  string old_name = 1; //原文件名
+  string new_name = 2; //新文件名
+}
+
+message VoiceFileRenameResponse {
+
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_fragment_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#20000000">
+    <RelativeLayout
+        android:id="@+id/prompt_content_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/ubt_dimen_84px"
+        android:layout_marginBottom="@dimen/ubt_dimen_84px"
+        android:layout_marginLeft="@dimen/ubt_dimen_240px"
+        android:layout_marginStart="@dimen/ubt_dimen_240px"
+        android:layout_marginRight="@dimen/ubt_dimen_240px"
+        android:layout_marginEnd="@dimen/ubt_dimen_240px"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_dialog_normal_bg">
+        <TextView
+            android:id="@+id/prompt_title_tv"
+            android:tag="beta_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ubt_dimen_86px"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FF171E2B"
+            android:textSize="@dimen/ubt_font_52px"
+            android:textStyle="bold"
+            tools:text="提示信息"/>
+
+        <LinearLayout
+            android:id="@+id/prompt_button_lyt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/ubt_dimen_50px">
+            <Button
+                android:id="@+id/prompt_negative_btn"
+                android:tag="beta_cancel_button"
+                android:layout_width="@dimen/ubt_dimen_414px"
+                android:layout_height="@dimen/ubt_dimen_150px"
+                android:layout_marginRight="@dimen/ubt_dimen_6px"
+                android:layout_marginEnd="@dimen/ubt_dimen_6px"
+                android:textAllCaps="false"
+                android:text="@string/prompt_cancel"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/ubt_font_36px"
+                android:background="@drawable/selector_prompt_negative_btn"/>
+
+            <Button
+                android:id="@+id/prompt_positive_btn"
+                android:tag="beta_confirm_button"
+                android:layout_width="@dimen/ubt_dimen_414px"
+                android:layout_height="@dimen/ubt_dimen_150px"
+                android:textAllCaps="false"
+                android:text="@string/prompt_yes"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/ubt_font_36px"
+                android:background="@drawable/selector_prompt_positive_btn"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/beta_upgrade_info"
+            android:tag="beta_upgrade_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ubt_dimen_70px"
+            android:layout_marginStart="@dimen/ubt_dimen_70px"
+            android:layout_marginRight="@dimen/ubt_dimen_70px"
+            android:layout_marginEnd="@dimen/ubt_dimen_70px"
+            android:lineSpacingMultiplier="1.5"
+
+            android:layout_below="@id/prompt_title_tv"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/ubt_dimen_40px"
+            android:textColor="#555B67"
+            android:textSize="@dimen/ubt_font_40px"
+            tools:text="Line Spacing Multiplier  layout center Horizontal"
+            />
+        <TextView
+            android:id="@+id/prompt_content_tv"
+            android:tag="beta_upgrade_feature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ubt_dimen_70px"
+            android:layout_marginStart="@dimen/ubt_dimen_70px"
+            android:layout_marginRight="@dimen/ubt_dimen_70px"
+            android:layout_marginEnd="@dimen/ubt_dimen_70px"
+            android:lineSpacingMultiplier="1.5"
+
+            android:layout_below="@id/beta_upgrade_info"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/ubt_dimen_40px"
+            android:textColor="#555B67"
+            android:textSize="@dimen/ubt_font_40px"
+            tools:text="Line Spacing Multiplier  layout center Horizontal"
+            android:layout_above="@id/prompt_button_lyt"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

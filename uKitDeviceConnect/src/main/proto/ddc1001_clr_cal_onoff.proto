@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// 命 令 号: 1001
+// 命令名称: color_calibrate_ctrl
+// 命令描述: 开启颜色校准
+// 文件名称: ddc1001_clr_cal_onoff.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbColorCalibrateCtrl";
+
+message ColorCalibrateCtrlRequest {
+  // ATTR: REQUSET
+  uint32 rgb = 1; //颜色rgb值
+  bool onoff = 2; //true:启动，false：强行停止
+}
+
+message ColorCalibrateCtrlResponse {
+
+}

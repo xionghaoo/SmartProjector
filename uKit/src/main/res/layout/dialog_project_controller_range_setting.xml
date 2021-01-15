@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_fragment_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99000000">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialog_project_controller_range_content_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/ubt_dimen_240px"
+        android:layout_marginTop="@dimen/ubt_dimen_84px"
+        android:layout_marginEnd="@dimen/ubt_dimen_240px"
+        android:layout_marginBottom="@dimen/ubt_dimen_84px"
+        android:background="@drawable/shape_dialog_normal_bg">
+
+        <TextView
+            android:id="@+id/dialog_project_controller_range_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ubt_dimen_60px"
+            android:text="@string/project_controller_setting_range_title"
+            android:textColor="#171E2B"
+            android:textSize="@dimen/ubt_font_52px"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ubtedu.alpha1x.ui.widgets.seekbar.RangeSeekBar
+            android:id="@+id/dialog_project_controller_range_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ubt_dimen_50px"
+            app:layout_constraintTop_toBottomOf="@id/dialog_project_controller_range_title_tv"
+            android:paddingLeft="@dimen/ubt_dimen_162px"
+            android:paddingRight="@dimen/ubt_dimen_162px"
+            app:rsb_gravity="bottom"
+            app:rsb_indicator_padding_bottom="8dp"
+            app:rsb_tick_mark_mode="other"
+            app:rsb_indicator_text_size="@dimen/ubt_font_34px"
+            app:rsb_indicator_height="@dimen/ubt_dimen_98px"
+            app:rsb_indicator_width="@dimen/ubt_dimen_162px"
+            app:rsb_indicator_show_mode="alwaysShow"
+            app:rsb_thumb_height="@dimen/ubt_dimen_90px"
+            app:rsb_thumb_width="@dimen/ubt_dimen_90px"
+            app:rsb_thumb_left_drawable="@drawable/control_img_pointa"
+            app:rsb_thumb_right_drawable="@drawable/control_img_pointb"
+            app:rsb_indicator_right_drawable="@drawable/control_numerical_bg2"
+            app:rsb_indicator_left_drawable="@drawable/control_numerical_bg1"
+            app:rsb_mode="range"
+            app:rsb_progress_color="#60D064"
+            app:rsb_progress_drawable_default="@drawable/control_bar_bg"
+            app:rsb_progress_height="@dimen/ubt_dimen_58px"
+            app:rsb_tick_mark_text_array="@array/dialogControllerArraySetting"
+            app:rsb_tick_mark_text_color="#929AA8"
+            app:rsb_tick_mark_layout_gravity="bottom"
+            app:rsb_tick_mark_text_margin="@dimen/ubt_dimen_37px"
+            app:rsb_tick_mark_text_size="@dimen/ubt_font_30px" />
+
+        <TextView
+            android:id="@+id/dialog_project_controller_range_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/ubt_dimen_121px"
+            android:text="@string/project_controller_setting_range_min"
+            android:textColor="#555B67"
+            android:textSize="@dimen/ubt_font_46px"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_project_controller_range_min_edt"
+            app:layout_constraintTop_toBottomOf="@id/dialog_project_controller_range_seek_bar" />
+
+        <EditText
+            android:id="@+id/dialog_project_controller_range_min_edt"
+            android:layout_width="@dimen/ubt_dimen_265px"
+            android:layout_height="@dimen/ubt_dimen_144px"
+            android:layout_marginLeft="@dimen/ubt_dimen_35px"
+            android:background="@drawable/selector_project_controller_range_text_bg"
+            android:digits="0123456789-"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:inputType="numberSigned"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#555B67"
+            android:gravity="center"
+            android:textSize="@dimen/ubt_font_46px"
+            android:focusableInTouchMode="false"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_project_controller_range_min"
+            app:layout_constraintLeft_toRightOf="@+id/dialog_project_controller_range_min"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_project_controller_range_max"
+            app:layout_constraintTop_toTopOf="@+id/dialog_project_controller_range_min" />
+
+        <TextView
+            android:id="@+id/dialog_project_controller_range_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ubt_dimen_112px"
+            android:text="@string/project_controller_setting_range_max"
+            android:textColor="#555B67"
+            android:textSize="@dimen/ubt_font_46px"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_project_controller_range_min"
+            app:layout_constraintLeft_toRightOf="@+id/dialog_project_controller_range_min_edt"
+            app:layout_constraintRight_toLeftOf="@+id/dialog_project_controller_range_max_edt"
+            app:layout_constraintTop_toTopOf="@+id/dialog_project_controller_range_min" />
+
+        <EditText
+            android:id="@+id/dialog_project_controller_range_max_edt"
+            android:layout_width="@dimen/ubt_dimen_265px"
+            android:layout_height="@dimen/ubt_dimen_144px"
+            android:layout_marginLeft="@dimen/ubt_dimen_35px"
+            android:imeOptions="actionDone|flagNoExtractUi"
+            android:background="@drawable/selector_project_controller_range_text_bg"
+            android:digits="0123456789-"
+            android:inputType="numberSigned"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#555B67"
+            android:gravity="center"
+            android:textSize="@dimen/ubt_font_46px"
+            android:focusableInTouchMode="false"
+            app:layout_constraintBottom_toBottomOf="@+id/dialog_project_controller_range_min"
+            app:layout_constraintLeft_toRightOf="@+id/dialog_project_controller_range_max"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dialog_project_controller_range_min" />
+
+        <Button
+            android:id="@+id/dialog_project_controller_range_negative_btn"
+            android:layout_width="@dimen/ubt_dimen_414px"
+            android:layout_height="@dimen/ubt_dimen_150px"
+            android:layout_marginEnd="@dimen/ubt_dimen_6px"
+            android:layout_marginBottom="@dimen/ubt_dimen_42px"
+            android:background="@drawable/selector_prompt_negative_btn"
+            android:text="@string/prompt_cancel"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/ubt_font_36px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/dialog_project_controller_range_positive_btn" />
+
+        <Button
+            android:id="@+id/dialog_project_controller_range_positive_btn"
+            android:layout_width="@dimen/ubt_dimen_414px"
+            android:layout_height="@dimen/ubt_dimen_150px"
+            android:background="@drawable/selector_prompt_positive_btn"
+            android:text="@string/project_controller_setting_confirm_btn"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/ubt_font_36px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_project_controller_range_negative_btn"
+            app:layout_constraintLeft_toRightOf="@id/dialog_project_controller_range_negative_btn"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

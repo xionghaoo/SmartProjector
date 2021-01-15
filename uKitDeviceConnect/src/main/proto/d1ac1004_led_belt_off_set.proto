@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1004
+// 命令名称: led_belt_off_set
+// 命令描述: 灯带关闭设置
+// 文件名称: d1ac1004_led_belt_off_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbLedBeltOffSet";
+
+message LedBeltOffSetRequest {
+  // ATTR: REQUSET
+  repeated uint32 port=1;
+}
+
+message LedBeltOffSetResponse {
+
+}

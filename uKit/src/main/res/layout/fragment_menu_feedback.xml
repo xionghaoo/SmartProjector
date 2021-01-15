@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_feedback_root_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/ubt_dimen_170px"
+    android:paddingTop="@dimen/ubt_dimen_90px"
+    android:paddingRight="@dimen/ubt_dimen_170px"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+
+    <EditText
+        android:id="@+id/menu_feedback_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_328px"
+        android:paddingTop="@dimen/ubt_dimen_38px"
+        android:paddingBottom="@dimen/ubt_dimen_38px"
+        android:paddingStart="@dimen/ubt_dimen_60px"
+        android:paddingEnd="@dimen/ubt_dimen_60px"
+        android:maxLength="2000"
+        android:imeOptions="actionNext|flagNoExtractUi"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:hint="@string/menu_tab_feedback_hint"
+        android:textColorHint="#929AA8"
+        android:textSize="@dimen/ubt_font_46px"
+        android:textColor="#171E2B"
+        android:background="@drawable/meun_feedback_input"/>
+    <TextView
+        android:id="@+id/menu_feedback_chars_limit_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/ubt_dimen_12px"
+        tools:text="剩余输入2000个字"
+        android:textColor="#555B67"
+        android:textSize="@dimen/ubt_font_34px"/>
+
+    <EditText
+        android:id="@+id/menu_feedback_email_edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_138px"
+        android:layout_marginTop="@dimen/ubt_dimen_34px"
+        android:paddingTop="@dimen/ubt_dimen_38px"
+        android:paddingBottom="@dimen/ubt_dimen_38px"
+        android:paddingStart="@dimen/ubt_dimen_60px"
+        android:paddingEnd="@dimen/ubt_dimen_60px"
+        android:imeOptions="actionGo|flagNoExtractUi"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:gravity="top"
+        android:hint="@string/menu_tab_feedback_email_hint"
+        android:textColorHint="#929AA8"
+        android:textSize="@dimen/ubt_font_46px"
+        android:textColor="#171E2B"
+        android:background="@drawable/meun_feedback_input2"/>
+
+    <com.ubtedu.alpha1x.ui.widgets.PressButton
+        android:id="@+id/menu_feedback_submit_btn"
+        android:layout_width="@dimen/ubt_dimen_518px"
+        android:layout_height="@dimen/ubt_dimen_166px"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/ubt_dimen_96px"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/ubt_font_46px"
+        android:text="@string/menu_tab_feedback_submit"
+        android:background="@drawable/selector_prompt_positive_btn"/>
+</LinearLayout>

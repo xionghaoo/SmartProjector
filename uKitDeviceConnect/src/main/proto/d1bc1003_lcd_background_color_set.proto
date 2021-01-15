@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1003
+// 命令名称: lcd_background_color_set
+// 命令描述: 设置背景色
+// 文件名称: d1bc1003_lcd_background_color_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbLcdBackgroundColorSet";
+
+message LcdBackgroundColorSetRequest {
+  // ATTR: REQUSET
+  uint32 color = 1;   //背景色
+}
+
+message LcdBackgroundColorSetResponse {
+
+}

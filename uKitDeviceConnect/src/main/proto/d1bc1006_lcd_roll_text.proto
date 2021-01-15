@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// 命 令 号: 1006
+// 命令名称: lcd_roll_text
+// 命令描述: 动态文字
+// 文件名称: d1bc1006_lcd_roll_text.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbLcdRollText";
+
+message LcdRollTextRequest {
+  // ATTR: REQUSET
+  bytes text = 1;     //文字内容
+  uint32 color = 2;    //参考背景色
+  uint32 post_x = 3;   //左上角 X坐标位
+  uint32 post_y = 4;   //左上角 y坐标位
+}
+
+message LcdRollTextResponse {
+
+}

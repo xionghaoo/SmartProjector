@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item  android:state_pressed="true">
+        <bitmap android:src="@drawable/keep_btn_smallgray_nor" android:alpha="@dimen/bitmapAlpha"/>
+    </item>
+    <item  android:state_enabled="false">
+        <bitmap android:src="@drawable/keep_btn_smallgray_nor" android:alpha="@dimen/bitmapAlpha"/>
+    </item>
+
+    <item android:drawable="@drawable/btn_smallgray_nor" />
+</selector>

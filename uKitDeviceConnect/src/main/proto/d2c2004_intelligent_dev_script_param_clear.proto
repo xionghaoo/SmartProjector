@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// 命 令 号: 2004
+// 命令名称: intelligent_devscript_param_clear
+// 命令描述: 脚本关联变量全部归零
+// 文件名称: d2c2004_intelligent_dev_script_param_clear.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevscriptParamClear";
+
+message IntelligentDevscriptParamClearRequest {
+
+}
+
+message IntelligentDevscriptParamClearResponse {
+
+}

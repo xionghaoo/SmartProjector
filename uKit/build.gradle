@@ -1,0 +1,137 @@
+//apply plugin: 'com.justpinch.androidanalyzer'
+apply plugin: 'com.android.library'
+apply from: "version.gradle"
+apply from: "urls.gradle"
+apply from: "flavors.gradle"
+android {
+    compileSdkVersion 30
+    defaultConfig {
+//        applicationId "com.ubtedu.ukit.mod"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode Version.code
+        versionName Version.name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [CHANNEL_VALUE: Jenkins.channel == null ? "ubtedu" : Jenkins.channel]
+        Urls.each { k, v ->
+            buildConfigField 'String', k, "\"${v}\""
+        }
+        ndk {
+//            abiFilters 'x86', 'armeabi-v7a', 'arm64-v8a'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        buildConfigField('String', 'VERSION_NAME', '\"1.0.0\"')
+        buildConfigField('int', 'VERSION_CODE', '1')
+    }
+//    signingConfigs {
+//        def UBTEDU_KEYSTORE = {
+//            //自行替换
+//        }
+//        debug UBTEDU_KEYSTORE
+//        release UBTEDU_KEYSTORE
+//    }
+    buildTypes {
+
+        debug {
+            manifestPlaceholders.put("IS_DEBUG", true)
+            minifyEnabled false
+//            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //加载开发期间编译速度
+            splits.abi.enable = false
+            splits.density.enable = false
+            aaptOptions.cruncherEnabled = false
+        }
+
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+//            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    flavorDimensions dimensions.APP
+    productFlavors flavors
+
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            def time = new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+//            def fileName = "UBT-uKitEDU-android_" + Version.name + "_" + Version.code + "_" + time + "_" + variant.buildType.name + "_" + variant.flavorName + ".apk"
+//            outputFileName = fileName
+//        }
+//    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+        //预编译
+        preDexLibraries = true
+        jumboMode true
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+    buildToolsVersion = '29.0.0 rc2'
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+//    useLibrary 'org.apache.http.legacy'
+}
+configurations {
+    devFullDebugImplementation {}
+    devFullReleaseImplementation {}
+}
+
+dependencies {
+//    testImplementation project(':UBTTest')
+//    androidTestImplementation project(configuration: 'UBTTest', path: ':UBTTest')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api project(':UBTCore')
+    api project(':UBTCommon')
+    api project(':UBTUI')
+    api project(':UBTUtils')
+    api project(':Bridge')
+    api project(':cropiwa')
+    api project(':uKitDeviceConnect')
+
+    implementation files('libs/unity-classes.jar')
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    //noinspection GradleDependency
+    implementation 'com.airbnb.android:lottie:3.0.7'
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.5.0'
+    //noinspection GradleDependency
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    //noinspection GradleDependency
+    implementation 'com.squareup.okio:okio:1.9.0'
+    //lua组件
+    implementation 'cc.chenhe:android-lua:1.0.2'
+    //滚轮组件
+    implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
+    implementation files('libs/commons-codec-1.11.jar')
+
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.github.zyyoona7:pickerview:1.0.9'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
+//    fullImplementation 'com.ubtrobot.mobile:analytics:0.7.5-SNAPSHOT'
+//    fullImplementation 'com.tencent.bugly:crashreport_upgrade:1.4.0'
+
+//    fullImplementation "com.android.support:multidex:1.0.3"
+
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.15.2'
+    implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.15.2@aar') { transitive = true }
+    implementation ('com.amazonaws:aws-android-sdk-auth-userpools:2.15.2@aar') { transitive = true }
+
+}
+

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// 命 令 号: 1003
+// 命令名称: sound_calibrate_set
+// 命令描述: 设置声响参数
+// 文件名称: d7c1003_snd_calibrate_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbSoundCalibrateSet";
+
+message SoundCalibrateSetRequest {
+  // ATTR: REQUSET
+  uint32 adc_value = 1;
+  uint32 hysteresis_time = 2; //单位：ms
+}
+
+message SoundCalibrateSetResponse {
+
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// 命 令 号: 112
+// 命令名称: file_state
+// 命令描述: 获取文件信息
+// 文件名称: s112_file_state.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbFileState";
+
+message FileStateRequest {
+  // ATTR: REQUSET
+  string path = 1;  //文件路径及名字
+}
+
+message FileStateResponse {
+  // ATTR: REQACK
+  string file_name = 1; //文件名
+  uint32 file_size = 2; //文件内容大小
+  uint32 file_mode = 3; //文件类型：0：不存在；1：目录；2：文件
+  bytes file_md5 = 4;
+}

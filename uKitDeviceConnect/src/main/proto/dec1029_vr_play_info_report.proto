@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// 命 令 号: 1029
+// 命令名称: voice_play_info_report
+// 命令描述: 播放结果通知
+// 文件名称: dec1029_vr_play_info_report.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbVoicePlayInfoReport";
+
+message VoicePlayInfoReportRequest {
+
+}
+
+message VoicePlayInfoReportResponse {
+  // ATTR: RESERVE
+  uint32 state = 1; //状态
+  uint32 session_id = 2;
+}

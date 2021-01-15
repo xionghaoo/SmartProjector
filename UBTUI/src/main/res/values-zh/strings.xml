@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">UBTUI</string>
+
+    <string-array name="sensor_compass_directions">
+        <item>北</item>
+        <item>东</item>
+        <item>南</item>
+        <item>西</item>
+    </string-array>
+</resources>

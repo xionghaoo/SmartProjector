@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/ubt_dimen_420px"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/language_region_view"
+            android:layout_width="@dimen/ubt_dimen_254px"
+            android:layout_height="@dimen/ubt_dimen_254px"
+            android:layout_centerHorizontal="true"
+            tools:background="@drawable/meun_region_cn_btn" />
+
+        <RelativeLayout
+            android:id="@+id/language_region_check_lyt"
+            android:layout_width="@dimen/ubt_dimen_254px"
+            android:layout_height="@dimen/ubt_dimen_254px"
+            android:layout_centerHorizontal="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/meun_language_circle_sel" />
+
+            <View
+                android:layout_width="@dimen/ubt_dimen_104px"
+                android:layout_height="@dimen/ubt_dimen_104px"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/meun_language_circle_sel_icon" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/language_region_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/language_region_view"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/ubt_dimen_46px"
+            android:textColor="#171E2B"
+            android:textSize="@dimen/ubt_font_46px"
+            tools:text="@string/menu_tab_region_na" />
+    </RelativeLayout>
+</RelativeLayout>

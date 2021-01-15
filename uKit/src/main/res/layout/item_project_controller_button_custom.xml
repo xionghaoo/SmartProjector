@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/ubt_dimen_12px" >
+    <com.ubtedu.ukit.project.controller.widget.ButtonBackgroundView
+        android:id="@+id/item_project_controller_button_bg"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/item_project_controller_button_icon"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/ubt_dimen_10px"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/act_icon_0" />
+    <com.ubtedu.ukit.project.controller.widget.ButtonCountdownView
+        android:id="@+id/item_project_controller_button_countdown"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/ubt_font_52px"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>

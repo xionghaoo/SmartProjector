@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <ImageView
+        android:id="@+id/item_project_controller_joystick_bg"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/project_remote_sidebar_rocker_a_bg" />
+    <ImageView
+        android:id="@+id/item_project_controller_joystick_lever"
+        android:layout_centerInParent="true"
+        android:layout_width="@dimen/ubt_dimen_140px"
+        android:layout_height="@dimen/ubt_dimen_140px"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/project_remote_sidebar_rocker_a_slider" />
+</RelativeLayout>

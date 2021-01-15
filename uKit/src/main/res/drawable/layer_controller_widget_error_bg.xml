@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:left="@dimen/ubt_dimen_3px"
+    android:right="@dimen/ubt_dimen_3px"
+    android:top="@dimen/ubt_dimen_3px"
+    android:bottom="@dimen/ubt_dimen_3px" >
+    <shape android:shape="rectangle">
+        <solid android:color="#CCCC5A63"/>
+        <stroke android:width="@dimen/ubt_dimen_2px" android:color="#FE6F7B" />
+        <padding
+            android:left="@dimen/ubt_dimen_3px"
+            android:right="@dimen/ubt_dimen_3px"
+            android:top="@dimen/ubt_dimen_3px"
+            android:bottom="@dimen/ubt_dimen_3px"/>
+    </shape>
+</item>
+</layer-list>

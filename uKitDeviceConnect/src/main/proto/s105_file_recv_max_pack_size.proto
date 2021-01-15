@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 105
+// 命令名称: file_recv_max_pack_size
+// 命令描述: 获取回传文件时，每次最大上传包数据大小
+// 文件名称: s105_file_recv_max_pack_size.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbFileRecvMaxPackSize";
+
+message FileRecvMaxPackSizeRequest {
+
+}
+
+message FileRecvMaxPackSizeResponse {
+  // ATTR: REQACK
+  uint32 max_pack_sz = 1; //文件分包后，一包数据最大长度
+}

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/project_root_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/project_list_rcv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="invisible"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:layout_marginTop="@dimen/ubt_dimen_224px"
+        android:layout_marginBottom="@dimen/ubt_dimen_142px"
+        android:paddingLeft="@dimen/ubt_dimen_120px"
+        android:paddingStart="@dimen/ubt_dimen_120px"
+        android:paddingEnd="@dimen/ubt_dimen_120px"
+        android:paddingRight="@dimen/ubt_dimen_120px"
+        android:focusable="true" />
+    <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+        android:id="@+id/project_lottie_loading_view"
+        android:layout_width="@dimen/ubt_dimen_470px"
+        android:layout_height="@dimen/ubt_dimen_444px"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/refresh" />
+
+
+    <LinearLayout
+        android:id="@+id/project_empty_lyt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/ubt_dimen_380px"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/project_empty_des_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#555B67"
+            android:textSize="@dimen/ubt_font_56px"
+            android:text="@string/project_empty"/>
+        <RelativeLayout
+            android:id="@+id/project_add_btn"
+            android:layout_width="@dimen/ubt_dimen_540px"
+            android:layout_height="@dimen/ubt_dimen_150px"
+            android:layout_marginTop="@dimen/ubt_dimen_50px"
+
+            android:background="@drawable/myprogram_btn_addproject_nor">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true">
+                <View
+                    android:layout_width="@dimen/ubt_dimen_58px"
+                    android:layout_height="@dimen/ubt_dimen_58px"
+                    android:background="@drawable/myprogram_ic_addproject"/>
+                <TextView
+                    android:id="@+id/project_add_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/ubt_font_46px"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/ubt_dimen_18px"
+                    android:layout_marginStart="@dimen/ubt_dimen_18px"
+                    android:text="@string/project_add"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.ubtedu.alpha1x.ui.widgets.PressButton
+        android:id="@+id/project_sync_btn"
+        android:layout_width="@dimen/ubt_dimen_150px"
+        android:layout_height="@dimen/ubt_dimen_150px"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/ubt_dimen_34px"
+        android:layout_marginEnd="@dimen/ubt_dimen_184px"
+        android:visibility="gone"
+        android:background="@drawable/bluetooth_upgrade_icon" />
+    
+    <LinearLayout
+        android:id="@+id/project_sync_fail_tip_lyt"
+        android:layout_width="@dimen/ubt_dimen_576px"
+        android:layout_height="@dimen/ubt_dimen_178px"
+        android:layout_below="@id/project_sync_btn"
+        android:layout_marginEnd="@dimen/ubt_dimen_96px"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <View
+            android:layout_width="@dimen/ubt_dimen_40px"
+            android:layout_height="@dimen/ubt_dimen_18px"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/ubt_dimen_130px"
+            android:background="@drawable/project_text_arrow"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/ubt_dimen_24px"
+            android:paddingBottom="@dimen/ubt_dimen_24px"
+            android:paddingStart="@dimen/ubt_dimen_46px"
+            android:paddingEnd="@dimen/ubt_dimen_46px"
+            android:text="@string/project_sync_fail_tip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ubt_font_26px"
+            android:background="@drawable/project_text_bg"/>
+    </LinearLayout>
+
+</RelativeLayout>

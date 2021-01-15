@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_fragment_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#60000000">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_560px"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:background="#F0F0F0 ">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/ubt_dimen_120px"
+            android:layout_marginBottom="@dimen/ubt_dimen_0px"
+            android:layout_centerHorizontal="true">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ubt_dimen_120px"
+                android:layout_centerVertical="true"
+                android:background="#FFFFFF"/>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/frag_locale_select_rcv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/ubt_dimen_110px"
+            android:layout_marginBottom="@dimen/ubt_dimen_0px"
+            android:layout_centerHorizontal="true"
+            android:overScrollMode="never">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/frag_locale_select_cancel_tv"
+            android:layout_width="@dimen/ubt_dimen_126px"
+            android:layout_height="@dimen/ubt_dimen_126px"
+            android:layout_marginStart="@dimen/ubt_dimen_18px"
+            android:gravity="center"
+            android:textColor="#A4BAC4"
+            android:textSize="@dimen/ubt_font_50px"
+            android:background="@drawable/ic_error_nor"/>
+        <TextView
+            android:id="@+id/frag_locale_select_submit_tv"
+            android:layout_width="@dimen/ubt_dimen_126px"
+            android:layout_height="@dimen/ubt_dimen_126px"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/ubt_dimen_18px"
+            android:textSize="@dimen/ubt_font_50px"
+            android:textColor="#2AF0F6"
+            android:background="@drawable/ic_sure_nor"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

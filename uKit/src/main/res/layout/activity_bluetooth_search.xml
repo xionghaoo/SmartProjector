@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bluetooth_bg">
+
+    <RelativeLayout
+        android:id="@+id/bluetooth_search_title_area"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_126px" >
+
+        <ImageView
+            android:id="@+id/bluetooth_search_exit_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_tab_back"
+            android:layout_marginStart="@dimen/title_btn_horizontal_margin"
+            android:layout_marginTop="@dimen/title_btn_vertical_margin"
+            android:layout_marginBottom="@dimen/title_btn_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/bluetooth_search_title_tv"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/ubt_font_52px"
+            android:textColor="#171E2B"
+            android:text="@string/bluetooth_search_title" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bluetooth_search_current_mobile_wifi_name_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@id/bluetooth_search_title_area"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/batch_config_wifi_current_mobile_wifi_name"
+            android:textColor="#555b67"
+            android:textSize="@dimen/ubt_font_34px" />
+        <TextView
+            android:id="@+id/bluetooth_search_mobile_wifi_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#68BCFF"
+            android:textSize="@dimen/ubt_font_34px" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bluetooth_search_btn_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/bluetooth_search_batch_config_wifi_choose_device_btn"
+            android:layout_width="@dimen/ubt_dimen_542px"
+            android:layout_height="@dimen/ubt_dimen_150px"
+            android:layout_marginBottom="@dimen/ubt_dimen_37px"
+            android:background="@drawable/selector_bluetooth_search_btn"
+            android:text="@string/batch_config_wifi_start_config_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ubt_font_46px"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bluetooth_search_btn"
+            android:layout_width="@dimen/ubt_dimen_542px"
+            android:layout_height="@dimen/ubt_dimen_150px"
+            android:layout_marginStart="@dimen/ubt_dimen_23px"
+            android:layout_marginBottom="@dimen/ubt_dimen_37px"
+            android:background="@drawable/selector_bluetooth_search_recheck_btn"
+            android:text="@string/batch_config_wifi_research_device_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ubt_font_46px"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bluetooth_search_icon_bluetooth_check_tv"
+        android:visibility="gone"
+        android:layout_above="@id/bluetooth_search_btn_area"
+        android:layout_width="@dimen/ubt_dimen_650px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/ubt_dimen_12px"
+        android:textSize="@dimen/ubt_font_28px"
+        android:textColor="#555B67"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:text="@string/bluetooth_search_not_found" />
+    <TextView
+        android:id="@+id/bluetooth_search_icon_tv"
+        android:visibility="gone"
+        android:layout_above="@id/bluetooth_search_icon_bluetooth_check_tv"
+        android:layout_width="@dimen/ubt_dimen_650px"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/ubt_dimen_12px"
+        android:textSize="@dimen/ubt_font_34px"
+        android:textColor="#171E2B"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:text="@string/bluetooth_searching" />
+
+    <RelativeLayout
+        android:layout_below="@id/bluetooth_search_title_area"
+        android:layout_above="@id/bluetooth_search_icon_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/ubt_dimen_42px"
+        android:layout_marginBottom="@dimen/ubt_dimen_26px"
+        android:layout_marginStart="@dimen/ubt_dimen_340px"
+        android:layout_marginEnd="@dimen/ubt_dimen_340px">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bluetooth_search_result_list"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bluetooth_search_batch_config_wifi_result_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_centerInParent="true"
+            android:id="@+id/bluetooth_search_icon_area"
+            android:layout_width="@dimen/ubt_dimen_542px"
+            android:layout_height="@dimen/ubt_dimen_542px">
+            <ImageView
+                android:id="@+id/bluetooth_search_empty_iv"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bluetooth_popup_pic_notfound" />
+            <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+                android:id="@+id/bluetooth_search_anim_iv"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_rawRes="@raw/bluetooth_search_animation"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="false" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

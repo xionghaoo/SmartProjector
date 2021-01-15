@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bluetooth_bg">
+
+    <RelativeLayout
+        android:id="@+id/peripheral_setting_modify_title_area"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_126px" >
+
+        <ImageView
+            android:id="@+id/peripheral_setting_modify_back_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_peripheral_setting_modify_id_back_btn"
+            android:layout_marginStart="@dimen/title_btn_horizontal_margin"
+            android:layout_marginTop="@dimen/title_btn_vertical_margin"
+            android:layout_marginBottom="@dimen/title_btn_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/peripheral_setting_modify_title_tv"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/ubt_font_52px"
+            android:textColor="#171E2B"
+            android:text="@string/project_peripheral_setting_modify_id_title" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/peripheral_setting_modify_disconnect_btn"
+        android:layout_width="@dimen/ubt_dimen_542px"
+        android:layout_height="@dimen/ubt_dimen_150px"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/ubt_dimen_38px"
+        android:textAllCaps="false"
+        android:background="@drawable/selector_bluetooth_search_cancel_btn"
+        android:gravity="center"
+        android:text="@string/bluetooth_connect_disconnect_btn"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/ubt_font_46px"
+        android:maxLines="1" />
+
+    <Button
+        android:id="@+id/peripheral_setting_modify_connect_btn"
+        android:layout_width="@dimen/ubt_dimen_542px"
+        android:layout_height="@dimen/ubt_dimen_150px"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/ubt_dimen_38px"
+        android:background="@drawable/selector_bluetooth_search_btn"
+        android:gravity="center"
+        android:text="@string/project_peripheral_setting_modify_id_connect"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/ubt_font_46px"
+        android:maxLines="1" />
+
+    <LinearLayout
+        android:id="@+id/project_peripheral_setting_modify_id_list_area"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/peripheral_setting_modify_title_area"
+        android:layout_above="@id/peripheral_setting_modify_disconnect_btn"
+        android:layout_marginStart="@dimen/ubt_dimen_190px"
+        android:layout_marginEnd="@dimen/ubt_dimen_190px"
+        android:layout_marginBottom="@dimen/ubt_dimen_50px"
+        android:layout_marginTop="@dimen/ubt_dimen_50px" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/ubt_dimen_37px"
+            android:text="@string/project_peripheral_setting_modify_id_msg"
+            android:textSize="@dimen/ubt_font_34px"
+            android:textColor="#555B67" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/project_peripheral_setting_modify_id_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/project_peripheral_setting_modify_id_refresh_area"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+            android:layout_width="@dimen/ubt_dimen_470px"
+            android:layout_height="@dimen/ubt_dimen_444px"
+            app:lottie_rawRes="@raw/refresh"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/ubt_dimen_35px"
+            android:text="@string/project_peripheral_setting_modify_id_refreshing"
+            android:textSize="@dimen/ubt_font_34px"
+            android:textColor="#555B67" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/project_peripheral_setting_modify_id_empty_area"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/peripheral_setting_modify_title_area"
+        android:layout_above="@id/peripheral_setting_modify_disconnect_btn" >
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/ubt_dimen_690px"
+            android:layout_height="@dimen/ubt_dimen_576px"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_modify_id" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/ubt_dimen_200px"
+            android:layout_marginEnd="@dimen/ubt_dimen_200px"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/ubt_dimen_30px"
+            android:text="@string/project_peripheral_setting_modify_id_empty_msg"
+            android:textSize="@dimen/ubt_font_34px"
+            android:textColor="#555B67" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1003
+// 命令名称: color_rgb_push
+// 命令描述: 读取颜色值
+// 文件名称: ddc1003_clr_rgb_push.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbColorRgbPush";
+
+message ColorRgbPushRequest {
+
+}
+
+message ColorRgbPushResponse {
+  // ATTR: PUSH
+  uint32 rgbc = 1; //颜色rgbc值
+}

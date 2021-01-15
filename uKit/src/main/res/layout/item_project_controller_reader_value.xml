@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <TextView
+        android:id="@+id/item_project_controller_reader_name"
+        android:layout_marginStart="@dimen/ubt_dimen_12px"
+        android:layout_marginEnd="@dimen/ubt_dimen_12px"
+        android:layout_marginTop="@dimen/ubt_dimen_8px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ubt_font_28px"
+        android:textColor="#CCFFFFFF"
+        android:textColorHint="#CCFFFFFF"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:hint="@string/project_controller_widget_value" />
+    <TextView
+        android:id="@+id/item_project_controller_reader_display"
+        android:layout_below="@id/item_project_controller_reader_name"
+        android:layout_margin="@dimen/ubt_dimen_8px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#FED948"
+        android:textColorHint="#FED948"
+        android:textSize="@dimen/ubt_font_50px"
+        android:gravity="center"
+        android:hint="--"
+        android:background="@drawable/layer_controller_widget_reader_bg" />
+</RelativeLayout>

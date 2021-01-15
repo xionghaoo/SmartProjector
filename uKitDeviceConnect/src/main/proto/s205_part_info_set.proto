@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// 命 令 号: 205
+// 命令名称: part_info_set
+// 命令描述: 部件升级
+// 文件名称: s205_part_info_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbPartInfoSet";
+
+message PartInfoSetRequest {
+  // ATTR: REQUSET
+  uint32 part = 1;
+  string packageUrl = 2;
+  string packageMd5 = 3;
+  uint32 packageSize = 4;
+}
+
+message PartInfoSetResponse {
+  // ATTR: REQACK
+  uint32 part = 1;
+}

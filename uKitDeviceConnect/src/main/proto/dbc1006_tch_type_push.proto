@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1006
+// 命令名称: touch_type_push
+// 命令描述: 读取触碰按下类型
+// 文件名称: dbc1006_tch_type_push.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbTouchTypePush";
+
+message TouchTypePushRequest {
+
+}
+
+message TouchTypePushResponse {
+  // ATTR: PUSH
+  uint32  type = 1;   //按下类型
+}

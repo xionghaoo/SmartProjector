@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ubt_dimen_144px"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/ubt_dimen_63px"
+    android:paddingEnd="@dimen/ubt_dimen_63px"
+    android:background="@drawable/bluetooth_list_btn_white_nor" >
+
+    <TextView
+        android:id="@+id/item_bluetooth_search_name_tv"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ubt_font_46px"
+        android:textColor="#555B67" />
+
+    <ImageView
+        android:id="@+id/item_bluetooth_search_signal_iv"
+        android:layout_width="@dimen/ubt_dimen_69px"
+        android:layout_height="@dimen/ubt_dimen_69px"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/level_bluetooth_search_signal_icon" />
+
+</LinearLayout>

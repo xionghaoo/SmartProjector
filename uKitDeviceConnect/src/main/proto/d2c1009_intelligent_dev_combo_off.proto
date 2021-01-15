@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1009
+// 命令名称: intelligent_dev_combo_off
+// 命令描述: 停止外设运行
+// 文件名称: d2c1009_intelligent_dev_combo_off.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevComboOff";
+
+message IntelligentDevComboOffRequest {
+  // ATTR: REQUSET
+  bytes dev = 1;
+}
+
+message IntelligentDevComboOffResponse {
+
+}

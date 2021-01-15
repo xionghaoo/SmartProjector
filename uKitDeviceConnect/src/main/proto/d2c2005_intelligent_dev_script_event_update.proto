@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// 命 令 号: 2005
+// 命令名称: intelligent_dev_script_event_update
+// 命令描述: 设置脚本关联的事件
+// 文件名称: d2c2005_intelligent_dev_script_event_update.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevScriptEventUpdate";
+
+message IntelligentDevScriptEventUpdateRequest {
+  // ATTR: REQUSET
+  message param_t {
+    string name = 1;
+    string value = 2;
+  }
+  repeated param_t param = 1;
+}
+
+message IntelligentDevScriptEventUpdateResponse {
+
+}

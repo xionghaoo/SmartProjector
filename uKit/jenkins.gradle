@@ -1,0 +1,18 @@
+int versionCode = -1
+String codeStr = System.getenv("VERSION_CODE")
+if (codeStr != null) {
+    try {
+        versionCode = Integer.parseInt(codeStr)
+    } catch (Exception e) {
+        e.printStackTrace()
+    }
+}
+String versionName = System.getenv("VERSION_NAME")
+String channel = System.getenv("CHANNEL")
+ext {
+    Jenkins = [
+            versionName: versionName,
+            versionCode: versionCode,
+            channel    : channel
+    ]
+}

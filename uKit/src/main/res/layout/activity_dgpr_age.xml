@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEFF2"
+    tools:context=".user.gdpr.GdprAgeActivity">
+    <com.ubtedu.alpha1x.ui.widgets.PressButton
+        android:id="@+id/gdpr_age_back_btn"
+        android:layout_width="@dimen/ubt_dimen_126px"
+        android:layout_height="@dimen/ubt_dimen_126px"
+        android:layout_marginStart="@dimen/ubt_dimen_16px"
+        android:layout_gravity="start"
+        android:background="@drawable/nav_back_icon_nor" />
+
+    <FrameLayout
+        android:layout_below="@+id/gdpr_age_back_btn"
+        android:id="@+id/gdpr_age_content_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

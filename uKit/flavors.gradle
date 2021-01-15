@@ -1,0 +1,20 @@
+apply from: "jenkins.gradle"
+//参考：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Multi-flavor-variants
+//参考：https://www.jianshu.com/p/98ee75dd49f4
+//DIMENSIONS.CHANNEL的flavor将会继承覆盖DIMENSIONS.APP的flavor的sourceSet
+def dimensionValues = [APP: "APP"]
+def flavorValues = {
+    //基本版本，不包含第三方SDK
+    basic {
+        dimension dimensionValues.APP
+    }
+    //在basic基础上集成第三方SDK
+//    full {
+//        multiDexEnabled true
+//        dimension dimensionValues.APP
+//    }
+}
+ext {
+    dimensions = dimensionValues
+    flavors = flavorValues
+}

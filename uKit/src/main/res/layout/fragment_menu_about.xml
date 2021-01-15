@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/ubt_dimen_170px"
+    android:paddingTop="@dimen/ubt_dimen_98px"
+    android:paddingRight="@dimen/ubt_dimen_170px">
+
+    <View
+        android:id="@+id/menu_about_version_logo_view"
+        android:layout_width="@dimen/ubt_dimen_312px"
+        android:layout_height="@dimen/ubt_dimen_170px"
+        android:background="@drawable/meun_about_ukit_logo" />
+
+    <TextView
+        android:id="@+id/menu_about_version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ubt_dimen_26px"
+        android:textColor="#171E2B"
+        android:textSize="@dimen/ubt_font_34px"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/menu_about_version_upgrade_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_124px"
+        android:layout_marginTop="@dimen/ubt_dimen_66px"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:id="@+id/menu_about_version_upgrade_badge_lyt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/ubt_dimen_10px"
+            android:paddingBottom="@dimen/ubt_dimen_10px"
+            android:paddingEnd="@dimen/ubt_dimen_36px">
+            <TextView
+                style="@style/menu_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_tab_about_app_upgrade" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="@dimen/ubt_dimen_80px"
+            android:layout_height="@dimen/ubt_dimen_80px"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/meun_list_enter_icon_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_2px"
+        android:background="#929AA8" />
+
+    <RelativeLayout
+        android:id="@+id/menu_about_privacy_policy_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_124px"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/menu_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_tab_about_privacy_policy" />
+
+        <View
+            android:layout_width="@dimen/ubt_dimen_80px"
+            android:layout_height="@dimen/ubt_dimen_80px"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/meun_list_enter_icon_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_2px"
+        android:background="#929AA8" />
+
+    <RelativeLayout
+        android:id="@+id/menu_about_terms_of_use_lyt"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_124px"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/menu_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_tab_about_terms_of_use" />
+
+        <View
+            android:layout_width="@dimen/ubt_dimen_80px"
+            android:layout_height="@dimen/ubt_dimen_80px"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/meun_list_enter_icon_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_2px"
+        android:background="#929AA8" />
+
+    <RelativeLayout
+        android:id="@+id/menu_about_contract_us_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_124px"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/menu_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_tab_about_contract_us" />
+
+        <View
+            android:layout_width="@dimen/ubt_dimen_80px"
+            android:layout_height="@dimen/ubt_dimen_80px"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/meun_list_enter_icon_arrow" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_2px"
+        android:background="#929AA8" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1004
+// 命令名称: battery_charging_current
+// 命令描述: 获取电池充电电流
+// 文件名称: dfc1004_bat_chg_cur.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbBatteryChargingCurrent";
+
+message BatteryChargingCurrentRequest {
+
+}
+
+message BatteryChargingCurrentResponse {
+  // ATTR: REQACK
+  uint32 chg_cur = 1; //单位：mA
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/project_sync_fail_tip_lyt"
+    android:layout_width="@dimen/ubt_dimen_576px"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/project_sync_btn"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="@dimen/ubt_dimen_96px"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="@dimen/ubt_dimen_40px"
+        android:layout_height="@dimen/ubt_dimen_18px"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/ubt_dimen_120px"
+        android:background="@drawable/project_text_arrow" />
+
+    <TextView
+        android:id="@+id/project_sync_fail_tip_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/project_text_bg"
+        android:paddingStart="@dimen/ubt_dimen_46px"
+        android:paddingTop="@dimen/ubt_dimen_24px"
+        android:paddingEnd="@dimen/ubt_dimen_46px"
+        android:paddingBottom="@dimen/ubt_dimen_24px"
+        android:gravity="center_vertical"
+        android:text="@string/project_sync_fail_tip"
+        android:textColor="@color/white"
+        android:textSize="@dimen/ubt_font_26px" />
+</LinearLayout>

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+// 命 令 号: 5
+// 命令名称: pt_ver
+// 命令描述: 协议版本号
+// 文件名称: s5_pt_ver.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbPtVer";
+
+message PtVerRequest {
+
+}
+
+message PtVerResponse {
+  // ATTR: REQACK
+  uint32 major = 1; 
+  uint32 minor = 2;
+}

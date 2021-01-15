@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/controller_container_bg">
+
+    <FrameLayout
+        android:id="@+id/controller_title_area"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_128px"
+        android:background="@color/controller_title_bg" />
+
+    <RelativeLayout
+        android:id="@+id/controller_toolbar_list_area"
+        android:layout_width="@dimen/ubt_dimen_334px"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_controller_toolbar_bg">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/controller_toolbar_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/ubt_dimen_128px"
+            android:layout_marginBottom="@dimen/ubt_dimen_35px" />
+
+        <RelativeLayout
+            android:id="@+id/controller_trash_area"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_controller_trash_bg"
+            android:visibility="gone">
+
+            <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+                android:id="@+id/controller_trash_icon"
+                android:layout_width="@dimen/ubt_dimen_140px"
+                android:layout_height="@dimen/ubt_dimen_140px"
+                android:layout_centerInParent="true"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/del_open_animation" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.ubtedu.ukit.project.controller.widget.CellContainer
+        android:id="@+id/controller_cell_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/controller_title_area"
+        android:layout_toEndOf="@id/controller_toolbar_list_area"
+        android:background="@drawable/project_remote_play_bg" />
+
+    <FrameLayout
+        android:id="@+id/controller_widget_list_area"
+        android:layout_width="@dimen/ubt_dimen_800px"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_controller_widgetlist_bg"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/controller_widget_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/ubt_dimen_334px" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/controller_widget_action_area"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/ubt_dimen_190px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/ubt_dimen_28px"
+        android:background="@drawable/shape_controller_widget_action_bg"
+        android:divider="@drawable/shape_controller_widget_action_divider"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/ubt_dimen_57px"
+        android:paddingEnd="@dimen/ubt_dimen_57px"
+        android:showDividers="middle"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_joystick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_rocker_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_setting"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_blockly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_blockly_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_programming"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_motion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_act_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_action"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_rename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_rename_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_rename"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_switch_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_rotate"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_range_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_range"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_acticon_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_icon"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/controller_widget_action_usage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/ubt_dimen_114px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_float_usage_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_controller_property_usage"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/ubt_font_28px" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/controller_drag_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/controller_button_area"
+        android:layout_width="@dimen/ubt_dimen_184px"
+        android:layout_height="@dimen/ubt_dimen_184px"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/ubt_dimen_21px"
+        android:layout_marginBottom="@dimen/ubt_dimen_21px">
+
+        <ImageButton
+            android:id="@+id/controller_entry_execution"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:background="@color/colorTransparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_controller_play_btn" />
+
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/controller_bluetooth_btn"
+        android:layout_width="@dimen/ubt_dimen_184px"
+        android:layout_height="@dimen/ubt_dimen_184px"
+        android:layout_marginTop="@dimen/ubt_dimen_24px"
+        android:layout_toLeftOf="@+id/controller_pause_btn_lyt"
+        android:background="@drawable/project_remote_bluetooth_icon"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/controller_pause_btn_lyt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/ubt_dimen_24px"
+        android:layout_marginEnd="@dimen/ubt_dimen_24px">
+
+        <ImageButton
+            android:id="@+id/controller_exit_execution"
+            android:layout_width="@dimen/ubt_dimen_184px"
+            android:layout_height="@dimen/ubt_dimen_184px"
+            android:adjustViewBounds="true"
+            android:background="@color/colorTransparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/project_remote_quit_icon"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/controller_pause_execution"
+            android:layout_width="@dimen/ubt_dimen_184px"
+            android:layout_height="@dimen/ubt_dimen_184px"
+            android:adjustViewBounds="true"
+            android:background="@color/colorTransparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/project_remote_stop_icon"
+            android:visibility="gone" />
+
+    </FrameLayout>
+    <ImageView
+        android:id="@+id/controller_battery_icon"
+        android:src="@drawable/level_controller_board_battery_icon"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/ubt_dimen_57px"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/ubt_dimen_57px"
+        android:layout_width="@dimen/ubt_dimen_124px"
+        android:layout_height="@dimen/ubt_dimen_49px"/>
+</RelativeLayout>

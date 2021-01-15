@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">rxretrofitlibrary</string>
+    <string name="toast_connect_server_timeout">抱歉，连接服务器超时</string>
+
+</resources>

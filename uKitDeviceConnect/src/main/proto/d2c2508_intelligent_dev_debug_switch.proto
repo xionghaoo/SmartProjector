@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 2508
+// 命令名称: intelligent_dev_debug_switch_set
+// 命令描述: 设置调试信息开关
+// 文件名称: d2c2508_intelligent_dev_debug_switch.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbIntelligentDevDebugSwitchSet";
+
+message IntelligentDevDebugSwitchSetRequest {
+  // ATTR: REQUSET
+  uint32 status = 1; //开关
+}
+
+message IntelligentDevDebugSwitchSetResponse {
+
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+// 命 令 号: 1022
+// 命令名称: voice_file_list
+// 命令描述: 获取录音文件信息列表
+// 文件名称: dec1022_vr_file_list.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbVoiceFileList";
+
+message VoiceFileListRequest {
+  // ATTR: REQUSET
+
+}
+
+message VoiceFileListResponse {
+  // ATTR: REQACK
+  message file_info {
+    string file_name = 1; //文件名
+    uint32 file_duration = 2; //时长
+    uint32 file_date = 3; //创建时间
+  }
+  repeated file_info list=1;
+}

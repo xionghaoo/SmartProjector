@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// 命 令 号: 23
+// 命令名称: mcu_sn_get
+// 命令描述: 获取MCU芯片ID
+// 文件名称: s23_mcu_sn_get.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbMcuSnGet";
+
+message McuSnGetRequest {
+
+}
+
+message McuSnGetResponse {
+  // ATTR: REQACK
+  uint32 mcu_type = 1;
+  bytes mcu_sn = 2;
+  uint32 mcu_ver = 3;
+}

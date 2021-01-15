@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// 命 令 号: 13
+// 命令名称: work_mode_set
+// 命令描述: 设置当前工作方式
+// 文件名称: s13_work_mode_set.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbWorkModeSet";
+
+message WorkModeSetRequest {
+  // ATTR: REQUSET
+  uint32 work_mode = 1; //工作模式
+  uint32 time = 2;
+  repeated sint32 threshold = 3;
+  repeated uint32 offset = 4;
+}
+
+message WorkModeSetResponse {
+
+}

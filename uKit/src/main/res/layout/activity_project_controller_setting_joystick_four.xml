@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bluetooth_bg">
+
+    <RelativeLayout
+        android:id="@+id/project_controller_setting_title_area"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ubt_dimen_126px" >
+
+        <ImageView
+            android:id="@+id/project_controller_nav_close_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_controller_nav_close_btn"
+            android:layout_marginStart="@dimen/title_btn_horizontal_margin"
+            android:layout_marginTop="@dimen/title_btn_vertical_margin"
+            android:layout_marginBottom="@dimen/title_btn_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/project_controller_nav_confirm_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_controller_nav_confirm_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/title_btn_horizontal_margin"
+            android:layout_marginTop="@dimen/title_btn_vertical_margin"
+            android:layout_marginBottom="@dimen/title_btn_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/project_controller_nav_title_tv"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/ubt_font_52px"
+            android:textColor="#171E2B"
+            android:text="@string/project_controller_setting_round_joystick_title" />
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/project_controller_setting_btn_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/ubt_dimen_116px"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/ubt_dimen_46px" >
+        <RadioButton
+            android:id="@+id/project_controller_setting_two_wheel_drive_btn"
+            android:checked="true"
+            android:text="@string/project_controller_setting_round_joystick_two_wheel_drive"
+            android:drawableStart="@drawable/selector_controller_mode_btn_2wheel"
+            android:textColor="@color/selector_controller_mode_btn_text_color"
+            android:textSize="@dimen/ubt_font_46px"
+            android:maxLines="1"
+            android:button="@null"
+            android:paddingEnd="@dimen/ubt_dimen_62px"
+            android:paddingStart="@dimen/ubt_dimen_62px"
+            android:drawablePadding="@dimen/ubt_dimen_14px"
+            android:background="@drawable/selector_controller_mode_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:paddingEnd="@dimen/ubt_dimen_62px"
+            android:paddingStart="@dimen/ubt_dimen_62px"
+            android:drawablePadding="@dimen/ubt_dimen_14px"
+            android:id="@+id/project_controller_setting_four_wheel_drive_btn"
+            android:text="@string/project_controller_setting_round_joystick_four_wheel_drive"
+            android:drawableStart="@drawable/selector_controller_mode_btn_4wheel"
+            android:textColor="@color/selector_controller_mode_btn_text_color"
+            android:textSize="@dimen/ubt_font_46px"
+            android:maxLines="1"
+            android:button="@null"
+            android:background="@drawable/selector_controller_mode_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/ubt_dimen_35px"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+
+    <RelativeLayout
+        android:id="@+id/project_controller_setting_4wheel_mode_area"
+        android:visibility="gone"
+        android:layout_width="@dimen/ubt_dimen_700px"
+        android:layout_height="@dimen/ubt_dimen_844px"
+        android:layout_marginTop="@dimen/ubt_dimen_35px"
+        android:layout_marginBottom="@dimen/ubt_dimen_51px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/project_controller_setting_title_area"
+        android:layout_above="@id/project_controller_setting_btn_rg" >
+        <!--android:background="@drawable/project_remote_set_4run_pic"-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_vehicle_bg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/ubt_dimen_23px"
+                android:textColor="#929AA8"
+                android:textSize="@dimen/ubt_font_40px"
+                android:text="@string/project_controller_setting_front_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/ubt_dimen_23px"
+                android:textColor="#929AA8"
+                android:textSize="@dimen/ubt_font_40px"
+                android:text="@string/project_controller_setting_behind_text" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ubt_dimen_280px">
+
+            <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_rawRes="@raw/wheel"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true" />
+
+            <com.ubtedu.ukit.project.controller.widget.SteeringGearView
+                android:id="@+id/project_controller_setting_fl_steering_gear"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/ubt_dimen_129px"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="@dimen/ubt_dimen_186px" />
+
+            <com.ubtedu.ukit.project.controller.widget.MotorView
+                android:id="@+id/project_controller_setting_fl_motor"
+                android:visibility="invisible"
+                android:layout_alignTop="@id/project_controller_setting_fl_steering_gear"
+                android:layout_alignBottom="@id/project_controller_setting_fl_steering_gear"
+                android:layout_alignStart="@id/project_controller_setting_fl_steering_gear"
+                android:layout_alignEnd="@id/project_controller_setting_fl_steering_gear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/project_controller_setting_fl_steering_gear_tv"
+                android:layout_marginStart="@dimen/ubt_dimen_129px"
+                android:layout_marginTop="@dimen/ubt_dimen_5px"
+                android:layout_below="@id/project_controller_setting_fl_steering_gear"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#171E2B"
+                android:textColorHint="#171E2B"
+                android:textSize="@dimen/ubt_font_34px"
+                android:hint="@string/project_controller_setting_fl_text"
+                android:layout_gravity="center_horizontal"/>
+
+
+            <com.ubtedu.ukit.project.controller.widget.SteeringGearView
+                android:id="@+id/project_controller_setting_fr_steering_gear"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ubt_dimen_129px"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="@dimen/ubt_dimen_186px" />
+
+            <com.ubtedu.ukit.project.controller.widget.MotorView
+                android:id="@+id/project_controller_setting_fr_motor"
+                android:visibility="invisible"
+                android:layout_alignTop="@id/project_controller_setting_fr_steering_gear"
+                android:layout_alignBottom="@id/project_controller_setting_fr_steering_gear"
+                android:layout_alignStart="@id/project_controller_setting_fr_steering_gear"
+                android:layout_alignEnd="@id/project_controller_setting_fr_steering_gear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/project_controller_setting_fr_steering_gear_tv"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/ubt_dimen_129px"
+                android:layout_marginTop="@dimen/ubt_dimen_5px"
+                android:layout_below="@id/project_controller_setting_fr_steering_gear"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#171E2B"
+                android:textColorHint="#171E2B"
+                android:textSize="@dimen/ubt_font_34px"
+                android:hint="@string/project_controller_setting_fr_text"
+                android:layout_gravity="center_horizontal"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/ubt_dimen_10px"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ubt_dimen_280px">
+
+            <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_rawRes="@raw/wheel"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true" />
+
+            <com.ubtedu.ukit.project.controller.widget.SteeringGearView
+                android:id="@+id/project_controller_setting_bl_steering_gear"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/ubt_dimen_129px"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="@dimen/ubt_dimen_186px" />
+
+            <com.ubtedu.ukit.project.controller.widget.MotorView
+                android:id="@+id/project_controller_setting_bl_motor"
+                android:visibility="invisible"
+                android:layout_alignTop="@id/project_controller_setting_bl_steering_gear"
+                android:layout_alignBottom="@id/project_controller_setting_bl_steering_gear"
+                android:layout_alignStart="@id/project_controller_setting_bl_steering_gear"
+                android:layout_alignEnd="@id/project_controller_setting_bl_steering_gear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/project_controller_setting_bl_steering_gear_tv"
+                android:layout_marginStart="@dimen/ubt_dimen_129px"
+                android:layout_marginTop="@dimen/ubt_dimen_5px"
+                android:layout_below="@id/project_controller_setting_bl_steering_gear"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#171E2B"
+                android:textColorHint="#171E2B"
+                android:textSize="@dimen/ubt_font_34px"
+                android:hint="@string/project_controller_setting_bl_text"
+                android:layout_gravity="center_horizontal"/>
+
+            <com.ubtedu.ukit.project.controller.widget.SteeringGearView
+                android:id="@+id/project_controller_setting_br_steering_gear"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/ubt_dimen_129px"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="@dimen/ubt_dimen_186px" />
+
+            <com.ubtedu.ukit.project.controller.widget.MotorView
+                android:id="@+id/project_controller_setting_br_motor"
+                android:visibility="invisible"
+                android:layout_alignTop="@id/project_controller_setting_br_steering_gear"
+                android:layout_alignBottom="@id/project_controller_setting_br_steering_gear"
+                android:layout_alignStart="@id/project_controller_setting_br_steering_gear"
+                android:layout_alignEnd="@id/project_controller_setting_br_steering_gear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/project_controller_setting_br_steering_gear_tv"
+                android:layout_marginEnd="@dimen/ubt_dimen_129px"
+                android:layout_marginTop="@dimen/ubt_dimen_5px"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/project_controller_setting_br_steering_gear"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#171E2B"
+                android:textColorHint="#171E2B"
+                android:textSize="@dimen/ubt_font_34px"
+                android:hint="@string/project_controller_setting_br_text"
+                android:layout_gravity="center_horizontal"/>
+
+        </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/project_controller_setting_2wheel_mode_area"
+        android:visibility="visible"
+        android:layout_width="@dimen/ubt_dimen_700px"
+        android:layout_height="@dimen/ubt_dimen_844px"
+        android:layout_marginTop="@dimen/ubt_dimen_35px"
+        android:layout_marginBottom="@dimen/ubt_dimen_51px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/project_controller_setting_title_area"
+        android:layout_above="@id/project_controller_setting_btn_rg" >
+        <!--android:background="@drawable/project_remote_set_2run_pic"-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/project_remote_vehicle_bg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/ubt_dimen_23px"
+                android:textColor="#929AA8"
+                android:textSize="@dimen/ubt_font_40px"
+                android:text="@string/project_controller_setting_front_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/ubt_dimen_23px"
+                android:textColor="#929AA8"
+                android:textSize="@dimen/ubt_font_40px"
+                android:text="@string/project_controller_setting_behind_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ubt_dimen_280px"
+            android:layout_centerVertical="true">
+
+            <com.ubtedu.ukit.common.view.FixedLottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                app:lottie_rawRes="@raw/wheel"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true" />
+
+            <com.ubtedu.ukit.project.controller.widget.SteeringGearView
+                android:id="@+id/project_controller_setting_l_steering_gear"
+                android:layout_marginStart="@dimen/ubt_dimen_129px"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="@dimen/ubt_dimen_186px" />
+
+            <com.ubtedu.ukit.project.controller.widget.MotorView
+                android:id="@+id/project_controller_setting_l_motor"
+                android:visibility="invisible"
+                android:layout_alignTop="@id/project_controller_setting_l_steering_gear"
+                android:layout_alignBottom="@id/project_controller_setting_l_steering_gear"
+                android:layout_alignStart="@id/project_controller_setting_l_steering_gear"
+                android:layout_alignEnd="@id/project_controller_setting_l_steering_gear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/project_controller_setting_l_steering_gear_tv"
+                android:layout_marginStart="@dimen/ubt_dimen_129px"
+                android:layout_marginTop="@dimen/ubt_dimen_5px"
+                android:layout_below="@id/project_controller_setting_l_steering_gear"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#171E2B"
+                android:textColorHint="#171E2B"
+                android:textSize="@dimen/ubt_font_34px"
+                android:hint="@string/project_controller_setting_l_text"
+                android:layout_gravity="center_horizontal"/>
+
+
+            <com.ubtedu.ukit.project.controller.widget.SteeringGearView
+                android:id="@+id/project_controller_setting_r_steering_gear"
+                android:layout_marginEnd="@dimen/ubt_dimen_129px"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="@dimen/ubt_dimen_186px" />
+
+            <com.ubtedu.ukit.project.controller.widget.MotorView
+                android:id="@+id/project_controller_setting_r_motor"
+                android:visibility="invisible"
+                android:layout_alignTop="@id/project_controller_setting_r_steering_gear"
+                android:layout_alignBottom="@id/project_controller_setting_r_steering_gear"
+                android:layout_alignStart="@id/project_controller_setting_r_steering_gear"
+                android:layout_alignEnd="@id/project_controller_setting_r_steering_gear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/project_controller_setting_r_steering_gear_tv"
+                android:layout_marginEnd="@dimen/ubt_dimen_129px"
+                android:layout_marginTop="@dimen/ubt_dimen_5px"
+                android:layout_below="@id/project_controller_setting_r_steering_gear"
+                android:layout_alignParentEnd="true"
+                android:layout_width="@dimen/ubt_dimen_186px"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#171E2B"
+                android:textColorHint="#171E2B"
+                android:textSize="@dimen/ubt_font_34px"
+                android:hint="@string/project_controller_setting_r_text"
+                android:layout_gravity="center_horizontal"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="@dimen/ubt_dimen_380px"
+        android:layout_height="@dimen/ubt_dimen_380px"
+        android:layout_marginBottom="@dimen/ubt_dimen_46px"
+        android:layout_marginEnd="@dimen/ubt_dimen_46px"
+        android:background="@drawable/shape_controller_widget_action_bg"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true">
+        <com.ubtedu.ukit.project.controller.widget.Joystick4DirectionView
+            android:layout_marginLeft="@dimen/ubt_dimen_34px"
+            android:layout_marginRight="@dimen/ubt_dimen_34px"
+            android:layout_marginBottom="@dimen/ubt_dimen_68px"
+            android:id="@+id/controller_widget_action_joystick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/ubt_font_34px"
+            android:maxLines="1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/ubt_dimen_23px"
+            android:text="@string/project_controller_setting_preview_text" />
+    </RelativeLayout>
+
+</RelativeLayout>

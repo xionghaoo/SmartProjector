@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_fragment_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#99000000">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/ubt_dimen_84px"
+        android:layout_marginBottom="@dimen/ubt_dimen_84px"
+        android:paddingStart="@dimen/ubt_dimen_200px"
+        android:paddingEnd="@dimen/ubt_dimen_200px"
+        android:background="@drawable/shape_dialog_normal_bg"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ubt_dimen_57px"
+            android:textStyle="bold"
+            android:text="@string/project_controller_setting_icon_title"
+            android:textColor="#171E2B"
+            android:textSize="@dimen/ubt_font_52px" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dialog_project_controller_icon_list"
+            android:layout_marginTop="@dimen/ubt_dimen_23px"
+            android:layout_marginBottom="@dimen/ubt_dimen_23px"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ubt_dimen_50px">
+            <Button
+                android:id="@+id/dialog_project_controller_icon_cancel_btn"
+                android:layout_width="@dimen/ubt_dimen_390px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:background="@drawable/selector_prompt_negative_btn"
+                android:text="@string/project_controller_setting_cancel_btn"
+                android:layout_marginEnd="@dimen/ubt_dimen_10px"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/ubt_font_46px" />
+
+            <Button
+                android:id="@+id/dialog_project_controller_icon_confirm_btn"
+                android:layout_width="@dimen/ubt_dimen_390px"
+                android:layout_height="@dimen/ubt_dimen_114px"
+                android:background="@drawable/selector_peripheral_error_positive_btn"
+                android:layout_marginStart="@dimen/ubt_dimen_10px"
+                android:text="@string/project_controller_setting_confirm_btn"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/ubt_font_46px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

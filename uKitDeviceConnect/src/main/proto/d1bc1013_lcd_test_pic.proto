@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 命 令 号: 1013
+// 命令名称: lcd_test_pic
+// 命令描述: 显示测试图片
+// 文件名称: d1bc1013_lcd_test_pic.proto
+
+// 以下是 Android 生成对应 Java 所需信息
+option java_package = "com.ubtedu.deviceconnect.libs.ukit.smart.protobuffer";
+option java_outer_classname = "PbLcdTestPic";
+
+message LcdTestPicRequest {
+  // ATTR: REQUSET
+  uint32 index = 1;    //显示的图片序号
+}
+
+message LcdTestPicResponse {
+
+}
