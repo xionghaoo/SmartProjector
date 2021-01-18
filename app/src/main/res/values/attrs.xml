@@ -10,4 +10,7 @@
             <enum name="screen_lock" value="4"/>
         </attr>
     </declare-styleable>
+    <declare-styleable name="RadarView">
+        <attr name="rv_color" format="color"/>
+    </declare-styleable>
 </resources>

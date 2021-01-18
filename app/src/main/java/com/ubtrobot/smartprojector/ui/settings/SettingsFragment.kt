@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.TuyaActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
@@ -37,6 +38,10 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         updateDelegate = UpdateDelegate(requireActivity())
+
+        btn_uKit.setOnClickListener {
+            startPlainActivity(TestActivity::class.java)
+        }
 
         btn_version_check.setOnClickListener {
             updateDelegate.showVersionUpdateDialog(

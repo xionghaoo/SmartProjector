@@ -28,14 +28,18 @@
                 android:layout_marginTop="20dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_cat" />
-
-            <LinearLayout
-                android:id="@+id/container_menu"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/_20dp"
                 android:layout_weight="1"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/container_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
         </LinearLayout>
 
         <TextView

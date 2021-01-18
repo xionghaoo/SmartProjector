@@ -28,8 +28,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.restrict.AppWhiteListActivity" android:screenOrientation="userLandscape"></activity>
-        <activity android:name=".ui.restrict.ScreenLockActivity" android:screenOrientation="userLandscape"/>
+        <activity android:name=".test.TestActivity" android:screenOrientation="userLandscape"></activity>
+        <activity
+            android:name=".ui.restrict.AppWhiteListActivity"
+            android:screenOrientation="userLandscape" />
+        <activity
+            android:name=".ui.restrict.ScreenLockActivity"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="userLandscape"
@@ -48,16 +53,16 @@
         </activity>
         <activity
             android:name=".ui.FileDownloadActivity"
-            android:screenOrientation="userLandscape"
-            android:label="文件下载测试" />
+            android:label="文件下载测试"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.video.VideoCacheActivity"
-            android:screenOrientation="userLandscape"
-            android:label="缓存视频" />
+            android:label="缓存视频"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.TuyaActivity"
-            android:screenOrientation="userLandscape"
-            android:label="登录服务测试" /> <!-- 涂鸦智能 -->
+            android:label="登录服务测试"
+            android:screenOrientation="userLandscape" /> <!-- 涂鸦智能 -->
         <meta-data
             android:name="TUYA_SMART_APPKEY"
             android:value="ff5uvrfpueseqfhaa3xf" />
@@ -67,14 +72,14 @@
 
         <activity
             android:name=".ui.VideoActivity"
-            android:screenOrientation="userLandscape"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="视频测试页面"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".serialport.SerialPortActivity"
-            android:screenOrientation="userLandscape"
-            android:label="串口通信" />
+            android:label="串口通信"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".MqttActivity"
             android:label="MQTT测试"

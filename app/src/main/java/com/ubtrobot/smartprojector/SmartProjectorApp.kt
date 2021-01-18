@@ -28,12 +28,16 @@ import timber.log.Timber
 @HiltAndroidApp
 class SmartProjectorApp : UKitApplication() {
     override fun onCreate() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
         super.onCreate()
         TuyaHomeSdk.init(this)
         if (BuildConfig.DEBUG) {
             TuyaHomeSdk.setDebugMode(true)
-            Timber.plant(Timber.DebugTree())
         }
+
         FileDownloader.setup(this)
     }
 }

@@ -20,9 +20,11 @@ import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.ResourceUtil
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -46,13 +48,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appMarketFragment: AppMarketFragment
     private lateinit var gameMarketFragment: AppMarketFragment
     private lateinit var settingsFragment: SettingsFragment
-    private lateinit var projectFragment: ProjectHostFragment
 
     private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
         BridgeCommunicator.getInstance().init()
 
@@ -61,8 +63,6 @@ class MainActivity : AppCompatActivity() {
         appMarketFragment = AppMarketFragment.newInstance()
         gameMarketFragment = AppMarketFragment.newInstance(true)
         settingsFragment = SettingsFragment.newInstance()
-        projectFragment = ProjectHostFragment()
-        projectFragment.setProject(Project())
 
         container_menu.removeAllViews()
         menuTitles.forEachIndexed { index, title ->
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             tv.gravity = Gravity.CENTER
             tv.setOnClickListener {
                 when (index) {
-                    0 -> replaceFragment(projectFragment, R.id.fragment_container)
+                    0 -> replaceFragment(educationFragment, R.id.fragment_container)
                     1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
                     2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
                     3 -> replaceFragment(gameMarketFragment, R.id.fragment_container)

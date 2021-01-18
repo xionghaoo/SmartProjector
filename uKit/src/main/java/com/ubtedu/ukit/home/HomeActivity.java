@@ -67,6 +67,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.greenrobot.eventbus.EventBus.getDefault;
+
 /**
  * @author qinicy
  * @date 2018/11/07
@@ -145,7 +147,7 @@ public class HomeActivity extends UnityPlayerActivity<HomeContracts.Presenter, H
         mUnityPlayer.setBlockQuit(false);
         mHomeHandle = new Handler();
 
-        EventBus.getDefault().register(this);
+        getDefault().register(this);
         BridgeCommunicator.getInstance().init();
         NetworkManager.getInstance().registerNetworkObserver(mNetworkObserver);
         isInHomePage = true;
@@ -240,7 +242,7 @@ public class HomeActivity extends UnityPlayerActivity<HomeContracts.Presenter, H
         if (isRecreating) {
             return;
         }
-        EventBus.getDefault().unregister(this);
+        getDefault().unregister(this);
         BridgeCommunicator.getInstance().release();
     }
 

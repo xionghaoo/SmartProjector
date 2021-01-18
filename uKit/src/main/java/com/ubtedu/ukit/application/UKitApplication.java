@@ -6,6 +6,7 @@ package com.ubtedu.ukit.application;
 import android.annotation.SuppressLint;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.ubtedu.alpha1x.core.base.application.UbtBaseApplication;
@@ -48,7 +49,9 @@ public class UKitApplication extends UbtBaseApplication {
         ExceptionHelper.init(this);
         NetworkManager.getInstance().init(this);
         UserManager.getInstance().init(this);
-//        CloudStorageManager.getInstance().init(this);
+        if (Build.VERSION.SDK_INT < 29) {
+            CloudStorageManager.getInstance().init(this);
+        }
         OtaHelper.init();
         AnimatorHelper.init();//设置动画播放时长为1.0，覆盖开发者选项中的设置
         URoSDK.getInstance().init(this);
