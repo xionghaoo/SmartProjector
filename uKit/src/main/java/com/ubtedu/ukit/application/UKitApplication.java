@@ -42,7 +42,7 @@ public class UKitApplication extends UbtBaseApplication {
     public void onCreate() {
         sInstance = this;
         super.onCreate();
-        LogUtil.d("");
+//        LogUtil.d("");
         generateDeviceToken();
 
         FileHelper.init(this);

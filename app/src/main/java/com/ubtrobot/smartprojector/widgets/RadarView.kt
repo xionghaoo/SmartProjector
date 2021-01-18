@@ -88,7 +88,8 @@ class RadarView : View {
             // 大于最小显示半径的圆才能绘制出来
             if (r > MIN_RADIUS) {
                 // 计算透明度
-                paint.alpha = (150 * (maxRadius - CIRCLE_GAP - r) / (maxRadius - CIRCLE_GAP - MIN_RADIUS)).roundToInt()
+                val alpha = (150 * (maxRadius - CIRCLE_GAP - r) / (maxRadius - CIRCLE_GAP - MIN_RADIUS)).roundToInt()
+                paint.alpha = if (alpha > 0) alpha else 0
                 canvas?.drawCircle(width / 2, height / 2, r, paint)
             }
         }
@@ -100,8 +101,11 @@ class RadarView : View {
     }
 
     fun start() {
-        isStart = true
-        invalidate()
+        if (!isStart) {
+            isStart = true
+            currentMaxRadius = MIN_RADIUS
+            invalidate()
+        }
     }
 
     fun stop() {
