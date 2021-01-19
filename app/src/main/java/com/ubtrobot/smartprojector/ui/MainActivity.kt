@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtedu.ukit.project.bridge.BridgeCommunicator
 import com.ubtedu.ukit.project.host.ProjectHostFragment
@@ -53,10 +54,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SystemUtil.statusBarTransparent(window)
         setContentView(R.layout.activity_main)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
+        // uKit use
         BridgeCommunicator.getInstance().init()
+
+        Glide.with(this)
+                .load(R.drawable.ic_cat)
+                .circleCrop()
+                .into(iv_avatar)
 
         educationFragment = EducationFragment.newInstance()
         magicSpaceFragment = MagicSpaceFragment.newInstance()
@@ -105,19 +113,6 @@ class MainActivity : AppCompatActivity() {
         if (repo.prefs.isScreenLocked) {
             ScreenLockActivity.lock(this)
         }
-    }
-
-    private fun isNetworkConnected(context: Context?): Boolean {
-        if (context == null) return false
-
-        val connectivityManager =
-                context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
-    }
-
-    private fun getWifiSSID() {
-        val connManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
     override fun onDestroy() {

@@ -35,19 +35,7 @@ class TuyaActivity : AppCompatActivity() {
 
     private lateinit var wifiManager: WifiManager
 
-    private val wifiScanReceiver = object : BroadcastReceiver() {
-
-        @RequiresApi(Build.VERSION_CODES.M)
-        override fun onReceive(context: Context, intent: Intent) {
-            val success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false)
-            stopScan()
-            if (success) {
-                scanSuccess()
-            } else {
-                scanFailure()
-            }
-        }
-    }
+    private var wifiScanReceiver: BroadcastReceiver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,6 +143,20 @@ class TuyaActivity : AppCompatActivity() {
         // wifi ssid扫描
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
 
+        wifiScanReceiver = object : BroadcastReceiver() {
+
+            @RequiresApi(Build.VERSION_CODES.M)
+            override fun onReceive(context: Context, intent: Intent) {
+                val success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false)
+                stopScan()
+                if (success) {
+                    scanSuccess()
+                } else {
+                    scanFailure()
+                }
+            }
+        }
+
         val intentFilter = IntentFilter()
         intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
         registerReceiver(wifiScanReceiver, intentFilter)
@@ -170,9 +172,12 @@ class TuyaActivity : AppCompatActivity() {
     }
 
     private fun stopScan() {
-        unregisterReceiver(wifiScanReceiver)
-        radar_view.stop()
-        radar_view.visibility = View.GONE
+        if (wifiScanReceiver != null) {
+            unregisterReceiver(wifiScanReceiver)
+            wifiScanReceiver = null
+            radar_view.stop()
+            radar_view.visibility = View.GONE
+        }
     }
 
     private fun scanSuccess() {

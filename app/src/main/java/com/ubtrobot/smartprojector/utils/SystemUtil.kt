@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -38,7 +39,7 @@ class SystemUtil {
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         }
 
-        // 获取状态栏高度
+        // 获取状态栏高度(px), android6.0以后 = 24dp
         fun getStatusBarHeight(resources: Resources) : Int {
             var result = 0
             val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")

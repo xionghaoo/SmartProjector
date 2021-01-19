@@ -26,6 +26,8 @@ class MagicSpaceFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_magic_space, container, false)
     }
 
+
+
     override fun onDestroyView() {
         Timber.d("MagicSpaceFragment onDestroyView")
         super.onDestroyView()
