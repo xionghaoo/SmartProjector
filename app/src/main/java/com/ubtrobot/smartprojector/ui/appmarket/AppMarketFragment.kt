@@ -11,7 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.repo.table.ThirdApp
+import com.ubtrobot.smartprojector.utils.RootCommand
+import com.ubtrobot.smartprojector.utils.RootExecutor
+import com.ubtrobot.smartprojector.utils.ToastUtil
 import kotlinx.android.synthetic.main.fragment_app_market.*
+import kotlinx.coroutines.*
+import timber.log.Timber
 
 /**
  * 已安装的App列表
@@ -40,11 +45,30 @@ class AppMarketFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rc_app_list.layoutManager = GridLayoutManager(context, 6)
-        adapter = AppInfoAdapter(emptyList()) { packageName ->
+        adapter = AppInfoAdapter(emptyList()) { pkgName ->
             // 点击图标时启动app
             requireActivity().packageManager.apply {
-                val launchIntent = getLaunchIntentForPackage(packageName)
+                val launchIntent = getLaunchIntentForPackage(pkgName)
                 startActivity(launchIntent)
+
+                // App关闭测试
+                CoroutineScope(Dispatchers.Default).launch {
+                    delay(10 * 1000)
+                    Timber.d("10s后关闭启动的App")
+                    withContext(Dispatchers.Main) {
+                        RootExecutor.exec(
+                            cmd = RootCommand.stopApp(pkgName),
+                            success = {
+                                Timber.d("关闭${pkgName}成功")
+                                ToastUtil.showToast(requireContext(), "关闭${pkgName}成功")
+                            },
+                            failure = {
+                                Timber.d("关闭${pkgName}失败")
+                                ToastUtil.showToast(requireContext(), "关闭${pkgName}失败")
+                            }
+                        )
+                    }
+                }
             }
         }
         rc_app_list.adapter = adapter

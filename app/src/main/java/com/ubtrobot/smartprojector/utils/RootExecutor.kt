@@ -2,15 +2,18 @@ package com.ubtrobot.smartprojector.utils
 
 import java.io.DataOutputStream
 
-class RootPermissionUtil {
+class RootExecutor {
     companion object {
-        fun request(success: () -> Unit, failure: () -> Unit) {
+        fun exec(
+            cmd: String = "mkdir /sdcard/testdir\nexit\n",
+            success: () -> Unit,
+            failure: () -> Unit
+        ) {
             try {
                 val p = Runtime.getRuntime().exec("su")
 
                 val dos = DataOutputStream(p.outputStream)
-                dos.writeBytes("mkdir /sdcard/testdir\n")
-                dos.writeBytes("exit\n")
+                dos.writeBytes(cmd)
                 dos.flush()
                 dos.close()
 
@@ -29,5 +32,11 @@ class RootPermissionUtil {
                 e.printStackTrace()
             }
         }
+    }
+}
+
+class RootCommand {
+    companion object {
+        fun stopApp(pkgName: String) : String = "am force-stop ${pkgName}\n"
     }
 }

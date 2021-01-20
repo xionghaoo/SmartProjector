@@ -5,15 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ubtedu.ukit.home.HomeActivity
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.TuyaActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
+import com.ubtrobot.smartprojector.utils.RootExecutor
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -70,6 +69,19 @@ class SettingsFragment : Fragment() {
 
         btn_white_list.setOnClickListener {
             startPlainActivity(AppWhiteListActivity::class.java)
+        }
+
+        btn_kill_other_app.setOnClickListener {
+            val pkgName = "com.google.android.calculator"
+            RootExecutor.exec(
+                cmd = "am force-stop ${pkgName}\n",
+                success = {
+                    ToastUtil.showToast(requireContext(), "关闭${pkgName}成功")
+                },
+                failure = {
+                    ToastUtil.showToast(requireContext(), "关闭${pkgName}失败")
+                }
+            )
         }
 
     }

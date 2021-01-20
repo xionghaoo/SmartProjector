@@ -5,10 +5,10 @@
 display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity=1.0, xdpi=320.0, ydpi=320.0}
 ```
 
-## 待开发
-1. 视频课程下载，在线播放，ExoPlayer、ijkPlayer
-
-2. 下载进度完成标志，错误标志
+## 待确认
+1. uKit - Blockly包的更新
+2. uKit - Unity素材包的更新
+3. App作为Launcher需要供应商系统开发人员协助
 
 ## 问题记录
 

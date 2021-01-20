@@ -20,7 +20,7 @@ class AppInfoAdapter(
         itemView.setIcon(item.icon)
         itemView.setLabel(item.name)
 
-        item.isLimited = position % 2 == 0
+        item.isLimited = position % 5 == 0
 
         if (item.isLimited) {
             itemView.lock {
