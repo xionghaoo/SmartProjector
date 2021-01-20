@@ -129,6 +129,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
 
+        val screenOrientation = requestedOrientation
         // 全屏处理
         isFullscreen = false
         btnFullscreen = player_view.findViewById(R.id.exo_fullscreen_icon)
@@ -138,7 +139,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
                 btnFullscreen?.setImageResource(R.drawable.ic_fullscreen_open)
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
                 supportActionBar?.show()
-                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                requestedOrientation = screenOrientation
                 val params = player_view.layoutParams
                 params.width = ViewGroup.LayoutParams.MATCH_PARENT
                 params.height = resources.getDimension(R.dimen.player_normal_height).toInt()
