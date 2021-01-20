@@ -1,11 +1,9 @@
-package com.ubtrobot.smartprojector.ui
+package com.ubtrobot.smartprojector.ui.video
 
 import android.app.Notification
 import android.content.Context
 import android.net.Uri
 import android.os.Build
-import android.provider.MediaStore
-import androidx.core.net.toUri
 import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.database.DatabaseProvider
@@ -64,7 +62,7 @@ class VideoDownloadService : DownloadService(
             )
 
             val downloadRequest = DownloadRequest.Builder(
-                VideoActivity.TEST_VIDEO,
+                    VideoActivity.TEST_VIDEO,
                 downloadVideoUri
             ).build()
             sendAddDownload(
@@ -76,7 +74,7 @@ class VideoDownloadService : DownloadService(
         }
 
         fun setDownloadListener(listener: DownloadManager.Listener) {
-            this.downloadListener = listener
+            downloadListener = listener
         }
 
         @Synchronized
@@ -225,7 +223,7 @@ class VideoDownloadService : DownloadService(
             sendRemoveDownload(
                 context,
                 VideoDownloadService::class.java,
-                VideoActivity.TEST_VIDEO,
+                    VideoActivity.TEST_VIDEO,
                 false
             )
         }

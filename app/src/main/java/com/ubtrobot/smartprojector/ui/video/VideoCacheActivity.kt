@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubtrobot.smartprojector.R
-import com.ubtrobot.smartprojector.ui.VideoActivity
-import com.ubtrobot.smartprojector.ui.VideoDownloadService
 import kotlinx.android.synthetic.main.activity_video_cache.*
 
 class VideoCacheActivity : AppCompatActivity() {

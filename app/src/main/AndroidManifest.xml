@@ -71,7 +71,7 @@
             android:value="kseax57eug4vf5atfcwq9ytq3swtnav7" />
 
         <activity
-            android:name=".ui.VideoActivity"
+            android:name=".ui.video.VideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="视频测试页面"
             android:launchMode="singleTask"
@@ -91,7 +91,7 @@
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service
-            android:name=".ui.VideoDownloadService"
+            android:name=".ui.video.VideoDownloadService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.exoplayer.downloadService.action.RESTART" />

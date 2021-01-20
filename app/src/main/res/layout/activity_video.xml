@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    tools:context=".ui.VideoActivity">
+    tools:context=".ui.video.VideoActivity">
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view"

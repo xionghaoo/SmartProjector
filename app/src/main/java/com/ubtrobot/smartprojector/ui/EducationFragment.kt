@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.R
-import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.ui.video.VideoActivity
 import kotlinx.android.synthetic.main.fragment_education.*
 import timber.log.Timber
 

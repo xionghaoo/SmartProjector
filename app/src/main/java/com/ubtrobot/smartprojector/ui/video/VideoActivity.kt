@@ -1,34 +1,21 @@
-package com.ubtrobot.smartprojector.ui
+package com.ubtrobot.smartprojector.ui.video
 
 import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Environment
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.offline.Download
-import com.google.android.exoplayer2.offline.DownloadManager
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.exoplayer2.source.MediaSourceFactory
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.ubtrobot.smartprojector.R
-import com.ubtrobot.smartprojector.ui.video.VideoCacheActivity
+import com.ubtrobot.smartprojector.utils.VideoFullscreenHelper
 import kotlinx.android.synthetic.main.activity_video.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
-import timber.log.Timber
 import java.io.File
-import java.lang.Exception
 
 
 class VideoActivity : AppCompatActivity(), Player.EventListener {
@@ -48,8 +35,6 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     }
 
     private var player: SimpleExoPlayer? = null
-    private var btnFullscreen: ImageView? = null
-    private var isFullscreen: Boolean = false
 
     private var autoPlayUrl: String? = null
 
@@ -63,10 +48,10 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         }
 
         btn_get_downloads.setOnClickListener {
-//            VideoDownloadService.loadDownloads(this)
             startActivity(Intent(this, VideoCacheActivity::class.java))
         }
 
+        // 清除视频缓存
         btn_clear_cache.setOnClickListener {
             VideoDownloadService.removeDownload(this)
         }
@@ -129,37 +114,12 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
 
-        val screenOrientation = requestedOrientation
-        // 全屏处理
-        isFullscreen = false
-        btnFullscreen = player_view.findViewById(R.id.exo_fullscreen_icon)
-        btnFullscreen?.setOnClickListener {
-            if (isFullscreen) {
-                // 全屏状态, 退出全屏
-                btnFullscreen?.setImageResource(R.drawable.ic_fullscreen_open)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-                supportActionBar?.show()
-                requestedOrientation = screenOrientation
-                val params = player_view.layoutParams
-                params.width = ViewGroup.LayoutParams.MATCH_PARENT
-                params.height = resources.getDimension(R.dimen.player_normal_height).toInt()
-                player_view.layoutParams = params
-                isFullscreen = false
-            } else {
-                // 正常状态， 开启全屏
-                btnFullscreen?.setImageResource(R.drawable.ic_fullscreen_close)
-                window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-                supportActionBar?.hide()
-                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                val params = player_view.layoutParams
-                params.width = ViewGroup.LayoutParams.MATCH_PARENT
-                params.height = RelativeLayout.LayoutParams.MATCH_PARENT
-                player_view.layoutParams = params
-                isFullscreen = true
-            }
-        }
+        VideoFullscreenHelper.handle(
+                activity = this,
+                playView = player_view,
+                btnFullscreen = player_view.findViewById(R.id.exo_fullscreen_icon),
+                defaultHeight = resources.getDimension(R.dimen.player_normal_height).toInt()
+        )
 
         player!!.addListener(this)
         player_view.player = player
@@ -255,9 +215,4 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     override fun onPlaybackStateChanged(state: Int) {
 
     }
-
-//    override fun onDownloadChanged(downloadManager: DownloadManager, download: Download, finalException: Exception?) {
-//        // 缓存下载变化
-//        btn_download.text = "视频缓存 ${download.percentDownloaded}"
-//    }
 }

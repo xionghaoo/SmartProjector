@@ -18,8 +18,6 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Log
-import com.ubtrobot.smartprojector.ui.VideoActivity
-import com.ubtrobot.smartprojector.ui.VideoDownloadService
 import timber.log.Timber
 import java.io.File
 import java.io.IOException

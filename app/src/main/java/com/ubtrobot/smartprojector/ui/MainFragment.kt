@@ -12,7 +12,7 @@ import androidx.navigation.Navigation
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.serialport.SerialPortActivity
-import com.ubtrobot.smartprojector.utils.ToastUtil
+import com.ubtrobot.smartprojector.ui.video.VideoActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_main.*
 

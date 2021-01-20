@@ -41,11 +41,11 @@ ext {
     // 本地缓存数据库版本
     cache_db_version = '1'
     // 测试域名 test-ty
-    domain_uat = '\"nikedevls.pgyscm.com\"'
+    domain_uat = '\"ip.jsontest.com\"'
     // 正式域名
-    domain_prod = '\"nike.pgyscm.com\"'
+    domain_prod = '\"xxx\"'
     // 预发布环境
-    domain_pre = '\"nikepre.pgyscm.com\"'
+    domain_pre = '\"xxx\"'
 
     tecentStorageHostUat = '\"https://cdn-vesta-dev.pgyscm.com\"'
     tecentStorageHost = '\"https://cdn-vesta-pro.pgyscm.com\"'
