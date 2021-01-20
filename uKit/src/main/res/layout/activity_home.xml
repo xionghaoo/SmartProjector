@@ -51,16 +51,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <ImageView
             android:id="@+id/home_setting_btn"
             android:layout_width="@dimen/ubt_dimen_150px"
             android:layout_height="@dimen/ubt_dimen_150px"
+            android:padding="@dimen/ubt_dimen_50px"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/ubt_dimen_34px"
             android:layout_marginEnd="@dimen/ubt_dimen_34px"
-            android:background="@drawable/selector_home_setting_btn" />
-
-
+            android:src="@drawable/ic_ukit_close" />
 
         <LinearLayout
             android:id="@+id/home_tab_container_lyt"

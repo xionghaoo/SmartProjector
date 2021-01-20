@@ -29,6 +29,7 @@ import com.ubtedu.ukit.application.BasicEventDelegate;
 import com.ubtedu.ukit.common.analysis.Events;
 import com.ubtedu.ukit.common.analysis.UBTReporter;
 import com.ubtedu.ukit.common.base.UKitBaseFragment;
+import com.ubtedu.ukit.common.dialog.PromptDialogFragment;
 import com.ubtedu.ukit.common.eventbus.ActivityOrientationEvent;
 import com.ubtedu.ukit.common.eventbus.RegionChangeEvent;
 import com.ubtedu.ukit.common.eventbus.UnityVisibilityEvent;
@@ -152,13 +153,14 @@ public class HomeActivity extends UnityPlayerActivity<HomeContracts.Presenter, H
         initFragments();
         initViews();
 
-
-        if (isRegionChangedRecreate()) {
-            setRegionChangedRecreate(false);
-            onLaunchCompleted();
-        } else {
-            showLauncherDialog();
-        }
+        // 不显示启动动画
+        onLaunchCompleted();
+//        if (isRegionChangedRecreate()) {
+//            setRegionChangedRecreate(false);
+//            onLaunchCompleted();
+//        } else {
+//            showLauncherDialog();
+//        }
 
     }
 
@@ -596,11 +598,33 @@ public class HomeActivity extends UnityPlayerActivity<HomeContracts.Presenter, H
             reportTabClickEvent(v);
         }
         if (v == mSettingBtn) {
+            // 退出uKit
+            exitUKit();
+
             //跳转到菜单不暂停Unity，避免切换语言黑屏
-            mUnityPlayer.blockLifecycleOneTime();
-            startActivity(new Intent(this, MenuActivity.class));
-            UBTReporter.onEvent(Events.Ids.app_setting_btn_click, null);
+//            mUnityPlayer.blockLifecycleOneTime();
+//            startActivity(new Intent(this, MenuActivity.class));
+//            UBTReporter.onEvent(Events.Ids.app_setting_btn_click, null);
         }
+    }
+
+    private void exitUKit() {
+        PromptDialogFragment dialog = PromptDialogFragment.newBuilder(this)
+                .type(PromptDialogFragment.Type.NORMAL)
+                .title("提示")
+                .message("是否退出uKit？")
+                .onPositiveClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mUnityContainerView.removeView(mUnityPlayer);
+                        mUnityPlayer.setBlockQuit(true);
+                        BridgeCommunicator.getInstance().release();
+                        getPresenter().skipDisconnectBt(true);
+                        finish();
+                    }
+                })
+                .build();
+        dialog.show(getSupportFragmentManager(), "delete project dialog");
     }
 
     private void reportTabClickEvent(View v) {

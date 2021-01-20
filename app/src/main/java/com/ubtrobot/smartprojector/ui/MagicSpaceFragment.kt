@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ubtedu.ukit.home.HomeActivity
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.startPlainActivity
+import kotlinx.android.synthetic.main.fragment_magic_space.*
 import timber.log.Timber
 
 /**
@@ -26,7 +29,13 @@ class MagicSpaceFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_magic_space, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        btn_ukit.setOnClickListener {
+            startPlainActivity(HomeActivity::class.java)
+        }
+    }
 
     override fun onDestroyView() {
         Timber.d("MagicSpaceFragment onDestroyView")

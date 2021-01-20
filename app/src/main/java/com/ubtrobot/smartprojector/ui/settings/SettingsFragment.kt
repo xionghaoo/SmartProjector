@@ -40,10 +40,6 @@ class SettingsFragment : Fragment() {
 
         updateDelegate = UpdateDelegate(requireActivity())
 
-        btn_uKit.setOnClickListener {
-            startPlainActivity(TestActivity::class.java)
-        }
-
         btn_version_check.setOnClickListener {
             updateDelegate.showVersionUpdateDialog(
                     url = "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",

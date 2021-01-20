@@ -11,9 +11,5 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-
-        val projectHostFragment = ProjectHostFragment()
-        projectHostFragment.setProject(Project())
-        replaceFragment(projectHostFragment, R.id.fragment_container)
     }
 }
