@@ -2,7 +2,6 @@ package com.ubtrobot.smartprojector.ui
 
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.LinearLayout
@@ -11,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtedu.ukit.project.bridge.BridgeCommunicator
-import com.ubtedu.ukit.project.host.ProjectHostFragment
-import com.ubtedu.ukit.project.vo.Project
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment

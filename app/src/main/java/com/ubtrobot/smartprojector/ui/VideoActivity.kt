@@ -56,8 +56,6 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video)
-        videoPlayTask()
-
         autoPlayUrl = intent.getStringExtra(EXTRA_URL)
 
         btn_download.setOnClickListener {
@@ -72,6 +70,8 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         btn_clear_cache.setOnClickListener {
             VideoDownloadService.removeDownload(this)
         }
+
+        videoPlayTask()
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -164,23 +164,28 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         player_view.player = player
 
         val testVideo = "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears.mpd"
-        val video1 = File(
-            Environment.getExternalStorageDirectory(),
-            "${Environment.DIRECTORY_DOWNLOADS}/The Angry Birds Movie.mp4"
-        )
+//        val video1 = File(
+//            Environment.getExternalStorageDirectory(),
+//            "${Environment.DIRECTORY_DOWNLOADS}/The Angry Birds Movie.mp4"
+//        )
         val video2 = File(
             Environment.getExternalStorageDirectory(),
             "${Environment.DIRECTORY_DOWNLOADS}/video1.mp4"
         )
-        Timber.d("download path: ${video1}")
-        val item1 = MediaItem.fromUri(video1.toUri())
+//        Timber.d("download path: ${video1}")
+//        val item1 = MediaItem.fromUri(video1.toUri())
 //        val item2 = MediaItem.fromUri(video2.toUri())
-        player!!.addMediaItem(item1)
+//        player!!.addMediaItem(item1)
 //        player!!.addMediaItem(item2)
 //        player!!.prepare()
-        player!!.addMediaItem(MediaItem.fromUri(TEST_VIDEO.toUri()))
+
         if (autoPlayUrl != null) {
-            player?.seekTo(1, 0)
+            player!!.addMediaItem(MediaItem.fromUri(autoPlayUrl!!.toUri()))
+            Glide.with(this)
+                    .load(autoPlayUrl!!.toUri())
+                    .centerCrop()
+                    .into(iv_video_1)
+//            player?.seekTo(1, 0)
         }
         player!!.prepare()
         player!!.playWhenReady = true
@@ -196,10 +201,10 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         }
 
         // 加载视频缩略图
-        Glide.with(this)
-                .load(video1.toUri())
-                .centerCrop()
-                .into(iv_video_1)
+//        Glide.with(this)
+//                .load(video1.toUri())
+//                .centerCrop()
+//                .into(iv_video_1)
 
         Glide.with(this)
                 .load(TEST_VIDEO)

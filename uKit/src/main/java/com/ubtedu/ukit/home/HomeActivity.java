@@ -10,7 +10,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +57,6 @@ import com.ubtedu.ukit.project.vo.OfficialProject;
 import com.ubtedu.ukit.project.vo.Project;
 import com.ubtedu.ukit.unity.UnityPlayerActivity;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -333,7 +331,7 @@ public class HomeActivity extends UnityPlayerActivity<HomeContracts.Presenter, H
     }
 
     private void initViews() {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         mHomeRootLyt = findViewById(R.id.home_root_lyt);
         mHomeLaunchMaskView = findViewById(R.id.home_launch_mask_view);
         mHomeUnityLyt = findViewById(R.id.home_unity_lyt);
