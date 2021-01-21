@@ -12,6 +12,8 @@ display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity
 2. uKit - Unity素材包的更新
 3. App作为Launcher需要供应商系统开发人员协助
 4. uKit - Blockly和涂鸦硬件交互
+5. 图像识别(查题)
+6. 儿歌模块
 
 ## 问题记录
 
