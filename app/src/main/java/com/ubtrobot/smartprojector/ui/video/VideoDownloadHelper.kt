@@ -81,6 +81,7 @@ class VideoDownloadHelper {
         private fun ensureDownloadManagerInitialized(context: Context) {
             if (downloadManager == null) {
                 val downloadIndex = DefaultDownloadIndex(getDatabaseProvider(context))
+                // exoplayer 2.10.0以前才使用
 //                upgradeActionFile(
 //                        context, DOWNLOAD_ACTION_FILE, downloadIndex,  /* addNewDownloadsAsCompleted= */false)
 //                upgradeActionFile(
@@ -94,6 +95,7 @@ class VideoDownloadHelper {
                         getHttpDataSourceFactory(context),
                         Executors.newFixedThreadPool( /* nThreads= */6)
                 )
+                // TODO DownloadManager.Listener 里面有Download对象，可以对下载进度进行监听
 //                downloadTracker = DownloadTracker(context, getHttpDataSourceFactory(context), downloadManager)
 
             }
