@@ -25,8 +25,6 @@ import java.util.concurrent.Executors
 
 class VideoDownloadHelper {
     companion object {
-        private const val JOB_ID = 1
-        private const val FOREGROUND_NOTIFICATION_ID = 1
         private const val DOWNLOAD_CONTENT_DIRECTORY = "downloads"
         private const val DOWNLOAD_NOTIFICATION_CHANNEL_ID = "download_channel"
 
@@ -41,32 +39,43 @@ class VideoDownloadHelper {
 
         private var downloadNotificationHelper: DownloadNotificationHelper? = null
 
-        private var downloadListener: DownloadManager.Listener? = null
+//        private var downloadListener: DownloadManager.Listener? = null
 
-        fun start(context: Context, downloadVideoUri: Uri) {
-            val item = MediaItem.fromUri(downloadVideoUri)
-            downloadHelper = DownloadHelper.forMediaItem(
-                    context,
-                    item,
-                    DefaultRenderersFactory(context.applicationContext),
-                    httpDataSourceFactory
-            )
+//        fun start(context: Context, downloadVideoUri: Uri) {
+//            val item = MediaItem.fromUri(downloadVideoUri)
+//            downloadHelper = DownloadHelper.forMediaItem(
+//                    context,
+//                    item,
+//                    DefaultRenderersFactory(context.applicationContext),
+//                    httpDataSourceFactory
+//            )
+//
+//            val downloadRequest = DownloadRequest.Builder(
+//                    VideoActivity.TEST_VIDEO,
+//                    downloadVideoUri
+//            ).build()
+//            DownloadService.sendAddDownload(
+//                    context,
+//                    VideoCacheDownloadService::class.java,
+//                    downloadRequest,
+//                    false
+//            )
+//        }
+//
+//        fun setDownloadListener(listener: DownloadManager.Listener) {
+//            this.downloadListener = listener
+//        }
 
-            val downloadRequest = DownloadRequest.Builder(
-                    VideoActivity.TEST_VIDEO,
-                    downloadVideoUri
-            ).build()
-            DownloadService.sendAddDownload(
-                    context,
-                    VideoDownloadService::class.java,
-                    downloadRequest,
-                    false
-            )
-        }
-
-        fun setDownloadListener(listener: DownloadManager.Listener) {
-            this.downloadListener = listener
-        }
+        // 缓存下载
+//        fun setOfflineDownloadHelper(context: Context, uri: Uri) {
+//            val item = MediaItem.fromUri(uri)
+//            downloadHelper = DownloadHelper.forMediaItem(
+//                    context,
+//                    item,
+//                    DefaultRenderersFactory(context.applicationContext),
+//                    httpDataSourceFactory
+//            )
+//        }
 
         @Synchronized
         private fun ensureDownloadManagerInitialized(context: Context) {
@@ -144,7 +153,7 @@ class VideoDownloadHelper {
         }
 
         @Synchronized
-        private fun getDownloadCache(context: Context): Cache {
+        fun getDownloadCache(context: Context): Cache {
             if (downloadCache == null) {
                 val downloadContentDirectory: File = File(
                         getDownloadDirectory(context),
@@ -166,7 +175,7 @@ class VideoDownloadHelper {
             return downloadDirectory
         }
 
-        private fun getDownloadNotificationHelper(context: Context) : DownloadNotificationHelper {
+        fun getDownloadNotificationHelper(context: Context) : DownloadNotificationHelper {
             if (downloadNotificationHelper == null) {
                 downloadNotificationHelper = DownloadNotificationHelper(
                         context,
@@ -176,7 +185,7 @@ class VideoDownloadHelper {
             return downloadNotificationHelper!!
         }
 
-        private fun getMyDownloadManager(context: Context) : DownloadManager? {
+        fun getCacheDownloadManager(context: Context) : DownloadManager? {
             ensureDownloadManagerInitialized(context)
             return downloadManager
         }
@@ -207,23 +216,11 @@ class VideoDownloadHelper {
             }
         }
 
-        /**
-         * 删除缓存
-         */
-        fun removeDownload(context: Context) {
-            DownloadService.sendRemoveDownload(
-                    context,
-                    VideoDownloadService::class.java,
-                    VideoActivity.TEST_VIDEO,
-                    false
-            )
-        }
-
-        fun clearCache(context: Context) {
-            Thread {
-                getDownloadCache(context).removeResource(VideoActivity.TEST_VIDEO)
-                Timber.d("clear cache")
-            }.start()
-        }
+//        fun clearCache(context: Context) {
+//            Thread {
+//                getDownloadCache(context).removeResource(VideoActivity.TEST_VIDEO)
+//                Timber.d("clear cache")
+//            }.start()
+//        }
     }
 }

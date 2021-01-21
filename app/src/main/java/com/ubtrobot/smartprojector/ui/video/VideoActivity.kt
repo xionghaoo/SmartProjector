@@ -10,6 +10,7 @@ import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
+import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.utils.VideoFullscreenHelper
 import kotlinx.android.synthetic.main.activity_video.*
@@ -25,7 +26,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
 
         private const val EXTRA_URL = "com.ubtrobot.smartprojector.VideoActivity.EXTRA_URL"
 
-        const val TEST_VIDEO = "http://vfx.mtime.cn/Video/2017/03/31/mp4/170331093811717750.mp4"
+        const val TEST_VIDEO = MockData.video3
 
         fun start(context: Context?, url: String?) {
             val intent = Intent(context, VideoActivity::class.java)
@@ -44,7 +45,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
         autoPlayUrl = intent.getStringExtra(EXTRA_URL)
 
         btn_download.setOnClickListener {
-            VideoDownloadService.start(this, TEST_VIDEO.toUri())
+            VideoCacheDownloadService.start(this, TEST_VIDEO)
         }
 
         btn_get_downloads.setOnClickListener {
@@ -53,7 +54,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
 
         // 清除视频缓存
         btn_clear_cache.setOnClickListener {
-            VideoDownloadService.removeDownload(this)
+            VideoCacheDownloadService.removeDownload(this, TEST_VIDEO)
         }
 
         videoPlayTask()
@@ -109,7 +110,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     }
 
     private fun initialPlayer() {
-        val mediaSourceFactory = DefaultMediaSourceFactory(VideoDownloadService.getDataSourceFactory(this))
+        val mediaSourceFactory = DefaultMediaSourceFactory(VideoDownloadHelper.getDataSourceFactory(this))
         player = SimpleExoPlayer.Builder(applicationContext)
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
@@ -148,6 +149,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
                     .into(iv_video_1)
 //            player?.seekTo(1, 0)
         }
+        player!!.addMediaItem(MediaItem.fromUri(TEST_VIDEO.toUri()))
         player!!.prepare()
         player!!.playWhenReady = true
 

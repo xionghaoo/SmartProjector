@@ -21,7 +21,7 @@ class VideoCacheActivity : AppCompatActivity() {
         rc_cache_list.adapter = adapter
 
         val items = MutableList<VideoItem>(0) {VideoItem("", "")}
-        VideoDownloadService.loadDownloads(this)?.values?.forEach { download ->
+        VideoDownloadHelper.loadDownloads(this)?.values?.forEach { download ->
             items.add(VideoItem(title = "测试视频", url = download.request.uri.toString()))
         }
 
