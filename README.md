@@ -6,6 +6,10 @@
 display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity=1.0, xdpi=320.0, ydpi=320.0}
 ```
 
+1、缩放因子 = 1，因此屏幕的资源匹配属于mdpi，实际显示的图片会非常模糊
+
+2、最小适配sw宽度 = 1080(竖直方向)，可是实际的屏幕宽度是1920(水平方向)。
+
 ## 待确认
 
 1. uKit - Blockly包的更新
