@@ -50,7 +50,7 @@ class AppMarketFragment : Fragment() {
                 val launchIntent = getLaunchIntentForPackage(pkgName)
                 startActivity(launchIntent)
 
-                // App关闭测试
+                // TODO App关闭测试
                 CoroutineScope(Dispatchers.Default).launch {
                     delay(10 * 1000)
                     Timber.d("10s后关闭启动的App")
