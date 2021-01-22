@@ -1,6 +1,6 @@
 # 智能投影仪
 
-## 主板屏幕尺寸
+## 主板信息
 
 ```
 display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity=1.0, xdpi=101.6, ydpi=101.6}
