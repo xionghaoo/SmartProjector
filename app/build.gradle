@@ -164,4 +164,8 @@ dependencies {
 
     // 文件下载
     implementation 'com.liulishuo.filedownloader:library:1.7.7'
+
+    // 翻页效果
+    implementation 'com.github.eschao:android-PageFlip:1.0.2'
+
 }

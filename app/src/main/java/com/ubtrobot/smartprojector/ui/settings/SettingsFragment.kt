@@ -10,6 +10,7 @@ import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.TuyaActivity
+import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.RootExecutor
@@ -71,17 +72,8 @@ class SettingsFragment : Fragment() {
             startPlainActivity(AppWhiteListActivity::class.java)
         }
 
-        btn_kill_other_app.setOnClickListener {
-            val pkgName = "com.google.android.calculator"
-            RootExecutor.exec(
-                cmd = "am force-stop ${pkgName}\n",
-                success = {
-                    ToastUtil.showToast(requireContext(), "关闭${pkgName}成功")
-                },
-                failure = {
-                    ToastUtil.showToast(requireContext(), "关闭${pkgName}失败")
-                }
-            )
+        btn_flip_test.setOnClickListener {
+            startPlainActivity(FlipTestActivity::class.java)
         }
 
     }

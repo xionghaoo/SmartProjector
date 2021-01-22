@@ -28,6 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
+        <activity android:name=".ui.cartoonbook.FlipTestActivity"/>
         <activity android:name=".test.TestActivity" android:screenOrientation="userLandscape"></activity>
         <activity
             android:name=".ui.restrict.AppWhiteListActivity"

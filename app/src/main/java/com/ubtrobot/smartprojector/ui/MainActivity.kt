@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
+import android.view.MotionEvent
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
+import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.ResourceUtil
@@ -46,8 +48,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appMarketFragment: AppMarketFragment
     private lateinit var gameMarketFragment: AppMarketFragment
     private lateinit var settingsFragment: SettingsFragment
+    private lateinit var cartoonBookFragment: CartoonBookFragment
 
-    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置")
+    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置", "绘本")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
         // uKit use
-        BridgeCommunicator.getInstance().init()
+//        BridgeCommunicator.getInstance().init()
 
         Glide.with(this)
                 .load(R.drawable.ic_cat)
@@ -68,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         appMarketFragment = AppMarketFragment.newInstance()
         gameMarketFragment = AppMarketFragment.newInstance(true)
         settingsFragment = SettingsFragment.newInstance()
+        cartoonBookFragment = CartoonBookFragment.newInstance()
 
         container_menu.removeAllViews()
         menuTitles.forEachIndexed { index, title ->
@@ -87,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                     2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
                     3 -> replaceFragment(gameMarketFragment, R.id.fragment_container)
                     4 -> replaceFragment(settingsFragment, R.id.fragment_container)
+                    5 -> replaceFragment(cartoonBookFragment, R.id.fragment_container)
                 }
 
             }
@@ -109,6 +114,14 @@ class MainActivity : AppCompatActivity() {
         // 检查锁屏状态
         if (repo.prefs.isScreenLocked) {
             ScreenLockActivity.lock(this)
+        }
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (cartoonBookFragment.isAdded) {
+            return cartoonBookFragment.onTouchEvent(event)
+        } else {
+            return super.onTouchEvent(event)
         }
     }
 
