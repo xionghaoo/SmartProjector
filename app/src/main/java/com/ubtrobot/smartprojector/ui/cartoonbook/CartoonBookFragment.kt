@@ -43,6 +43,8 @@ class CartoonBookFragment : Fragment(), GestureDetector.OnGestureListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gestureDetector = GestureDetector(requireContext(), this)
+
+        container_flip_page.setOnTouchListener { _, event -> onTouchEvent(event) }
     }
 
     override fun onResume() {
@@ -55,7 +57,7 @@ class CartoonBookFragment : Fragment(), GestureDetector.OnGestureListener {
         page_flip_view.onPause()
     }
 
-    fun onTouchEvent(e: MotionEvent) : Boolean {
+    private fun onTouchEvent(e: MotionEvent) : Boolean {
         if (e.action == MotionEvent.ACTION_UP) {
             page_flip_view.onFingerUp(e.x, e.y)
         }

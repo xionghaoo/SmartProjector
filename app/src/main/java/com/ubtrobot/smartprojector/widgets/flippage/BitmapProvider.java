@@ -29,11 +29,11 @@ public class BitmapProvider {
      */
     public Bitmap getBitmap(Context context, int page) {
         Bitmap b = BitmapFactory.decodeResource(context.getResources(), resIds[page]);
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        Bitmap lb = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(),
-                matrix, true);
-        b.recycle();
-        return lb;
+//        Matrix matrix = new Matrix();
+//        matrix.postRotate(90);
+//        Bitmap lb = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(),
+//                matrix, true);
+//        b.recycle();
+        return b;
     }
 }

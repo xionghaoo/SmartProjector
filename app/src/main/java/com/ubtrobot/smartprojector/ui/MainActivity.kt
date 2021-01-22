@@ -117,14 +117,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (cartoonBookFragment.isAdded) {
-            return cartoonBookFragment.onTouchEvent(event)
-        } else {
-            return super.onTouchEvent(event)
-        }
-    }
-
     override fun onDestroy() {
         TuyaHomeSdk.onDestroy()
         super.onDestroy()
