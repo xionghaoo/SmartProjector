@@ -1,5 +1,6 @@
 package com.ubtrobot.smartprojector.ui.settings
 
+import android.Manifest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.ubtrobot.smartprojector.ui.TuyaActivity
 import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
+import com.ubtrobot.smartprojector.utils.RootCommand
 import com.ubtrobot.smartprojector.utils.RootExecutor
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,6 +78,17 @@ class SettingsFragment : Fragment() {
             startPlainActivity(FlipTestActivity::class.java)
         }
 
+        btn_root_cmd.setOnClickListener {
+            RootExecutor.exec(
+                cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
+                success = {
+                    ToastUtil.showToast(requireContext(), "权限申请成功")
+                },
+                failure = {
+                    ToastUtil.showToast(requireContext(), "权限申请成功")
+                }
+            )
+        }
     }
 
     companion object {

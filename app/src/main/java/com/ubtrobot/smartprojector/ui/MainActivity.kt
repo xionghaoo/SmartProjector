@@ -1,12 +1,17 @@
 package com.ubtrobot.smartprojector.ui
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Gravity
 import android.view.MotionEvent
+import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.tuya.smart.home.sdk.TuyaHomeSdk
@@ -24,13 +29,19 @@ import com.ubtrobot.smartprojector.utils.SystemUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
+import java.lang.Exception
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     companion object {
+        private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 2
+
         fun startWithNewTask(context: Context?) {
             val i = Intent(context, MainActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -115,10 +126,44 @@ class MainActivity : AppCompatActivity() {
         if (repo.prefs.isScreenLocked) {
             ScreenLockActivity.lock(this)
         }
+
+//        requestSystemAlertWindowPermission()
+
+        // 显示护眼弹窗
+        CoroutineScope(Dispatchers.Default).launch {
+            delay(20 * 1000)
+            withContext(Dispatchers.Main) {
+                Timber.d("护眼模式")
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (Settings.canDrawOverlays(this@MainActivity)) {
+                        eyeProtectionDialog()
+                    } else {
+                        try {
+                            startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                } else {
+                    eyeProtectionDialog()
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
         TuyaHomeSdk.onDestroy()
         super.onDestroy()
     }
+
+    private fun eyeProtectionDialog() {
+        Timber.d("显示护眼模式弹窗")
+        val dialog = AlertDialog.Builder(this@MainActivity)
+            .setTitle("护眼模式")
+            .setMessage("小朋友，你该休息了")
+            .create()
+        dialog.window?.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
+        dialog.show()
+    }
+
 }

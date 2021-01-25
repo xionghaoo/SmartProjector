@@ -38,5 +38,7 @@ class RootExecutor {
 class RootCommand {
     companion object {
         fun stopApp(pkgName: String) : String = "am force-stop ${pkgName}\n"
+
+        fun grantPermission(permission: String)= "pm grant com.ubtrobot.smartprojector $permission\n"
     }
 }

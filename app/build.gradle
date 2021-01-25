@@ -29,6 +29,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField('int', 'cache_db_version', rootProject.cache_db_version)
     }
 
     buildTypes {

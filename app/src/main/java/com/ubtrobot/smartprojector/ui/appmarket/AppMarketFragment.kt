@@ -51,23 +51,23 @@ class AppMarketFragment : Fragment() {
                 startActivity(launchIntent)
 
                 // TODO App关闭测试
-                CoroutineScope(Dispatchers.Default).launch {
-                    delay(10 * 1000)
-                    Timber.d("10s后关闭启动的App")
-                    withContext(Dispatchers.Main) {
-                        RootExecutor.exec(
-                            cmd = RootCommand.stopApp(pkgName),
-                            success = {
-                                Timber.d("关闭${pkgName}成功")
-                                ToastUtil.showToast(requireContext(), "关闭${pkgName}成功")
-                            },
-                            failure = {
-                                Timber.d("关闭${pkgName}失败")
-                                ToastUtil.showToast(requireContext(), "关闭${pkgName}失败")
-                            }
-                        )
-                    }
-                }
+//                CoroutineScope(Dispatchers.Default).launch {
+//                    delay(10 * 1000)
+//                    Timber.d("10s后关闭启动的App")
+//                    withContext(Dispatchers.Main) {
+//                        RootExecutor.exec(
+//                            cmd = RootCommand.stopApp(pkgName),
+//                            success = {
+//                                Timber.d("关闭${pkgName}成功")
+//                                ToastUtil.showToast(requireContext(), "关闭${pkgName}成功")
+//                            },
+//                            failure = {
+//                                Timber.d("关闭${pkgName}失败")
+//                                ToastUtil.showToast(requireContext(), "关闭${pkgName}失败")
+//                            }
+//                        )
+//                    }
+//                }
             }
         }
         rc_app_list.adapter = adapter
