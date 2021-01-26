@@ -89,9 +89,17 @@ class SettingsFragment : Fragment() {
                 }
             )
         }
+
+        tv_jni.text = "haha, ${helloStr()}"
     }
 
+    external fun helloStr() : String?
+
     companion object {
+        init {
+            System.loadLibrary("native-lib")
+        }
+
         fun newInstance() = SettingsFragment()
     }
 }

@@ -81,4 +81,13 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_start_tuya"
         app:layout_constraintTop_toTopOf="@+id/btn_start_tuya" />
 
+    <TextView
+        android:id="@+id/tv_jni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_version_check"
+        app:layout_constraintStart_toEndOf="@+id/btn_version_check"
+        app:layout_constraintTop_toTopOf="@+id/btn_version_check" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
