@@ -51,7 +51,7 @@ public class PrivacyInfo {
      */
     private static String getAppId() {
         //自行申请
-        return "INVALID_CLIENT";
+        return "940010010";
     }
 
     /**
@@ -60,7 +60,7 @@ public class PrivacyInfo {
      */
     public static String getAppKey() {
         //自行申请
-        return "INVALID_CLIENT";
+        return "c3ba293280655a66165dd8cdf4e58217";
     }
 
     /**
@@ -69,7 +69,7 @@ public class PrivacyInfo {
      */
     private static String getProductId() {
         //自行申请
-        return "INVALID_CLIENT";
+        return "90001";
     }
 
     /**

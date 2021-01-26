@@ -9,6 +9,9 @@ import com.ubtrobot.smartprojector.R
 import kotlinx.android.synthetic.main.fragment_cartoon_book.*
 import java.lang.Exception
 
+/**
+ * 绘本
+ */
 class CartoonBookFragment : Fragment(), GestureDetector.OnGestureListener {
 
     private lateinit var gestureDetector: GestureDetector
