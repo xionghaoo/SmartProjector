@@ -19,8 +19,17 @@ add_library( # Specifies the name of the library.
              # Provides a relative path to your source file(s).
              native-lib.cpp )
 
+# ${ANDROID_ABI} is handy for our purpose here. Probably this ${ANDROID_ABI} is
+# the most valuable thing of this sample, the rest are pretty much normal cmake
+add_library(lib_gperf SHARED IMPORTED)
+set_target_properties(lib_gperf PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${ANDROID_ABI}/libgperf.so)
+
+# build application's shared lib
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+
 # Specifies a path to native header files.
-include_directories(include/)
+include_directories(native-lib PRIVATE include/)
 
 # NDK提供的原生API
 find_library( # Defines the name of the path variable that stores the
@@ -34,6 +43,6 @@ find_library( # Defines the name of the path variable that stores the
 # Links your native library against one or more other native libraries.
 target_link_libraries( # Specifies the target library.
                        native-lib
-
+                       lib_gperf
                        # Links the log library to the target library.
                        ${log-lib} )

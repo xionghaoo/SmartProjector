@@ -31,6 +31,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField('int', 'cache_db_version', rootProject.cache_db_version)
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static'
+            }
+        }
     }
 
     buildTypes {
