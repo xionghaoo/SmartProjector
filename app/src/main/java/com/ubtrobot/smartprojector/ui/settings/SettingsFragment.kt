@@ -97,7 +97,7 @@ class SettingsFragment : Fragment() {
 
     companion object {
         init {
-            System.loadLibrary("native-lib")
+            System.loadLibrary("tuya_ext")
         }
 
         fun newInstance() = SettingsFragment()
