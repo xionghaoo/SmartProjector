@@ -24,9 +24,7 @@ import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
-import com.ubtrobot.smartprojector.utils.ResourceUtil
-import com.ubtrobot.smartprojector.utils.SystemUtil
-import com.ubtrobot.smartprojector.utils.ToastUtil
+import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -127,33 +125,45 @@ class MainActivity : AppCompatActivity() {
             ScreenLockActivity.lock(this)
         }
 
-//        requestSystemAlertWindowPermission()
-
-        // 显示护眼弹窗
-        CoroutineScope(Dispatchers.Default).launch {
-            delay(20 * 1000)
-            withContext(Dispatchers.Main) {
-                Timber.d("护眼模式")
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (Settings.canDrawOverlays(this@MainActivity)) {
-                        eyeProtectionDialog()
-                    } else {
-                        try {
-                            startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION)
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
-                } else {
-                    eyeProtectionDialog()
-                }
-            }
-        }
+        eyeProtectionMode()
     }
 
     override fun onDestroy() {
         TuyaHomeSdk.onDestroy()
         super.onDestroy()
+    }
+
+    private fun eyeProtectionMode() {
+        RootExecutor.exec(
+            cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
+            success = {
+                ToastUtil.showToast(this, "权限申请成功")
+
+                // 显示护眼弹窗
+                CoroutineScope(Dispatchers.Default).launch {
+                    delay(20 * 1000)
+                    withContext(Dispatchers.Main) {
+                        Timber.d("护眼模式")
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            if (Settings.canDrawOverlays(this@MainActivity)) {
+                                eyeProtectionDialog()
+                            } else {
+                                try {
+                                    startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION)
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        } else {
+                            eyeProtectionDialog()
+                        }
+                    }
+                }
+            },
+            failure = {
+                ToastUtil.showToast(this, "权限申请成功")
+            }
+        )
     }
 
     private fun eyeProtectionDialog() {
