@@ -21,6 +21,10 @@
 #define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,LOG_TAG ,__VA_ARGS__) // 定义LOGF类型
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* must apply for uuid, authkey and product key from tuya iot develop platform */
 #define UUID         "003tuyatestf7f149185"
 #define AUTHKEY      "NeA8Wc7srpAZHEMuru867oblOLN2QCC1"
@@ -32,21 +36,9 @@ static char g_authkey[64] = {0};
 
 using namespace std;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 JNIEXPORT jstring JNICALL
 Java_com_ubtrobot_smartprojector_ui_settings_SettingsFragment_helloStr(JNIEnv* env, jobject thiz) {
     LOGD("log form jni");
-    ty_gw_attr_s gw_attr = {
-            .storage_path = "./",
-            .cache_path = "/tmp/",
-            .tty_device = "/dev/ttyS1",
-            .tty_baudrate = 115200,
-            .eth_ifname = "br0",
-            .ver = "1.0.0",
-            .log_level = TY_LOG_DEBUG
-    };
     auto ticks = GetTicks();
     auto str = "Hello JNI, " + to_string(TY_LOG_DEBUG);
 
@@ -94,20 +86,14 @@ static int _gw_configure_op_mode_cb(ty_op_mode_t mode)
     return 0;
 }
 
-static void _gw_reboot_cb(void)
+static void _gw_reboot_cb()
 {
     LOGD("gw reboot callback");
-    /* USER TODO */
-
-    return;
 }
 
-static void _gw_reset_cb(void)
+static void _gw_reset_cb()
 {
     LOGD("gw reset callback");
-    /* USER TODO */
-
-    return;
 }
 
 static int _gw_upgrade_cb(const char *img)

@@ -9,12 +9,14 @@ import androidx.annotation.LayoutRes
 import com.ubtrobot.smartprojector.R
 
 typealias ViewConfigCallback = (v: View) -> Unit
+typealias OperationCallback = () -> Unit
 
 class PromptDialog private constructor(
     private val context: Context,
     @LayoutRes
     private val layoutId: Int,
-    private var callback: ViewConfigCallback?
+    private var callback: ViewConfigCallback?,
+    private var operations: HashSet<Operation> = HashSet()
 ){
 
     private var dialog: AlertDialog
@@ -26,8 +28,17 @@ class PromptDialog private constructor(
             .setView(contentView)
             .create()
 
-        contentView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
-            dialog.dismiss()
+        operations.forEach { operation ->
+            when (operation.type) {
+                OperationType.CONFIRM, OperationType.CANCEL -> {
+                    contentView.findViewById<View>(operation.viewId).setOnClickListener {
+                        operation.operation?.invoke()
+                        if (operation.autoDismiss) {
+                            dialog.dismiss()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -45,9 +56,20 @@ class PromptDialog private constructor(
 
         private var layoutId: Int? = null
         private var callback: ViewConfigCallback? = null
+        private var operations: HashSet<Operation> = HashSet()
 
         fun setView(@LayoutRes layoutId: Int) : Builder {
             this.layoutId = layoutId
+            return this
+        }
+
+        fun addOperation(
+            type: OperationType,
+            viewId: Int,
+            operation: OperationCallback?,
+            autoDismiss: Boolean = true
+        ) : Builder {
+            operations.add(Operation(type, viewId, operation, autoDismiss))
             return this
         }
 
@@ -60,8 +82,32 @@ class PromptDialog private constructor(
             if (layoutId == null) {
                 throw IllegalStateException("layout id is null")
             }
-            return PromptDialog(context, layoutId!!, callback)
+            return PromptDialog(
+                context = context,
+                layoutId = layoutId!!,
+                callback = callback,
+                operations = operations
+            )
         }
     }
 
+}
+
+enum class OperationType {
+    CONFIRM, CANCEL
+}
+
+class Operation(
+    val type: OperationType,
+    val viewId: Int,
+    val operation: OperationCallback?,
+    val autoDismiss: Boolean = true
+) {
+
+    override fun hashCode(): Int {
+        return type.hashCode()
+    }
+
+    override fun equals(other: Any?): Boolean =
+        if (other is Operation) type == other.type else false
 }
