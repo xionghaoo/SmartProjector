@@ -25,9 +25,7 @@ class TestActivity : AppCompatActivity() {
                 strBuilder.append(line)
             }
             runOnUiThread {
-                if (r?.isNotEmpty() == true) {
-                    test_tv_wifi_info.text = strBuilder
-                }
+                test_tv_wifi_info.text = strBuilder.toString()
             }
         }.start()
     }
