@@ -90,4 +90,14 @@
         app:layout_constraintStart_toEndOf="@+id/btn_version_check"
         app:layout_constraintTop_toTopOf="@+id/btn_version_check" />
 
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="测试页面"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_white_list"
+        app:layout_constraintEnd_toStartOf="@+id/btn_white_list"
+        app:layout_constraintTop_toTopOf="@+id/btn_white_list" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
