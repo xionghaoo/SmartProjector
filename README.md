@@ -20,6 +20,13 @@ display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity
 5. 图像识别(查题)
 6. 儿歌模块
 
+## 其他
+
+wifi密码存储位置：
+```
+$ cd /data/misc/wifi/
+```
+
 ## 问题记录
 
 1. google官方的串口库支持7.1.1(25)以下的targetSdk，8.0以上的设备没有权限读取/proc/tty/drivers设备

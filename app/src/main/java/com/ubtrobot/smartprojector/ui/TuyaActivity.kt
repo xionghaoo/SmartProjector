@@ -17,8 +17,10 @@ import com.tuya.smart.android.user.api.IValidateCallback
 import com.tuya.smart.android.user.bean.User
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.wifi.AccessPoint
+import com.ubtrobot.smartprojector.wifi.WifiFragment
 import kotlinx.android.synthetic.main.activity_tuya.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -33,9 +35,7 @@ class TuyaActivity : AppCompatActivity() {
         private const val RC_LOCATION_PERMISSION = 2
     }
 
-    private lateinit var wifiManager: WifiManager
-
-    private var wifiScanReceiver: BroadcastReceiver? = null
+    private lateinit var wifiFragment: WifiFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +82,8 @@ class TuyaActivity : AppCompatActivity() {
             )
         }
 
+        edt_account.setText("18617039316")
+        edt_password.setText("123456")
         btn_login.setOnClickListener {
             val account = edt_account.text.toString()
             val password = edt_password.text.toString()
@@ -101,12 +103,15 @@ class TuyaActivity : AppCompatActivity() {
             )
         }
 
+        wifiFragment = WifiFragment.newInstance()
+        replaceFragment(wifiFragment, R.id.fragment_container)
+
         btn_wifi_scan.setOnClickListener {
             wifiScanTask()
         }
 
         btn_wifi_scan_stop.setOnClickListener {
-            stopScan()
+            wifiFragment.stopScan()
         }
     }
 
@@ -116,7 +121,7 @@ class TuyaActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        stopScan()
+        wifiFragment.stopScan()
         super.onDestroy()
     }
 
@@ -128,7 +133,7 @@ class TuyaActivity : AppCompatActivity() {
     @AfterPermissionGranted(RC_LOCATION_PERMISSION)
     private fun wifiScanTask() {
         if (hasFineLocationPermission()) {
-            startScan()
+            wifiFragment.startScan()
         } else {
             EasyPermissions.requestPermissions(
                     this,
@@ -139,67 +144,7 @@ class TuyaActivity : AppCompatActivity() {
         }
     }
 
-    private fun startScan() {
-        // wifi ssid扫描
-        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-
-        wifiScanReceiver = object : BroadcastReceiver() {
-
-            @RequiresApi(Build.VERSION_CODES.M)
-            override fun onReceive(context: Context, intent: Intent) {
-                val success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false)
-                stopScan()
-                if (success) {
-                    scanSuccess()
-                } else {
-                    scanFailure()
-                }
-            }
-        }
-
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
-        registerReceiver(wifiScanReceiver, intentFilter)
-
-        radar_view.visibility = View.VISIBLE
-        radar_view.start()
-        val success = wifiManager.startScan()
-        Timber.d("wifi scan: $success")
-        if (!success) {
-            // scan failure handling
-            scanFailure()
-        }
-    }
-
-    private fun stopScan() {
-        if (wifiScanReceiver != null) {
-            unregisterReceiver(wifiScanReceiver)
-            wifiScanReceiver = null
-            radar_view.stop()
-            radar_view.visibility = View.GONE
-        }
-    }
-
-    private fun scanSuccess() {
-        ToastUtil.showToast(this, "扫描完成")
-        val results = wifiManager.scanResults.map { r -> AccessPoint(r.SSID) }
-        Timber.d("scanSuccess: ${results.size}")
-        results.forEach { p ->
-            Timber.d("wifi ssid: ${p.ssid}")
-        }
-    }
-
-    private fun scanFailure() {
-        // handle failure: new scan did NOT succeed
-        // consider using old scan results: these are the OLD results!
-        val results = wifiManager.scanResults
-        Timber.d("scanFailure: ${results.size}")
-    }
-
-
     private fun hasFineLocationPermission(): Boolean {
-        return EasyPermissions.hasPermissions(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-        )
+        return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)
     }
 }

@@ -32,11 +32,12 @@ class SmartProjectorApp : UKitApplication() {
             Timber.plant(Timber.DebugTree())
         }
 
-        super.onCreate()
         TuyaHomeSdk.init(this)
         if (BuildConfig.DEBUG) {
             TuyaHomeSdk.setDebugMode(true)
         }
+
+        super.onCreate()
 
         FileDownloader.setup(this)
     }

@@ -184,4 +184,7 @@ dependencies {
     // 翻页效果
     implementation 'com.github.eschao:android-PageFlip:1.0.2'
 
+    // su
+    implementation 'eu.chainfire:libsuperuser:1.1.0.+'
+
 }
