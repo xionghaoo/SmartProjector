@@ -81,6 +81,10 @@ static int _gw_configure_op_mode_cb(ty_op_mode_t mode)
         case TY_OP_MODE_ADD_STOP:
             LOGD("add device stop");
             break;
+        case TY_OP_MODE_AP:
+            break;
+        case TY_OP_MODE_EZ:
+            break;
     }
 
     return 0;
@@ -158,36 +162,36 @@ static void test_tuya_user_iot_permit_join()
  * 初始化
  */
 void initial() {
-    int ret = 0;
-    char line[256] = {0};
-
-    ty_gw_attr_s gw_attr = {
-            .storage_path = "./",
-            .cache_path = "/tmp/",
-            .tty_device = "/dev/ttyS1",
-            .tty_baudrate = 115200,
-            .eth_ifname = "br0",
-            .ver = "1.0.0",
-            .log_level = TY_LOG_DEBUG
-    };
-
-    ty_gw_infra_cbs_s gw_infra_cbs = {
-            .get_uuid_authkey_cb = _iot_get_uuid_authkey_cb,
-            .get_product_key_cb = _iot_get_product_key_cb,
-            .gw_fetch_local_log_cb = _gw_fetch_local_log_cb,
-            .gw_configure_op_mode_cb = _gw_configure_op_mode_cb,
-            .gw_reboot_cb = _gw_reboot_cb,
-            .gw_reset_cb = _gw_reset_cb,
-            .gw_upgrade_cb = _gw_upgrade_cb,
-            .gw_active_status_changed_cb = _gw_active_status_changed_cb,
-            .gw_online_status_changed_cb = _gw_online_status_changed_cb,
-    };
-
-    ret = tuya_user_iot_init(&gw_attr, &gw_infra_cbs);
-    if (ret != 0) {
-        log_err("tuya_user_iot_init failed");
-        return;
-    }
+//    int ret = 0;
+//    char line[256] = {0};
+//
+//    ty_gw_attr_s gw_attr = {
+//            .storage_path = "./",
+//            .cache_path = "/tmp/",
+//            .tty_device = "/dev/ttyS1",
+//            .tty_baudrate = 115200,
+//            .eth_ifname = "br0",
+//            .ver = "1.0.0",
+//            .log_level = TY_LOG_DEBUG
+//    };
+//
+//    ty_gw_infra_cbs_s gw_infra_cbs = {
+//            .get_uuid_authkey_cb = _iot_get_uuid_authkey_cb,
+//            .get_product_key_cb = _iot_get_product_key_cb,
+//            .gw_fetch_local_log_cb = _gw_fetch_local_log_cb,
+//            .gw_configure_op_mode_cb = _gw_configure_op_mode_cb,
+//            .gw_reboot_cb = _gw_reboot_cb,
+//            .gw_reset_cb = _gw_reset_cb,
+//            .gw_upgrade_cb = _gw_upgrade_cb,
+//            .gw_active_status_changed_cb = _gw_active_status_changed_cb,
+//            .gw_online_status_changed_cb = _gw_online_status_changed_cb,
+//    };
+//
+//    ret = tuya_user_iot_init(&gw_attr, &gw_infra_cbs);
+//    if (ret != 0) {
+//        log_err("tuya_user_iot_init failed");
+//        return;
+//    }
 
     // 下面是测试代码
 //    while (1) {

@@ -67,9 +67,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
-        // uKit use
-//        BridgeCommunicator.getInstance().init()
-
         Glide.with(this)
                 .load(R.drawable.ic_cat)
                 .circleCrop()
@@ -129,7 +126,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        TuyaHomeSdk.onDestroy()
+//        TuyaHomeSdk.onDestroy()
         super.onDestroy()
     }
 

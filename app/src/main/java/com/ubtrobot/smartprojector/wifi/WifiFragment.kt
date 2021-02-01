@@ -19,8 +19,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.builder.ActivatorBuilder
+import com.tuya.smart.sdk.api.ITuyaActivator
 import com.tuya.smart.sdk.api.ITuyaActivatorCreateToken
-import com.tuya.smart.sdk.api.ITuyaActivatorGetToken
 import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.tuya.smart.sdk.enums.ActivatorModelEnum
@@ -42,14 +42,20 @@ class WifiFragment : Fragment() {
     private var homeWifiSSID: String? = null
     private var tuyaDeviceToken: String? = null
     private var homeWifiPwd: String? = null
+    private var activator: ITuyaActivator? = null
+
+    override fun onDetach() {
+        activator?.onDestroy()
+        super.onDetach()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_wifi, container, false)
     }
@@ -80,9 +86,9 @@ class WifiFragment : Fragment() {
                 .configView { v ->
                     v.findViewById<TextView>(R.id.tv_wifi_ssid).text = homeWifiSSID
                     v.findViewById<EditText>(R.id.edt_wifi_pwd).addTextChangedListener(
-                        onTextChanged = { text, start, before, count ->
-                            homeWifiPwd = text?.toString()
-                        }
+                            onTextChanged = { text, start, before, count ->
+                                homeWifiPwd = text?.toString()
+                            }
                     )
                 }
                 .build()
@@ -99,6 +105,7 @@ class WifiFragment : Fragment() {
             override fun onSuccess(token: String?) {
                 tuyaDeviceToken = token
                 Timber.d("get token success: $token")
+                startFindTuyaDevices()
             }
 
             override fun onFailure(errorCode: String?, errorMsg: String?) {
@@ -108,27 +115,32 @@ class WifiFragment : Fragment() {
     }
 
     private fun startFindTuyaDevices() {
+        homeWifiPwd = "Ubtech@11F"
+        Timber.d("SSID: ${homeWifiSSID}, wifiPWD: $homeWifiPwd, deviceToken: $tuyaDeviceToken")
         val builder = ActivatorBuilder()
             .setSsid(homeWifiSSID)
             .setContext(requireContext())
             .setPassword(homeWifiPwd)
             .setActivatorModel(ActivatorModelEnum.TY_EZ)
-            .setTimeOut(1000)
+            .setTimeOut(30)
             .setToken(tuyaDeviceToken)
             .setListener(object : ITuyaSmartActivatorListener {
                 override fun onError(errorCode: String?, errorMsg: String?) {
-
+                    Timber.d("startFindTuyaDevices error：$errorCode, $errorMsg")
                 }
 
                 override fun onActiveSuccess(devResp: DeviceBean?) {
                     // 多个设备同时配网，将多次回调
-                    devResp
+                    Timber.d("发现设备：${devResp?.dpName}")
                 }
 
                 override fun onStep(step: String?, data: Any?) {
-
+                    Timber.d("startFindTuyaDevices onStep")
                 }
             })
+
+        activator = TuyaHomeSdk.getActivatorInstance().newMultiActivator(builder)
+        activator?.start()
     }
 
     fun startScan() {
