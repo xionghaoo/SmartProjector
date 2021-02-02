@@ -71,8 +71,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:text="停止wifi扫描"/>
+
+            <Button
+                android:id="@+id/btn_home_query"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="家庭查询"/>
+
+            <Button
+                android:id="@+id/btn_home_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="家庭创建"/>
+
+            <Button
+                android:id="@+id/btn_config_gw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="开始网关配网"/>
+
+            <Button
+                android:id="@+id/btn_home_device_query"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="家庭设备查询"/>
+
+            <Button
+                android:id="@+id/btn_config_sub_dev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="开始子设备配网"/>
+
         </LinearLayout>
     </ScrollView>
 

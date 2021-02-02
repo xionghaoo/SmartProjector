@@ -16,6 +16,12 @@ import com.tuya.smart.android.user.api.IRegisterCallback
 import com.tuya.smart.android.user.api.IValidateCallback
 import com.tuya.smart.android.user.bean.User
 import com.tuya.smart.home.sdk.TuyaHomeSdk
+import com.tuya.smart.home.sdk.bean.HomeBean
+import com.tuya.smart.home.sdk.builder.TuyaGwSubDevActivatorBuilder
+import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
+import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
+import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
+import com.tuya.smart.sdk.bean.DeviceBean
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.utils.ToastUtil
@@ -36,6 +42,9 @@ class TuyaActivity : AppCompatActivity() {
     }
 
     private lateinit var wifiFragment: WifiFragment
+
+    private var homeId: Long? = null
+    private var gwDeviceId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +122,26 @@ class TuyaActivity : AppCompatActivity() {
         btn_wifi_scan_stop.setOnClickListener {
             wifiFragment.stopScan()
         }
+
+        btn_home_query.setOnClickListener {
+            tuyaHomeQuery()
+        }
+
+        btn_home_create.setOnClickListener {
+            tuyaHomeCreate()
+        }
+
+        btn_config_gw.setOnClickListener {
+            wifiFragment.getToken(homeId)
+        }
+
+        btn_home_device_query.setOnClickListener {
+            tuyaHomeDevicesQuery()
+        }
+
+        btn_config_sub_dev.setOnClickListener {
+            tuyaSubDeviceConfig()
+        }
     }
 
     override fun onResume() {
@@ -146,5 +175,98 @@ class TuyaActivity : AppCompatActivity() {
 
     private fun hasFineLocationPermission(): Boolean {
         return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    private fun tuyaHomeQuery() {
+        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(object : ITuyaGetHomeListCallback {
+            override fun onSuccess(homeBeans: MutableList<HomeBean>?) {
+                Timber.d("家庭数量: ${homeBeans?.size}")
+                if (homeBeans?.isNotEmpty() == true) {
+                    val home = homeBeans.first()
+                    homeId = home.homeId
+                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
+                }
+            }
+
+            override fun onError(errorCode: String?, error: String?) {
+                Timber.d("家庭查询失败: $errorCode, $error")
+            }
+        })
+    }
+
+    private fun tuyaHomeCreate() {
+        Timber.d("create home: x_home")
+        TuyaHomeSdk.getHomeManagerInstance().createHome(
+            "x_home",
+            0.0,
+            0.0,
+            null,
+            List(1) { index -> "classroom" },
+            object : ITuyaHomeResultCallback {
+                override fun onSuccess(bean: HomeBean?) {
+                    homeId = bean?.homeId
+                    Timber.d("创建家庭成功， ${bean?.homeId}")
+                }
+
+                override fun onError(errorCode: String?, errorMsg: String?) {
+                    Timber.d("创建家庭失败: $errorCode, $errorMsg")
+                }
+            }
+        )
+    }
+
+    private fun tuyaHomeDevicesQuery() {
+        if (homeId == null) return
+        TuyaHomeSdk.newHomeInstance(homeId!!).getHomeDetail(object : ITuyaHomeResultCallback {
+            override fun onSuccess(bean: HomeBean?) {
+                val deviceList = bean?.deviceList
+                Timber.d("家庭设备查询成功： ${deviceList?.size}")
+                deviceList?.forEach { d ->
+                    // gwType: If device is virtual, the filed value is "v" , else is "s"
+                    Timber.d("设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, isZigBeeWifi: ${d.isZigBeeWifi}")
+                    if (d.isZigBeeWifi) {
+                        gwDeviceId = d.devId
+                    }
+                }
+            }
+
+            override fun onError(errorCode: String?, errorMsg: String?) {
+                Timber.d("家庭设备查询失败: $errorCode, $errorMsg")
+            }
+        })
+    }
+
+    private fun tuyaSubDeviceConfig() {
+        val builder = TuyaGwSubDevActivatorBuilder()
+            .setDevId(gwDeviceId)
+            .setTimeOut(100)
+            .setListener(object : ITuyaSmartActivatorListener {
+                override fun onError(errorCode: String?, errorMsg: String?) {
+                    Timber.d("tuyaSubDeviceConfig error：$errorCode, $errorMsg")
+                }
+
+                override fun onActiveSuccess(devResp: DeviceBean?) {
+                    // 子设备发现回调
+                    Timber.d("tuyaSubDeviceConfig onActiveSuccess 发现设备：${devResp?.dpName}, ${devResp?.devId}")
+                }
+
+                override fun onStep(step: String?, data: Any?) {
+                    // 网关设备发现回调
+                    Timber.d("tuyaSubDeviceConfig onStep: $step, ${data}")
+                    if (step == "device_find") {
+                        // 发现设备 6c94af80222594a3dfv4r3
+                        val deviceId = data as? String
+                        Timber.d("发现设备： $deviceId")
+                    } else if (step == "device_bind_success") {
+                        val dev = data as? DeviceBean
+                        dev?.apply {
+                            Timber.d("激活设备成功: $dpName, $devId")
+                        }
+                    }
+                }
+            })
+
+        val activator = TuyaHomeSdk.getActivatorInstance().newGwSubDevActivator(builder)
+        activator.start()
     }
 }
