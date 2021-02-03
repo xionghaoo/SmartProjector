@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.ubtedu.ukit.home.HomeActivity
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import kotlinx.android.synthetic.main.fragment_magic_space.*
 import timber.log.Timber
 
@@ -32,8 +33,12 @@ class MagicSpaceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_ukit.setOnClickListener {
-            startPlainActivity(HomeActivity::class.java)
+//        btn_ukit.setOnClickListener {
+//            startPlainActivity(HomeActivity::class.java)
+//        }
+
+        card_device.setOnClickListener {
+            startPlainActivity(TuyaActivity::class.java)
         }
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".ui.TuyaActivity">
+    tools:context=".ui.tuya.TuyaActivity">
 
     <ScrollView
         android:layout_width="@dimen/_300dp"

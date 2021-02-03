@@ -1,15 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MagicSpaceFragment">
 
-    <Button
-        android:id="@+id/btn_ukit"
+
+    <TextView
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="打开uKit"/>
+        android:layout_marginTop="@dimen/_30dp"
+        android:text="主题课堂"
+        android:textColor="@color/color_222222"
+        android:textSize="@dimen/_30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="@dimen/_140dp"
+        android:layout_height="@dimen/_200dp"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_30dp"
+        android:background="@drawable/selector_card"
+        android:gravity="center"
+        android:text="我要创作"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/card_device"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_200dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:gravity="center"
+        android:text="设备连接"
+        android:background="@drawable/selector_card"
+        app:layout_constraintEnd_toEndOf="@+id/textView17"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <LinearLayout
+        android:id="@+id/textView19"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginEnd="@dimen/_20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/card_device"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toTopOf="@+id/textView17"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="@dimen/_240dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_card"
+            android:gravity="center"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/_20sp"
+            android:text="课程1"/>
+
+        <TextView
+            android:layout_width="@dimen/_240dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_20dp"
+            android:background="@drawable/selector_card"
+            android:gravity="center"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/_20sp"
+            android:text="课程2"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

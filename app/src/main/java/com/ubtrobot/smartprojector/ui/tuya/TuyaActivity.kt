@@ -1,16 +1,8 @@
-package com.ubtrobot.smartprojector.ui
+package com.ubtrobot.smartprojector.ui.tuya
 
 import android.Manifest
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.net.wifi.WifiManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.annotation.RequiresApi
 import com.tuya.smart.android.user.api.ILoginCallback
 import com.tuya.smart.android.user.api.IRegisterCallback
 import com.tuya.smart.android.user.api.IValidateCallback
@@ -21,13 +13,11 @@ import com.tuya.smart.home.sdk.builder.TuyaGwSubDevActivatorBuilder
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
 import com.tuya.smart.sdk.api.IDevListener
-import com.tuya.smart.sdk.api.ITuyaDevice
 import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.utils.ToastUtil
-import com.ubtrobot.smartprojector.wifi.AccessPoint
 import com.ubtrobot.smartprojector.wifi.WifiFragment
 import kotlinx.android.synthetic.main.activity_tuya.*
 import pub.devrel.easypermissions.AfterPermissionGranted

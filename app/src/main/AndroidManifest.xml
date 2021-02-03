@@ -13,10 +13,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
-    <!-- 系统弹窗 -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 系统弹窗 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!--
  If your app targets Android 9 or lower, you can declare
          ACCESS_COARSE_LOCATION instead.
@@ -32,8 +30,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.cartoonbook.FlipTestActivity"/>
-        <activity android:name=".test.TestActivity" android:screenOrientation="userLandscape"></activity>
+        <activity android:name=".ui.settings.SettingsActivity"></activity>
+        <activity android:name=".ui.cartoonbook.FlipTestActivity" />
+        <activity
+            android:name=".test.TestActivity"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.restrict.AppWhiteListActivity"
             android:screenOrientation="userLandscape" />
@@ -65,7 +66,7 @@
             android:label="缓存视频"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".ui.TuyaActivity"
+            android:name=".ui.tuya.TuyaActivity"
             android:label="登录服务测试"
             android:screenOrientation="userLandscape" /> <!-- 涂鸦智能 -->
         <meta-data

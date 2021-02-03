@@ -43,7 +43,7 @@ class AppMarketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rc_app_list.layoutManager = GridLayoutManager(context, 6)
+        rc_en_app_list.layoutManager = GridLayoutManager(context, 6)
         adapter = AppInfoAdapter(emptyList()) { pkgName ->
             // 点击图标时启动app
             requireActivity().packageManager.apply {
@@ -70,7 +70,7 @@ class AppMarketFragment : Fragment() {
 //                }
             }
         }
-        rc_app_list.adapter = adapter
+        rc_en_app_list.adapter = adapter
 
         // 获取已安装的app列表
         val intent = Intent(Intent.ACTION_MAIN)
@@ -101,7 +101,7 @@ class AppMarketFragment : Fragment() {
                     }
                 }
             }
-            adapter.updateData(items)
+            adapter.updateData(items.filterIndexed { index, _ -> index < 10 })
         }
     }
 

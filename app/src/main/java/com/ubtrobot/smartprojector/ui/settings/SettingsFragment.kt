@@ -11,7 +11,7 @@ import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
-import com.ubtrobot.smartprojector.ui.TuyaActivity
+import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
