@@ -20,6 +20,8 @@ import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.builder.TuyaGwSubDevActivatorBuilder
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
+import com.tuya.smart.sdk.api.IDevListener
+import com.tuya.smart.sdk.api.ITuyaDevice
 import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.ubtrobot.smartprojector.R
@@ -45,6 +47,7 @@ class TuyaActivity : AppCompatActivity() {
 
     private var homeId: Long? = null
     private var gwDeviceId: String? = null
+    private var sosDeviceId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,6 +145,10 @@ class TuyaActivity : AppCompatActivity() {
         btn_config_sub_dev.setOnClickListener {
             tuyaSubDeviceConfig()
         }
+
+        btn_dev_listener.setOnClickListener {
+            deviceListener()
+        }
     }
 
     override fun onResume() {
@@ -223,9 +230,14 @@ class TuyaActivity : AppCompatActivity() {
                 Timber.d("家庭设备查询成功： ${deviceList?.size}")
                 deviceList?.forEach { d ->
                     // gwType: If device is virtual, the filed value is "v" , else is "s"
-                    Timber.d("设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, isZigBeeWifi: ${d.isZigBeeWifi}")
+                    Timber.d("设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, isZigBeeWifi: ${d.isZigBeeWifi}, isOnline: ${d.isOnline}")
+                    d.dps.forEach { p ->
+                        Timber.d("功能点: ${p.key}, ${p.value}")
+                    }
                     if (d.isZigBeeWifi) {
                         gwDeviceId = d.devId
+                    } else {
+                        sosDeviceId = d.devId
                     }
                 }
             }
@@ -268,5 +280,32 @@ class TuyaActivity : AppCompatActivity() {
 
         val activator = TuyaHomeSdk.getActivatorInstance().newGwSubDevActivator(builder)
         activator.start()
+    }
+
+    private fun deviceListener() {
+        if (sosDeviceId == null) return
+        Timber.d("开始设备监听")
+        val device = TuyaHomeSdk.newDeviceInstance(sosDeviceId)
+        device.registerDevListener(object : IDevListener {
+            override fun onDpUpdate(devId: String?, dpStr: String?) {
+                Timber.d("onDpUpdate")
+            }
+
+            override fun onRemoved(devId: String?) {
+                Timber.d("onRemoved")
+            }
+
+            override fun onStatusChanged(devId: String?, online: Boolean) {
+                Timber.d("onStatusChanged")
+            }
+
+            override fun onNetworkStatusChanged(devId: String?, status: Boolean) {
+                Timber.d("onNetworkStatusChanged")
+            }
+
+            override fun onDevInfoUpdate(devId: String?) {
+                Timber.d("onDevInfoUpdate")
+            }
+        })
     }
 }

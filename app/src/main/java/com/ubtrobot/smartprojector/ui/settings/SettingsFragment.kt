@@ -91,18 +91,18 @@ class SettingsFragment : Fragment() {
             )
         }
 
-        tv_jni.text = "haha, ${helloStr()}"
+//        tv_jni.text = "haha, ${helloStr()}"
 
         btn_test.setOnClickListener {
             startPlainActivity(TestActivity::class.java)
         }
     }
 
-    external fun helloStr() : String?
+//    external fun helloStr() : String?
 
     companion object {
         init {
-            System.loadLibrary("tuya_ext")
+//            System.loadLibrary("tuya_ext")
         }
 
         fun newInstance() = SettingsFragment()
