@@ -22,6 +22,7 @@ import com.ubtedu.ukit.common.locale.LanguageUtil
 import com.ubtedu.ukit.common.utils.AnimatorHelper
 import com.ubtedu.ukit.menu.settings.Settings
 import com.ubtedu.ukit.user.UserManager
+import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
@@ -41,6 +42,7 @@ class SmartProjectorApp : UKitApplication() {
         TuyaHomeSdk.setOnNeedLoginListener {
             Timber.d("涂鸦登录失效")
             ToastUtil.showToast(it, "涂鸦登录失效")
+            LoginActivity.startWithNewTask(it)
         }
 
         super.onCreate()

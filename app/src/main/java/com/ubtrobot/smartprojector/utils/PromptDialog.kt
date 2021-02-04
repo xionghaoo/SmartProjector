@@ -9,7 +9,7 @@ import androidx.annotation.LayoutRes
 import com.ubtrobot.smartprojector.R
 
 typealias ViewConfigCallback = (v: View) -> Unit
-typealias OperationCallback = () -> Unit
+typealias OperationCallback = (v: View) -> Unit
 
 class PromptDialog private constructor(
     private val context: Context,
@@ -32,7 +32,7 @@ class PromptDialog private constructor(
             when (operation.type) {
                 OperationType.CONFIRM, OperationType.CANCEL -> {
                     contentView.findViewById<View>(operation.viewId).setOnClickListener {
-                        operation.operation?.invoke()
+                        operation.operation?.invoke(contentView)
                         if (operation.autoDismiss) {
                             dialog.dismiss()
                         }
@@ -66,10 +66,10 @@ class PromptDialog private constructor(
         fun addOperation(
             type: OperationType,
             viewId: Int,
-            operation: OperationCallback?,
-            autoDismiss: Boolean = true
+            autoDismiss: Boolean = true,
+            operation: OperationCallback?
         ) : Builder {
-            operations.add(Operation(type, viewId, operation, autoDismiss))
+            operations.add(Operation(type, viewId, autoDismiss, operation))
             return this
         }
 
@@ -100,8 +100,8 @@ enum class OperationType {
 class Operation(
     val type: OperationType,
     val viewId: Int,
-    val operation: OperationCallback?,
-    val autoDismiss: Boolean = true
+    val autoDismiss: Boolean = true,
+    val operation: OperationCallback?
 ) {
 
     override fun hashCode(): Int {

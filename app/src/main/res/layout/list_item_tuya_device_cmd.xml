@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_cmd_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="指令序号"
+        android:textSize="@dimen/_15sp"
+        android:layout_marginStart="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_cmd_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:textSize="@dimen/_15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cmd_key"
+        app:layout_constraintEnd_toStartOf="@+id/btn_send_cmd"
+        app:layout_constraintStart_toEndOf="@+id/tv_cmd_key"
+        app:layout_constraintTop_toTopOf="@+id/tv_cmd_key"
+        tools:text="指令" />
+
+    <Button
+        android:id="@+id/btn_send_cmd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="发送指令"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
