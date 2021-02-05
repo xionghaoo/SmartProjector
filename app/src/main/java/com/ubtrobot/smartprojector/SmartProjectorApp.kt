@@ -29,6 +29,7 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class SmartProjectorApp : UKitApplication() {
+
     override fun onCreate() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

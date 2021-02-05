@@ -53,10 +53,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/tv_prod_name"
         android:layout_width="0dp"
         android:layout_height="@dimen/_60dp"
-        android:text="控制指令"
+        tools:text="产品id"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView25"
@@ -69,6 +69,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView25"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/container_sub_dev_list" />
+
+    <LinearLayout
+        android:id="@+id/container_sub_dev_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prod_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
