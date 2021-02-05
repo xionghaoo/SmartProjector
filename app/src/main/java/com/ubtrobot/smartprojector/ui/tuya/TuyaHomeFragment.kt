@@ -114,41 +114,17 @@ class TuyaHomeFragment : Fragment() {
 
                     val cmds = ArrayList<TuyaDeviceCmd>()
                     d.dps.forEach { p ->
-                        cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value))
+                        cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value.toString()))
                         Timber.d("功能点: ${p.key}, ${p.value}")
                     }
                     if (d.isZigBeeSubDev) {
                         // 注册zigbee子设备监听, 需要放到全局监听
-//                        TuyaUtil.registerTuyaDeviceListener(requireContext(), d.devId)
+                        TuyaUtil.registerTuyaDeviceListener(requireContext(), d.devId)
                     }
                     if (d.isZigBeeWifi) {
-                        val gwDev = TuyaHomeSdk.newGatewayInstance(d.devId)
-                        gwDev.registerSubDevListener(object : ISubDevListener {
-                            override fun onSubDevDpUpdate(cid: String?, dpStr: String?) {
-                                Timber.d("onSubDevDpUpdate: $cid, $dpStr")
-                            }
 
-                            override fun onSubDevRemoved(devId: String?) {
-                                Timber.d("onSubDevRemoved: $devId")
-                            }
-
-                            override fun onSubDevAdded(devId: String?) {
-                                Timber.d("onSubDevAdded: $devId")
-
-                            }
-
-                            override fun onSubDevInfoUpdate(devId: String?) {
-                                Timber.d("onSubDevInfoUpdate: $devId")
-
-                            }
-
-                            override fun onSubDevStatusChanged(onlines: MutableList<String>?, offlines: MutableList<String>?) {
-                                Timber.d("onSubDevStatusChanged: ${onlines?.size}")
-
-                            }
-                        })
                     }
-                    items.add(TuyaDevice(d.productId, d.devId, d.isOnline, d.isZigBeeWifi, d.categoryCode, cmds))
+                    items.add(TuyaDevice(d.productId, d.devId, d.isOnline, d.isZigBeeWifi, d.categoryCode, d.schema, cmds))
                 }
                 adapter.updateData(items)
                 if (items.isNotEmpty()) {

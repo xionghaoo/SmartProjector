@@ -3,7 +3,6 @@ package com.ubtrobot.smartprojector.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
-import kotlinx.android.synthetic.main.fragment_wifi.*
 
 class WifiUtil {
     companion object {

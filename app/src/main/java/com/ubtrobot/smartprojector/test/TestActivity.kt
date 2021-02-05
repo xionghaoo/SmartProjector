@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.replaceFragment
 import eu.chainfire.libsuperuser.Shell
-import kotlinx.android.synthetic.main.activity_test.*
 import timber.log.Timber
 import java.lang.StringBuilder
 
@@ -23,7 +22,7 @@ class TestActivity : AppCompatActivity() {
                 strBuilder.append(line)
             }
             runOnUiThread {
-                test_tv_wifi_info.text = strBuilder.toString()
+//                test_tv_wifi_info.text = strBuilder.toString()
             }
         }.start()
     }

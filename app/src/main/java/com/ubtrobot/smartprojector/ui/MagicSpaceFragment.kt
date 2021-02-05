@@ -9,7 +9,6 @@ import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
-import kotlinx.android.synthetic.main.fragment_magic_space.*
 import timber.log.Timber
 
 /**
@@ -37,9 +36,9 @@ class MagicSpaceFragment : Fragment() {
 //            startPlainActivity(HomeActivity::class.java)
 //        }
 
-        card_device.setOnClickListener {
-            startPlainActivity(TuyaHomeActivity::class.java)
-        }
+//        card_device.setOnClickListener {
+//            startPlainActivity(TuyaHomeActivity::class.java)
+//        }
     }
 
     override fun onDestroyView() {

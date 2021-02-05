@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityScreenLockBinding
 import com.ubtrobot.smartprojector.keyboard.controllers.NumberKeyboardController
 import com.ubtrobot.smartprojector.repo.Repository
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_screen_lock.*
 import javax.inject.Inject
 
 /**
@@ -29,21 +29,24 @@ class ScreenLockActivity : AppCompatActivity() {
     @Inject
     lateinit var repo: Repository
 
+    private lateinit var binding: ActivityScreenLockBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_screen_lock)
+        binding = ActivityScreenLockBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 启动前添加动画
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
         repo.prefs.isScreenLocked = true
 
-        number_keyboard.setController(
-            NumberKeyboardController(edt_lock_password.onCreateInputConnection(
+        binding.numberKeyboard.setController(
+            NumberKeyboardController(binding.edtLockPassword.onCreateInputConnection(
                 EditorInfo()
             ))
         )
-        edt_lock_password.addTextChangedListener(
+        binding.edtLockPassword.addTextChangedListener(
             onTextChanged = { text, _, _, _ ->
                 val pwd = text?.toString() ?: ""
                 if (pwd.length == 4 && pwd == repo.prefs.screenLockPwd) {

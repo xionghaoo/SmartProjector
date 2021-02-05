@@ -16,10 +16,10 @@ import com.tuya.smart.sdk.api.IDevListener
 import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityTuyaBinding
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.wifi.WifiFragment
-import kotlinx.android.synthetic.main.activity_tuya.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
@@ -38,12 +38,14 @@ class TuyaActivity : AppCompatActivity() {
     private var homeId: Long? = null
     private var gwDeviceId: String? = null
     private var sosDeviceId: String? = null
+    private lateinit var binding: ActivityTuyaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tuya)
+        binding = ActivityTuyaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_phone_validate_code.setOnClickListener {
+        binding.btnPhoneValidateCode.setOnClickListener {
             TuyaHomeSdk.getUserInstance().getValidateCode(
                 "86",
                 "18617039316",
@@ -61,10 +63,10 @@ class TuyaActivity : AppCompatActivity() {
             )
         }
 
-        btn_register.setOnClickListener {
-            val account = edt_account.text.toString()
-            val password = edt_password.text.toString()
-            val validateCode = edt_validate_code.text.toString()
+        binding.btnRegister.setOnClickListener {
+            val account = binding.edtAccount.text.toString()
+            val password = binding.edtPassword.text.toString()
+            val validateCode = binding.edtValidateCode.text.toString()
             TuyaHomeSdk.getUserInstance().registerAccountWithPhone(
                 "86",
                 account,
@@ -84,11 +86,11 @@ class TuyaActivity : AppCompatActivity() {
             )
         }
 
-        edt_account.setText("18617039316")
-        edt_password.setText("123456")
-        btn_login.setOnClickListener {
-            val account = edt_account.text.toString()
-            val password = edt_password.text.toString()
+        binding.edtAccount.setText("18617039316")
+        binding.edtPassword.setText("123456")
+        binding.btnLogin.setOnClickListener {
+            val account = binding.edtAccount.text.toString()
+            val password = binding.edtPassword.text.toString()
             TuyaHomeSdk.getUserInstance().loginWithPhonePassword(
                 "86",
                 account,
@@ -108,35 +110,35 @@ class TuyaActivity : AppCompatActivity() {
         wifiFragment = WifiFragment.newInstance()
         replaceFragment(wifiFragment, R.id.fragment_container)
 
-        btn_wifi_scan.setOnClickListener {
+        binding.btnWifiScan.setOnClickListener {
             wifiScanTask()
         }
 
-        btn_wifi_scan_stop.setOnClickListener {
-            wifiFragment.stopScan()
+        binding.btnWifiScanStop.setOnClickListener {
+//            wifiFragment.stopScan()
         }
 
-        btn_home_query.setOnClickListener {
+        binding.btnHomeQuery.setOnClickListener {
             tuyaHomeQuery()
         }
 
-        btn_home_create.setOnClickListener {
+        binding.btnHomeCreate.setOnClickListener {
             tuyaHomeCreate()
         }
 
-        btn_config_gw.setOnClickListener {
-            wifiFragment.getToken(homeId)
+        binding.btnConfigGw.setOnClickListener {
+//            wifiFragment.getToken(homeId)
         }
 
-        btn_home_device_query.setOnClickListener {
+        binding.btnHomeDeviceQuery.setOnClickListener {
             tuyaHomeDevicesQuery()
         }
 
-        btn_config_sub_dev.setOnClickListener {
+        binding.btnConfigSubDev.setOnClickListener {
             tuyaSubDeviceConfig()
         }
 
-        btn_dev_listener.setOnClickListener {
+        binding.btnDevListener.setOnClickListener {
             deviceListener()
         }
     }
@@ -147,7 +149,7 @@ class TuyaActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        wifiFragment.stopScan()
+//        wifiFragment.stopScan()
         super.onDestroy()
     }
 
@@ -159,7 +161,7 @@ class TuyaActivity : AppCompatActivity() {
     @AfterPermissionGranted(RC_LOCATION_PERMISSION)
     private fun wifiScanTask() {
         if (hasFineLocationPermission()) {
-            wifiFragment.startScan()
+//            wifiFragment.startScan()
         } else {
             EasyPermissions.requestPermissions(
                     this,

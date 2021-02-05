@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.FragmentSettingsBinding
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
@@ -19,7 +20,6 @@ import com.ubtrobot.smartprojector.utils.RootCommand
 import com.ubtrobot.smartprojector.utils.RootExecutor
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
 
 /**
@@ -31,11 +31,13 @@ class SettingsFragment : Fragment() {
     private lateinit var updateDelegate: UpdateDelegate
     @Inject
     lateinit var repo: Repository
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +45,7 @@ class SettingsFragment : Fragment() {
 
         updateDelegate = UpdateDelegate(requireActivity())
 
-        btn_version_check.setOnClickListener {
+        binding.btnVersionCheck.setOnClickListener {
             updateDelegate.showVersionUpdateDialog(
                     url = "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
                     versionName = "test1.0.0",
@@ -55,13 +57,13 @@ class SettingsFragment : Fragment() {
             )
         }
         
-        btn_start_tuya.setOnClickListener {
+        binding.btnStartTuya.setOnClickListener {
             startPlainActivity(TuyaActivity::class.java)
         }
 
-        edt_pwd.setText(repo.prefs.screenLockPwd)
-        btn_lock_screen.setOnClickListener {
-            val pwd = edt_pwd.text.toString()
+        binding.edtPwd.setText(repo.prefs.screenLockPwd)
+        binding.btnLockScreen.setOnClickListener {
+            val pwd = binding.edtPwd.text.toString()
             if (pwd.isNotBlank() && pwd.length == 4) {
                 repo.prefs.screenLockPwd = pwd
                 ScreenLockActivity.lock(requireContext())
@@ -71,15 +73,15 @@ class SettingsFragment : Fragment() {
 
         }
 
-        btn_white_list.setOnClickListener {
+        binding.btnWhiteList.setOnClickListener {
             startPlainActivity(AppWhiteListActivity::class.java)
         }
 
-        btn_flip_test.setOnClickListener {
+        binding.btnFlipTest.setOnClickListener {
             startPlainActivity(FlipTestActivity::class.java)
         }
 
-        btn_root_cmd.setOnClickListener {
+        binding.btnRootCmd.setOnClickListener {
             RootExecutor.exec(
                 cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
                 success = {
@@ -93,9 +95,14 @@ class SettingsFragment : Fragment() {
 
 //        tv_jni.text = "haha, ${helloStr()}"
 
-        btn_test.setOnClickListener {
+        binding.btnTest.setOnClickListener {
             startPlainActivity(TestActivity::class.java)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 //    external fun helloStr() : String?

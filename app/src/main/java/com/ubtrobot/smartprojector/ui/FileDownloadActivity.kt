@@ -9,8 +9,8 @@ import com.liulishuo.filedownloader.FileDownloadListener
 import com.liulishuo.filedownloader.FileDownloader
 import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityFileDownloadBinding
 import com.ubtrobot.smartprojector.utils.ToastUtil
-import kotlinx.android.synthetic.main.activity_file_download.*
 import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
@@ -26,25 +26,28 @@ class FileDownloadActivity : AppCompatActivity() {
     private var startTime: Long = 0L
     private var progressTime: Long = 0L
 
+    private lateinit var binding: ActivityFileDownloadBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_file_download)
+        binding = ActivityFileDownloadBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_pause.setOnClickListener {
+        binding.btnPause.setOnClickListener {
             FileDownloader.getImpl().pause(downloadTaskId)
         }
 
-        btn_resume.setOnClickListener {
+        binding.btnResume.setOnClickListener {
             startDownload()
         }
 
-        btn_cancel.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             FileDownloader.getImpl().clear(downloadTaskId, targetPath)
-            tv_pb_num.text = ""
-            pb_download.progress = 0
+            binding.tvPbNum.text = ""
+            binding.pbDownload.progress = 0
         }
 
-        btn_download.setOnClickListener {
+        binding.btnDownload.setOnClickListener {
             startDownload()
         }
     }
@@ -82,18 +85,18 @@ class FileDownloadActivity : AppCompatActivity() {
                     } else {
                         "${speed}b/s"
                     }
-                    tv_speed.text = speedTxt
+                    binding.tvSpeed.text = speedTxt
                     // 下载进度
-                    pb_download.progress = (soFarBytes.toFloat() / totalBytes * 100f).toInt()
-                    tv_pb_num.text = "${pb_download.progress}%"
-                    Timber.d("progress: ${pb_download.progress}")
+                    binding.pbDownload.progress = (soFarBytes.toFloat() / totalBytes * 100f).toInt()
+                    binding.tvPbNum.text = "${binding.pbDownload.progress}%"
+                    Timber.d("progress: ${binding.pbDownload.progress}")
                 }
 
                 override fun completed(task: BaseDownloadTask?) {
                     // 下载完成
                     ToastUtil.showToast(this@FileDownloadActivity, "下载完成")
-                    pb_download.progress = 100
-                    tv_pb_num.text = "100%"
+                    binding.pbDownload.progress = 100
+                    binding.tvPbNum.text = "100%"
                     Timber.d("completed")
                 }
 

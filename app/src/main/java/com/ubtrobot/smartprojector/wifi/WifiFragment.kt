@@ -31,7 +31,6 @@ import com.tuya.smart.sdk.enums.ActivatorModelEnum
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.utils.PromptDialog
 import com.ubtrobot.smartprojector.utils.ToastUtil
-import kotlinx.android.synthetic.main.fragment_wifi.*
 import timber.log.Timber
 
 
@@ -66,7 +65,7 @@ class WifiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rc_ssid_list.layoutManager = LinearLayoutManager(requireContext())
+       /* rc_ssid_list.layoutManager = LinearLayoutManager(requireContext())
         adapter = AccessPointAdapter(emptyList())
         rc_ssid_list.adapter = adapter
 
@@ -97,7 +96,7 @@ class WifiFragment : Fragment() {
                 }
                 .build()
                 .show()
-        }
+        }*/
 
 
 
@@ -105,7 +104,7 @@ class WifiFragment : Fragment() {
 
     }
 
-    // 配网token
+  /*  // 配网token
     fun getToken(homeId: Long?) {
         if (homeId == null) return
         TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId, object : ITuyaActivatorGetToken {
@@ -226,7 +225,7 @@ class WifiFragment : Fragment() {
         val results = wifiManager.scanResults
         Timber.d("scanFailure: ${results.size}")
     }
-
+*/
     companion object {
         fun newInstance() =
                 WifiFragment().apply {

@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.repo.Repository
@@ -25,7 +26,6 @@ import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -63,10 +63,13 @@ class MainActivity : AppCompatActivity() {
 
     private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置", "绘本")
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SystemUtil.statusBarTransparent(window)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         SystemUtil.setDarkStatusBar(window)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
@@ -84,32 +87,35 @@ class MainActivity : AppCompatActivity() {
         cartoonBookFragment = CartoonBookFragment.newInstance()
 
         menus.clear()
-        menus.add(tv_menu_ai)
-        menus.add(tv_menu_program)
-        menus.add(tv_menu_interact)
-        menus.add(tv_menu_puzzle)
-        menus.add(tv_menu_application)
-        refreshSelectedStatus(tv_menu_ai)
-        tv_menu_ai.setOnClickListener {
-            refreshSelectedStatus(tv_menu_ai)
-            replaceFragment(mainFragment, R.id.fragment_container)
+        menus.add(binding.tvMenuAi)
+        menus.add(binding.tvMenuProgram)
+        menus.add(binding.tvMenuInteract)
+        menus.add(binding.tvMenuPuzzle)
+        menus.add(binding.tvMenuApplication)
+        refreshSelectedStatus(binding.tvMenuAi)
+        binding.apply {
+            tvMenuAi.setOnClickListener {
+                refreshSelectedStatus(tvMenuAi)
+                replaceFragment(mainFragment, R.id.fragment_container)
+            }
+            tvMenuProgram.setOnClickListener {
+                refreshSelectedStatus(tvMenuProgram)
+                replaceFragment(magicSpaceFragment, R.id.fragment_container)
+            }
+            tvMenuInteract.setOnClickListener {
+                refreshSelectedStatus(tvMenuInteract)
+                replaceFragment(gameMarketFragment, R.id.fragment_container)
+            }
+            tvMenuPuzzle.setOnClickListener {
+                refreshSelectedStatus(tvMenuPuzzle)
+                replaceFragment(cartoonBookFragment, R.id.fragment_container)
+            }
+            tvMenuApplication.setOnClickListener {
+                refreshSelectedStatus(tvMenuApplication)
+                replaceFragment(appMarketFragment, R.id.fragment_container)
+            }
         }
-        tv_menu_program.setOnClickListener {
-            refreshSelectedStatus(tv_menu_program)
-            replaceFragment(magicSpaceFragment, R.id.fragment_container)
-        }
-        tv_menu_interact.setOnClickListener {
-            refreshSelectedStatus(tv_menu_interact)
-            replaceFragment(gameMarketFragment, R.id.fragment_container)
-        }
-        tv_menu_puzzle.setOnClickListener {
-            refreshSelectedStatus(tv_menu_puzzle)
-            replaceFragment(cartoonBookFragment, R.id.fragment_container)
-        }
-        tv_menu_application.setOnClickListener {
-            refreshSelectedStatus(tv_menu_application)
-            replaceFragment(appMarketFragment, R.id.fragment_container)
-        }
+
 
 //        container_menu.removeAllViews()
 //        menuTitles.forEachIndexed { index, title ->

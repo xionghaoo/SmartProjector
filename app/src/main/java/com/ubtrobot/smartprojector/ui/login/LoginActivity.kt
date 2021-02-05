@@ -11,9 +11,9 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.ui.MainActivity
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityLoginBinding
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 /**
@@ -32,17 +32,20 @@ class LoginActivity : AppCompatActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
 
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (BuildConfig.DEBUG) {
-            edt_login_username.setText("18617039316")
-            edt_login_password.setText("123456")
+            binding.edtLoginUsername.setText("18617039316")
+            binding.edtLoginPassword.setText("123456")
         }
-        btn_login.setOnClickListener {
-            val username = edt_login_username.text.toString()
-            val password = edt_login_password.text.toString()
+        binding.btnLogin.setOnClickListener {
+            val username = binding.edtLoginUsername.text.toString()
+            val password = binding.edtLoginPassword.text.toString()
 
 //            if (username == "abc" && password == "123") {
 //                viewModel.saveLoginInfo(username)

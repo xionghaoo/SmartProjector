@@ -3,34 +3,36 @@ package com.ubtrobot.smartprojector.widgets
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import androidx.compose.ui.platform.ViewAmbient
-import com.ubtrobot.smartprojector.R
-import kotlinx.android.synthetic.main.widget_app_launcher.view.*
+import com.ubtrobot.smartprojector.databinding.WidgetAppLauncherBinding
 
 class AppLauncherView : FrameLayout {
+
+    private lateinit var binding: WidgetAppLauncherBinding
+
     constructor(context: Context) : super(context) {}
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        inflate(context, R.layout.widget_app_launcher, this)
+        binding = WidgetAppLauncherBinding.inflate(LayoutInflater.from(context), this, false)
     }
 
     fun lock(callback: () -> Unit) {
-        iv_app_lock.visibility = View.VISIBLE
+        binding.ivAppLock.visibility = View.VISIBLE
         setOnClickListener(null)
-        iv_app_lock.setOnClickListener { callback() }
+        binding.ivAppLock.setOnClickListener { callback() }
     }
 
     fun unlock(callback: () -> Unit) {
-        iv_app_lock.visibility = View.GONE
+        binding.ivAppLock.visibility = View.GONE
         setOnClickListener { callback() }
     }
 
     fun setIcon(drawable: Drawable?) {
-        iv_app_icon.setImageDrawable(drawable)
+        binding.ivAppIcon.setImageDrawable(drawable)
     }
 
     fun setLabel(label: String?) {
-        tv_app_label.text = label
+        binding.tvAppLabel.text = label
     }
 }

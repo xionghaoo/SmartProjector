@@ -12,8 +12,8 @@ import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityVideoBinding
 import com.ubtrobot.smartprojector.utils.VideoFullscreenHelper
-import kotlinx.android.synthetic.main.activity_video.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import java.io.File
@@ -38,22 +38,24 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
     private var player: SimpleExoPlayer? = null
 
     private var autoPlayUrl: String? = null
+    private lateinit var binding: ActivityVideoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video)
+        binding = ActivityVideoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         autoPlayUrl = intent.getStringExtra(EXTRA_URL)
 
-        btn_download.setOnClickListener {
+        binding.btnDownload.setOnClickListener {
             VideoCacheDownloadService.start(this, TEST_VIDEO)
         }
 
-        btn_get_downloads.setOnClickListener {
+        binding.btnGetDownloads.setOnClickListener {
             startActivity(Intent(this, VideoCacheActivity::class.java))
         }
 
         // 清除视频缓存
-        btn_clear_cache.setOnClickListener {
+        binding.btnClearCache.setOnClickListener {
             VideoCacheDownloadService.removeDownload(this, TEST_VIDEO)
         }
 
@@ -117,13 +119,13 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
 
         VideoFullscreenHelper.handle(
                 activity = this,
-                playView = player_view,
-                btnFullscreen = player_view.findViewById(R.id.exo_fullscreen_icon),
+                playView = binding.playerView,
+                btnFullscreen = binding.playerView.findViewById(R.id.exo_fullscreen_icon),
                 defaultHeight = resources.getDimension(R.dimen.player_normal_height).toInt()
         )
 
         player!!.addListener(this)
-        player_view.player = player
+        binding.playerView.player = player
 
         val testVideo = "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears.mpd"
 //        val video1 = File(
@@ -146,19 +148,19 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             Glide.with(this)
                     .load(autoPlayUrl!!.toUri())
                     .centerCrop()
-                    .into(iv_video_1)
+                    .into(binding.ivVideo1)
 //            player?.seekTo(1, 0)
         }
         player!!.addMediaItem(MediaItem.fromUri(TEST_VIDEO.toUri()))
         player!!.prepare()
         player!!.playWhenReady = true
 
-        iv_video_1.setOnClickListener {
+        binding.ivVideo1.setOnClickListener {
             player?.seekTo(0, 0)
             player!!.playWhenReady = true
         }
 
-        iv_video_2.setOnClickListener {
+        binding.ivVideo2.setOnClickListener {
             player?.seekTo(1, 0)
             player?.playWhenReady = true
         }
@@ -173,7 +175,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
                 .load(TEST_VIDEO)
                 .thumbnail(Glide.with(this).load(TEST_VIDEO))
                 .centerCrop()
-                .into(iv_video_2)
+                .into(binding.ivVideo2)
     }
 
     override fun onRequestPermissionsResult(

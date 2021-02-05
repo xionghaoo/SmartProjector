@@ -3,8 +3,8 @@ package com.ubtrobot.smartprojector
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.ubtrobot.smartprojector.databinding.ActivityMqttBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_mqtt.*
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttMessage
@@ -15,20 +15,22 @@ class MqttActivity : AppCompatActivity() {
 
     @Inject
     lateinit var mqttClient: MqttClient
+    private lateinit var binding: ActivityMqttBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mqtt)
+        binding = ActivityMqttBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_connect.setOnClickListener {
+        binding.btnConnect.setOnClickListener {
             mqttClient.connect(object : MqttCallback {
                 override fun connectionLost(cause: Throwable?) {
-                    tv_connect_status.text = "连接断开"
+                    binding.tvConnectStatus.text = "连接断开"
                     Log.d(MqttClient.TAG, "connectionLost")
                 }
 
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
-                    tv_new_message.text = "$topic:${String(message!!.payload)}"
+                    binding.tvNewMessage.text = "$topic:${String(message!!.payload)}"
                     Log.d(MqttClient.TAG, "messageArrived: ${message.id}, ${message.payload}")
                 }
 
@@ -36,29 +38,29 @@ class MqttActivity : AppCompatActivity() {
                     Log.d(MqttClient.TAG, "deliveryComplete: ${token}")
                 }
             }, success = {
-                tv_connect_status.text = "连接成功"
+                binding.tvConnectStatus.text = "连接成功"
             }, failure = { error ->
-                tv_connect_status.text = "连接失败：$error"
+                binding.tvConnectStatus.text = "连接失败：$error"
             })
         }
 
-        edt_subscribe_topic.setText("topic/1")
-        tv_subscribe_status.text = "未订阅"
-        btn_subscribe_topic.setOnClickListener {
-            val topic = edt_subscribe_topic.text.toString()
+        binding.edtSubscribeTopic.setText("topic/1")
+        binding.tvSubscribeStatus.text = "未订阅"
+        binding.btnSubscribeTopic.setOnClickListener {
+            val topic = binding.edtSubscribeTopic.text.toString()
             mqttClient.subscribe(topic, success = {
-                tv_subscribe_status.text = "订阅成功"
-                tv_current_topic.text = "当前主题：$topic"
+                binding.tvSubscribeStatus.text = "订阅成功"
+                binding.tvCurrentTopic.text = "当前主题：$topic"
             }, failure = { error ->
-                tv_subscribe_status.text = "订阅失败"
+                binding.tvSubscribeStatus.text = "订阅失败"
             })
         }
-        btn_send.setOnClickListener {
-            val message = edt_send_message.text.toString()
-            val topic = edt_subscribe_topic.text.toString()
+        binding.btnSend.setOnClickListener {
+            val message = binding.edtSendMessage.text.toString()
+            val topic = binding.edtSubscribeTopic.text.toString()
             mqttClient.publish(topic, message)
         }
-        btn_disconnect.setOnClickListener {
+        binding.btnDisconnect.setOnClickListener {
             mqttClient.disconnect()
         }
 

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubtrobot.smartprojector.R
-import kotlinx.android.synthetic.main.activity_video_cache.*
 
 class VideoCacheActivity : AppCompatActivity() {
 
@@ -14,11 +13,11 @@ class VideoCacheActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_cache)
 
-        rc_cache_list.layoutManager = LinearLayoutManager(this)
-        adapter = CacheVideoAdapter(this, List(20, { VideoItem("测试视频1", VideoActivity.TEST_VIDEO) })) { url ->
-            VideoActivity.start(this, url)
-        }
-        rc_cache_list.adapter = adapter
+//        rc_cache_list.layoutManager = LinearLayoutManager(this)
+//        adapter = CacheVideoAdapter(this, List(20, { VideoItem("测试视频1", VideoActivity.TEST_VIDEO) })) { url ->
+//            VideoActivity.start(this, url)
+//        }
+//        rc_cache_list.adapter = adapter
 
         val items = MutableList<VideoItem>(0) {VideoItem("", "")}
         VideoDownloadHelper.loadDownloads(this)?.values?.forEach { download ->

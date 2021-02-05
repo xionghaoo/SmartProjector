@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityAppWhiteListBinding
 import com.ubtrobot.smartprojector.repo.table.ThirdApp
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_app_white_list.*
 import javax.inject.Inject
 
 /**
@@ -25,14 +25,16 @@ class AppWhiteListActivity : AppCompatActivity() {
 
     private val viewModel: RestrictViewModel by viewModels()
 
+    private lateinit var binding: ActivityAppWhiteListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_app_white_list)
+        binding = ActivityAppWhiteListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        rc_app_white_list.layoutManager = LinearLayoutManager(this)
+        binding.rcAppWhiteList.layoutManager = LinearLayoutManager(this)
         adapter = AppWhiteListAdapter(emptyList())
-        rc_app_white_list.adapter = adapter
+        binding.rcAppWhiteList.adapter = adapter
 
         viewModel.loadThirdApps().observe(this, Observer { r ->
             if (r.isEmpty()) {

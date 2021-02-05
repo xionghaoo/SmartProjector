@@ -9,14 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ubtrobot.smartprojector.BuildConfig
-import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.FragmentAppMarketBinding
 import com.ubtrobot.smartprojector.repo.table.ThirdApp
-import com.ubtrobot.smartprojector.utils.RootCommand
-import com.ubtrobot.smartprojector.utils.RootExecutor
-import com.ubtrobot.smartprojector.utils.ToastUtil
-import kotlinx.android.synthetic.main.fragment_app_market.*
-import kotlinx.coroutines.*
-import timber.log.Timber
 
 /**
  * 已安装的App列表
@@ -27,6 +21,9 @@ class AppMarketFragment : Fragment() {
 
     private lateinit var adapter: AppInfoAdapter
 
+    private var _binding: FragmentAppMarketBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.apply {
@@ -36,14 +33,14 @@ class AppMarketFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_app_market, container, false)
+        _binding = FragmentAppMarketBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rc_en_app_list.layoutManager = GridLayoutManager(context, 6)
+        binding.rcEnAppList.layoutManager = GridLayoutManager(context, 6)
         adapter = AppInfoAdapter(emptyList()) { pkgName ->
             // 点击图标时启动app
             requireActivity().packageManager.apply {
@@ -70,7 +67,7 @@ class AppMarketFragment : Fragment() {
 //                }
             }
         }
-        rc_en_app_list.adapter = adapter
+        binding.rcEnAppList.adapter = adapter
 
         // 获取已安装的app列表
         val intent = Intent(Intent.ACTION_MAIN)
