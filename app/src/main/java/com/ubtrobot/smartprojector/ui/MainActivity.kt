@@ -14,10 +14,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.tuya.smart.home.sdk.TuyaHomeSdk
-import com.tuya.smart.sdk.api.IDevListener
-import com.ubtedu.ukit.project.bridge.BridgeCommunicator
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.replaceFragment

@@ -31,7 +31,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
-        <item name="android:windowBackground">@drawable/splash_preview</item>
+        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
         <!--去掉activity启动动画-->
         <item name="android:windowAnimationStyle">@null</item>
     </style>

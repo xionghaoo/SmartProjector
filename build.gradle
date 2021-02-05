@@ -7,16 +7,16 @@ buildscript {
         google()
         jcenter()
 
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' } // uKit use
-        maven { url "https://raw.github.com/pinchbv/android-analyzer/master/repo" } // uKit use
-        maven { url "https://plugins.gradle.org/m2/" } // uKit use
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' } // uKit use
+//        maven { url "https://raw.github.com/pinchbv/android-analyzer/master/repo" } // uKit use
+//        maven { url "https://plugins.gradle.org/m2/" } // uKit use
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.31.2-alpha'
 
-        classpath "com.justpinch:androidanalyzer:1.3.3" // uKit use
+//        classpath "com.justpinch:androidanalyzer:1.3.3" // uKit use
     }
 }
 
@@ -24,10 +24,10 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' } // uKit use
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' } // uKit use
         maven { url "https://jitpack.io" } // uKit use
-        maven { url "https://raw.github.com/pinchbv/android-analyzer/master/repo" } // uKit use
-        maven { url "https://plugins.gradle.org/m2/" } // uKit use
+//        maven { url "https://raw.github.com/pinchbv/android-analyzer/master/repo" } // uKit use
+//        maven { url "https://plugins.gradle.org/m2/" } // uKit use
     }
 }
 

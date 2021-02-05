@@ -37,7 +37,7 @@
         android:id="@+id/iv_app_lock"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/lock_overlay"
+        android:background="@color/overlay"
         android:padding="25dp"
         android:visibility="gone"
         android:src="@drawable/ic_lock"
