@@ -9,7 +9,6 @@ class TuyaUtil {
     companion object {
         fun registerTuyaDeviceListener(context: Context, devId: String) {
             val device = TuyaHomeSdk.newDeviceInstance(devId)
-            device.unRegisterDevListener()
             device.registerDevListener(object : IDevListener {
                 override fun onDpUpdate(devId: String?, dpStr: String?) {
                     Timber.d("onDpUpdate: $devId, $dpStr")

@@ -34,7 +34,7 @@
         <activity
             android:name=".ui.tuya.TuyaHomeActivity"
             android:screenOrientation="userLandscape" />
-        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" android:screenOrientation="userLandscape"/>
         <activity android:name=".ui.cartoonbook.FlipTestActivity" />
         <activity
             android:name=".test.TestActivity"

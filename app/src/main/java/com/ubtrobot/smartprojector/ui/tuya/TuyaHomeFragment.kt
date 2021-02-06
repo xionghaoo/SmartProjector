@@ -61,13 +61,16 @@ class TuyaHomeFragment : Fragment() {
 
         }
         binding.rcDeviceList.adapter = adapter
-        homeQuery()
-
         binding.btnAddNewDevice.setOnClickListener {
             if (homeId != null) {
                 NewDeviceActivity.start(requireContext(), homeId!!)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeQuery()
     }
 
     override fun onDestroyView() {

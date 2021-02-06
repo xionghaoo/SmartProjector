@@ -186,7 +186,7 @@ class MainActivity : AppCompatActivity() {
 
                 // 显示护眼弹窗
                 CoroutineScope(Dispatchers.Default).launch {
-                    delay(20 * 1000)
+                    delay(60 * 1000)
                     withContext(Dispatchers.Main) {
                         Timber.d("护眼模式")
                         if (Build.VERSION.SDK_INT >= 23) {
