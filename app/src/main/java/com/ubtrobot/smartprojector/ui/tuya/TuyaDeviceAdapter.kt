@@ -7,13 +7,13 @@ import com.ubtrobot.smartprojector.core.PlainListAdapter
 
 class TuyaDeviceAdapter(
     private val items: List<TuyaDevice>,
-    private val onItemClick: (item: TuyaDevice) -> Unit
+    private val onItemClick: (index: Int, item: TuyaDevice) -> Unit
 ) : PlainListAdapter<TuyaDevice>(items) {
     override fun itemLayoutId(): Int = R.layout.list_item_tuya_device
 
     override fun bindView(v: View, item: TuyaDevice, position: Int) {
         v.setOnClickListener {
-            onItemClick(item)
+            onItemClick(position, item)
         }
         v.findViewById<TextView>(R.id.tv_device_name).text = "PID: ${item.name}${if (item.isZigBeeWifi) "(网关)" else ""}"
         v.findViewById<TextView>(R.id.tv_device_id).text = "ID: ${item.id}"

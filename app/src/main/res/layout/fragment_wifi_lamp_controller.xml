@@ -7,74 +7,160 @@
     android:orientation="vertical"
     tools:context=".ui.tuya.controllers.WifiLampControllerFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10dp"
+        android:background="@android:color/holo_orange_light"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="控制面板"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_DDDDDD"/>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/sw_lamp"
-            android:layout_width="87dp"
-            android:layout_height="23dp"
+            android:layout_width="@dimen/_120dp"
+            android:layout_height="@dimen/_30dp"
             android:text="关"
+            android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </FrameLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:textColor="@color/color_DDDDDD"/>
-
+        android:background="@color/color_DDDDDD"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_222222"
+                android:textSize="@dimen/_16sp"
+                android:text="亮度调节"/>
+            <SeekBar
+                android:id="@+id/sb_light"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:layout_width="@dimen/_150dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_light_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sp"
+                android:textColor="@color/color_222222"
+                tools:text="0"/>
+        </LinearLayout>
+    </FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_DDDDDD"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100dp">
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_colour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="调节灯光"/>
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/_16sp"
-            android:textColor="@color/color_222222"
-            android:text="开关"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_DDDDDD"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/_16sp"
-            android:textColor="@color/color_222222"
-            android:text="亮度"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_DDDDDD"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/_16sp"
-            android:textColor="@color/color_222222"
-            android:text="场景"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_DDDDDD"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="@dimen/_16sp"
-            android:textColor="@color/color_222222"
-            android:text="待定"/>
+            android:id="@+id/v_color"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:layout_marginStart="@dimen/_10dp"/>
+
+        <SeekBar
+            android:id="@+id/sb_adjust_colour"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_10dp"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_DDDDDD"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_100dp">-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="@dimen/_16sp"-->
+<!--            android:textColor="@color/color_222222"-->
+<!--            android:text="开关"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/color_DDDDDD"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="@dimen/_16sp"-->
+<!--            android:textColor="@color/color_222222"-->
+<!--            android:text="亮度"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/color_DDDDDD"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="@dimen/_16sp"-->
+<!--            android:textColor="@color/color_222222"-->
+<!--            android:text="场景"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="1dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/color_DDDDDD"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="@dimen/_16sp"-->
+<!--            android:textColor="@color/color_222222"-->
+<!--            android:text="待定"/>-->
+<!--    </LinearLayout>-->
 
 </LinearLayout>

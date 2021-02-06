@@ -22,7 +22,7 @@ class TuyaDeviceCmdAdapter(
     override fun bindView(v: View, item: TuyaDeviceCmd, position: Int) {
         v.findViewById<TextView>(R.id.tv_cmd_key).text = "dpID: ${item.key}"
         val edtValue = v.findViewById<EditText>(R.id.edt_cmd_value)
-        edtValue.setText(item.value?.toString())
+        edtValue.setText(item.value)
         v.findViewById<Button>(R.id.btn_send_cmd).setOnClickListener {
             val device = TuyaHomeSdk.newDeviceInstance(item.deviceId)
             val cmd = "{\"${item.key}\": ${edtValue.text}}"

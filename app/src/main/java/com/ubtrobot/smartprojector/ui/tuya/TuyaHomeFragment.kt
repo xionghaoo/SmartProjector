@@ -15,8 +15,11 @@ import com.tuya.smart.sdk.api.IDevListener
 import com.tuya.smart.sdk.api.ISubDevListener
 import com.tuya.smart.sdk.api.ITuyaDataCallback
 import com.tuya.smart.sdk.bean.DeviceBean
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentTuyaHomeBinding
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
+import com.ubtrobot.smartprojector.ui.tuya.controllers.GeneralControllerFragment
+import com.ubtrobot.smartprojector.ui.tuya.controllers.WifiLampControllerFragment
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.utils.TuyaUtil
@@ -26,7 +29,7 @@ import timber.log.Timber
 class TuyaHomeFragment : Fragment() {
 
     private lateinit var adapter: TuyaDeviceAdapter
-    private lateinit var cmdAdapter: TuyaDeviceCmdAdapter
+//    private lateinit var cmdAdapter: TuyaDeviceCmdAdapter
     private var _binding: FragmentTuyaHomeBinding? = null
     private val binding get() = _binding!!
     private var homeId: Long? = null
@@ -47,14 +50,14 @@ class TuyaHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rcDeviceList.layoutManager = LinearLayoutManager(requireContext())
-        binding.rcCmdList.layoutManager = LinearLayoutManager(requireContext())
-        cmdAdapter = TuyaDeviceCmdAdapter(requireContext(), emptyList())
-        binding.rcCmdList.adapter = cmdAdapter
-        adapter = TuyaDeviceAdapter(emptyList()) { item ->
-            cmdAdapter.updateData(item.dps)
-            binding.tvProdName.text = "产品id：${item.name}"
+//        binding.rcCmdList.layoutManager = LinearLayoutManager(requireContext())
+//        cmdAdapter = TuyaDeviceCmdAdapter(requireContext(), emptyList())
+//        binding.rcCmdList.adapter = cmdAdapter
+        adapter = TuyaDeviceAdapter(emptyList()) { index, item ->
+//            cmdAdapter.updateData(item.dps)
+//            binding.tvProdName.text = "产品id：${item.name}"
 
-            getGatewaySubDevices(item.id)
+            showController(item)
 
         }
         binding.rcDeviceList.adapter = adapter
@@ -70,6 +73,17 @@ class TuyaHomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showController(item: TuyaDevice) {
+        val controller = if (item.categoryCode == "wf_dj") {
+            WifiLampControllerFragment.newInstance(item)
+        } else {
+            GeneralControllerFragment.newInstance(item)
+        }
+        childFragmentManager.beginTransaction()
+            .replace(R.id.sub_fragment_container, controller)
+            .commit()
     }
 
     /**
@@ -114,7 +128,7 @@ class TuyaHomeFragment : Fragment() {
 
                     val cmds = ArrayList<TuyaDeviceCmd>()
                     d.dps.forEach { p ->
-                        cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value.toString()))
+                        cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value?.toString() ?: ""))
                         Timber.d("功能点: ${p.key}, ${p.value}")
                     }
                     if (d.isZigBeeSubDev) {
@@ -129,9 +143,10 @@ class TuyaHomeFragment : Fragment() {
                 adapter.updateData(items)
                 if (items.isNotEmpty()) {
                     val firstItem = items.first()
-                    cmdAdapter.updateData(firstItem.dps)
-                    binding.tvProdName.text = "产品id：${firstItem.name}"
-                    getGatewaySubDevices(firstItem.id)
+                    showController(firstItem)
+//                    cmdAdapter.updateData(firstItem.dps)
+//                    binding.tvProdName.text = "产品id：${firstItem.name}"
+//                    getGatewaySubDevices(firstItem.id)
                 }
             }
 
@@ -141,26 +156,6 @@ class TuyaHomeFragment : Fragment() {
                     ToastUtil.showToast(requireContext(), "登录已失效")
                     LoginActivity.startWithNewTask(requireContext())
                 }
-            }
-        })
-    }
-
-    private fun getGatewaySubDevices(gwId: String) {
-        val gwDevice = TuyaHomeSdk.newGatewayInstance(gwId)
-        gwDevice.getSubDevList(object : ITuyaDataCallback<List<DeviceBean>> {
-            override fun onSuccess(result: List<DeviceBean>?) {
-                binding.containerSubDevList.removeAllViews()
-                result?.forEach { d ->
-                    val tv = TextView(requireContext())
-                    tv.text = "子设备：${d.devId}"
-                    val padding = ResourceUtil.convertDpToPixel(15f, requireContext()).toInt()
-                    tv.setPadding(padding, padding, padding, padding)
-                    binding.containerSubDevList.addView(tv)
-                }
-            }
-
-            override fun onError(errorCode: String?, errorMessage: String?) {
-                ToastUtil.showToast(requireContext(), "查询子设备失败")
             }
         })
     }

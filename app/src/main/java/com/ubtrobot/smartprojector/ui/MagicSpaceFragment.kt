@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.FragmentMagicSpaceBinding
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
@@ -16,6 +17,9 @@ import timber.log.Timber
  */
 class MagicSpaceFragment : Fragment() {
 
+    private var _binding: FragmentMagicSpaceBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -24,9 +28,8 @@ class MagicSpaceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Timber.d("MagicSpaceFragment onCreateView")
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_magic_space, container, false)
+        _binding = FragmentMagicSpaceBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,14 +39,14 @@ class MagicSpaceFragment : Fragment() {
 //            startPlainActivity(HomeActivity::class.java)
 //        }
 
-//        card_device.setOnClickListener {
-//            startPlainActivity(TuyaHomeActivity::class.java)
-//        }
+        binding.cardDevice.setOnClickListener {
+            startPlainActivity(TuyaHomeActivity::class.java)
+        }
     }
 
     override fun onDestroyView() {
-        Timber.d("MagicSpaceFragment onDestroyView")
         super.onDestroyView()
+        _binding = null
     }
 
     companion object {
