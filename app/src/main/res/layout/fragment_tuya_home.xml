@@ -25,12 +25,20 @@
             android:layout_marginStart="@dimen/_15dp"
             android:text="家庭："/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_device_list"
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_20dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_20dp">
+            <com.ubtrobot.smartprojector.widgets.CustomRefreshHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_device_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
         <Button
             android:id="@+id/btn_add_new_device"

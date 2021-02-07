@@ -7,51 +7,78 @@ ext {
     buildToolsVersion = '30.0.2'
 
     // ----------- dependencies version start -------------
-    kotlin_version = '1.3.72'
-    coreKtxVersion = "1.3.0"
-    appcompatVersion = "1.1.0"
-    dagger = "2.16"
-    glideVersion = "4.9.0"
-    gsonVersion = "2.8.6"
-    kotlinCoroutinesVersion = "1.3.5"
-    constraintLayoutVersion = "1.1.3"
-    dexterVersion = "5.0.0"
-    materialVersion = "1.0.0-rc01"
-//        flexboxVersion = "0.3.2"
-    recyclerviewVersion = "1.1.0"
-//        browserVersion = '1.0.0'
-    lifecycleVersion = '2.2.0'
-    retrofitVersion = '2.3.0'
-    roomVersion = '2.2.5'
-    pagingVersion = '2.1.2'
-    cardViewVersion = '1.0.0'
-    okHttpVersion = '4.8.1'
-    okHttpLogVersion = '4.8.1'
-    smartRefreshLayoutVersion = '1.1.0-andx-8'
-    qrcodeVersion = '1.3.6'
-    lottieVersion = '3.0.7'
-    cameraxVersion = "1.0.0-alpha04"
-    timberVersion = '4.7.1'
-    zxingCoreVersion = '3.3.0'
-    legacySupportVersion = '1.0.0'
-    flexboxVersion = "2.0.1"
+    versions = [:]
+    versions.appcompat = '1.2.0'
+    versions.core_ktx = '1.3.2'
+    versions.constraintlayout = '2.0.4'
+    versions.material = '1.2.1'
+    versions.hilt = '2.31.2-alpha'
+    versions.hilt_viewmodel = '1.0.0-alpha03'
+    versions.lifecycle = '2.2.0'
+    versions.room = '2.2.6'
+    versions.coroutines = '1.3.5'
+    versions.navigation = '2.3.3'
+    versions.exo = '2.12.2'
+    versions.timber = '4.7.1'
+    versions.glide = '4.11.0'
+    versions.easy_permission = '3.0.0'
+    versions.su = '1.1.0.+'
+    versions.retrofit = '2.9.0'
+    versions.gson = '2.8.6'
+    versions.smart_refresh_layout = '2.0.3'
+
+    dpes = [:]
+    dpes.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+    dpes.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
+    dpes.material = "com.google.android.material:material:$versions.material"
+    dpes.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    dpes.lifecycle = [
+        extensions: "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
+        livedata_ktx: "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
+        viewmodel_ktx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    ]
+    dpes.hilt = [
+        main: "com.google.dagger:hilt-android:$versions.hilt",
+        android_compiler: "com.google.dagger:hilt-android-compiler:$versions.hilt",
+        compiler: "androidx.hilt:hilt-compiler:$versions.hilt_viewmodel",
+        lifecycle_viewmodel: "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt_viewmodel"
+    ]
+    dpes.easy_permission = "pub.devrel:easypermissions:$versions.easy_permission"
+    dpes.smart_refresh_layout = [
+        kernel: "com.scwang.smart:refresh-layout-kernel:$versions.smart_refresh_layout",
+        classics_header: "com.scwang.smart:refresh-header-classics:$versions.smart_refresh_layout"
+    ]
+    dpes.su = "eu.chainfire:libsuperuser:$versions.su"
+    dpes.gson = "com.google.code.gson:gson:$versions.gson"
+    dpes.retrofit = [
+        main: "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        gson_converter: "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    ]
+    dpes.room = [
+        runtime: "androidx.room:room-runtime:$versions.room",
+        compiler: "androidx.room:room-compiler:$versions.room",
+        ktx: "androidx.room:room-ktx:$versions.room",
+        coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    ]
+    dpes.glide = [
+        main: "com.github.bumptech.glide:glide:$versions.glide",
+        compiler: "com.github.bumptech.glide:compiler:$versions.glide"
+    ]
     // ----------- dependencies version end -------------
 
-    // ----------- 本地配置项 start -----------
+    // ----------- 项目环境配置 start -----------
     // 本地缓存数据库版本
     cache_db_version = '1'
-    // 测试域名 test-ty
-    domain_uat = '\"ip.jsontest.com\"'
-    // 正式域名
-    domain_prod = '\"xxx\"'
-    // 预发布环境
-    domain_pre = '\"xxx\"'
+    domain = [:]
+    domain.uat = '\"ip.jsontest.com\"'
+    domain.pre = '\"ip.jsontest.com\"'
+    domain.prod = '\"ip.jsontest.com\"'
 
     tecentStorageHostUat = '\"https://cdn-vesta-dev.pgyscm.com\"'
     tecentStorageHost = '\"https://cdn-vesta-pro.pgyscm.com\"'
-    // ----------- 本地配置项 end -----------
+    // ----------- 项目环境配置 end -----------
 
-    // ----------- App版本管理 start ---------------
+    // ----------- 版本管理 start ---------------
     def today = new Date().format('yyMMdd').toString()
     // 计算版本名称最后一个字符
     versionLastCharacter = { String path ->

@@ -66,10 +66,10 @@ class TuyaHomeFragment : Fragment() {
                 NewDeviceActivity.start(requireContext(), homeId!!)
             }
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
+        binding.refreshLayout.setOnRefreshListener {
+            homeQuery()
+        }
         homeQuery()
     }
 
@@ -102,10 +102,14 @@ class TuyaHomeFragment : Fragment() {
                     Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
                     homeDevicesQuery(home.homeId)
                     homeId = home.homeId
+                } else {
+                    binding.refreshLayout.finishRefresh(true)
                 }
             }
 
             override fun onError(errorCode: String?, error: String?) {
+                binding.refreshLayout.finishRefresh(false)
+
                 Timber.d("家庭查询失败: $errorCode, $error")
                 if (errorCode == "USER_SESSION_LOSS") {
                     ToastUtil.showToast(requireContext(), "登录已失效")
@@ -134,8 +138,7 @@ class TuyaHomeFragment : Fragment() {
                         cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value?.toString() ?: ""))
                         Timber.d("功能点: ${p.key}, ${p.value}")
                     }
-                    if (d.isZigBeeSubDev) {
-                        // 注册zigbee子设备监听, 需要放到全局监听
+                    if (d.categoryCode == "zig_sos") {
                         TuyaUtil.registerTuyaDeviceListener(requireContext(), d.devId)
                     }
                     if (d.isZigBeeWifi) {
@@ -151,9 +154,11 @@ class TuyaHomeFragment : Fragment() {
 //                    binding.tvProdName.text = "产品id：${firstItem.name}"
 //                    getGatewaySubDevices(firstItem.id)
                 }
+                binding.refreshLayout.finishRefresh(true)
             }
 
             override fun onError(errorCode: String?, errorMsg: String?) {
+                binding.refreshLayout.finishRefresh(false)
                 Timber.d("家庭设备查询失败: $errorCode, $errorMsg")
                 if (errorCode == "USER_SESSION_LOSS") {
                     ToastUtil.showToast(requireContext(), "登录已失效")
