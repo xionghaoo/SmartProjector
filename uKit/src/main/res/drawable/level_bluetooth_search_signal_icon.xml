@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<level-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/bluetooth_list_signal_icon_a" android:maxLevel="0"/>
-    <item android:drawable="@drawable/bluetooth_list_signal_icon_b" android:maxLevel="1"/>
-    <item android:drawable="@drawable/bluetooth_list_signal_icon_c" android:maxLevel="2"/>
-    <item android:drawable="@drawable/bluetooth_list_signal_icon_d" android:maxLevel="3"/>
-</level-list>

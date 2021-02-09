@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/bluetooth_btn_smallred_pre" android:state_pressed="true"/>
-    <item android:state_enabled="false">
-        <bitmap android:src="@drawable/bluetooth_btn_smallred_nor" android:alpha="0.5"/>
-    </item>
-    <item android:drawable="@drawable/bluetooth_btn_smallred_nor"/>
-</selector>

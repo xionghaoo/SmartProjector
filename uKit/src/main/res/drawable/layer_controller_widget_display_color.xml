@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/project_remote_grid_bg" android:id="@+id/controller_widget_bg" />
-    <item android:drawable="@drawable/project_remote_sidebar_reading_color" />
-</layer-list>

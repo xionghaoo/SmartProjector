@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="kprogresshud_default_color">#00000000</color>
-    <color name="kprogresshud_grey_color">#449E9E9E</color>
-    <color name="rippelColor">#FFFFFF</color>
-    <color name="range_seekbar_default_color">#88cc00</color>
-</resources>
