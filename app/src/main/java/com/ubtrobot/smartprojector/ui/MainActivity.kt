@@ -14,6 +14,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
@@ -86,63 +88,41 @@ class MainActivity : AppCompatActivity() {
         settingsFragment = SettingsFragment.newInstance()
         cartoonBookFragment = CartoonBookFragment.newInstance()
 
-        menus.clear()
-        menus.add(binding.tvMenuAi)
-        menus.add(binding.tvMenuProgram)
-        menus.add(binding.tvMenuInteract)
-        menus.add(binding.tvMenuPuzzle)
-        menus.add(binding.tvMenuApplication)
-        refreshSelectedStatus(binding.tvMenuAi)
-        binding.apply {
-            tvMenuAi.setOnClickListener {
-                refreshSelectedStatus(tvMenuAi)
-                replaceFragment(mainFragment, R.id.fragment_container)
-            }
-            tvMenuProgram.setOnClickListener {
-                refreshSelectedStatus(tvMenuProgram)
-                replaceFragment(magicSpaceFragment, R.id.fragment_container)
-            }
-            tvMenuInteract.setOnClickListener {
-                refreshSelectedStatus(tvMenuInteract)
-                replaceFragment(gameMarketFragment, R.id.fragment_container)
-            }
-            tvMenuPuzzle.setOnClickListener {
-                refreshSelectedStatus(tvMenuPuzzle)
-                replaceFragment(cartoonBookFragment, R.id.fragment_container)
-            }
-            tvMenuApplication.setOnClickListener {
-                refreshSelectedStatus(tvMenuApplication)
-                replaceFragment(appMarketFragment, R.id.fragment_container)
-            }
-        }
-
-
-//        container_menu.removeAllViews()
-//        menuTitles.forEachIndexed { index, title ->
-//            val tv = TextView(this)
-//            tv.text = title
-//            container_menu.addView(tv)
-//            val lp = tv.layoutParams as LinearLayout.LayoutParams
-//            lp.height = ResourceUtil.convertDpToPixel(56f, this).toInt()
-//            lp.width = LinearLayout.LayoutParams.MATCH_PARENT
-//            lp.topMargin = ResourceUtil.convertDpToPixel(20f, this).toInt()
-//            tv.setBackgroundColor(resources.getColor(android.R.color.holo_blue_bright))
-//            tv.gravity = Gravity.CENTER
-//            tv.setOnClickListener {
-//                when (index) {
-//                    0 -> replaceFragment(educationFragment, R.id.fragment_container)
-//                    1 -> replaceFragment(magicSpaceFragment, R.id.fragment_container)
-//                    2 -> replaceFragment(appMarketFragment, R.id.fragment_container)
-//                    3 -> replaceFragment(gameMarketFragment, R.id.fragment_container)
-//                    4 -> replaceFragment(settingsFragment, R.id.fragment_container)
-//                    5 -> replaceFragment(cartoonBookFragment, R.id.fragment_container)
-//                }
-//
+//        menus.clear()
+//        menus.add(binding.tvMenuAi)
+//        menus.add(binding.tvMenuProgram)
+//        menus.add(binding.tvMenuInteract)
+//        menus.add(binding.tvMenuPuzzle)
+//        menus.add(binding.tvMenuApplication)
+//        refreshSelectedStatus(binding.tvMenuAi)
+//        binding.apply {
+//            tvMenuAi.setOnClickListener {
+//                refreshSelectedStatus(tvMenuAi)
+//                replaceFragment(mainFragment, R.id.fragment_container)
 //            }
-//
+//            tvMenuProgram.setOnClickListener {
+//                refreshSelectedStatus(tvMenuProgram)
+//                replaceFragment(magicSpaceFragment, R.id.fragment_container)
+//            }
+//            tvMenuInteract.setOnClickListener {
+//                refreshSelectedStatus(tvMenuInteract)
+//                replaceFragment(gameMarketFragment, R.id.fragment_container)
+//            }
+//            tvMenuPuzzle.setOnClickListener {
+//                refreshSelectedStatus(tvMenuPuzzle)
+//                replaceFragment(cartoonBookFragment, R.id.fragment_container)
+//            }
+//            tvMenuApplication.setOnClickListener {
+//                refreshSelectedStatus(tvMenuApplication)
+//                replaceFragment(appMarketFragment, R.id.fragment_container)
+//            }
 //        }
+//
+//        replaceFragment(mainFragment, R.id.fragment_container)
 
-        replaceFragment(mainFragment, R.id.fragment_container)
+        binding.viewPager.adapter = ScreenAdapter()
+        binding.pagerIndicator.setViewPager(binding.viewPager)
+
 
         // 监听网络状态变化
 //        connectionStateMonitor.setConnectStateListener { isConnected ->
@@ -219,6 +199,17 @@ class MainActivity : AppCompatActivity() {
             .create()
         dialog.window?.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
         dialog.show()
+    }
+
+    private inner class ScreenAdapter : FragmentStateAdapter(supportFragmentManager, lifecycle) {
+        override fun getItemCount(): Int = 2
+
+        override fun createFragment(position: Int): Fragment {
+            return when(position) {
+                0 -> MainFragment.newInstance()
+                else -> SettingsFragment.newInstance()
+            }
+        }
     }
 
 }
