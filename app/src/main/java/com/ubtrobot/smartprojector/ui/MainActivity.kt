@@ -80,13 +80,13 @@ class MainActivity : AppCompatActivity() {
 //                .circleCrop()
 //                .into(iv_avatar)
 
-        mainFragment = MainFragment.newInstance()
-        educationFragment = EducationFragment.newInstance()
-        magicSpaceFragment = MagicSpaceFragment.newInstance()
-        appMarketFragment = AppMarketFragment.newInstance()
-        gameMarketFragment = GameFragment.newInstance()
-        settingsFragment = SettingsFragment.newInstance()
-        cartoonBookFragment = CartoonBookFragment.newInstance()
+//        mainFragment = MainFragment.newInstance(0)
+//        educationFragment = EducationFragment.newInstance()
+//        magicSpaceFragment = MagicSpaceFragment.newInstance()
+//        appMarketFragment = AppMarketFragment.newInstance()
+//        gameMarketFragment = GameFragment.newInstance()
+//        settingsFragment = SettingsFragment.newInstance()
+//        cartoonBookFragment = CartoonBookFragment.newInstance()
 
 //        menus.clear()
 //        menus.add(binding.tvMenuAi)
@@ -202,13 +202,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private inner class ScreenAdapter : FragmentStateAdapter(supportFragmentManager, lifecycle) {
-        override fun getItemCount(): Int = 2
+        override fun getItemCount(): Int = 3
 
         override fun createFragment(position: Int): Fragment {
-            return when(position) {
-                0 -> MainFragment.newInstance()
-                else -> SettingsFragment.newInstance()
-            }
+            return MainFragment.newInstance(position)
         }
     }
 

@@ -18,5 +18,8 @@
     <color name="color_979797">#979797</color>
     <color name="color_E3E3E3">#E3E3E3</color>
 
+    <color name="card_bg">#6ED8D8D8</color>
+    <color name="card_stroke">#979797</color>
+
 
 </resources>

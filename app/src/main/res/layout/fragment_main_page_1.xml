@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainFragment">
+
+
+    <FrameLayout
+        android:id="@+id/textView15"
+        android:layout_width="@dimen/_310dp"
+        android:layout_height="@dimen/_188dp"
+        android:layout_marginTop="@dimen/_88dp"
+        android:layout_marginStart="@dimen/_132dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100dp"
+            android:text="等级2"
+            android:paddingStart="@dimen/_160dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_36sp"
+            android:background="@drawable/shape_card_transparent"
+            android:gravity="center_vertical"
+            android:layout_gravity="bottom" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_10dp"
+            android:src="@drawable/ic_ip_logo_small"/>
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textView16"
+        android:layout_width="@dimen/_644dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_64dp"
+        android:layout_marginTop="@dimen/_158dp"
+        android:layout_marginBottom="@dimen/_55dp"
+        android:background="@drawable/shape_card_transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" >
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="同步课堂"
+            style="@style/CardTitleStyle"
+            android:textSize="@dimen/_46sp"
+            android:layout_marginTop="@dimen/_30dp"
+            android:layout_marginStart="@dimen/_60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_325dp"
+            android:layout_marginTop="@dimen/_33dp"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_marginEnd="@dimen/_40dp"
+            android:background="@drawable/shape_card_green"
+            android:text="英语"
+            style="@style/CardTitleStyle"
+            android:paddingTop="@dimen/_45dp"
+            android:paddingStart="@dimen/_30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="@dimen/_282dp"
+            android:layout_height="0dp"
+            android:text="语文"
+            style="@style/CardTitleStyle"
+            android:paddingTop="@dimen/_64dp"
+            android:paddingStart="@dimen/_30dp"
+            android:background="@drawable/shape_card_yellow"
+            android:layout_marginTop="@dimen/_22dp"
+            android:layout_marginBottom="@dimen/_37dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="数学"
+            style="@style/CardTitleStyle"
+            android:paddingTop="@dimen/_64dp"
+            android:paddingStart="@dimen/_30dp"
+            android:background="@drawable/shape_card_orange"
+            android:layout_marginStart="@dimen/_25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView34"
+            app:layout_constraintEnd_toEndOf="@+id/textView33"
+            app:layout_constraintStart_toEndOf="@+id/textView34"
+            app:layout_constraintTop_toTopOf="@+id/textView34" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_524dp"
+        android:layout_marginStart="@dimen/_46dp"
+        android:layout_marginEnd="@dimen/_80dp"
+        android:background="@drawable/shape_card_transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="@+id/textView16" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_40dp"
+            android:layout_marginStart="@dimen/_40dp"
+            style="@style/CardTitleStyle"
+            android:text="智能AI练习"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_marginEnd="@dimen/_40dp"
+            android:layout_marginBottom="@dimen/_40dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_82dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="写作业1小时；预习"
+                android:textSize="@dimen/_40sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/_12dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="制定并完成计划会有奖励哦~"
+                android:textColor="#FBFBFB"
+                android:textSize="@dimen/_26sp"
+                android:layout_marginTop="@dimen/_2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView36"
+                app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="@dimen/_310dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_28dp"
+        android:background="@drawable/shape_card_blue"
+        android:text="教程预习"
+        style="@style/CardTitleStyle"
+        android:paddingStart="@dimen/_33dp"
+        android:paddingTop="@dimen/_75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_24dp"
+        android:background="@drawable/shape_card_red"
+        android:text="错题本"
+        style="@style/CardTitleStyle"
+        android:paddingStart="@dimen/_33dp"
+        android:paddingTop="@dimen/_75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+        app:layout_constraintEnd_toEndOf="@+id/textView24"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_206dp"
+        android:layout_marginTop="@dimen/_25dp"
+        android:text="搜题"
+        style="@style/CardTitleStyle"
+        android:paddingTop="@dimen/_25dp"
+        android:paddingStart="@dimen/_63dp"
+        android:background="@drawable/shape_card_purple"
+        app:layout_constraintEnd_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_206dp"
+        android:layout_marginTop="@dimen/_22dp"
+        android:text="指尖点读"
+        style="@style/CardTitleStyle"
+        android:paddingTop="@dimen/_25dp"
+        android:paddingStart="@dimen/_63dp"
+        android:background="@drawable/shape_card_yellow"
+        app:layout_constraintEnd_toEndOf="@+id/textView29"
+        app:layout_constraintStart_toStartOf="@+id/textView29"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_22dp"
+        android:text="指尖查词"
+        style="@style/CardTitleStyle"
+        android:paddingTop="@dimen/_25dp"
+        android:paddingStart="@dimen/_63dp"
+        android:background="@drawable/shape_card_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="@+id/textView30"
+        app:layout_constraintStart_toStartOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+</androidx.constraintlayout.widget.ConstraintLayout>

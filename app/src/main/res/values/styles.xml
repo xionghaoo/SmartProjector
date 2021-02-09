@@ -41,4 +41,10 @@
     <style name="AppTheme.NoAnimation">
         <item name="android:windowAnimationStyle">@null</item>
     </style>
+
+    <style name="CardTitleStyle">
+        <item name="android:textSize">@dimen/_46sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FBFBFB</item>
+    </style>
 </resources>

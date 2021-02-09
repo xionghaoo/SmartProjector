@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/textView38"
+        android:layout_width="@dimen/_644dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_102dp"
+        android:layout_marginTop="@dimen/_158dp"
+        android:layout_marginBottom="@dimen/_55dp"
+        android:background="@drawable/shape_card_transparent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_27dp"
+            style="@style/CardTitleStyle"
+            android:text="专项学习"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textView39"
+        android:layout_width="@dimen/_644dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/shape_card_transparent"
+        android:layout_marginStart="@dimen/_44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView38"
+        app:layout_constraintStart_toEndOf="@+id/textView38"
+        app:layout_constraintTop_toTopOf="@+id/textView38" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_27dp"
+            style="@style/CardTitleStyle"
+            android:text="网课一对多"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

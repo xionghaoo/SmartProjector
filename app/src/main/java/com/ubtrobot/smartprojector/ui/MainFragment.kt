@@ -1,6 +1,6 @@
 package com.ubtrobot.smartprojector.ui
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,61 +8,70 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.R
-import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
-import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
+import com.ubtrobot.smartprojector.databinding.FragmentMainPage1Binding
+import com.ubtrobot.smartprojector.databinding.FragmentMainPage2Binding
+import com.ubtrobot.smartprojector.databinding.FragmentMainPage3Binding
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.IllegalArgumentException
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
+    private var page: Int? = null
+    private var _bindingPageOne: FragmentMainPage1Binding? = null
+    private var _bindingPageTwo: FragmentMainPage2Binding? = null
+    private var _bindingPageThree: FragmentMainPage3Binding? = null
+    private val bindingPageOne get() = _bindingPageOne!!
+    private val bindingPageTwo get() = _bindingPageTwo!!
+    private val bindingPageThree get() = _bindingPageThree!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.also {
+            page = it.getInt(ARG_PAGE)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return when (page) {
+            0 -> {
+                _bindingPageOne = FragmentMainPage1Binding.inflate(inflater, container, false)
+                bindingPageOne.root
+            }
+            1 -> {
+                _bindingPageTwo = FragmentMainPage2Binding.inflate(inflater, container, false)
+                bindingPageTwo.root
+            }
+            2 -> {
+                _bindingPageThree = FragmentMainPage3Binding.inflate(inflater, container, false)
+                bindingPageThree.root
+            }
+            else -> throw IllegalStateException("not found main fragment layout")
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _bindingPageOne = null
+        _bindingPageTwo = null
+        _bindingPageThree = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        btn_mqtt_test.setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_mqttFragment)
-//        }
-//
-//        btn_serial_port_test.setOnClickListener {
-//            startActivity(Intent(context, SerialPortActivity::class.java))
-//        }
-//
-//        btn_api_test.setOnClickListener {
-//            tv_title.text = "标题发生改变"
-//            viewModel.apiTest().observe(viewLifecycleOwner, Observer { r ->
-//                if (r.status == Status.SUCCESS && r.data != null) {
-//                    if (r.data.ip != null) tv_api_result.text = "API测试数据: ip = ${r.data.ip}"
-//                }
-//            })
-//        }
-//
-//        btn_video.setOnClickListener {
-//            startActivity(Intent(context, VideoActivity::class.java))
-//        }
-//
-//        btn_tuya.setOnClickListener {
-//            startActivity(Intent(context, TuyaActivity::class.java))
-//        }
-//
-//        btn_file_download.setOnClickListener {
-//            startActivity(Intent(context, FileDownloadActivity::class.java))
-//        }
-
-        view.findViewById<View>(R.id.card_settings).setOnClickListener {
-            startPlainActivity(SettingsActivity::class.java)
-        }
     }
 
     companion object {
-        fun newInstance() = MainFragment()
+        private const val ARG_PAGE = "ARG_PAGE"
+
+        fun newInstance(page: Int) = MainFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ARG_PAGE, page)
+            }
+        }
     }
 }

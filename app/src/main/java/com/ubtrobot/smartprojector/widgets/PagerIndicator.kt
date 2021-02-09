@@ -8,6 +8,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.view.children
 import androidx.viewpager2.widget.ViewPager2
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.utils.ResourceUtil
+import kotlin.math.roundToInt
 
 /**
  * viewpager指示器
@@ -36,10 +38,11 @@ class PagerIndicator : LinearLayout {
                     item.background = resources.getDrawable(R.drawable.shape_circle_overlay)
                 }
                 val itemLp = item.layoutParams as LinearLayout.LayoutParams
-                itemLp.width = 10
-                itemLp.height = 10
+                val size = ResourceUtil.convertDpToPixel(12f, context).roundToInt()
+                itemLp.width = size
+                itemLp.height = size
                 if (i > 0) {
-                    itemLp.leftMargin = 50
+                    itemLp.leftMargin = ResourceUtil.convertDpToPixel(30f, context).roundToInt()
                 }
 
             }
