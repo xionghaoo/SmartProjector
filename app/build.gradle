@@ -190,6 +190,8 @@ dependencies {
     implementation dpes.su
 
     implementation dpes.smart_refresh_layout.kernel     //核心必须依赖
-    implementation  dpes.smart_refresh_layout.classics_header    //经典刷新头
+    implementation dpes.smart_refresh_layout.classics_header    //经典刷新头
+
+    implementation dpes.flexbox
 
 }

@@ -210,19 +210,23 @@
         app:layout_constraintStart_toStartOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-    <TextView
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/textView30"
         android:layout_width="0dp"
         android:layout_height="@dimen/_206dp"
         android:layout_marginTop="@dimen/_22dp"
-        android:text="指尖点读"
-        style="@style/CardTitleStyle"
-        android:paddingTop="@dimen/_25dp"
-        android:paddingStart="@dimen/_63dp"
-        android:background="@drawable/shape_card_yellow"
         app:layout_constraintEnd_toEndOf="@+id/textView29"
         app:layout_constraintStart_toStartOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/textView29" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="指尖点读"
+            style="@style/CardTitleStyle"
+            android:paddingTop="@dimen/_25dp"
+            android:paddingStart="@dimen/_63dp"
+            android:background="@drawable/shape_card_yellow"/>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <TextView
         android:id="@+id/textView31"

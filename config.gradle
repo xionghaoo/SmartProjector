@@ -26,6 +26,7 @@ ext {
     versions.retrofit = '2.9.0'
     versions.gson = '2.8.6'
     versions.smart_refresh_layout = '2.0.3'
+    versions.flexbox = '2.0.1'
 
     dpes = [:]
     dpes.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
@@ -64,6 +65,7 @@ ext {
         main: "com.github.bumptech.glide:glide:$versions.glide",
         compiler: "com.github.bumptech.glide:compiler:$versions.glide"
     ]
+    dpes.flexbox = "com.google.android:flexbox:$versions.flexbox"
     // ----------- dependencies version end -------------
 
     // ----------- 项目环境配置 start -----------

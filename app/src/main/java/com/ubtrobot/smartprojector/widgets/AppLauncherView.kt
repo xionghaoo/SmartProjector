@@ -12,8 +12,14 @@ class AppLauncherView : FrameLayout {
 
     private lateinit var binding: WidgetAppLauncherBinding
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context) {
+        initial(context)
+    }
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        initial(context)
+    }
+
+    private fun initial(context: Context) {
         binding = WidgetAppLauncherBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
