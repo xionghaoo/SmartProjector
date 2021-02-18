@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.children
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.utils.ResourceUtil
@@ -27,10 +28,10 @@ class PagerIndicator : LinearLayout {
         orientation = HORIZONTAL
     }
 
-    fun setViewPager(vp: ViewPager2) {
+    fun setViewPager(vp: ViewPager) {
         removeAllViews()
         if (vp.adapter != null) {
-            for (i in 0.until(vp.adapter!!.itemCount)) {
+            for (i in 0.until(vp.adapter!!.count)) {
                 val item = View(context)
                 addView(item)
                 item.background = resources.getDrawable(R.drawable.shape_circle_white)
@@ -47,7 +48,11 @@ class PagerIndicator : LinearLayout {
 
             }
         }
-        vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        vp.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
             override fun onPageSelected(position: Int) {
                 children.forEach { child ->
                     child.background = resources.getDrawable(R.drawable.shape_circle_overlay)
@@ -57,7 +62,22 @@ class PagerIndicator : LinearLayout {
                     item.background = resources.getDrawable(R.drawable.shape_circle_white)
                 }
             }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
         })
+//        vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                children.forEach { child ->
+//                    child.background = resources.getDrawable(R.drawable.shape_circle_overlay)
+//                }
+//                val item = getChildAt(position)
+//                if (item != null) {
+//                    item.background = resources.getDrawable(R.drawable.shape_circle_white)
+//                }
+//            }
+//        })
 
     }
 }

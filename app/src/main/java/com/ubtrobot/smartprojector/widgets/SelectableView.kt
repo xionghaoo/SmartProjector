@@ -3,6 +3,7 @@ package com.ubtrobot.smartprojector.widgets
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import timber.log.Timber
 
 class SelectableView : FrameLayout {
 
@@ -17,21 +18,43 @@ class SelectableView : FrameLayout {
     }
 
     private fun initial(context: Context) {
-        setOnClickListener {
-            if (selectedState == 0) {
-                selectedState = 1
+        Timber.d("initial: $id")
+        isFocusable = true
+        isFocusableInTouchMode = true
+        setOnFocusChangeListener { _, hasFocus ->
+            Timber.d("has focus: $id, $hasFocus")
+            if (hasFocus) {
                 animate().scaleX(1.4f)
                         .scaleY(1.4f)
                         .translationZ(10f)
                         .start()
-            } else if (selectedState == 1) {
-                selectedState = 0
+            } else {
                 animate().scaleX(1f)
                         .scaleY(1f)
                         .translationZ(0f)
                         .start()
-                listener?.invoke()
             }
+        }
+//        setOnClickListener {
+//            Timber.d("menu clicked")
+//            toggleSelectedState()
+//        }
+    }
+
+    fun toggleSelectedState() {
+        if (selectedState == 0) {
+            selectedState = 1
+            animate().scaleX(1.4f)
+                    .scaleY(1.4f)
+                    .translationZ(10f)
+                    .start()
+        } else if (selectedState == 1) {
+            selectedState = 0
+            animate().scaleX(1f)
+                    .scaleY(1f)
+                    .translationZ(0f)
+                    .start()
+            listener?.invoke()
         }
     }
 

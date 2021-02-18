@@ -30,3 +30,5 @@ $ cd /data/misc/wifi/
 ## 问题记录
 
 1. google官方的串口库支持7.1.1(25)以下的targetSdk，8.0以上的设备没有权限读取/proc/tty/drivers设备
+
+2. ViewPager2对于焦点处理有问题，nextFocusDown等方向键焦点无法自动获取，ViewPager正常

@@ -8,7 +8,7 @@
 
 
     <FrameLayout
-        android:id="@+id/textView15"
+        android:id="@+id/menu_level"
         android:layout_width="@dimen/_310dp"
         android:layout_height="@dimen/_188dp"
         android:layout_marginTop="@dimen/_88dp"
@@ -43,7 +43,7 @@
         android:layout_marginBottom="@dimen/_55dp"
         android:background="@drawable/shape_card_transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/menu_level"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" >
 
@@ -196,36 +196,43 @@
         app:layout_constraintStart_toEndOf="@+id/textView26"
         app:layout_constraintTop_toTopOf="@+id/textView26" />
 
-    <TextView
-        android:id="@+id/textView29"
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_search"
         android:layout_width="0dp"
         android:layout_height="@dimen/_206dp"
         android:layout_marginTop="@dimen/_25dp"
-        android:text="搜题"
-        style="@style/CardTitleStyle"
-        android:paddingTop="@dimen/_25dp"
-        android:paddingStart="@dimen/_63dp"
-        android:background="@drawable/shape_card_purple"
-        app:layout_constraintEnd_toEndOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/textView30"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_206dp"
-        android:layout_marginTop="@dimen/_22dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView29"
-        app:layout_constraintStart_toStartOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" >
+        android:background="@drawable/shape_card_blue"
+        android:nextFocusDown="@+id/menu_read"
+        app:layout_constraintEnd_toEndOf="@+id/menu_level"
+        app:layout_constraintStart_toStartOf="@+id/menu_level"
+        app:layout_constraintTop_toBottomOf="@+id/menu_level" >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="指尖点读"
-            style="@style/CardTitleStyle"
+            android:text="搜题"
             android:paddingTop="@dimen/_25dp"
             android:paddingStart="@dimen/_63dp"
-            android:background="@drawable/shape_card_yellow"/>
+            style="@style/CardTitleStyle"/>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
+
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_read"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_206dp"
+        android:layout_marginTop="@dimen/_22dp"
+        android:nextFocusUp="@+id/menu_search"
+        android:background="@drawable/shape_card_yellow"
+        app:layout_constraintEnd_toEndOf="@+id/menu_search"
+        app:layout_constraintStart_toStartOf="@+id/menu_search"
+        app:layout_constraintTop_toBottomOf="@+id/menu_search" >
+
+        <TextView
+            style="@style/CardTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_63dp"
+            android:paddingTop="@dimen/_25dp"
+            android:text="指尖点读" />
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <TextView
@@ -239,7 +246,7 @@
         android:paddingStart="@dimen/_63dp"
         android:background="@drawable/shape_card_blue"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintEnd_toEndOf="@+id/textView30"
-        app:layout_constraintStart_toStartOf="@+id/textView30"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintEnd_toEndOf="@+id/menu_read"
+        app:layout_constraintStart_toStartOf="@+id/menu_read"
+        app:layout_constraintTop_toBottomOf="@+id/menu_read" />
 </androidx.constraintlayout.widget.ConstraintLayout>

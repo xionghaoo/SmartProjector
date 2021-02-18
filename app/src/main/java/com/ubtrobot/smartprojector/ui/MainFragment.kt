@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage1Binding
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage2Binding
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage3Binding
+import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.utils.PackageUtil
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.widgets.AppLauncherView
@@ -81,7 +83,18 @@ class MainFragment : Fragment() {
     }
 
     private fun bindPageOneView() {
+//        bindingPageOne.menuRead.setOnFocusChangeListener { v, hasFocus ->
+//            Timber.d("menu hasFocus: $hasFocus")
+//        }
+//        bindingPageOne.root.requestFocus()
+        bindingPageOne.menuSearch.setOnClickListener {
+            Timber.d("menu search click")
+        }
+        bindingPageOne.menuRead.setOnClickListener {
+            Timber.d("menu read clicked")
 
+//            startPlainActivity(TestActivity::class.java)
+        }
     }
 
     private fun bindPageTwoView() {

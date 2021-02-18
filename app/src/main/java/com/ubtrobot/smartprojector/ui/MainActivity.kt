@@ -6,15 +6,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
@@ -121,6 +119,8 @@ class MainActivity : AppCompatActivity() {
 //        replaceFragment(mainFragment, R.id.fragment_container)
 
         binding.viewPager.adapter = ScreenAdapter()
+        // 缓存3页
+        binding.viewPager.offscreenPageLimit = 3
         binding.pagerIndicator.setViewPager(binding.viewPager)
 
 
@@ -191,6 +191,12 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        Timber.d("onkeydown: ${keyCode}, ${event?.action}")
+        return super.onKeyDown(keyCode, event)
+
+    }
+
     private fun eyeProtectionDialog() {
         Timber.d("显示护眼模式弹窗")
         val dialog = AlertDialog.Builder(this@MainActivity)
@@ -201,12 +207,11 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private inner class ScreenAdapter : FragmentStateAdapter(supportFragmentManager, lifecycle) {
-        override fun getItemCount(): Int = 3
+    private inner class ScreenAdapter : FragmentStatePagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        override fun createFragment(position: Int): Fragment {
-            return MainFragment.newInstance(position)
-        }
+        override fun getCount(): Int = 3
+
+        override fun getItem(position: Int): Fragment = MainFragment.newInstance(position)
     }
 
 }
