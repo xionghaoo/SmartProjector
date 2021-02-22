@@ -87,6 +87,8 @@ class AddDeviceFragment : Fragment() {
                 .build()
                 .show()
         }
+
+        view.findViewById<TextView>(R.id.tv_new_device_home_info).text = "家庭：${homeId}"
     }
 
     // 配网token

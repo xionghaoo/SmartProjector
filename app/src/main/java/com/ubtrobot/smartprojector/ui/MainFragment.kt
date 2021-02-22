@@ -13,6 +13,7 @@ import com.ubtrobot.smartprojector.databinding.FragmentMainPage2Binding
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage3Binding
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
+import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.PackageUtil
 import com.ubtrobot.smartprojector.utils.ResourceUtil
@@ -93,6 +94,10 @@ class MainFragment : Fragment() {
 //            Timber.d("menu hasFocus: $hasFocus")
 //        }
 //        bindingPageOne.root.requestFocus()
+        bindingPageOne.menuLevel.setOnClickListener {
+            startPlainActivity(SettingsActivity::class.java)
+        }
+
         bindingPageOne.menuSearch.setSelectListener {
             startPlainActivity(TuyaHomeActivity::class.java)
         }

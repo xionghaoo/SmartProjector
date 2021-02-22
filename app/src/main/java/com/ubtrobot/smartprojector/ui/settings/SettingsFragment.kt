@@ -15,6 +15,7 @@ import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
+import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.RootCommand
 import com.ubtrobot.smartprojector.utils.RootExecutor
@@ -34,8 +35,7 @@ class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -98,6 +98,12 @@ class SettingsFragment : Fragment() {
         binding.btnTest.setOnClickListener {
             startPlainActivity(TestActivity::class.java)
         }
+
+        binding.btnDeviceSelect.setOnClickListener {
+            startPlainActivity(TuyaDeviceCategoryActivity::class.java)
+        }
+
+        binding.tvHomeInfo.text = repo.prefs.currentHomeName
     }
 
     override fun onDestroyView() {

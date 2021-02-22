@@ -100,4 +100,36 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_white_list"
         app:layout_constraintTop_toTopOf="@+id/btn_white_list" />
 
+    <Button
+        android:id="@+id/btn_device_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="涂鸦设备选择"
+        app:layout_constraintEnd_toEndOf="@+id/btn_white_list"
+        app:layout_constraintStart_toStartOf="@+id/btn_white_list"
+        app:layout_constraintTop_toBottomOf="@+id/btn_white_list" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_20dp"
+        android:text="用户家庭："
+        android:textSize="@dimen/_20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        tools:text="home_name"
+        android:textSize="@dimen/_20sp"
+        android:textColor="@color/color_222222"
+        app:layout_constraintBottom_toBottomOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

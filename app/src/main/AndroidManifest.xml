@@ -30,11 +30,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.tuya.NewDeviceActivity" android:screenOrientation="userLandscape"></activity>
+        <activity android:name=".ui.tuya.TuyaDeviceCategoryActivity"></activity>
+        <activity
+            android:name=".ui.tuya.NewDeviceActivity"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.tuya.TuyaHomeActivity"
             android:screenOrientation="userLandscape" />
-        <activity android:name=".ui.settings.SettingsActivity" android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:screenOrientation="userLandscape" />
         <activity android:name=".ui.cartoonbook.FlipTestActivity" />
         <activity
             android:name=".test.TestActivity"
@@ -53,13 +58,15 @@
             android:name=".SplashActivity"
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.Launcher">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                <category android:name="android.intent.category.HOME" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- <category android:name="android.intent.category.HOME" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".ui.FileDownloadActivity"
@@ -96,11 +103,11 @@
             android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Main"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"
-            android:screenOrientation="userLandscape" >
+            android:launchMode="singleTask"
+            android:screenOrientation="userLandscape"
+            android:theme="@style/AppTheme.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

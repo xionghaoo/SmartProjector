@@ -15,6 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
+import com.tuya.smart.home.sdk.TuyaHomeSdk
+import com.tuya.smart.home.sdk.bean.HomeBean
+import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
@@ -23,6 +26,7 @@ import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.game.GameFragment
+import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.*
@@ -141,11 +145,45 @@ class MainActivity : AppCompatActivity() {
         }
 
         eyeProtectionMode()
+
+        initialTuyaHome()
     }
 
     override fun onDestroy() {
 //        TuyaHomeSdk.onDestroy()
         super.onDestroy()
+    }
+
+    /**
+     * 涂鸦home初始化
+     */
+    private fun initialTuyaHome() {
+        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(object : ITuyaGetHomeListCallback {
+            override fun onSuccess(homeBeans: MutableList<HomeBean>?) {
+                Timber.d("家庭数量: ${homeBeans?.size}")
+                if (homeBeans?.isNotEmpty() == true) {
+                    val home = homeBeans.first()
+                    repo.prefs.currentHomeId = home.homeId
+                    repo.prefs.currentHomeName = home.name
+//                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
+//                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
+//                    homeDevicesQuery(home.homeId)
+//                    homeId = home.homeId
+                } else {
+//                    binding.refreshLayout.finishRefresh(true)
+                }
+            }
+
+            override fun onError(errorCode: String?, error: String?) {
+//                binding.refreshLayout.finishRefresh(false)
+
+                Timber.d("家庭查询失败: $errorCode, $error")
+                if (errorCode == "USER_SESSION_LOSS") {
+//                    ToastUtil.showToast(requireContext(), "登录已失效")
+//                    LoginActivity.startWithNewTask(requireContext())
+                }
+            }
+        })
     }
 
     private fun refreshSelectedStatus(v: View) {

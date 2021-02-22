@@ -18,6 +18,8 @@ interface PreferenceStorage {
     var isScreenLocked: Boolean
     var screenLockPwd: String?
     var wifiPwd: String?
+    var currentHomeId: Long
+    var currentHomeName: String?
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -34,6 +36,8 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
     override var isScreenLocked by BooleanPreference(prefs, PREF_IS_SCREEN_LOCKED, false)
     override var screenLockPwd by StringPreference(prefs, PREF_SCREEN_LOCK_PWD, null)
     override var wifiPwd: String? by StringPreference(prefs, PREF_WIFI_PWD, null)
+    override var currentHomeId: Long by LongPreference(prefs, PREF_HOME_ID)
+    override var currentHomeName: String? by StringPreference(prefs, PREF_HOME_NAME, null)
 
     // 登出时清理缓存
     fun clearCache() {
@@ -48,6 +52,8 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
         const val PREF_IS_SCREEN_LOCKED = "pref_is_screen_locked"
         const val PREF_SCREEN_LOCK_PWD = "pref_screen_lock_pwd"
         const val PREF_WIFI_PWD = "pref_wifi_pwd"
+        const val PREF_HOME_ID = "pref_home_id"
+        const val PREF_HOME_NAME = "pref_home_name"
     }
 }
 
@@ -87,5 +93,17 @@ class IntPreference(private val preferences: Lazy<SharedPreferences>,
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: Int) {
         preferences.value.edit { putInt(key, value) }
+    }
+}
+
+class LongPreference(private val preferences: Lazy<SharedPreferences>,
+                    private val key: String,
+                    private val defaultValue: Long = 0) : ReadWriteProperty<Any, Long> {
+    override fun getValue(thisRef: Any, property: KProperty<*>): Long {
+        return preferences.value.getLong(key, defaultValue)
+    }
+
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: Long) {
+        preferences.value.edit { putLong(key, value) }
     }
 }

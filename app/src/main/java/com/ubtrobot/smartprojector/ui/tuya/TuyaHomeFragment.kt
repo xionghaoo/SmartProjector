@@ -17,15 +17,18 @@ import com.tuya.smart.sdk.api.ITuyaDataCallback
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentTuyaHomeBinding
+import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.tuya.controllers.GeneralControllerFragment
 import com.ubtrobot.smartprojector.ui.tuya.controllers.WifiLampControllerFragment
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.utils.TuyaUtil
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class TuyaHomeFragment : Fragment() {
 
     private lateinit var adapter: TuyaDeviceAdapter
@@ -33,6 +36,9 @@ class TuyaHomeFragment : Fragment() {
     private var _binding: FragmentTuyaHomeBinding? = null
     private val binding get() = _binding!!
     private var homeId: Long? = null
+
+    @Inject
+    lateinit var repo: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +74,9 @@ class TuyaHomeFragment : Fragment() {
         }
 
         binding.refreshLayout.setOnRefreshListener {
-            homeQuery()
+            homeDevicesQuery(repo.prefs.currentHomeId)
         }
-        homeQuery()
+        homeDevicesQuery(repo.prefs.currentHomeId)
     }
 
     override fun onDestroyView() {
@@ -79,7 +85,7 @@ class TuyaHomeFragment : Fragment() {
     }
 
     private fun showController(item: TuyaDevice) {
-        val controller = if (item.categoryCode == "wf_dj") {
+        val controller = if (item.categoryCode == TuyaCategory.WIFI_ATMOSPHERE_LAMP) {
             WifiLampControllerFragment.newInstance(item)
         } else {
             GeneralControllerFragment.newInstance(item)
@@ -89,35 +95,35 @@ class TuyaHomeFragment : Fragment() {
             .commit()
     }
 
-    /**
-     * 家庭查询
-     */
-    private fun homeQuery() {
-        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(object : ITuyaGetHomeListCallback {
-            override fun onSuccess(homeBeans: MutableList<HomeBean>?) {
-                Timber.d("家庭数量: ${homeBeans?.size}")
-                if (homeBeans?.isNotEmpty() == true) {
-                    val home = homeBeans.first()
-                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
-                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
-                    homeDevicesQuery(home.homeId)
-                    homeId = home.homeId
-                } else {
-                    binding.refreshLayout.finishRefresh(true)
-                }
-            }
-
-            override fun onError(errorCode: String?, error: String?) {
-                binding.refreshLayout.finishRefresh(false)
-
-                Timber.d("家庭查询失败: $errorCode, $error")
-                if (errorCode == "USER_SESSION_LOSS") {
-                    ToastUtil.showToast(requireContext(), "登录已失效")
-                    LoginActivity.startWithNewTask(requireContext())
-                }
-            }
-        })
-    }
+//    /**
+//     * 家庭查询
+//     */
+//    private fun homeQuery() {
+//        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(object : ITuyaGetHomeListCallback {
+//            override fun onSuccess(homeBeans: MutableList<HomeBean>?) {
+//                Timber.d("家庭数量: ${homeBeans?.size}")
+//                if (homeBeans?.isNotEmpty() == true) {
+//                    val home = homeBeans.first()
+//                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
+//                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
+//                    homeDevicesQuery(home.homeId)
+//                    homeId = home.homeId
+//                } else {
+//                    binding.refreshLayout.finishRefresh(true)
+//                }
+//            }
+//
+//            override fun onError(errorCode: String?, error: String?) {
+//                binding.refreshLayout.finishRefresh(false)
+//
+//                Timber.d("家庭查询失败: $errorCode, $error")
+//                if (errorCode == "USER_SESSION_LOSS") {
+//                    ToastUtil.showToast(requireContext(), "登录已失效")
+//                    LoginActivity.startWithNewTask(requireContext())
+//                }
+//            }
+//        })
+//    }
 
     /**
      * 家庭设备查询
