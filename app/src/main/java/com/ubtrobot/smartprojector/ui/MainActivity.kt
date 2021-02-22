@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.bumptech.glide.Glide
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
@@ -70,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        SystemUtil.setDarkStatusBar(window)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
 //        Glide.with(this)
@@ -194,6 +194,11 @@ class MainActivity : AppCompatActivity() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         Timber.d("onkeydown: ${keyCode}, ${event?.action}")
         return super.onKeyDown(keyCode, event)
+
+    }
+
+    // Launcher 禁止返回
+    override fun onBackPressed() {
 
     }
 

@@ -13,8 +13,10 @@ import com.ubtrobot.smartprojector.databinding.FragmentMainPage2Binding
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage3Binding
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
+import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.PackageUtil
 import com.ubtrobot.smartprojector.utils.ResourceUtil
+import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.widgets.AppLauncherView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -79,30 +81,35 @@ class MainFragment : Fragment() {
         when(page) {
             0 -> bindPageOneView()
             1 -> bindPageTwoView()
+            3 -> bindPageThreeView()
         }
     }
 
+    /**
+     * 桌面1
+     */
     private fun bindPageOneView() {
 //        bindingPageOne.menuRead.setOnFocusChangeListener { v, hasFocus ->
 //            Timber.d("menu hasFocus: $hasFocus")
 //        }
 //        bindingPageOne.root.requestFocus()
-        bindingPageOne.menuSearch.setOnClickListener {
-            Timber.d("menu search click")
+        bindingPageOne.menuSearch.setSelectListener {
+            startPlainActivity(TuyaHomeActivity::class.java)
         }
-        bindingPageOne.menuRead.setOnClickListener {
-            Timber.d("menu read clicked")
-
-//            startPlainActivity(TestActivity::class.java)
+        bindingPageOne.menuRead.setSelectListener {
+            ToastUtil.showToast(requireContext(), "指尖点读")
         }
     }
 
+    /**
+     * 桌面2
+     */
     private fun bindPageTwoView() {
         bindingPageTwo.flApps.removeAllViews()
         CoroutineScope(Dispatchers.Default).launch {
             val appList = PackageUtil.appList(requireActivity())
             withContext(Dispatchers.Main) {
-                appList.filterIndexed { index, _ -> index <= 7}.forEach { app ->
+                appList.forEach { app ->
                     val appView = AppLauncherView(requireContext())
                     appView.setLabel(app.appName)
                     appView.setIcon(app.icon)
@@ -123,6 +130,13 @@ class MainFragment : Fragment() {
                 }
             }
         }
+    }
+
+    /**
+     * 桌面3
+     */
+    private fun bindPageThreeView() {
+
     }
 
     companion object {

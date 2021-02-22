@@ -35,10 +35,7 @@ class SelectableView : FrameLayout {
                         .start()
             }
         }
-//        setOnClickListener {
-//            Timber.d("menu clicked")
-//            toggleSelectedState()
-//        }
+
     }
 
     fun toggleSelectedState() {
@@ -59,6 +56,10 @@ class SelectableView : FrameLayout {
     }
 
     fun setSelectListener(listener: () -> Unit) {
-        this.listener = listener
+        setOnClickListener {
+            if (hasFocus()) {
+                listener()
+            }
+        }
     }
 }

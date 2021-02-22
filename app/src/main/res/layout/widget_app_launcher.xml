@@ -31,6 +31,7 @@
         android:maxLines="1"
         android:singleLine="true"
         android:ellipsize="end"
+        android:maxWidth="@dimen/_110dp"
         android:textSize="@dimen/_24sp"
         android:textColor="@color/text_dark"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -34,8 +34,10 @@ class PagerIndicator : LinearLayout {
             for (i in 0.until(vp.adapter!!.count)) {
                 val item = View(context)
                 addView(item)
-                item.background = resources.getDrawable(R.drawable.shape_circle_white)
+
                 if (i == 0) {
+                    item.background = resources.getDrawable(R.drawable.shape_circle_white)
+                } else {
                     item.background = resources.getDrawable(R.drawable.shape_circle_overlay)
                 }
                 val itemLp = item.layoutParams as LinearLayout.LayoutParams
