@@ -26,6 +26,12 @@ class TuyaDeviceCategoryActivity : AppCompatActivity() {
         binding = ActivityTuyaDeviceCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        createCategoryOne()
+
+        createCategoryTwo()
+    }
+
+    private fun createCategoryOne() {
         binding.containerCategory1.removeAllViews()
         val itemView = TuyaDeviceView(this)
         itemView.setTitle("灯")
@@ -34,5 +40,16 @@ class TuyaDeviceCategoryActivity : AppCompatActivity() {
             NewDeviceActivity.start(this, repo.prefs.currentHomeId)
         }
         binding.containerCategory1.addView(itemView)
+    }
+
+    private fun createCategoryTwo() {
+        binding.containerCategory2.removeAllViews()
+        val itemView = TuyaDeviceView(this)
+        itemView.setTitle("sos")
+        itemView.setIcon(R.drawable.ic_sos)
+        itemView.setOnClickListener {
+            NewDeviceActivity.start(this, repo.prefs.currentHomeId)
+        }
+        binding.containerCategory2.addView(itemView)
     }
 }
