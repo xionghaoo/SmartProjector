@@ -1,7 +1,29 @@
 [
   {
-    "name": "氛围灯",
-    "icon": "",
-    "category": "wf_dj"
+    "id": 1,
+    "type": "运动健康",
+    "devices": {
+      "name": "Wifi氛围灯",
+      "icon": "",
+      "category": "wf_dj"
+    }
+  },
+  {
+    "id": 3,
+    "type": "网关中控",
+    "devices": {
+      "name": "Zigbee无线网关",
+      "icon": "",
+      "category": "zig_sos"
+    }
+  },
+  {
+    "id": 2,
+    "type": "其他",
+    "devices": {
+      "name": "sos报警器",
+      "icon": "",
+      "category": "zig_sos"
+    }
   }
 ]

@@ -98,7 +98,7 @@ class IntPreference(private val preferences: Lazy<SharedPreferences>,
 
 class LongPreference(private val preferences: Lazy<SharedPreferences>,
                     private val key: String,
-                    private val defaultValue: Long = 0) : ReadWriteProperty<Any, Long> {
+                    private val defaultValue: Long = -1) : ReadWriteProperty<Any, Long> {
     override fun getValue(thisRef: Any, property: KProperty<*>): Long {
         return preferences.value.getLong(key, defaultValue)
     }

@@ -17,7 +17,8 @@ add_library( # Specifies the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        tuya_ext.cpp)
+        tuya_ext.cpp
+        hal_wifi.c)
 
 # 测试库
 add_library(lib_gperf SHARED IMPORTED)

@@ -1,32 +1,28 @@
 package com.ubtrobot.smartprojector.ui.tuya
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tuya.smart.api.MicroContext
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
-import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
-import com.tuya.smart.sdk.api.IDevListener
-import com.tuya.smart.sdk.api.ISubDevListener
-import com.tuya.smart.sdk.api.ITuyaDataCallback
-import com.tuya.smart.sdk.bean.DeviceBean
+import com.tuya.smart.panelcaller.api.AbsPanelCallerService
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentTuyaHomeBinding
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.tuya.controllers.GeneralControllerFragment
 import com.ubtrobot.smartprojector.ui.tuya.controllers.WifiLampControllerFragment
-import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.utils.TuyaUtil
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class TuyaHomeFragment : Fragment() {
@@ -56,20 +52,16 @@ class TuyaHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rcDeviceList.layoutManager = LinearLayoutManager(requireContext())
-//        binding.rcCmdList.layoutManager = LinearLayoutManager(requireContext())
-//        cmdAdapter = TuyaDeviceCmdAdapter(requireContext(), emptyList())
-//        binding.rcCmdList.adapter = cmdAdapter
         adapter = TuyaDeviceAdapter(emptyList()) { index, item ->
-//            cmdAdapter.updateData(item.dps)
-//            binding.tvProdName.text = "产品id：${item.name}"
-
             showController(item)
-
+            // 测试控制页面
+//            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
+//            service.goPanelWithCheckAndTip(requireActivity(), item.id)
         }
         binding.rcDeviceList.adapter = adapter
         binding.btnAddNewDevice.setOnClickListener {
-            if (homeId != null) {
-                NewDeviceActivity.start(requireContext(), homeId!!)
+            if (repo.prefs.currentHomeId != -1L) {
+                NewDeviceActivity.start(requireContext(), repo.prefs.currentHomeId)
             }
         }
 
@@ -128,7 +120,11 @@ class TuyaHomeFragment : Fragment() {
     /**
      * 家庭设备查询
      */
-    private fun homeDevicesQuery(homeId: Long) {
+    private fun homeDevicesQuery(homeId: Long?) {
+        if (homeId == null) {
+            ToastUtil.showToast(requireContext(), "未找到家庭")
+            return
+        }
         TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(object : ITuyaHomeResultCallback {
             override fun onSuccess(bean: HomeBean?) {
                 val deviceList = bean?.deviceList
@@ -136,21 +132,33 @@ class TuyaHomeFragment : Fragment() {
                 val items = ArrayList<TuyaDevice>()
                 deviceList?.forEach { d ->
                     // gwType: If device is virtual, the filed value is "v" , else is "s"
-                    Timber.d("设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, " +
-                            "category: ${d.category}, ${d.categoryCode}, isOnline: ${d.isOnline}")
+                    Timber.d(
+                        "设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, " +
+                                "category: ${d.category}, ${d.categoryCode}, isOnline: ${d.isOnline}"
+                    )
 
                     val cmds = ArrayList<TuyaDeviceCmd>()
                     d.dps.forEach { p ->
                         cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value?.toString() ?: ""))
                         Timber.d("功能点: ${p.key}, ${p.value}")
                     }
-                    if (d.categoryCode == "zig_sos") {
+                    if (d.categoryCode == TuyaCategory.ZIGBEE_SOS) {
                         TuyaUtil.registerTuyaDeviceListener(requireContext(), d.devId)
                     }
                     if (d.isZigBeeWifi) {
 
                     }
-                    items.add(TuyaDevice(d.productId, d.devId, d.isOnline, d.isZigBeeWifi, d.categoryCode, d.schema, cmds))
+                    items.add(
+                        TuyaDevice(
+                            d.productId,
+                            d.devId,
+                            d.isOnline,
+                            d.isZigBeeWifi,
+                            d.categoryCode,
+                            d.schema,
+                            cmds
+                        )
+                    )
                 }
                 adapter.updateData(items)
                 if (items.isNotEmpty()) {
