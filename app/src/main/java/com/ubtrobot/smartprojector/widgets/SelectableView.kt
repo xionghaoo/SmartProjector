@@ -21,20 +21,20 @@ class SelectableView : FrameLayout {
         Timber.d("initial: $id")
         isFocusable = true
         isFocusableInTouchMode = true
-        setOnFocusChangeListener { _, hasFocus ->
-            Timber.d("has focus: $id, $hasFocus")
-            if (hasFocus) {
-                animate().scaleX(1.4f)
-                        .scaleY(1.4f)
-                        .translationZ(10f)
-                        .start()
-            } else {
-                animate().scaleX(1f)
-                        .scaleY(1f)
-                        .translationZ(0f)
-                        .start()
-            }
-        }
+//        setOnFocusChangeListener { _, hasFocus ->
+//            Timber.d("has focus: $id, $hasFocus")
+//            if (hasFocus) {
+//                animate().scaleX(1.4f)
+//                        .scaleY(1.4f)
+//                        .translationZ(10f)
+//                        .start()
+//            } else {
+//                animate().scaleX(1f)
+//                        .scaleY(1f)
+//                        .translationZ(0f)
+//                        .start()
+//            }
+//        }
 
     }
 

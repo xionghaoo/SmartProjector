@@ -9,12 +9,111 @@
     android:gravity="center_horizontal"
     tools:context=".ui.MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_86dp">
+        <FrameLayout
+            android:id="@+id/menu_level"
+            android:layout_width="@dimen/_310dp"
+            android:layout_height="@dimen/_120dp"
+            android:layout_marginStart="@dimen/_170dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_60dp"
+                android:background="@drawable/shape_bg_avatar_gradient"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_150dp"
+                android:layout_marginTop="@dimen/_12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_36sp"
+                    android:text="Eva"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4dp"
+                    android:textSize="@dimen/_28sp"
+                    android:textColor="@color/white"
+                    android:text="等级2"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_120dp"
+                android:background="@drawable/shape_bg_avatar">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_30dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:src="@drawable/ic_ip_logo_small"/>
+            </FrameLayout>
+        </FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/textView30"
+            android:layout_width="@dimen/_362dp"
+            android:layout_height="@dimen/_114dp"
+            android:layout_marginStart="@dimen/_267dp"
+            android:background="@drawable/shape_bg_clock_card"
+            app:layout_constraintBottom_toBottomOf="@+id/menu_level"
+            app:layout_constraintStart_toStartOf="@+id/menu_level"
+            app:layout_constraintTop_toTopOf="@+id/menu_level">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/textView40"
+                android:layout_width="@dimen/_42dp"
+                android:layout_height="@dimen/_42dp"
+                android:layout_marginStart="@dimen/_28dp"
+                android:src="@drawable/ic_clock"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_19dp"
+                android:text="写作业1小时；预习"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_28sp"
+                app:layout_constraintStart_toEndOf="@+id/textView40"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7dp"
+                android:text="完成计划有奖励哦"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/_22sp"
+                app:layout_constraintStart_toStartOf="@+id/textView41"
+                app:layout_constraintTop_toBottomOf="@+id/textView41" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="同步语文"
+            android:layout_marginEnd="@dimen/_157dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_66sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menu_level" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"

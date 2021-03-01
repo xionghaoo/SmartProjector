@@ -94,16 +94,17 @@ class MainFragment : Fragment() {
 //            Timber.d("menu hasFocus: $hasFocus")
 //        }
 //        bindingPageOne.root.requestFocus()
-        bindingPageOne.menuLevel.setOnClickListener {
-            startPlainActivity(SettingsActivity::class.java)
-        }
 
-        bindingPageOne.menuSearch.setSelectListener {
-            startPlainActivity(TuyaHomeActivity::class.java)
-        }
-        bindingPageOne.menuRead.setSelectListener {
-            ToastUtil.showToast(requireContext(), "指尖点读")
-        }
+//        bindingPageOne.menuLevel.setOnClickListener {
+//            startPlainActivity(SettingsActivity::class.java)
+//        }
+
+//        bindingPageOne.menuSearch.setSelectListener {
+//            startPlainActivity(TuyaHomeActivity::class.java)
+//        }
+//        bindingPageOne.menuRead.setSelectListener {
+//            ToastUtil.showToast(requireContext(), "指尖点读")
+//        }
     }
 
     /**
