@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_422dp"
         android:layout_marginStart="@dimen/_76dp"
-        android:layout_marginEnd="@dimen/_80dp"
+        android:layout_marginEnd="@dimen/_157dp"
         android:background="@drawable/shape_card_transparent"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintEnd_toEndOf="parent"

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
 import com.tuya.smart.home.sdk.TuyaHomeSdk
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     private var menus: ArrayList<TextView> = ArrayList()
 
-    private var menuTitles = arrayOf("视频教学", "魔法空间", "应用岛", "游戏岛", "设置", "绘本")
+    private var menuTitles = arrayOf("同步语文", "同步英语", "同步数学", "AI编程")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -77,67 +78,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
-//        Glide.with(this)
-//                .load(R.drawable.ic_cat)
-//                .circleCrop()
-//                .into(iv_avatar)
-
-//        mainFragment = MainFragment.newInstance(0)
-//        educationFragment = EducationFragment.newInstance()
-//        magicSpaceFragment = MagicSpaceFragment.newInstance()
-//        appMarketFragment = AppMarketFragment.newInstance()
-//        gameMarketFragment = GameFragment.newInstance()
-//        settingsFragment = SettingsFragment.newInstance()
-//        cartoonBookFragment = CartoonBookFragment.newInstance()
-
-//        menus.clear()
-//        menus.add(binding.tvMenuAi)
-//        menus.add(binding.tvMenuProgram)
-//        menus.add(binding.tvMenuInteract)
-//        menus.add(binding.tvMenuPuzzle)
-//        menus.add(binding.tvMenuApplication)
-//        refreshSelectedStatus(binding.tvMenuAi)
-//        binding.apply {
-//            tvMenuAi.setOnClickListener {
-//                refreshSelectedStatus(tvMenuAi)
-//                replaceFragment(mainFragment, R.id.fragment_container)
-//            }
-//            tvMenuProgram.setOnClickListener {
-//                refreshSelectedStatus(tvMenuProgram)
-//                replaceFragment(magicSpaceFragment, R.id.fragment_container)
-//            }
-//            tvMenuInteract.setOnClickListener {
-//                refreshSelectedStatus(tvMenuInteract)
-//                replaceFragment(gameMarketFragment, R.id.fragment_container)
-//            }
-//            tvMenuPuzzle.setOnClickListener {
-//                refreshSelectedStatus(tvMenuPuzzle)
-//                replaceFragment(cartoonBookFragment, R.id.fragment_container)
-//            }
-//            tvMenuApplication.setOnClickListener {
-//                refreshSelectedStatus(tvMenuApplication)
-//                replaceFragment(appMarketFragment, R.id.fragment_container)
-//            }
-//        }
-//
-//        replaceFragment(mainFragment, R.id.fragment_container)
-
         binding.viewPager.adapter = ScreenAdapter()
         // 缓存3页
         binding.viewPager.offscreenPageLimit = 3
         binding.pagerIndicator.setViewPager(binding.viewPager)
 
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
 
-        // 监听网络状态变化
-//        connectionStateMonitor.setConnectStateListener { isConnected ->
-//            runOnUiThread {
-//                if (!isConnected) {
-//                    ToastUtil.showToast(this, "您已离线，请检查网络连接")
-//                }
-//                iv_wifi_state.setImageResource(if (isConnected) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off)
-//            }
-//        }
-//        connectionStateMonitor.enable(applicationContext)
+            }
+
+            override fun onPageSelected(position: Int) {
+                binding.tvPageTitle.text = menuTitles[position]
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
 
         // 检查锁屏状态
         if (repo.prefs.isScreenLocked) {
@@ -150,7 +112,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-//        TuyaHomeSdk.onDestroy()
         super.onDestroy()
     }
 
@@ -252,7 +213,7 @@ class MainActivity : AppCompatActivity() {
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        override fun getCount(): Int = 3
+        override fun getCount(): Int = menuTitles.size
 
         override fun getItem(position: Int): Fragment = MainFragment.newInstance(position)
     }

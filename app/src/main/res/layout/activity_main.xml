@@ -103,7 +103,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/tv_page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="同步语文"

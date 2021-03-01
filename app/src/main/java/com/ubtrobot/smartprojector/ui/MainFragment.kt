@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage1Binding
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage2Binding
 import com.ubtrobot.smartprojector.databinding.FragmentMainPage3Binding
+import com.ubtrobot.smartprojector.databinding.FragmentMainPage4Binding
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
@@ -35,9 +36,11 @@ class MainFragment : Fragment() {
     private var _bindingPageOne: FragmentMainPage1Binding? = null
     private var _bindingPageTwo: FragmentMainPage2Binding? = null
     private var _bindingPageThree: FragmentMainPage3Binding? = null
+    private var _bindingPageFour: FragmentMainPage4Binding? = null
     private val bindingPageOne get() = _bindingPageOne!!
     private val bindingPageTwo get() = _bindingPageTwo!!
     private val bindingPageThree get() = _bindingPageThree!!
+    private val bindingPageFour get() = _bindingPageFour!!
 
     private var isInitialLayout: Boolean = true
 
@@ -65,6 +68,10 @@ class MainFragment : Fragment() {
                 _bindingPageThree = FragmentMainPage3Binding.inflate(inflater, container, false)
                 bindingPageThree.root
             }
+            3 -> {
+                _bindingPageFour = FragmentMainPage4Binding.inflate(inflater, container, false)
+                bindingPageFour.root
+            }
             else -> throw IllegalStateException("not found main fragment layout")
         }
     }
@@ -74,6 +81,7 @@ class MainFragment : Fragment() {
         _bindingPageOne = null
         _bindingPageTwo = null
         _bindingPageThree = null
+        _bindingPageFour = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -111,31 +119,31 @@ class MainFragment : Fragment() {
      * 桌面2
      */
     private fun bindPageTwoView() {
-        bindingPageTwo.flApps.removeAllViews()
-        CoroutineScope(Dispatchers.Default).launch {
-            val appList = PackageUtil.appList(requireActivity())
-            withContext(Dispatchers.Main) {
-                appList.forEach { app ->
-                    val appView = AppLauncherView(requireContext())
-                    appView.setLabel(app.appName)
-                    appView.setIcon(app.icon)
-                    val paddingVertical = ResourceUtil.convertDpToPixel(20f, requireContext()).roundToInt()
-                    val p = (bindingPageTwo.flApps.width - ResourceUtil.convertDpToPixel(120f, context) * 3
-                            - ResourceUtil.convertDpToPixel(10f, context) * 2) / 6 - 1
-                    val paddingHorizontal = ResourceUtil.convertDpToPixel(p, requireContext()).roundToInt()
-                    appView.setPadding(
-                        paddingHorizontal,
-                        paddingVertical,
-                        paddingHorizontal,
-                        paddingVertical
-                    )
-                    appView.setOnClickListener {
-                        PackageUtil.startApp(requireActivity(), app.packageName)
-                    }
-                    bindingPageTwo.flApps.addView(appView)
-                }
-            }
-        }
+//        bindingPageTwo.flApps.removeAllViews()
+//        CoroutineScope(Dispatchers.Default).launch {
+//            val appList = PackageUtil.appList(requireActivity())
+//            withContext(Dispatchers.Main) {
+//                appList.forEach { app ->
+//                    val appView = AppLauncherView(requireContext())
+//                    appView.setLabel(app.appName)
+//                    appView.setIcon(app.icon)
+//                    val paddingVertical = ResourceUtil.convertDpToPixel(20f, requireContext()).roundToInt()
+//                    val p = (bindingPageTwo.flApps.width - ResourceUtil.convertDpToPixel(120f, context) * 3
+//                            - ResourceUtil.convertDpToPixel(10f, context) * 2) / 6 - 1
+//                    val paddingHorizontal = ResourceUtil.convertDpToPixel(p, requireContext()).roundToInt()
+//                    appView.setPadding(
+//                        paddingHorizontal,
+//                        paddingVertical,
+//                        paddingHorizontal,
+//                        paddingVertical
+//                    )
+//                    appView.setOnClickListener {
+//                        PackageUtil.startApp(requireActivity(), app.packageName)
+//                    }
+//                    bindingPageTwo.flApps.addView(appView)
+//                }
+//            }
+//        }
     }
 
     /**

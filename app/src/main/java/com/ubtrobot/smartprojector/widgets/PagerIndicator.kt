@@ -50,7 +50,7 @@ class PagerIndicator : LinearLayout {
 
             }
         }
-        vp.setOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }

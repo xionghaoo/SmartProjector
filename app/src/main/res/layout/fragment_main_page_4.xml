@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textView24"
+        android:layout_width="@dimen/_756dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_46dp"
+        android:background="@drawable/shape_card_transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
+        app:layout_constraintStart_toEndOf="@+id/menu_search"
+        app:layout_constraintTop_toTopOf="@+id/menu_search">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编程课程"
+            android:textSize="@dimen/_96sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginStart="@dimen/_66dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="孩子的第一堂编程课"
+            android:textSize="@dimen/_46sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_86dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView10" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_search"
+        android:layout_width="@dimen/_416dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_120dp"
+        android:layout_marginTop="@dimen/_30dp"
+        android:layout_marginBottom="@dimen/_40dp"
+        android:background="@drawable/shape_bg_card"
+        android:nextFocusDown="@+id/menu_read"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/CardTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_66sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:text="我的作品" />
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
+
+    <FrameLayout
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_bg_card"
+        android:layout_marginStart="@dimen/_46dp"
+        android:layout_marginEnd="@dimen/_120dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/textView24" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_66sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:text="开始创作"/>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,46 +4,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.MainFragment">
 
-    <LinearLayout
-        android:id="@+id/textView38"
-        android:layout_width="@dimen/_644dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_102dp"
-        android:layout_marginTop="@dimen/_158dp"
-        android:layout_marginBottom="@dimen/_55dp"
+    <FrameLayout
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_422dp"
+        android:layout_marginStart="@dimen/_76dp"
+        android:layout_marginEnd="@dimen/_157dp"
         android:background="@drawable/shape_card_transparent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/menu_search"
+        app:layout_constraintTop_toTopOf="@+id/menu_search">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView26"
+        style="@style/CardTitleStyle"
+        android:layout_width="@dimen/_440dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_bg_card"
+        android:paddingStart="@dimen/_33dp"
+        android:paddingTop="@dimen/_75dp"
+        android:text="错题本"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_read"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/menu_read" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:background="@drawable/shape_bg_card"
+        android:text="练习本"
+        style="@style/CardTitleStyle"
+        android:paddingStart="@dimen/_33dp"
+        android:paddingTop="@dimen/_75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+        app:layout_constraintEnd_toEndOf="@+id/textView24"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_search"
+        android:layout_width="@dimen/_600dp"
+        android:layout_height="@dimen/_422dp"
+        android:layout_marginTop="@dimen/_29dp"
+        android:layout_marginStart="@dimen/_207dp"
+        android:background="@drawable/shape_bg_card"
+        android:nextFocusDown="@+id/menu_read"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_27dp"
             style="@style/CardTitleStyle"
-            android:text="专项学习"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_60dp"
+            android:paddingTop="@dimen/_96dp"
+            android:text="教辅" />
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/textView39"
-        android:layout_width="@dimen/_644dp"
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_read"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:background="@drawable/shape_card_transparent"
-        android:layout_marginStart="@dimen/_44dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView38"
-        app:layout_constraintStart_toEndOf="@+id/textView38"
-        app:layout_constraintTop_toTopOf="@+id/textView38" >
+        android:layout_marginTop="@dimen/_40dp"
+        android:layout_marginBottom="@dimen/_39dp"
+        android:background="@drawable/shape_bg_card"
+        android:nextFocusUp="@+id/menu_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/menu_search"
+        app:layout_constraintStart_toStartOf="@+id/menu_search"
+        app:layout_constraintTop_toBottomOf="@+id/menu_search">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_27dp"
             style="@style/CardTitleStyle"
-            android:text="网课一对多"/>
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_40dp"
+            android:paddingTop="@dimen/_17dp"
+            android:text="试卷" />
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
