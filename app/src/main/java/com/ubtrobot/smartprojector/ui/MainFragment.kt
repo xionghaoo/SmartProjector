@@ -30,20 +30,20 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private var page: Int? = null
+
     private var _bindingPageOne: FragmentMainPage1Binding? = null
     private var _bindingPageTwo: FragmentMainPage2Binding? = null
     private var _bindingPageThree: FragmentMainPage3Binding? = null
     private var _bindingPageFour: FragmentMainPage4Binding? = null
     private var _bindingPageFive: FragmentMainPage5Binding? = null
     private var _bindingPageSix: FragmentMainPage6Binding? = null
+
     private val bindingPageOne get() = _bindingPageOne!!
     private val bindingPageTwo get() = _bindingPageTwo!!
     private val bindingPageThree get() = _bindingPageThree!!
     private val bindingPageFour get() = _bindingPageFour!!
     private val bindingPageFive get() = _bindingPageFive!!
     private val bindingPageSix get() = _bindingPageSix!!
-
-    private var isInitialLayout: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,6 +102,9 @@ class MainFragment : Fragment() {
             0 -> bindPageOneView()
             1 -> bindPageTwoView()
             2 -> bindPageThreeView()
+            3 -> bindPageFourView()
+            4 -> bindPageFiveView()
+            5 -> bindPageSixView()
         }
     }
 
@@ -161,6 +164,21 @@ class MainFragment : Fragment() {
      * 桌面3
      */
     private fun bindPageThreeView() {
+
+    }
+
+    private fun bindPageFourView() {
+        bindingPageFour.menuStartProgramming.setOnClickListener {
+            Timber.d("click start program")
+            startPlainActivity(TestActivity::class.java)
+        }
+    }
+
+    private fun bindPageFiveView() {
+
+    }
+
+    private fun bindPageSixView() {
 
     }
 

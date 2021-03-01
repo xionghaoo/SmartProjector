@@ -2,7 +2,9 @@ package com.ubtrobot.smartprojector.ui.appmarket
 
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.content.pm.LauncherApps
 import android.os.Bundle
+import android.os.UserHandle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +42,7 @@ class AppMarketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rcEnAppList.layoutManager = GridLayoutManager(context, 6)
+        binding.rcAppList.layoutManager = GridLayoutManager(context, 6)
         adapter = AppInfoAdapter(emptyList()) { pkgName ->
             // 点击图标时启动app
             requireActivity().packageManager.apply {
@@ -67,7 +69,7 @@ class AppMarketFragment : Fragment() {
 //                }
             }
         }
-        binding.rcEnAppList.adapter = adapter
+        binding.rcAppList.adapter = adapter
 
         // 获取已安装的app列表
         val intent = Intent(Intent.ACTION_MAIN)
@@ -99,6 +101,38 @@ class AppMarketFragment : Fragment() {
                 }
             }
             adapter.updateData(items.filterIndexed { index, _ -> index < 10 })
+        }
+
+
+    }
+
+    private class Test : LauncherApps.Callback() {
+        override fun onPackageRemoved(packageName: String?, user: UserHandle?) {
+
+        }
+
+        override fun onPackageAdded(packageName: String?, user: UserHandle?) {
+
+        }
+
+        override fun onPackageChanged(packageName: String?, user: UserHandle?) {
+
+        }
+
+        override fun onPackagesAvailable(
+            packageNames: Array<out String>?,
+            user: UserHandle?,
+            replacing: Boolean
+        ) {
+
+        }
+
+        override fun onPackagesUnavailable(
+            packageNames: Array<out String>?,
+            user: UserHandle?,
+            replacing: Boolean
+        ) {
+
         }
     }
 

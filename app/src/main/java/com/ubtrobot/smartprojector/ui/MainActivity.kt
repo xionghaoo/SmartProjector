@@ -67,7 +67,8 @@ class MainActivity : AppCompatActivity() {
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
+        val display = SystemUtil.displayInfo(this)
+//        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
         binding.viewPager.adapter = ScreenAdapter()
         // 缓存3页
@@ -80,11 +81,20 @@ class MainActivity : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-
+                Timber.d("position: $position, positionOffset: $positionOffset, pixel: $positionOffsetPixels, screen width = ${display.widthPixels}")
+                if (position == pageTitles.size - 1) {
+                    binding.containerMainHeader.alpha = 1 - positionOffset
+//                    binding.containerMainHeader.x += (positionOffsetPixels - display.widthPixels).toFloat()
+                }
             }
 
             override fun onPageSelected(position: Int) {
-                binding.tvPageTitle.text = pageTitles[position]
+                if (position < pageTitles.size) {
+//                    binding.containerMainHeader.visibility = View.VISIBLE
+                    binding.tvPageTitle.text = pageTitles[position]
+                } else {
+//                    binding.containerMainHeader.visibility = View.GONE
+                }
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -181,11 +191,11 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        Timber.d("onkeydown: ${keyCode}, ${event?.action}")
-        return super.onKeyDown(keyCode, event)
-
-    }
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+//        Timber.d("onkeydown: ${keyCode}, ${event?.action}")
+//        return super.onKeyDown(keyCode, event)
+//
+//    }
 
     // Launcher 禁止返回
     override fun onBackPressed() {
@@ -204,9 +214,15 @@ class MainActivity : AppCompatActivity() {
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        override fun getCount(): Int = pageTitles.size
+        override fun getCount(): Int = pageTitles.size + 1
 
-        override fun getItem(position: Int): Fragment = MainFragment.newInstance(position)
+        override fun getItem(position: Int): Fragment {
+            if (position < pageTitles.size) {
+                return MainFragment.newInstance(position)
+            } else {
+                return AppMarketFragment.newInstance()
+            }
+        }
     }
 
 }
