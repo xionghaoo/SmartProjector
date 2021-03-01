@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.view.children
 import androidx.fragment.app.viewModels
-import com.ubtrobot.smartprojector.databinding.FragmentMainPage1Binding
-import com.ubtrobot.smartprojector.databinding.FragmentMainPage2Binding
-import com.ubtrobot.smartprojector.databinding.FragmentMainPage3Binding
-import com.ubtrobot.smartprojector.databinding.FragmentMainPage4Binding
+import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
@@ -37,10 +34,14 @@ class MainFragment : Fragment() {
     private var _bindingPageTwo: FragmentMainPage2Binding? = null
     private var _bindingPageThree: FragmentMainPage3Binding? = null
     private var _bindingPageFour: FragmentMainPage4Binding? = null
+    private var _bindingPageFive: FragmentMainPage5Binding? = null
+    private var _bindingPageSix: FragmentMainPage6Binding? = null
     private val bindingPageOne get() = _bindingPageOne!!
     private val bindingPageTwo get() = _bindingPageTwo!!
     private val bindingPageThree get() = _bindingPageThree!!
     private val bindingPageFour get() = _bindingPageFour!!
+    private val bindingPageFive get() = _bindingPageFive!!
+    private val bindingPageSix get() = _bindingPageSix!!
 
     private var isInitialLayout: Boolean = true
 
@@ -72,6 +73,14 @@ class MainFragment : Fragment() {
                 _bindingPageFour = FragmentMainPage4Binding.inflate(inflater, container, false)
                 bindingPageFour.root
             }
+            4 -> {
+                _bindingPageFive = FragmentMainPage5Binding.inflate(inflater, container, false)
+                bindingPageFive.root
+            }
+            5 -> {
+                _bindingPageSix = FragmentMainPage6Binding.inflate(inflater, container, false)
+                bindingPageSix.root
+            }
             else -> throw IllegalStateException("not found main fragment layout")
         }
     }
@@ -82,6 +91,8 @@ class MainFragment : Fragment() {
         _bindingPageTwo = null
         _bindingPageThree = null
         _bindingPageFour = null
+        _bindingPageFive = null
+        _bindingPageSix = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -90,7 +101,7 @@ class MainFragment : Fragment() {
         when(page) {
             0 -> bindPageOneView()
             1 -> bindPageTwoView()
-            3 -> bindPageThreeView()
+            2 -> bindPageThreeView()
         }
     }
 

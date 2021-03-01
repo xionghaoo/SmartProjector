@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainFragment">
+
+    <FrameLayout
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_422dp"
+        android:layout_marginStart="@dimen/_76dp"
+        android:layout_marginEnd="@dimen/_157dp"
+        android:background="@drawable/shape_card_transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/menu_search"
+        app:layout_constraintTop_toTopOf="@+id/menu_search">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_59dp"
+            android:layout_marginBottom="@dimen/_54dp"
+            android:textStyle="bold"
+            android:layout_gravity="bottom"
+            android:textSize="@dimen/_46sp"
+            android:textColor="@color/white"
+            android:text="义务教育教科书"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView26"
+        style="@style/CardTitleStyle"
+        android:layout_width="@dimen/_440dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_bg_card"
+        android:paddingStart="@dimen/_33dp"
+        android:paddingTop="@dimen/_75dp"
+        android:text="语文点读"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_read"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/menu_read" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:background="@drawable/shape_bg_card"
+        android:text="英语点读"
+        style="@style/CardTitleStyle"
+        android:paddingStart="@dimen/_33dp"
+        android:paddingTop="@dimen/_75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView26"
+        app:layout_constraintEnd_toEndOf="@+id/textView24"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_search"
+        android:layout_width="@dimen/_600dp"
+        android:layout_height="@dimen/_422dp"
+        android:layout_marginTop="@dimen/_29dp"
+        android:layout_marginStart="@dimen/_207dp"
+        android:background="@drawable/shape_bg_card"
+        android:nextFocusDown="@+id/menu_read"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/CardTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_60dp"
+            android:paddingTop="@dimen/_96dp"
+            android:text="查单词" />
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
+
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/menu_read"
+        android:layout_width="@dimen/_280dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_40dp"
+        android:layout_marginBottom="@dimen/_39dp"
+        android:background="@drawable/shape_bg_card"
+        android:nextFocusUp="@+id/menu_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/menu_search"
+        app:layout_constraintTop_toBottomOf="@+id/menu_search">
+
+        <TextView
+            style="@style/CardTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_40dp"
+            android:paddingTop="@dimen/_17dp"
+            android:text="试卷" />
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
+
+    <FrameLayout
+        android:id="@+id/textView12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:background="@drawable/shape_bg_card"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_read"
+        app:layout_constraintEnd_toEndOf="@+id/menu_search"
+        app:layout_constraintStart_toEndOf="@+id/menu_read"
+        app:layout_constraintTop_toTopOf="@+id/menu_read" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_27dp"
+            android:layout_marginStart="@dimen/_34dp"
+            android:textSize="@dimen/_46sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="查字词"/>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

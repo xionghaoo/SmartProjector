@@ -7,34 +7,25 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bumptech.glide.Glide
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
-import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
-import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.game.GameFragment
-import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import pub.devrel.easypermissions.AfterPermissionGranted
-import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
@@ -65,9 +56,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var settingsFragment: SettingsFragment
     private lateinit var cartoonBookFragment: CartoonBookFragment
 
-    private var menus: ArrayList<TextView> = ArrayList()
+//    private var menus: ArrayList<TextView> = ArrayList()
 
-    private var menuTitles = arrayOf("同步语文", "同步英语", "同步数学", "AI编程")
+    private var pageTitles = arrayOf("同步语文", "同步英语", "同步数学", "AI编程", "智能辅导", "优必选严选")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -93,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                binding.tvPageTitle.text = menuTitles[position]
+                binding.tvPageTitle.text = pageTitles[position]
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -147,15 +138,15 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun refreshSelectedStatus(v: View) {
-       menus.forEach { m ->
-           if (v.id == m.id) {
-               m.setBackgroundResource(R.drawable.shape_menu_selected)
-           } else {
-               m.setBackgroundResource(R.drawable.shape_menu_normal)
-           }
-       }
-    }
+//    private fun refreshSelectedStatus(v: View) {
+//       menus.forEach { m ->
+//           if (v.id == m.id) {
+//               m.setBackgroundResource(R.drawable.shape_menu_selected)
+//           } else {
+//               m.setBackgroundResource(R.drawable.shape_menu_normal)
+//           }
+//       }
+//    }
 
     private fun eyeProtectionMode() {
         RootExecutor.exec(
@@ -213,7 +204,7 @@ class MainActivity : AppCompatActivity() {
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-        override fun getCount(): Int = menuTitles.size
+        override fun getCount(): Int = pageTitles.size
 
         override fun getItem(position: Int): Fragment = MainFragment.newInstance(position)
     }
