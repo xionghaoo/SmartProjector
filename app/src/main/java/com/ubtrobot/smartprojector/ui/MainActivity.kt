@@ -83,7 +83,9 @@ class MainActivity : AppCompatActivity() {
             ) {
                 Timber.d("position: $position, positionOffset: $positionOffset, pixel: $positionOffsetPixels, screen width = ${display.widthPixels}")
                 if (position == pageTitles.size - 1) {
-                    binding.containerMainHeader.alpha = 1 - positionOffset
+                    binding.containerMainHeader.alpha = if(positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+                    binding.containerMainHeader.scaleX = if(positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+                    binding.containerMainHeader.scaleY = if(positionOffset < 0.5) 1 - 2 * positionOffset else 0f
 //                    binding.containerMainHeader.x += (positionOffsetPixels - display.widthPixels).toFloat()
                 }
             }

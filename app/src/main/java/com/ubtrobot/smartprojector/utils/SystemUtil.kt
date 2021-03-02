@@ -1,14 +1,10 @@
 package com.ubtrobot.smartprojector.utils
 
-import android.Manifest
 import android.app.Activity
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -20,7 +16,6 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -181,7 +176,7 @@ class SystemUtil {
         fun toFullScreenMode(activity: AppCompatActivity) {
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
         /**
@@ -247,6 +242,16 @@ class SystemUtil {
                     edt.requestFocus()
                 }
                 true
+            }
+        }
+
+        fun uninstallApp(context: Context, packageName: String) {
+            try {
+                val packageURI = Uri.parse("package:$packageName")
+                val uninstallIntent = Intent(Intent.ACTION_DELETE, packageURI)
+                context.startActivity(uninstallIntent)
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

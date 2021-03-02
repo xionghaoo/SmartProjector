@@ -96,10 +96,49 @@
             android:id="@+id/textView39"
             android:layout_width="@dimen/_342dp"
             android:layout_height="@dimen/_192dp"
-            android:layout_marginTop="@dimen/_60dp"
+            android:layout_marginTop="@dimen/_40dp"
             android:background="@drawable/shape_bg_card"
             app:layout_constraintStart_toStartOf="@+id/textView35"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="装在口袋里的爸爸"
+            android:paddingStart="@dimen/_30dp"
+            android:paddingEnd="@dimen/_30dp"
+            android:textColor="@color/color_card_name"
+            android:textSize="@dimen/_26sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView39"
+            app:layout_constraintStart_toStartOf="@+id/textView39"
+            app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_34dp"
+            android:background="@drawable/shape_bg_card"
+            app:layout_constraintBottom_toBottomOf="@+id/textView39"
+            app:layout_constraintEnd_toEndOf="@+id/textView37"
+            app:layout_constraintStart_toEndOf="@+id/textView39"
+            app:layout_constraintTop_toTopOf="@+id/textView39" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="装在口袋里的爸爸"
+            android:paddingStart="@dimen/_30dp"
+            android:paddingEnd="@dimen/_30dp"
+            android:textColor="@color/color_card_name"
+            android:textSize="@dimen/_26sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toTopOf="@+id/textView8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,6 +165,28 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/textView351"
+            android:layout_width="@dimen/_342dp"
+            android:layout_height="@dimen/_192dp"
+            android:background="@drawable/shape_bg_card"
+            android:layout_marginTop="@dimen/_29dp"
+            android:layout_marginStart="@dimen/_47dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView40">
+
+            <TextView
+                android:layout_width="@dimen/_113dp"
+                android:layout_height="@dimen/_54dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/shape_card_mark"
+                android:gravity="center"
+                android:text="免费"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_24sp" />
+        </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

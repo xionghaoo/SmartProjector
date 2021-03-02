@@ -2,17 +2,20 @@ package com.ubtrobot.smartprojector.ui.appmarket
 
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
 import android.os.Bundle
-import android.os.UserHandle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.databinding.FragmentAppMarketBinding
 import com.ubtrobot.smartprojector.repo.table.ThirdApp
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 /**
  * 已安装的App列表
@@ -100,39 +103,7 @@ class AppMarketFragment : Fragment() {
                     }
                 }
             }
-            adapter.updateData(items.filterIndexed { index, _ -> index < 10 })
-        }
-
-
-    }
-
-    private class Test : LauncherApps.Callback() {
-        override fun onPackageRemoved(packageName: String?, user: UserHandle?) {
-
-        }
-
-        override fun onPackageAdded(packageName: String?, user: UserHandle?) {
-
-        }
-
-        override fun onPackageChanged(packageName: String?, user: UserHandle?) {
-
-        }
-
-        override fun onPackagesAvailable(
-            packageNames: Array<out String>?,
-            user: UserHandle?,
-            replacing: Boolean
-        ) {
-
-        }
-
-        override fun onPackagesUnavailable(
-            packageNames: Array<out String>?,
-            user: UserHandle?,
-            replacing: Boolean
-        ) {
-
+            adapter.updateData(items)
         }
     }
 
