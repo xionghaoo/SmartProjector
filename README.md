@@ -14,6 +14,7 @@ display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity
 ## 待确认
 
 1. launcher App卸载
+ - 长按进行App管理，删除，移动位置，合并App图标
 5. 图像识别(查题)
 6. 儿歌模块
 
