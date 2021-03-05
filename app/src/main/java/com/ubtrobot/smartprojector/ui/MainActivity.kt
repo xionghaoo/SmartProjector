@@ -12,28 +12,36 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.tuya.smart.api.service.MicroServiceManager
+import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
+import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.game.GameFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
+import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import timber.log.Timber
-import java.lang.Exception
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     companion object {
+        init {
+//            System.loadLibrary("tuya_ext")
+        }
+
         private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 2
 
         fun startWithNewTask(context: Context?) {
@@ -42,6 +50,8 @@ class MainActivity : AppCompatActivity() {
             context?.startActivity(i)
         }
     }
+
+//    private external fun initialZigbeeGW()
 
     @Inject
     lateinit var connectionStateMonitor: ConnectionStateMonitor
@@ -64,6 +74,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        initialZigbeeGW()
+
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -83,9 +96,12 @@ class MainActivity : AppCompatActivity() {
             ) {
                 Timber.d("position: $position, positionOffset: $positionOffset, pixel: $positionOffsetPixels, screen width = ${display.widthPixels}")
                 if (position == pageTitles.size - 1) {
-                    binding.containerMainHeader.alpha = if(positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-                    binding.containerMainHeader.scaleX = if(positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-                    binding.containerMainHeader.scaleY = if(positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+                    binding.containerMainHeader.alpha =
+                        if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+                    binding.containerMainHeader.scaleX =
+                        if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+                    binding.containerMainHeader.scaleY =
+                        if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
 //                    binding.containerMainHeader.x += (positionOffsetPixels - display.widthPixels).toFloat()
                 }
             }
@@ -109,7 +125,19 @@ class MainActivity : AppCompatActivity() {
             ScreenLockActivity.lock(this)
         }
 
+        binding.containerAvatar.setOnClickListener {
+            startPlainActivity(SettingsActivity::class.java)
+        }
+
         eyeProtectionMode()
+
+        // 拓展网关测试
+//        Thread {
+//            val exitCode1 = Shell.Pool.SU.run("chmod 666 /storage/emulated/0/Download")
+//            val exitCode2 = Shell.Pool.SU.run("chmod 666 /dev/ttyUSB0")
+//            Timber.d("exitCode1: $exitCode1, exitCode2: $exitCode2")
+//            initialZigbeeGW()
+//        }.start()
 
         initialTuyaHome()
     }
@@ -118,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    /**
+    /**.
      * 涂鸦home初始化
      */
     private fun initialTuyaHome() {
@@ -129,6 +157,12 @@ class MainActivity : AppCompatActivity() {
                     val home = homeBeans.first()
                     repo.prefs.currentHomeId = home.homeId
                     repo.prefs.currentHomeName = home.name
+
+                    val service = MicroServiceManager.getInstance()
+                        .findServiceByInterface<AbsBizBundleFamilyService>(
+                            AbsBizBundleFamilyService::class.java.name
+                        )
+                    service.currentHomeId = home.homeId
 //                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
 //                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
 //                    homeDevicesQuery(home.homeId)
@@ -176,7 +210,10 @@ class MainActivity : AppCompatActivity() {
                                 eyeProtectionDialog()
                             } else {
                                 try {
-                                    startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION)
+                                    startActivityForResult(
+                                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
+                                        RC_SYSTEM_ALERT_WINDOW_PERMISSION
+                                    )
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -214,7 +251,10 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private inner class ScreenAdapter : FragmentStatePagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private inner class ScreenAdapter : FragmentStatePagerAdapter(
+        supportFragmentManager,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
 
         override fun getCount(): Int = pageTitles.size + 1
 

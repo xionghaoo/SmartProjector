@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+  <string name="ty_device_already_add">Adicionado</string>
+  <string name="ty_device_detail_close">Desl.</string>
+  <string name="ty_device_detail_close_sub_device_tip">O controle remoto adicionado não será exibido em Casa</string>
+  <string name="ty_device_detail_display_remote_control">Mostrar controle remoto</string>
+  <string name="ty_device_detail_open">Lig.</string>
+  <string name="ty_device_detail_open_sub_device_tip">O controle remoto adicionado será exibido em Casa</string>
+  <string name="ty_device_had_add_homekit_home">O dispositivo é adicionado em %s.  Clique e vá para o app 「 Casa 」para verificar</string>
+  <string name="ty_homeKit_info">Informações do HomeKit</string>
+  <string name="ty_homekit_accessory_remove_failure">Falha ao remover</string>
+  <string name="ty_homekit_accessory_remove_tips">O dispositivo não poderá ser usado no app 「 Casa 」após a remoção do app</string>
+  <string name="ty_homekit_auth_home_data">Habilitar \"Dados de casa\"</string>
+  <string name="ty_homekit_auth_home_title">Habilite os dados de casa para permitir que o app acesse o HomeKit</string>
+  <string name="ty_homekit_bindable">Vincular</string>
+  <string name="ty_homekit_binded">Vinculado</string>
+  <string name="ty_homekit_device">Dispositivo do HomeKit</string>
+  <string name="ty_homekit_device_binding">Vinculando “%s”</string>
+  <string name="ty_homekit_unbindable">Impossível vincular</string>
+  <string name="ty_homekit_unbindable_tips">Falha ao conectar ao dispositivo. Conecte o telefone ao mesmo Wi-Fi do dispositivo e atualize a lista para tentar de novo.</string>
+  <string name="ty_network_certificate_dialog_tip">Erro de rede. Verifique a configuração das credenciais no seu sistema.</string>
+  <string name="ty_network_certificate_guide_android_step1">1. Verifique as configurações de hora no seu telefone para garantir que correspondam à hora e ao fuso horário locais.</string>
+  <string name="ty_network_certificate_guide_android_step2">2. Verifique se você ativou a credencial de \"Autoridade de certificação raiz G2 da GoDaddy Inc., de GoDaddy.com\" em Configurações - Avançado - Criptografia e credenciais - Credenciais confiáveis.</string>
+  <string name="ty_network_request_fail_dialog_tip">Falha na solicitação da rede. Tente de novo mais tarde.</string>
+  <string name="ty_network_request_ssl_fail_dialog_tip">Verifique as configurações de hora no seu telefone para garantir que correspondam à hora e ao fuso horário locais.</string>
+  <string name="ty_network_unavailable_dialog_tip">Não é possível usar a rede atual\nVerifique sua configuração de rede.</string>
+  <string name="ty_no_services">Sem serviços</string>
+  <string name="ty_open_location_permisiion_detail">1. Esta função exige que você sempre permita que o dispositivo acesse sua localização. Os dados são usados ​​em [quando a localização muda] em [inteligente], que ainda pode ser executado mesmo se o aplicativo não estiver em uso; \n 2. O acesso só será usado neste serviço e os dados não serão coletados e armazenados.</string>
+  <string name="ty_open_location_permission">Nota</string>
+  <string name="ty_remove">Remover</string>
+  <string name="ty_smart_scene_feedback_no_respond">Conexão expirada</string>
+</resources>

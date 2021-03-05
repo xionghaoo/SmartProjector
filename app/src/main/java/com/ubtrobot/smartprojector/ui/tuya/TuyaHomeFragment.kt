@@ -41,8 +41,8 @@ class TuyaHomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTuyaHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -53,10 +53,11 @@ class TuyaHomeFragment : Fragment() {
 
         binding.rcDeviceList.layoutManager = LinearLayoutManager(requireContext())
         adapter = TuyaDeviceAdapter(emptyList()) { index, item ->
-            showController(item)
+//            showController(item)
             // 测试控制页面
-//            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
-//            service.goPanelWithCheckAndTip(requireActivity(), item.id)
+            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
+            Timber.d("启动涂鸦控制器：${item.id}")
+            service.goPanelWithCheckAndTip(requireActivity(), item.id)
         }
         binding.rcDeviceList.adapter = adapter
         binding.btnAddNewDevice.setOnClickListener {
@@ -133,8 +134,8 @@ class TuyaHomeFragment : Fragment() {
                 deviceList?.forEach { d ->
                     // gwType: If device is virtual, the filed value is "v" , else is "s"
                     Timber.d(
-                        "设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, " +
-                                "category: ${d.category}, ${d.categoryCode}, isOnline: ${d.isOnline}"
+                            "设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, " +
+                                    "category: ${d.category}, ${d.categoryCode}, isOnline: ${d.isOnline}"
                     )
 
                     val cmds = ArrayList<TuyaDeviceCmd>()
@@ -149,15 +150,15 @@ class TuyaHomeFragment : Fragment() {
 
                     }
                     items.add(
-                        TuyaDevice(
-                            d.productId,
-                            d.devId,
-                            d.isOnline,
-                            d.isZigBeeWifi,
-                            d.categoryCode,
-                            d.schema,
-                            cmds
-                        )
+                            TuyaDevice(
+                                    d.productId,
+                                    d.devId,
+                                    d.isOnline,
+                                    d.isZigBeeWifi,
+                                    d.categoryCode,
+                                    d.schema,
+                                    cmds
+                            )
                     )
                 }
                 adapter.updateData(items)

@@ -26,9 +26,9 @@ extern "C" {
 #endif
 
 /* must apply for uuid, authkey and product key from tuya iot develop platform */
-#define UUID         "003tuyatestf7f149185"
-#define AUTHKEY      "NeA8Wc7srpAZHEMuru867oblOLN2QCC1"
-#define PRODUCT_KEY  "GXxoKf27eVjA7x1c"
+#define UUID         "tuya6ba64229bae156ed"
+#define AUTHKEY      "Ag8besxs4d4alJMsYmOhBObSUm5ToU5V"
+#define PRODUCT_KEY  "ryhggo6aqrduexou"
 
 static char g_pid[64]     = {0};
 static char g_uuid[64]    = {0};
@@ -45,7 +45,7 @@ Java_com_ubtrobot_smartprojector_ui_settings_SettingsFragment_helloStr(JNIEnv* e
     return env->NewStringUTF(str.c_str());
 }
 
-static void usage()
+void usage()
 {
     printf("usage:\r\n");
     printf("  u: unactive gw unittest\r\n");
@@ -54,22 +54,23 @@ static void usage()
     printf("\r\n");
 }
 
-static int _iot_get_uuid_authkey_cb(char *uuid, int uuid_size, char *authkey, int authkey_size)
+int _iot_get_uuid_authkey_cb(char *uuid, int uuid_size, char *authkey, int authkey_size)
 {
+    LOGD("_iot_get_uuid_authkey_cb: %s, %s", UUID, AUTHKEY);
     strncpy(uuid, UUID, uuid_size);
     strncpy(authkey, AUTHKEY, authkey_size);
 
     return 0;
 }
 
-static int _iot_get_product_key_cb(char *pk, int pk_size)
+int _iot_get_product_key_cb(char *pk, int pk_size)
 {
     strncpy(pk, PRODUCT_KEY, pk_size);
 
     return 0;
 }
 
-static int _gw_configure_op_mode_cb(ty_op_mode_t mode)
+int _gw_configure_op_mode_cb(ty_op_mode_t mode)
 {
     LOGD("gw configure operation mode callback");
 
@@ -90,17 +91,18 @@ static int _gw_configure_op_mode_cb(ty_op_mode_t mode)
     return 0;
 }
 
-static void _gw_reboot_cb()
+// 网关重启
+void _gw_reboot_cb()
 {
     LOGD("gw reboot callback");
 }
 
-static void _gw_reset_cb()
+void _gw_reset_cb()
 {
     LOGD("gw reset callback");
 }
 
-static int _gw_upgrade_cb(const char *img)
+int _gw_upgrade_cb(const char *img)
 {
     LOGD("gw upgrade callback");
     /* USER TODO */
@@ -108,21 +110,21 @@ static int _gw_upgrade_cb(const char *img)
     return 0;
 }
 
-static int _gw_active_status_changed_cb(ty_gw_status_t status)
+int _gw_active_status_changed_cb(ty_gw_status_t status)
 {
     LOGD("active status changed, status: %d", status);
 
     return 0;
 }
 
-static int _gw_online_status_changed_cb(bool registered, bool online)
+int _gw_online_status_changed_cb(bool registered, bool online)
 {
     LOGD("online status changed, registerd: %d, online: %d", registered, online);
 
     return 0;
 }
 
-static int _gw_fetch_local_log_cb(char *path, int path_len)
+int _gw_fetch_local_log_cb(char *path, int path_len)
 {
     char cmd[256] = {0};
 
@@ -139,12 +141,12 @@ static int _gw_fetch_local_log_cb(char *path, int path_len)
     return 0;
 }
 
-static void test_tuya_user_iot_unactive_gw()
+void test_tuya_user_iot_unactive_gw()
 {
     tuya_user_iot_unactive_gw();
 }
 
-static void test_tuya_user_iot_permit_join()
+void test_tuya_user_iot_permit_join()
 {
     static bool permit = false;
     int ret = 0;
@@ -153,7 +155,7 @@ static void test_tuya_user_iot_permit_join()
 
     ret = tuya_user_iot_permit_join(permit);
     if (ret != 0) {
-        log_err("tuya_user_iot_permit_join error, ret: %d", ret);
+        LOGD("tuya_user_iot_permit_join error, ret: %d", ret);
         return;
     }
 }
@@ -162,13 +164,16 @@ static void test_tuya_user_iot_permit_join()
  * 初始化
  */
 void initial() {
+    LOGD("initial gw");
     int ret = 0;
     char line[256] = {0};
 
+    // ./
     string storage_path("./");
-    string cache_path("/tmp/");
-    string tty_device("/dev/ttyS1");
-    string eth_ifname("br0");
+    // /tmp
+    string cache_path("/tmp");
+    string tty_device("/dev/ttyUSB0");
+    string eth_ifname("wlan0");
     string ver("1.0.0");
 
     ty_gw_attr_s gw_attr = {
@@ -180,6 +185,8 @@ void initial() {
             .ver = &ver[0],
             .log_level = TY_LOG_DEBUG
     };
+
+    LOGD("eth_ifname: %s", &eth_ifname[0]);
 
     ty_gw_infra_cbs_s gw_infra_cbs = {
             .get_uuid_authkey_cb = _iot_get_uuid_authkey_cb,
@@ -195,9 +202,10 @@ void initial() {
 
     ret = tuya_user_iot_init(&gw_attr, &gw_infra_cbs);
     if (ret != 0) {
-        log_err("tuya_user_iot_init failed");
+        LOGD("tuya_user_iot_init failed: %d", ret);
         return;
     }
+    LOGD("tuya_user_iot_init success");
 
 //     下面是测试代码
 //    while (1) {
@@ -220,6 +228,12 @@ void initial() {
 //        }
 //    }
 }
+
+JNIEXPORT void JNICALL
+Java_com_ubtrobot_smartprojector_ui_MainActivity_initialZigbeeGW(JNIEnv *env, jobject thiz) {
+    initial();
+}
 #ifdef __cplusplus
 }
 #endif
+

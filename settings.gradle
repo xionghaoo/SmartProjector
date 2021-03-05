@@ -1,11 +1,3 @@
-//include ':cropiwa'
-//include ':uKitDeviceConnect'
-//include ':Bridge'
-//include ':UBTUtils'
-//include ':UBTUI'
-//include ':UBTQRCode'
-//include ':UBTCommon'
-//include ':UBTCore'
-//include ':uKit'
+include ':tuya_biz'
 include ':app'
 rootProject.name = "SmartProjector"

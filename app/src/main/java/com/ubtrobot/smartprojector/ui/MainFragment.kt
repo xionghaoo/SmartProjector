@@ -168,8 +168,10 @@ class MainFragment : Fragment() {
     }
 
     private fun bindPageFourView() {
+        bindingPageFour.menuSearch.setOnClickListener {
+            startPlainActivity(TuyaHomeActivity::class.java)
+        }
         bindingPageFour.menuStartProgramming.setOnClickListener {
-            Timber.d("click start program")
             startPlainActivity(TestActivity::class.java)
         }
     }
