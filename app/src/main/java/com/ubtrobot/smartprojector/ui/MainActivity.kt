@@ -94,15 +94,15 @@ class MainActivity : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                Timber.d("position: $position, positionOffset: $positionOffset, pixel: $positionOffsetPixels, screen width = ${display.widthPixels}")
+//                Timber.d("position: $position, positionOffset: $positionOffset, pixel: $positionOffsetPixels, screen width = ${display.widthPixels}")
                 if (position == pageTitles.size - 1) {
-                    binding.containerMainHeader.alpha =
-                        if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-                    binding.containerMainHeader.scaleX =
-                        if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-                    binding.containerMainHeader.scaleY =
-                        if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-//                    binding.containerMainHeader.x += (positionOffsetPixels - display.widthPixels).toFloat()
+                    // 缩放动画
+//                    val offsetConvertValue = if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+//                    binding.containerMainHeader.alpha = offsetConvertValue
+//                    binding.containerMainHeader.scaleX = offsetConvertValue
+//                    binding.containerMainHeader.scaleY = offsetConvertValue
+                    // 平移动画
+                    binding.containerMainHeader.translationX = -positionOffsetPixels.toFloat()
                 }
             }
 
