@@ -6,8 +6,8 @@
 
     <!-- Drag Option View -->
     <string name="edit">Edit</string>
-    <string name="info">Info</string>
-    <string name="uninstall">Uninstall</string>
+    <string name="info">查看详情</string>
+    <string name="uninstall">卸载应用</string>
     <string name="remove">Remove</string>
     <string name="resize">Resize</string>
 </resources>

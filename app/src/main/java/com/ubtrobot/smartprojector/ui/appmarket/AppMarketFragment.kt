@@ -1,21 +1,19 @@
 package com.ubtrobot.smartprojector.ui.appmarket
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
-import android.content.pm.ApplicationInfo
-import android.content.pm.LauncherActivityInfo
-import android.content.pm.LauncherApps
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.databinding.FragmentAppMarketBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
-import com.ubtrobot.smartprojector.repo.table.ThirdApp
+import timber.log.Timber
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
@@ -30,21 +28,53 @@ class AppMarketFragment : Fragment() {
     private var _binding: FragmentAppMarketBinding? = null
     private val binding get() = _binding!!
 
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Timber.d("on receiver: ${intent?.action}")
+            when(intent?.action) {
+                Intent.ACTION_PACKAGE_INSTALL -> {
+
+                }
+                Intent.ACTION_PACKAGE_ADDED -> {
+                    // 应用安装
+                    updateApps()
+                }
+                Intent.ACTION_PACKAGE_REMOVED -> {
+                    // 应用卸载
+                    updateApps()
+                }
+                Intent.ACTION_PACKAGE_CHANGED -> {
+
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLauncher(this)
         arguments?.apply {
             isGame = getBoolean(ARG_IS_GAME)
         }
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
+        intentFilter.addDataScheme("package")
+        requireActivity().registerReceiver(receiver, intentFilter)
     }
 
     override fun onDestroy() {
         setLauncher(null)
+        requireActivity().unregisterReceiver(receiver)
         super.onDestroy()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentAppMarketBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -81,13 +111,7 @@ class AppMarketFragment : Fragment() {
         }
         binding.rcAppList.adapter = adapter
 
-        AppManager.getInstance(context).init()
-
-        AppManager.getInstance(context).addUpdateListener { apps ->
-            adapter.updateData(apps)
-            false
-        }
-
+        updateApps()
         // 获取已安装的app列表
 //        val intent = Intent(Intent.ACTION_MAIN)
 //        intent.addCategory(Intent.CATEGORY_LAUNCHER)
@@ -119,6 +143,14 @@ class AppMarketFragment : Fragment() {
 //            }
 //            adapter.updateData(items)
 //        }
+    }
+
+    private fun updateApps() {
+        AppManager.getInstance(context).getAllApps()
+        AppManager.getInstance(context).addUpdateListener { apps ->
+            adapter.updateData(apps)
+            false
+        }
     }
 
     fun getItemOptionView() = binding.itemOptionView
