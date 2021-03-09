@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.utils.ResourceUtil
+import timber.log.Timber
 import kotlin.math.roundToInt
 
 /**
@@ -52,7 +53,7 @@ class PagerIndicator : LinearLayout {
         }
         vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
+//                Timber.d("position: $position, offset: $positionOffset, positionOffsetPixels: $positionOffsetPixels")
             }
 
             override fun onPageSelected(position: Int) {
