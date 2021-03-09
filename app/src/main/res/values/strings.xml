@@ -3,4 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_screen_lock">请输入锁屏密码</string>
+
+    <!-- Drag Option View -->
+    <string name="edit">Edit</string>
+    <string name="info">Info</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="remove">Remove</string>
+    <string name="resize">Resize</string>
 </resources>

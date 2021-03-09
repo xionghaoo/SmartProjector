@@ -8,6 +8,7 @@ import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.optimus.sdk.TuyaOptimusSdk
 import com.tuya.smart.wrapper.api.TuyaWrapper
+import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.HiltAndroidApp
@@ -54,6 +55,7 @@ class SmartProjectorApp : Application() {
             LoginActivity.startWithNewTask(it)
         }
 
+        // 文件下载
         FileDownloader.setup(this)
     }
 }

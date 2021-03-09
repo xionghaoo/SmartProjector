@@ -15,6 +15,8 @@ public class App {
     public String _className;
     public UserHandle _userHandle;
 
+    public Boolean _isLimited = false;
+
     public App(PackageManager pm, ResolveInfo info) {
         _icon = info.loadIcon(pm);
         _label = info.loadLabel(pm).toString();

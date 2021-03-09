@@ -52,7 +52,10 @@ class SystemUtil {
 //        }
 
         fun setImageForegroundColor(img: ImageView, context: Context, color: Int) {
-            img.setColorFilter(ContextCompat.getColor(context, color), android.graphics.PorterDuff.Mode.SRC_ATOP)
+            img.setColorFilter(
+                ContextCompat.getColor(context, color),
+                android.graphics.PorterDuff.Mode.SRC_ATOP
+            )
         }
 
         /**
@@ -175,8 +178,10 @@ class SystemUtil {
 
         fun toFullScreenMode(activity: AppCompatActivity) {
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            activity.window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            );
         }
 
         /**
@@ -245,13 +250,30 @@ class SystemUtil {
             }
         }
 
-        fun uninstallApp(context: Context, packageName: String) {
+        fun uninstallApp(context: Context, packageName: String?) {
+            if (packageName == null) return
             try {
                 val packageURI = Uri.parse("package:$packageName")
                 val uninstallIntent = Intent(Intent.ACTION_DELETE, packageURI)
                 context.startActivity(uninstallIntent)
             } catch (e: Exception) {
                 e.printStackTrace()
+            }
+        }
+
+        fun appInfo(context: Context?, packageName: String, clsName: String) {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.setClassName(packageName, clsName)
+            try {
+                val str = "android.settings.APPLICATION_DETAILS_SETTINGS"
+                val stringBuilder = StringBuilder()
+                stringBuilder.append("package:")
+                val component = intent.component
+                stringBuilder.append(component!!.packageName)
+                context?.startActivity(Intent(str, Uri.parse(stringBuilder.toString())))
+            } catch (e: java.lang.Exception) {
+//                Tool.toast(_homeActivity, R.string.toast_app_uninstalled)
             }
         }
     }

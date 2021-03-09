@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.databinding.FragmentAppMarketBinding
+import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.repo.table.ThirdApp
 import java.util.*
 import kotlin.collections.ArrayList
@@ -31,9 +32,15 @@ class AppMarketFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setLauncher(this)
         arguments?.apply {
             isGame = getBoolean(ARG_IS_GAME)
         }
+    }
+
+    override fun onDestroy() {
+        setLauncher(null)
+        super.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -74,40 +81,57 @@ class AppMarketFragment : Fragment() {
         }
         binding.rcAppList.adapter = adapter
 
-        // 获取已安装的app列表
-        val intent = Intent(Intent.ACTION_MAIN)
-        intent.addCategory(Intent.CATEGORY_LAUNCHER)
-        requireActivity().packageManager.apply {
-            val packageList = queryIntentActivities(intent, 0)
-            val items = ArrayList<ThirdApp>()
-            packageList.forEach { info ->
-                val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
-                val appName = getApplicationLabel(appInfo).toString()
-                val icon = getApplicationIcon(appInfo)
-                if (isGame) {
-                    if (GAME_LIST.contains(appName)) {
-                        val app = ThirdApp()
-                        app.packageName = appInfo.packageName
-                        app.name = appName
-                        app.icon = icon
-                        items.add(app)
-                    }
-                } else {
-                    if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID
-                        && !GAME_LIST.contains(appName)) {
-                        val app = ThirdApp()
-                        app.packageName = appInfo.packageName
-                        app.name = appName
-                        app.icon = icon
-                        items.add(app)
-                    }
-                }
-            }
-            adapter.updateData(items)
+        AppManager.getInstance(context).init()
+
+        AppManager.getInstance(context).addUpdateListener { apps ->
+            adapter.updateData(apps)
+            false
         }
+
+        // 获取已安装的app列表
+//        val intent = Intent(Intent.ACTION_MAIN)
+//        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+//        requireActivity().packageManager.apply {
+//            val packageList = queryIntentActivities(intent, 0)
+//            val items = ArrayList<ThirdApp>()
+//            packageList.forEach { info ->
+//                val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
+//                val appName = getApplicationLabel(appInfo).toString()
+//                val icon = getApplicationIcon(appInfo)
+//                if (isGame) {
+//                    if (GAME_LIST.contains(appName)) {
+//                        val app = ThirdApp()
+//                        app.packageName = appInfo.packageName
+//                        app.name = appName
+//                        app.icon = icon
+//                        items.add(app)
+//                    }
+//                } else {
+//                    if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID
+//                        && !GAME_LIST.contains(appName)) {
+//                        val app = ThirdApp()
+//                        app.packageName = appInfo.packageName
+//                        app.name = appName
+//                        app.icon = icon
+//                        items.add(app)
+//                    }
+//                }
+//            }
+//            adapter.updateData(items)
+//        }
     }
 
+    fun getItemOptionView() = binding.itemOptionView
+
     companion object {
+        private var instance: AppMarketFragment? = null
+
+        fun getLauncher() = instance
+
+        fun setLauncher(launcher: AppMarketFragment?) {
+            instance = launcher
+        }
+
         val GAME_LIST = arrayOf("Blockly WebView")
         private const val ARG_IS_GAME = "ARG_IS_GAME"
         fun newInstance(isGame: Boolean = false) = AppMarketFragment().apply {
