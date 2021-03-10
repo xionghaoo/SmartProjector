@@ -33,6 +33,7 @@ import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import eu.chainfire.libsuperuser.Shell
 import kotlinx.coroutines.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         init {
-//            System.loadLibrary("tuya_ext")
+            System.loadLibrary("tuya_ext")
         }
 
         private var instance: MainActivity? = null
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private external fun initialZigbeeGW()
+    private external fun initialZigbeeGW()
 
     @Inject
     lateinit var connectionStateMonitor: ConnectionStateMonitor
@@ -111,8 +112,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        initialZigbeeGW()
         setLauncher(this)
 
         SystemUtil.statusBarTransparent(window)
@@ -176,13 +175,16 @@ class MainActivity : AppCompatActivity() {
 
         eyeProtectionMode()
 
-        // 拓展网关测试
-//        Thread {
-//            val exitCode1 = Shell.Pool.SU.run("chmod 666 /storage/emulated/0/Download")
-//            val exitCode2 = Shell.Pool.SU.run("chmod 666 /dev/ttyUSB0")
-//            Timber.d("exitCode1: $exitCode1, exitCode2: $exitCode2")
-//            initialZigbeeGW()
-//        }.start()
+        // 拓展网关初始化
+        Thread {
+            val exitCode1 = Shell.Pool.SU.run("pm grant com.ubtrobot.smartprojector ${Manifest.permission.WRITE_EXTERNAL_STORAGE}")
+            val exitCode2 = Shell.Pool.SU.run("pm grant com.ubtrobot.smartprojector ${Manifest.permission.READ_EXTERNAL_STORAGE}")
+            if (exitCode1 == 0 && exitCode2 == 0) {
+                initialZigbeeGW()
+            } else {
+                Timber.e("网关读写权限授予失败")
+            }
+        }.start()
 
         initialTuyaHome()
 
@@ -272,7 +274,7 @@ class MainActivity : AppCompatActivity() {
                                     )
                                 } catch (e: Exception) {
                                     e.printStackTrace()
-                                }
+                         1       }
                             }
                         } else {
                             eyeProtectionDialog()
@@ -312,7 +314,7 @@ class MainActivity : AppCompatActivity() {
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
     ) {
 
-        private val MAX_APP_NUM = 28
+        private val MAX_APP_NUM = 20
 
         private var appNum: Int = 0
         private var appPageNum: Int = 0

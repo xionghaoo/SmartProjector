@@ -26,8 +26,8 @@ extern "C" {
 #endif
 
 /* must apply for uuid, authkey and product key from tuya iot develop platform */
-#define UUID         "tuya6ba64229bae156ed"
-#define AUTHKEY      "Ag8besxs4d4alJMsYmOhBObSUm5ToU5V"
+#define UUID         "tuyac5a7f448945262f9"
+#define AUTHKEY      "YzOudO5EtzWmyPAF8bb8o8Tp9J4uABZx"
 #define PRODUCT_KEY  "ryhggo6aqrduexou"
 
 static char g_pid[64]     = {0};
@@ -168,10 +168,8 @@ void initial() {
     int ret = 0;
     char line[256] = {0};
 
-    // ./
-    string storage_path("./");
-    // /tmp
-    string cache_path("/tmp");
+    string storage_path("/storage/emulated/0/Download");
+    string cache_path("/storage/emulated/0/Download");
     string tty_device("/dev/ttyUSB0");
     string eth_ifname("wlan0");
     string ver("1.0.0");
