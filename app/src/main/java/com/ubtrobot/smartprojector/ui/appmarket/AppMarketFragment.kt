@@ -52,7 +52,6 @@ class AppMarketFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setLauncher(this)
         arguments?.apply {
             isGame = getBoolean(ARG_IS_GAME)
         }
@@ -110,7 +109,7 @@ class AppMarketFragment : Fragment() {
             }
         }
         binding.rcAppList.adapter = adapter
-
+//        Timber.d("onViewCreated")
         updateApps()
         // 获取已安装的app列表
 //        val intent = Intent(Intent.ACTION_MAIN)
@@ -153,17 +152,7 @@ class AppMarketFragment : Fragment() {
         }
     }
 
-    fun getItemOptionView() = binding.itemOptionView
-
     companion object {
-        private var instance: AppMarketFragment? = null
-
-        fun getLauncher() = instance
-
-        fun setLauncher(launcher: AppMarketFragment?) {
-            instance = launcher
-        }
-
         val GAME_LIST = arrayOf("Blockly WebView")
         private const val ARG_IS_GAME = "ARG_IS_GAME"
         fun newInstance(isGame: Boolean = false) = AppMarketFragment().apply {

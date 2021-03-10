@@ -7,6 +7,7 @@ import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.core.PlainListAdapter
 import com.ubtrobot.smartprojector.launcher.App
 import com.ubtrobot.smartprojector.repo.table.ThirdApp
+import com.ubtrobot.smartprojector.ui.MainActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.widgets.AppLauncherView
 
@@ -31,8 +32,8 @@ class AppInfoAdapter(
             itemView.unlock {
                 itemClick(item.packageName)
             }
-            if (AppMarketFragment.getLauncher() != null) {
-                v.setOnLongClickListener(AppMarketFragment.getLauncher()!!.getItemOptionView().getLongClickListener(item))
+            if (MainActivity.getLauncher() != null) {
+                v.setOnLongClickListener(MainActivity.getLauncher()!!.getItemOptionView().getLongClickListener(item))
             }
         }
     }

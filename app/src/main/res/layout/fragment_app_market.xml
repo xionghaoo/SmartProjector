@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ubtrobot.smartprojector.launcher.ItemOptionView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_option_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.appmarket.AppMarketFragment">
@@ -48,4 +47,4 @@
 <!--        android:textColor="@color/color_222222"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/rc_en_app_list" />-->
-</com.ubtrobot.smartprojector.launcher.ItemOptionView>
+</FrameLayout>

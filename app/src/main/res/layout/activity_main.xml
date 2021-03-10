@@ -7,16 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+    <com.ubtrobot.smartprojector.launcher.ItemOptionView
+        android:id="@+id/item_option_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/pager_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
-
-    </androidx.viewpager.widget.ViewPager>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.ubtrobot.smartprojector.launcher.ItemOptionView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_main_header"

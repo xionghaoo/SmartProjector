@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.tuya.smart.api.service.MicroServiceManager
 import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
@@ -41,6 +42,14 @@ class MainActivity : AppCompatActivity() {
     companion object {
         init {
 //            System.loadLibrary("tuya_ext")
+        }
+
+        private var instance: MainActivity? = null
+
+        fun getLauncher() = instance
+
+        fun setLauncher(launcher: MainActivity?) {
+            instance = launcher
         }
 
         private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 2
@@ -77,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 //        initialZigbeeGW()
+        setLauncher(this)
 
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -195,6 +205,8 @@ class MainActivity : AppCompatActivity() {
 //       }
 //    }
 
+    fun getItemOptionView() = binding.itemOptionView
+
     private fun eyeProtectionMode() {
         RootExecutor.exec(
             cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
@@ -263,9 +275,78 @@ class MainActivity : AppCompatActivity() {
             if (position < pageTitles.size) {
                 return MainFragment.newInstance(position)
             } else {
-                return AppMarketFragment.newInstance()
+                val gridPosition = position - pageTitles.size
+                val frag = appGridList[gridPosition]
+                frag.setPosition(gridPosition)
+                return frag
             }
         }
+
+        // 删除页需要用到
+        override fun getItemPosition(obj: Any): Int {
+            return PagerAdapter.POSITION_NONE
+        }
+
+        fun setAppNum(num: Int) {
+            appNum = num
+            appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
+            appGridList.clear()
+            for (i in 0.until(appPageNum)) {
+                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
+            }
+            binding.pagerIndicator.updateItems(count)
+            notifyDataSetChanged()
+        }
+
+        fun updateAppGrids() {
+            appGridList.forEach { gridFrag ->
+                if (gridFrag.isAdded) {
+                    Timber.d("updateAppGrids: ${gridFrag.javaClass.name}")
+                    gridFrag.updateApps()
+                }
+            }
+        }
+
+        fun addApp() {
+            if (appNum % MAX_APP_NUM == 0) {
+                // 添加新的一页
+                appNum += 1
+                appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
+                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
+                binding.pagerIndicator.updateItems(count)
+                notifyDataSetChanged()
+            } else {
+                updateAppGrids()
+            }
+        }
+
+        fun removeApp() {
+            if ((appNum - 1) % MAX_APP_NUM == 0) {
+                appNum -= 1
+                appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
+                if (appGridList.isNotEmpty()) {
+                    appGridList.removeAt(appGridList.size - 1)
+                }
+                binding.pagerIndicator.updateItems(count)
+                notifyDataSetChanged()
+            } else {
+                updateAppGrids()
+            }
+        }
+
+//        fun updateApps() {
+//            AppManager.getInstance(this@MainActivity).getAllApps()
+//            AppManager.getInstance(this@MainActivity).addUpdateListener { apps ->
+//                val newAppNum = apps.size
+//                val pageNum = if (newAppNum % MAX_APP_NUM == 0) newAppNum / MAX_APP_NUM else newAppNum / MAX_APP_NUM + 1
+//                if (pageNum != appPageNum) {
+//                    setAppNum(pageNum)
+//                } else {
+//                    updateAppGrids()
+//                }
+//                false
+//            }
+//        }
     }
 
 }

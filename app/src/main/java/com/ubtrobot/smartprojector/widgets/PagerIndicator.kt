@@ -18,6 +18,8 @@ import kotlin.math.roundToInt
  */
 class PagerIndicator : LinearLayout {
 
+    private var currentSelectedPage: Int = 0
+
     constructor(context: Context?) : super(context) {
         initial(context)
     }
@@ -57,6 +59,7 @@ class PagerIndicator : LinearLayout {
             }
 
             override fun onPageSelected(position: Int) {
+                currentSelectedPage = position
                 children.forEach { child ->
                     child.background = resources.getDrawable(R.drawable.shape_circle_overlay)
                 }
