@@ -32,26 +32,8 @@ class PagerIndicator : LinearLayout {
     }
 
     fun setViewPager(vp: ViewPager) {
-        removeAllViews()
         if (vp.adapter != null) {
-            for (i in 0.until(vp.adapter!!.count)) {
-                val item = View(context)
-                addView(item)
-
-                if (i == 0) {
-                    item.background = resources.getDrawable(R.drawable.shape_circle_white)
-                } else {
-                    item.background = resources.getDrawable(R.drawable.shape_circle_overlay)
-                }
-                val itemLp = item.layoutParams as LinearLayout.LayoutParams
-                val size = ResourceUtil.convertDpToPixel(12f, context).roundToInt()
-                itemLp.width = size
-                itemLp.height = size
-                if (i > 0) {
-                    itemLp.leftMargin = ResourceUtil.convertDpToPixel(30f, context).roundToInt()
-                }
-
-            }
+            updateItems(vp.adapter!!.count)
         }
         vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -85,5 +67,27 @@ class PagerIndicator : LinearLayout {
 //            }
 //        })
 
+    }
+
+    fun updateItems(pageCount: Int) {
+        removeAllViews()
+        for (i in 0.until(pageCount)) {
+            val item = View(context)
+            addView(item)
+
+            if (i == currentSelectedPage) {
+                item.background = resources.getDrawable(R.drawable.shape_circle_white)
+            } else {
+                item.background = resources.getDrawable(R.drawable.shape_circle_overlay)
+            }
+            val itemLp = item.layoutParams as LinearLayout.LayoutParams
+            val size = ResourceUtil.convertDpToPixel(12f, context).roundToInt()
+            itemLp.width = size
+            itemLp.height = size
+            if (i > 0) {
+                itemLp.leftMargin = ResourceUtil.convertDpToPixel(30f, context).roundToInt()
+            }
+
+        }
     }
 }

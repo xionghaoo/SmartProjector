@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ubtrobot.smartprojector.databinding.FragmentAppMarketBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import timber.log.Timber
-import java.util.*
 
 
 /**
@@ -21,52 +20,28 @@ import java.util.*
  */
 class AppMarketFragment : Fragment() {
 
-    private var isGame: Boolean = false
+    private var appMaxNum: Int = 0
+    private var position: Int = 0
+    private var pageNum: Int = 0
 
     private lateinit var adapter: AppInfoAdapter
 
     private var _binding: FragmentAppMarketBinding? = null
     private val binding get() = _binding!!
 
-    private val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            Timber.d("on receiver: ${intent?.action}")
-            when(intent?.action) {
-                Intent.ACTION_PACKAGE_INSTALL -> {
-
-                }
-                Intent.ACTION_PACKAGE_ADDED -> {
-                    // 应用安装
-                    updateApps()
-                }
-                Intent.ACTION_PACKAGE_REMOVED -> {
-                    // 应用卸载
-                    updateApps()
-                }
-                Intent.ACTION_PACKAGE_CHANGED -> {
-
-                }
-            }
-        }
+    fun setPosition(p: Int) {
+        position = p
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.apply {
-            isGame = getBoolean(ARG_IS_GAME)
+            appMaxNum = getInt(ARG_LIMIT_APP_NUM)
+            pageNum = getInt(ARG_PAGE_NUM)
         }
-
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
-        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
-        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
-        intentFilter.addDataScheme("package")
-        requireActivity().registerReceiver(receiver, intentFilter)
     }
 
     override fun onDestroy() {
-        setLauncher(null)
-        requireActivity().unregisterReceiver(receiver)
         super.onDestroy()
     }
 
@@ -144,20 +119,24 @@ class AppMarketFragment : Fragment() {
 //        }
     }
 
-    private fun updateApps() {
+    fun updateApps() {
         AppManager.getInstance(context).getAllApps()
         AppManager.getInstance(context).addUpdateListener { apps ->
-            adapter.updateData(apps)
+            adapter.updateData(apps.filterIndexed { index, _ ->
+                index >= position * appMaxNum && index < position * appMaxNum + appMaxNum
+            })
             false
         }
     }
 
     companion object {
         val GAME_LIST = arrayOf("Blockly WebView")
-        private const val ARG_IS_GAME = "ARG_IS_GAME"
-        fun newInstance(isGame: Boolean = false) = AppMarketFragment().apply {
+        private const val ARG_LIMIT_APP_NUM = "ARG_LIMIT_APP_NUM"
+        private const val ARG_PAGE_NUM = "ARG_PAGE_NUM"
+        fun newInstance(limitAppNum: Int, pageNum: Int) = AppMarketFragment().apply {
             arguments = Bundle().apply {
-                putBoolean(ARG_IS_GAME, isGame)
+                putInt(ARG_LIMIT_APP_NUM, limitAppNum)
+                putInt(ARG_PAGE_NUM, pageNum)
             }
         }
     }

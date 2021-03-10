@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -20,6 +21,7 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
+import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
@@ -78,6 +80,31 @@ class MainActivity : AppCompatActivity() {
 
 //    private var menus: ArrayList<TextView> = ArrayList()
 
+    private lateinit var screenAdapter: ScreenAdapter
+
+    // app 安装卸载监听
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Timber.d("on receiver: ${intent?.action}")
+            when(intent?.action) {
+                Intent.ACTION_PACKAGE_INSTALL -> {
+
+                }
+                Intent.ACTION_PACKAGE_ADDED -> {
+                    // 应用安装
+                    screenAdapter.addApp()
+                }
+                Intent.ACTION_PACKAGE_REMOVED -> {
+                    // 应用卸载
+                    screenAdapter.removeApp()
+                }
+                Intent.ACTION_PACKAGE_CHANGED -> {
+
+                }
+            }
+        }
+    }
+
     private var pageTitles = arrayOf("同步语文", "同步英语", "同步数学", "AI编程", "智能辅导", "优必选严选")
 
     private lateinit var binding: ActivityMainBinding
@@ -94,7 +121,8 @@ class MainActivity : AppCompatActivity() {
         val display = SystemUtil.displayInfo(this)
 //        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
-        binding.viewPager.adapter = ScreenAdapter()
+        screenAdapter = ScreenAdapter()
+        binding.viewPager.adapter = screenAdapter
         // 缓存3页
         binding.viewPager.offscreenPageLimit = 3
         binding.pagerIndicator.setViewPager(binding.viewPager)
@@ -131,6 +159,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        AppManager.getInstance(this).getAllApps()
+        AppManager.getInstance(this).addUpdateListener { apps ->
+            screenAdapter.setAppNum(apps.size)
+            true
+        }
+
         // 检查锁屏状态
         if (repo.prefs.isScreenLocked) {
             ScreenLockActivity.lock(this)
@@ -151,9 +185,18 @@ class MainActivity : AppCompatActivity() {
 //        }.start()
 
         initialTuyaHome()
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
+        intentFilter.addDataScheme("package")
+        registerReceiver(receiver, intentFilter)
     }
 
     override fun onDestroy() {
+        unregisterReceiver(receiver)
+        setLauncher(null)
         super.onDestroy()
     }
 
@@ -269,7 +312,14 @@ class MainActivity : AppCompatActivity() {
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
     ) {
 
-        override fun getCount(): Int = pageTitles.size + 1
+        private val MAX_APP_NUM = 28
+
+        private var appNum: Int = 0
+        private var appPageNum: Int = 0
+
+        private val appGridList = ArrayList<AppMarketFragment>()
+
+        override fun getCount(): Int = pageTitles.size + appGridList.size
 
         override fun getItem(position: Int): Fragment {
             if (position < pageTitles.size) {
