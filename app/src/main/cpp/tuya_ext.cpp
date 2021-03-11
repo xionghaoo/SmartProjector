@@ -239,7 +239,9 @@ Java_com_ubtrobot_smartprojector_tuyagw_TuyaGatewayManager_initialZigbeeGW(JNIEn
 JNIEXPORT jint JNICALL
 Java_com_ubtrobot_smartprojector_tuyagw_TuyaGatewayManager_activeGW(JNIEnv *env, jobject thiz, jstring javaString) {
     const char *token = env -> GetStringUTFChars(javaString, 0);
-    return tuya_user_iot_active_gw(token);
+    int result = tuya_user_iot_active_gw(token);
+    env->ReleaseStringUTFChars(javaString, token);
+    return result;
 }
 
 JNIEXPORT jint JNICALL
