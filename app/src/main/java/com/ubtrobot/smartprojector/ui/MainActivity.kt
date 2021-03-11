@@ -20,6 +20,7 @@ import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
+import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
@@ -96,7 +97,8 @@ class MainActivity : AppCompatActivity() {
                     screenAdapter.removeApp()
                 }
                 Intent.ACTION_PACKAGE_CHANGED -> {
-
+                    // 应用更新
+                    screenAdapter.updateAppGrids()
                 }
             }
         }
@@ -109,11 +111,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLauncher(this)
-
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val display = SystemUtil.displayInfo(this)
 //        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
 
         screenAdapter = ScreenAdapter()
@@ -228,59 +228,71 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-//    private fun refreshSelectedStatus(v: View) {
-//       menus.forEach { m ->
-//           if (v.id == m.id) {
-//               m.setBackgroundResource(R.drawable.shape_menu_selected)
-//           } else {
-//               m.setBackgroundResource(R.drawable.shape_menu_normal)
-//           }
-//       }
-//    }
-
     fun getItemOptionView() = binding.itemOptionView
 
     private fun eyeProtectionMode() {
-        RootExecutor.exec(
-            cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
-            success = {
-                ToastUtil.showToast(this, "权限申请成功")
-
-                // 显示护眼弹窗
-                CoroutineScope(Dispatchers.Default).launch {
-                    delay(60 * 1000)
-                    withContext(Dispatchers.Main) {
-                        Timber.d("护眼模式")
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            if (Settings.canDrawOverlays(this@MainActivity)) {
-                                eyeProtectionDialog()
-                            } else {
-                                try {
-                                    startActivityForResult(
+        CoroutineScope(Dispatchers.Default).launch {
+            // 授予权限
+            val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} $${Manifest.permission.SYSTEM_ALERT_WINDOW}")
+            if (exitCode == 0) {
+                delay(60 * 1000)
+                withContext(Dispatchers.Main) {
+                    Timber.d("护眼模式")
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (Settings.canDrawOverlays(this@MainActivity)) {
+                            eyeProtectionDialog()
+                        } else {
+                            try {
+                                startActivityForResult(
                                         Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
                                         RC_SYSTEM_ALERT_WINDOW_PERMISSION
-                                    )
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                         1       }
-                            }
-                        } else {
-                            eyeProtectionDialog()
+                                )
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                1       }
                         }
+                    } else {
+                        eyeProtectionDialog()
                     }
                 }
-            },
-            failure = {
-                ToastUtil.showToast(this, "权限申请成功")
+            } else {
+                Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
             }
-        )
-    }
-
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-//        Timber.d("onkeydown: ${keyCode}, ${event?.action}")
-//        return super.onKeyDown(keyCode, event)
+        }
+//        RootExecutor.exec(
+//            cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
+//            success = {
+//                ToastUtil.showToast(this, "权限申请成功")
 //
-//    }
+//                // 显示护眼弹窗
+//                CoroutineScope(Dispatchers.Default).launch {
+//                    delay(60 * 1000)
+//                    withContext(Dispatchers.Main) {
+//                        Timber.d("护眼模式")
+//                        if (Build.VERSION.SDK_INT >= 23) {
+//                            if (Settings.canDrawOverlays(this@MainActivity)) {
+//                                eyeProtectionDialog()
+//                            } else {
+//                                try {
+//                                    startActivityForResult(
+//                                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
+//                                        RC_SYSTEM_ALERT_WINDOW_PERMISSION
+//                                    )
+//                                } catch (e: Exception) {
+//                                    e.printStackTrace()
+//                         1       }
+//                            }
+//                        } else {
+//                            eyeProtectionDialog()
+//                        }
+//                    }
+//                }
+//            },
+//            failure = {
+//                ToastUtil.showToast(this, "权限申请成功")
+//            }
+//        )
+    }
 
     // Launcher 禁止返回
     override fun onBackPressed() {
@@ -341,7 +353,6 @@ class MainActivity : AppCompatActivity() {
         fun updateAppGrids() {
             appGridList.forEach { gridFrag ->
                 if (gridFrag.isAdded) {
-                    Timber.d("updateAppGrids: ${gridFrag.javaClass.name}")
                     gridFrag.updateApps()
                 }
             }
@@ -374,19 +385,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        fun updateApps() {
-//            AppManager.getInstance(this@MainActivity).getAllApps()
-//            AppManager.getInstance(this@MainActivity).addUpdateListener { apps ->
-//                val newAppNum = apps.size
-//                val pageNum = if (newAppNum % MAX_APP_NUM == 0) newAppNum / MAX_APP_NUM else newAppNum / MAX_APP_NUM + 1
-//                if (pageNum != appPageNum) {
-//                    setAppNum(pageNum)
-//                } else {
-//                    updateAppGrids()
-//                }
-//                false
-//            }
-//        }
     }
 
 }

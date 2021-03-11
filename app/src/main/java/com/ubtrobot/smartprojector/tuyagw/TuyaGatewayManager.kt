@@ -3,6 +3,7 @@ package com.ubtrobot.smartprojector.tuyagw
 import android.Manifest
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.sdk.api.ITuyaActivatorGetToken
+import com.ubtrobot.smartprojector.BuildConfig
 import eu.chainfire.libsuperuser.Shell
 import timber.log.Timber
 
@@ -35,8 +36,8 @@ class TuyaGatewayManager {
 
     fun initial() {
         Thread {
-            val exitCode1 = Shell.Pool.SU.run("pm grant com.ubtrobot.smartprojector ${Manifest.permission.WRITE_EXTERNAL_STORAGE}")
-            val exitCode2 = Shell.Pool.SU.run("pm grant com.ubtrobot.smartprojector ${Manifest.permission.READ_EXTERNAL_STORAGE}")
+            val exitCode1 = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.WRITE_EXTERNAL_STORAGE}")
+            val exitCode2 = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.READ_EXTERNAL_STORAGE}")
             if (exitCode1 == 0 && exitCode2 == 0) {
                 initialZigbeeGW()
             } else {

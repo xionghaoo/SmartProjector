@@ -83,15 +83,15 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnRootCmd.setOnClickListener {
-            RootExecutor.exec(
-                cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
-                success = {
-                    ToastUtil.showToast(requireContext(), "权限申请成功")
-                },
-                failure = {
-                    ToastUtil.showToast(requireContext(), "权限申请成功")
-                }
-            )
+//            RootExecutor.exec(
+//                cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
+//                success = {
+//                    ToastUtil.showToast(requireContext(), "权限申请成功")
+//                },
+//                failure = {
+//                    ToastUtil.showToast(requireContext(), "权限申请成功")
+//                }
+//            )
         }
 
 //        tv_jni.text = "haha, ${helloStr()}"
