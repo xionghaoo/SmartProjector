@@ -11,6 +11,7 @@ import com.ubtrobot.smartprojector.databinding.FragmentSettingsBinding
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
+import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
@@ -104,6 +105,17 @@ class SettingsFragment : Fragment() {
         }
 
         binding.tvHomeInfo.text = repo.prefs.currentHomeName
+
+        binding.btnGwActive.setOnClickListener {
+            TuyaGatewayManager.instance().activeGateway(repo.prefs.currentHomeId) { success ->
+                ToastUtil.showToast(requireContext(), "网关激活${if (success == 0) "成功" else "失败"}")
+            }
+        }
+        binding.btnGwUnactive.setOnClickListener {
+            TuyaGatewayManager.instance().unactiveGateway { success ->
+                ToastUtil.showToast(requireContext(), "网关删除${if (success == 0) "成功" else "失败"}")
+            }
+        }
     }
 
     override fun onDestroyView() {

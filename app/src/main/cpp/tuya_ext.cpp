@@ -117,6 +117,10 @@ int _gw_active_status_changed_cb(ty_gw_status_t status)
     return 0;
 }
 
+/**
+ * 网关上线通知
+ * 当网关成功连接涂鸦云或连接断开时，会触发网关上线通知回调，第三方系统开发者可以在回调中处理其业务（如控制指示灯）。
+ */
 int _gw_online_status_changed_cb(bool registered, bool online)
 {
     LOGD("online status changed, registerd: %d, online: %d", registered, online);
@@ -228,10 +232,26 @@ void initial() {
 }
 
 JNIEXPORT void JNICALL
-Java_com_ubtrobot_smartprojector_ui_MainActivity_initialZigbeeGW(JNIEnv *env, jobject thiz) {
+Java_com_ubtrobot_smartprojector_tuyagw_TuyaGatewayManager_initialZigbeeGW(JNIEnv *env,jobject thiz) {
     initial();
 }
+
+JNIEXPORT jint JNICALL
+Java_com_ubtrobot_smartprojector_tuyagw_TuyaGatewayManager_activeGW(JNIEnv *env, jobject thiz, jstring javaString) {
+    const char *token = env -> GetStringUTFChars(javaString, 0);
+    return tuya_user_iot_active_gw(token);
+}
+
+JNIEXPORT jint JNICALL
+Java_com_ubtrobot_smartprojector_tuyagw_TuyaGatewayManager_unactiveGW(JNIEnv *env, jobject thiz) {
+    return tuya_user_iot_unactive_gw();
+}
+
+JNIEXPORT void JNICALL
+Java_com_ubtrobot_smartprojector_tuyagw_TuyaGatewayManager_permitJoin(JNIEnv *env, jobject thiz,jboolean permit) {
+    tuya_user_iot_permit_join(bool (permit));
+}
+
 #ifdef __cplusplus
 }
 #endif
-

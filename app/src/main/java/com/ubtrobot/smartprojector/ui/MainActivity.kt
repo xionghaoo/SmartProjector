@@ -25,6 +25,7 @@ import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.game.GameFragment
@@ -43,9 +44,6 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        init {
-            System.loadLibrary("tuya_ext")
-        }
 
         private var instance: MainActivity? = null
 
@@ -63,8 +61,6 @@ class MainActivity : AppCompatActivity() {
             context?.startActivity(i)
         }
     }
-
-    private external fun initialZigbeeGW()
 
     @Inject
     lateinit var connectionStateMonitor: ConnectionStateMonitor
@@ -176,15 +172,7 @@ class MainActivity : AppCompatActivity() {
         eyeProtectionMode()
 
         // 拓展网关初始化
-        Thread {
-            val exitCode1 = Shell.Pool.SU.run("pm grant com.ubtrobot.smartprojector ${Manifest.permission.WRITE_EXTERNAL_STORAGE}")
-            val exitCode2 = Shell.Pool.SU.run("pm grant com.ubtrobot.smartprojector ${Manifest.permission.READ_EXTERNAL_STORAGE}")
-            if (exitCode1 == 0 && exitCode2 == 0) {
-                initialZigbeeGW()
-            } else {
-                Timber.e("网关读写权限授予失败")
-            }
-        }.start()
+        TuyaGatewayManager.instance().initial()
 
         initialTuyaHome()
 

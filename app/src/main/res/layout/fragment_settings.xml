@@ -132,4 +132,24 @@
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toTopOf="@+id/textView15" />
 
+    <Button
+        android:id="@+id/btn_gw_unactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="删除网关"
+        app:layout_constraintEnd_toEndOf="@+id/btn_device_select"
+        app:layout_constraintStart_toStartOf="@+id/btn_device_select"
+        app:layout_constraintTop_toBottomOf="@+id/btn_device_select" />
+
+    <Button
+        android:id="@+id/btn_gw_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="注册网关"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_gw_unactive"
+        app:layout_constraintEnd_toStartOf="@+id/btn_gw_unactive"
+        app:layout_constraintTop_toTopOf="@+id/btn_gw_unactive" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
