@@ -52,19 +52,18 @@ class TuyaGatewayManager {
     }
 
     fun activeGateway(homeId: Long, resultCall: (success: Int) -> Unit) {
-        TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId, object :
-                ITuyaActivatorGetToken {
+        TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId, object : ITuyaActivatorGetToken {
             override fun onSuccess(token: String?) {
                 if (token != null) {
                     CoroutineScope(Dispatchers.IO).launch {
                         val result = activeGW(token)
                         withContext(Dispatchers.Main) {
                             resultCall(result)
-                            if (result == 0) {
-                                Timber.d("网关激活成功")
-                            } else {
-                                Timber.d("网关激活失败")
-                            }
+//                            if (result == 0) {
+//                                Timber.d("网关激活成功")
+//                            } else {
+//                                Timber.d("网关激活失败")
+//                            }
                         }
                     }
                 }
@@ -81,11 +80,11 @@ class TuyaGatewayManager {
             val result = unactiveGW()
             withContext(Dispatchers.Main) {
                 resultCall(result)
-                if (result == 0) {
-                    Timber.d("网关删除成功")
-                } else {
-                    Timber.d("网关删除失败")
-                }
+//                if (result == 0) {
+//                    Timber.d("网关删除成功")
+//                } else {
+//                    Timber.d("网关删除失败")
+//                }
             }
         }
     }

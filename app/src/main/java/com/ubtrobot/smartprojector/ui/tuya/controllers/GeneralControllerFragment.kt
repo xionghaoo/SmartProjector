@@ -76,6 +76,7 @@ class GeneralControllerFragment : Fragment() {
         })
     }
 
+    // 发现子设备
     private fun tuyaSubDeviceConfig(gwDeviceId: String) {
         val builder = TuyaGwSubDevActivatorBuilder()
                 .setDevId(gwDeviceId)
@@ -94,7 +95,6 @@ class GeneralControllerFragment : Fragment() {
                         // 网关设备发现回调
                         Timber.d("tuyaSubDeviceConfig onStep: $step, ${data}")
                         if (step == "device_find") {
-                            ToastUtil.showToast(requireContext(), "发现子设备")
                             // 发现设备 6c94af80222594a3dfv4r3
                             val deviceId = data as? String
                             Timber.d("发现设备： $deviceId")
@@ -102,7 +102,6 @@ class GeneralControllerFragment : Fragment() {
                             val dev = data as? DeviceBean
                             dev?.apply {
                                 Timber.d("激活设备成功: $dpName, $devId")
-                                ToastUtil.showToast(requireContext(), "激活设备成功: $dpName, $devId")
                             }
                         }
                     }
