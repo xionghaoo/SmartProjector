@@ -53,10 +53,9 @@ class TuyaHomeFragment : Fragment() {
 
         binding.rcDeviceList.layoutManager = LinearLayoutManager(requireContext())
         adapter = TuyaDeviceAdapter(emptyList()) { index, item ->
-//            showController(item)
-            // 测试控制页面
+            showController(item)
+
             val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
-            Timber.d("启动涂鸦控制器：${item.id}")
             service.goPanelWithCheckAndTip(requireActivity(), item.id)
         }
         binding.rcDeviceList.adapter = adapter

@@ -14,6 +14,14 @@
         android:gravity="center"
         tools:text="产品id" />
 
+    <Button
+        android:id="@+id/btn_find_sub_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发现子设备"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_10dp" />
+
     <LinearLayout
         android:id="@+id/container_sub_dev_list"
         android:layout_width="match_parent"

@@ -5,6 +5,10 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.sdk.api.ITuyaActivatorGetToken
 import com.ubtrobot.smartprojector.BuildConfig
 import eu.chainfire.libsuperuser.Shell
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class TuyaGatewayManager {
@@ -32,6 +36,7 @@ class TuyaGatewayManager {
     // 解绑网关： 0 成功
     private external fun unactiveGW() : Int
 
+    // 允许子设备接入 1 开启， 0 关闭
     private external fun permitJoin(permit: Boolean)
 
     fun initial() {
@@ -51,12 +56,16 @@ class TuyaGatewayManager {
                 ITuyaActivatorGetToken {
             override fun onSuccess(token: String?) {
                 if (token != null) {
-                    val result = activeGW(token)
-                    resultCall(result)
-                    if (result == 0) {
-                        Timber.d("网关激活成功")
-                    } else {
-                        Timber.d("网关激活失败")
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val result = activeGW(token)
+                        withContext(Dispatchers.Main) {
+                            resultCall(result)
+                            if (result == 0) {
+                                Timber.d("网关激活成功")
+                            } else {
+                                Timber.d("网关激活失败")
+                            }
+                        }
                     }
                 }
             }
@@ -68,12 +77,16 @@ class TuyaGatewayManager {
     }
 
     fun unactiveGateway(resultCall: (success: Int) -> Unit) {
-        val result = unactiveGW()
-        resultCall(result)
-        if (result == 0) {
-            Timber.d("网关删除成功")
-        } else {
-            Timber.d("网关删除失败")
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = unactiveGW()
+            withContext(Dispatchers.Main) {
+                resultCall(result)
+                if (result == 0) {
+                    Timber.d("网关删除成功")
+                } else {
+                    Timber.d("网关删除失败")
+                }
+            }
         }
     }
 
