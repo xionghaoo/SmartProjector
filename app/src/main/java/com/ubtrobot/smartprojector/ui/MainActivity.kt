@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.Manifest
+import android.app.WallpaperManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -21,6 +22,7 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.ubtrobot.smartprojector.BuildConfig
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
@@ -38,6 +40,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
 import kotlinx.coroutines.*
 import timber.log.Timber
+import java.io.IOException
 import javax.inject.Inject
 
 
@@ -76,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var settingsFragment: SettingsFragment
     private lateinit var cartoonBookFragment: CartoonBookFragment
 
-//    private var menus: ArrayList<TextView> = ArrayList()
+    private var wallpaperJob: Job? = null
 
     private lateinit var screenAdapter: ScreenAdapter
 
@@ -104,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var pageTitles = arrayOf("同步语文", "同步英语", "同步数学", "AI编程", "智能辅导", "优必选严选")
+    private var pageTitles = arrayOf("AI智能", "同步语文", "同步英语", "同步数学", "AI编程", "优必选严选")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -115,6 +118,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
+        Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
+        Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
 
         screenAdapter = ScreenAdapter()
         binding.viewPager.adapter = screenAdapter
@@ -128,7 +133,6 @@ class MainActivity : AppCompatActivity() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-//                Timber.d("position: $position, positionOffset: $positionOffset, pixel: $positionOffsetPixels, screen width = ${display.widthPixels}")
                 if (position == pageTitles.size - 1) {
                     // 缩放动画
 //                    val offsetConvertValue = if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
@@ -141,11 +145,22 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
+                Timber.d("onPageSelected: $position")
                 if (position < pageTitles.size) {
-//                    binding.containerMainHeader.visibility = View.VISIBLE
                     binding.tvPageTitle.text = pageTitles[position]
-                } else {
-//                    binding.containerMainHeader.visibility = View.GONE
+                }
+                val bg = when (position) {
+                    0 -> R.raw.ic_assistant_bg
+                    else -> R.raw.background
+                }
+                wallpaperJob?.cancel()
+                wallpaperJob = CoroutineScope(Dispatchers.IO).launch {
+                    delay(500)
+                    try {
+                        WallpaperManager.getInstance(applicationContext).setResource(bg)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                 }
             }
 
@@ -169,10 +184,15 @@ class MainActivity : AppCompatActivity() {
             startPlainActivity(SettingsActivity::class.java)
         }
 
-        eyeProtectionMode()
+        RootExecutor.exec(
+                success = {
+                    eyeProtectionMode()
+                },
+                failure = {}
+        )
 
         // 拓展网关初始化
-        TuyaGatewayManager.instance().initial()
+//        TuyaGatewayManager.instance().initial()
 
         initialTuyaHome()
 
@@ -182,6 +202,13 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
         intentFilter.addDataScheme("package")
         registerReceiver(receiver, intentFilter)
+
+        // 修改壁纸
+        try {
+            WallpaperManager.getInstance(applicationContext).setResource(R.raw.ic_assistant_bg)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 
     override fun onDestroy() {
@@ -232,66 +259,36 @@ class MainActivity : AppCompatActivity() {
 
     private fun eyeProtectionMode() {
         CoroutineScope(Dispatchers.Default).launch {
-            // 授予权限
-            val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} $${Manifest.permission.SYSTEM_ALERT_WINDOW}")
-            if (exitCode == 0) {
-                delay(60 * 1000)
-                withContext(Dispatchers.Main) {
-                    Timber.d("护眼模式")
-                    if (Build.VERSION.SDK_INT >= 23) {
-                        if (Settings.canDrawOverlays(this@MainActivity)) {
-                            eyeProtectionDialog()
+            Timber.d("has root permission: ${Shell.SU.available()}")
+            if (Shell.SU.available()) {
+                // 授予权限
+                val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} $${Manifest.permission.SYSTEM_ALERT_WINDOW}")
+                if (exitCode == 0) {
+                    delay(60 * 1000)
+                    withContext(Dispatchers.Main) {
+                        Timber.d("护眼模式")
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            if (Settings.canDrawOverlays(this@MainActivity)) {
+                                eyeProtectionDialog()
+                            } else {
+                                try {
+                                    startActivityForResult(
+                                            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
+                                            RC_SYSTEM_ALERT_WINDOW_PERMISSION
+                                    )
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                    1       }
+                            }
                         } else {
-                            try {
-                                startActivityForResult(
-                                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
-                                        RC_SYSTEM_ALERT_WINDOW_PERMISSION
-                                )
-                            } catch (e: Exception) {
-                                e.printStackTrace()
-                                1       }
+                            eyeProtectionDialog()
                         }
-                    } else {
-                        eyeProtectionDialog()
                     }
+                } else {
+                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
                 }
-            } else {
-                Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
             }
         }
-//        RootExecutor.exec(
-//            cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
-//            success = {
-//                ToastUtil.showToast(this, "权限申请成功")
-//
-//                // 显示护眼弹窗
-//                CoroutineScope(Dispatchers.Default).launch {
-//                    delay(60 * 1000)
-//                    withContext(Dispatchers.Main) {
-//                        Timber.d("护眼模式")
-//                        if (Build.VERSION.SDK_INT >= 23) {
-//                            if (Settings.canDrawOverlays(this@MainActivity)) {
-//                                eyeProtectionDialog()
-//                            } else {
-//                                try {
-//                                    startActivityForResult(
-//                                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
-//                                        RC_SYSTEM_ALERT_WINDOW_PERMISSION
-//                                    )
-//                                } catch (e: Exception) {
-//                                    e.printStackTrace()
-//                         1       }
-//                            }
-//                        } else {
-//                            eyeProtectionDialog()
-//                        }
-//                    }
-//                }
-//            },
-//            failure = {
-//                ToastUtil.showToast(this, "权限申请成功")
-//            }
-//        )
     }
 
     // Launcher 禁止返回

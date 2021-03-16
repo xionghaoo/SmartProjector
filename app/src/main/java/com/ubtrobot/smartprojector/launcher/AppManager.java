@@ -12,6 +12,8 @@ import android.os.UserHandle;
 
 import androidx.annotation.NonNull;
 
+import com.ubtrobot.smartprojector.BuildConfig;
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -164,7 +166,9 @@ public class AppManager {
                         app._userHandle = userHandle;
 
 //                        LOG.debug("adding work profile to non filtered list: {}, {}, {}", app._label, app._packageName, app._className);
-                        nonFilteredAppsTemp.add(app);
+                        if (!app._packageName.equals(BuildConfig.APPLICATION_ID)) {
+                            nonFilteredAppsTemp.add(app);
+                        }
                     }
                 }
             } else {
@@ -175,7 +179,9 @@ public class AppManager {
                     App app = new App(_packageManager, info);
 
 //                    LOG.debug("adding app to non filtered list: {}, {}, {}", app._label,  app._packageName, app._className);
-                    nonFilteredAppsTemp.add(app);
+                    if (!app._packageName.equals(BuildConfig.APPLICATION_ID)) {
+                        nonFilteredAppsTemp.add(app);
+                    }
                 }
             }
 

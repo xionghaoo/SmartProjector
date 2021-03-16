@@ -53,8 +53,8 @@ class SystemUtil {
 
         fun setImageForegroundColor(img: ImageView, context: Context, color: Int) {
             img.setColorFilter(
-                ContextCompat.getColor(context, color),
-                android.graphics.PorterDuff.Mode.SRC_ATOP
+                    ContextCompat.getColor(context, color),
+                    android.graphics.PorterDuff.Mode.SRC_ATOP
             )
         }
 
@@ -100,6 +100,14 @@ class SystemUtil {
                 setWindowFlag(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false, window)
                 window.statusBarColor = Color.TRANSPARENT
             }
+        }
+
+        fun getNavigationBarHeight(context: Context) : Int {
+            val resources: Resources = context.resources
+            val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            return if (resourceId > 0) {
+                resources.getDimensionPixelSize(resourceId)
+            } else 0
         }
 
         private fun setWindowFlag(bits: Int, on: Boolean, window: Window) {
@@ -179,8 +187,8 @@ class SystemUtil {
         fun toFullScreenMode(activity: AppCompatActivity) {
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             activity.window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN
             );
         }
 

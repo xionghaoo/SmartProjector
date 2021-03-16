@@ -31,12 +31,12 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
     private var page: Int? = null
 
-    private var _bindingPageOne: FragmentMainPage1Binding? = null
-    private var _bindingPageTwo: FragmentMainPage2Binding? = null
-    private var _bindingPageThree: FragmentMainPage3Binding? = null
-    private var _bindingPageFour: FragmentMainPage4Binding? = null
-    private var _bindingPageFive: FragmentMainPage5Binding? = null
-    private var _bindingPageSix: FragmentMainPage6Binding? = null
+    private var _bindingPageOne: FragmentMainPageAssistantBinding? = null
+    private var _bindingPageTwo: FragmentMainPageChineseBinding? = null
+    private var _bindingPageThree: FragmentMainPageEnglishBinding? = null
+    private var _bindingPageFour: FragmentMainPageMathematicsBinding? = null
+    private var _bindingPageFive: FragmentMainPageAiProgramBinding? = null
+    private var _bindingPageSix: FragmentMainPageRecommendBinding? = null
 
     private val bindingPageOne get() = _bindingPageOne!!
     private val bindingPageTwo get() = _bindingPageTwo!!
@@ -58,27 +58,27 @@ class MainFragment : Fragment() {
     ): View? {
         return when (page) {
             0 -> {
-                _bindingPageOne = FragmentMainPage1Binding.inflate(inflater, container, false)
+                _bindingPageOne = FragmentMainPageAssistantBinding.inflate(inflater, container, false)
                 bindingPageOne.root
             }
             1 -> {
-                _bindingPageTwo = FragmentMainPage2Binding.inflate(inflater, container, false)
+                _bindingPageTwo = FragmentMainPageChineseBinding.inflate(inflater, container, false)
                 bindingPageTwo.root
             }
             2 -> {
-                _bindingPageThree = FragmentMainPage3Binding.inflate(inflater, container, false)
+                _bindingPageThree = FragmentMainPageEnglishBinding.inflate(inflater, container, false)
                 bindingPageThree.root
             }
             3 -> {
-                _bindingPageFour = FragmentMainPage4Binding.inflate(inflater, container, false)
+                _bindingPageFour = FragmentMainPageMathematicsBinding.inflate(inflater, container, false)
                 bindingPageFour.root
             }
             4 -> {
-                _bindingPageFive = FragmentMainPage5Binding.inflate(inflater, container, false)
+                _bindingPageFive = FragmentMainPageAiProgramBinding.inflate(inflater, container, false)
                 bindingPageFive.root
             }
             5 -> {
-                _bindingPageSix = FragmentMainPage6Binding.inflate(inflater, container, false)
+                _bindingPageSix = FragmentMainPageRecommendBinding.inflate(inflater, container, false)
                 bindingPageSix.root
             }
             else -> throw IllegalStateException("not found main fragment layout")
@@ -112,9 +112,9 @@ class MainFragment : Fragment() {
      * 桌面1
      */
     private fun bindPageOneView() {
-//        bindingPageOne.menuRead.setOnFocusChangeListener { v, hasFocus ->
-//            Timber.d("menu hasFocus: $hasFocus")
-//        }
+        bindingPageOne.menuFingerRead.setSelectListener {
+            ToastUtil.showToast(requireContext(), "课本点读")
+        }
 //        bindingPageOne.root.requestFocus()
 
 //        bindingPageOne.menuLevel.setOnClickListener {
@@ -171,9 +171,9 @@ class MainFragment : Fragment() {
         bindingPageFour.menuSearch.setOnClickListener {
             startPlainActivity(TuyaHomeActivity::class.java)
         }
-        bindingPageFour.menuStartProgramming.setOnClickListener {
-            startPlainActivity(TestActivity::class.java)
-        }
+//        bindingPageFour.menuStartProgramming.setOnClickListener {
+//            startPlainActivity(TestActivity::class.java)
+//        }
     }
 
     private fun bindPageFiveView() {

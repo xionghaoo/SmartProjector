@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.ubtrobot.smartprojector.ui.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main_page_1">
+        tools:layout="@layout/fragment_main_page_chinese">
         <action
             android:id="@+id/action_mainFragment_to_mqttFragment"
             app:destination="@id/mqttFragment"

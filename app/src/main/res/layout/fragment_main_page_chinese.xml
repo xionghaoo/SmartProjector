@@ -9,14 +9,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textView16"
-        android:layout_width="@dimen/_280dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_40dp"
+        android:layout_width="@dimen/_516dp"
+        android:layout_height="@dimen/_366dp"
+        android:layout_marginStart="@dimen/_61dp"
         android:background="@drawable/shape_card_transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
         app:layout_constraintStart_toEndOf="@+id/menu_search"
-        app:layout_constraintTop_toTopOf="@+id/menu_search"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="@+id/menu_search">
 
         <TextView
             android:id="@+id/textView32"
@@ -35,53 +33,27 @@
     <FrameLayout
         android:id="@+id/textView24"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_422dp"
-        android:layout_marginStart="@dimen/_76dp"
-        android:layout_marginEnd="@dimen/_157dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_61dp"
+        android:layout_marginEnd="@dimen/_137dp"
         android:background="@drawable/shape_card_transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toTopOf="@+id/textView16">
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView26"
-        style="@style/CardTitleStyle"
-        android:layout_width="@dimen/_440dp"
-        android:layout_height="0dp"
-        android:background="@drawable/shape_bg_card"
-        android:paddingStart="@dimen/_33dp"
-        android:paddingTop="@dimen/_75dp"
-        android:text="错题本"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_read"
-        app:layout_constraintStart_toStartOf="@+id/textView24"
-        app:layout_constraintTop_toTopOf="@+id/menu_read" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_40dp"
-        android:background="@drawable/shape_bg_card"
-        android:text="字词本"
-        style="@style/CardTitleStyle"
-        android:paddingStart="@dimen/_33dp"
-        android:paddingTop="@dimen/_75dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView26"
-        app:layout_constraintEnd_toEndOf="@+id/textView24"
-        app:layout_constraintStart_toEndOf="@+id/textView26"
-        app:layout_constraintTop_toTopOf="@+id/textView26" />
-
     <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/menu_search"
-        android:layout_width="@dimen/_280dp"
-        android:layout_height="@dimen/_422dp"
-        android:layout_marginTop="@dimen/_29dp"
-        android:layout_marginStart="@dimen/_207dp"
+        android:layout_width="@dimen/_622dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_53dp"
+        android:layout_marginBottom="@dimen/_44dp"
+        android:layout_marginStart="@dimen/_137dp"
         android:background="@drawable/shape_bg_card"
         android:nextFocusDown="@+id/menu_read"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -94,29 +66,28 @@
             android:text="预习" />
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/menu_read"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="@dimen/_244dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_40dp"
-        android:layout_marginBottom="@dimen/_39dp"
-        android:background="@drawable/shape_bg_card"
-        android:nextFocusUp="@+id/menu_search"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
+        app:layout_constraintStart_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_30dp"
+        android:background="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="@+id/textView43"
         app:layout_constraintEnd_toEndOf="@+id/textView16"
-        app:layout_constraintStart_toStartOf="@+id/menu_search"
-        app:layout_constraintTop_toBottomOf="@+id/menu_search">
+        app:layout_constraintStart_toEndOf="@+id/textView43"
+        app:layout_constraintTop_toTopOf="@+id/textView43" />
 
-        <TextView
-            style="@style/CardTitleStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/_40dp"
-            android:paddingTop="@dimen/_17dp"
-            android:text="朗读" />
-    </com.ubtrobot.smartprojector.widgets.SelectableView>
-
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--        android:id="@+id/textView30"-->
 <!--        android:layout_width="@dimen/_362dp"-->
 <!--        android:layout_height="@dimen/_114dp"-->
