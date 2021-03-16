@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.tuya.smart.api.service.MicroServiceManager
 import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
@@ -112,6 +113,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
         setLauncher(this)
         SystemUtil.statusBarTransparent(window)
@@ -153,15 +155,19 @@ class MainActivity : AppCompatActivity() {
                     0 -> R.raw.ic_assistant_bg
                     else -> R.raw.background
                 }
-                wallpaperJob?.cancel()
-                wallpaperJob = CoroutineScope(Dispatchers.IO).launch {
-                    delay(500)
-                    try {
-                        WallpaperManager.getInstance(applicationContext).setResource(bg)
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
+//                wallpaperJob?.cancel()
+//                wallpaperJob = CoroutineScope(Dispatchers.IO).launch {
+//                    delay(500)
+//                    try {
+//                        WallpaperManager.getInstance(applicationContext).setResource(bg)
+//                    } catch (e: IOException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+                Glide.with(this@MainActivity)
+                        .load(bg)
+                        .centerCrop()
+                        .into(binding.ivMainBackground)
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -204,17 +210,35 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, intentFilter)
 
         // 修改壁纸
-        try {
-            WallpaperManager.getInstance(applicationContext).setResource(R.raw.ic_assistant_bg)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+//        try {
+//            WallpaperManager.getInstance(applicationContext).setResource(R.raw.ic_assistant_bg)
+//        } catch (e: IOException) {
+//            e.printStackTrace()
+//        }
+
+        Glide.with(this)
+                .load(R.raw.ic_assistant_bg)
+                .centerCrop()
+                .into(binding.ivMainBackground)
     }
 
     override fun onDestroy() {
         unregisterReceiver(receiver)
         setLauncher(null)
         super.onDestroy()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            val flags = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            window.decorView.systemUiVisibility = flags
+        }
     }
 
     /**.

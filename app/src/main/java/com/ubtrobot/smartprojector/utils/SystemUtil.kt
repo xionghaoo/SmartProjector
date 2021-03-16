@@ -1,5 +1,6 @@
 package com.ubtrobot.smartprojector.utils
 
+import android.R.attr.visibility
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -19,6 +20,7 @@ import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+
 
 class SystemUtil {
     companion object {
@@ -188,8 +190,21 @@ class SystemUtil {
             activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
             activity.window.setFlags(
                     WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
             );
+            val flags = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            activity.window.decorView.systemUiVisibility = flags
+
+            activity.window.decorView.setOnSystemUiVisibilityChangeListener { visibility ->
+                if (visibility and View.SYSTEM_UI_FLAG_FULLSCREEN == 0) {
+                    activity.window.decorView.systemUiVisibility = flags
+                }
+            }
         }
 
         /**

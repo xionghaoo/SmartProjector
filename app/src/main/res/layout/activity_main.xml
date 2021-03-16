@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <ImageView
+        android:id="@+id/iv_main_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <com.ubtrobot.smartprojector.launcher.ItemOptionView
         android:id="@+id/item_option_view"
         android:layout_width="0dp"
