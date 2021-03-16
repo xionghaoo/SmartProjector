@@ -16,6 +16,58 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <TextClock
+        android:id="@+id/tv_system_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:format12Hour="EEEE"
+        android:format24Hour="EEEE"
+        android:layout_marginEnd="@dimen/_24dp"
+        android:textColor="@color/color_status_bar_txt"
+        android:textSize="@dimen/_24sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_system_date"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="星期天" />
+
+    <TextClock
+        android:id="@+id/tv_system_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format12Hour="yyyy年MM月dd日"
+        android:format24Hour="yyyy年MM月dd日"
+        android:layout_marginEnd="@dimen/_62dp"
+        android:textColor="@color/color_status_bar_txt"
+        android:textSize="@dimen/_24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_system_week"
+        app:layout_constraintEnd_toStartOf="@+id/iv_wifi_status"
+        app:layout_constraintTop_toTopOf="@+id/tv_system_week"
+        tools:text="2020年1月1日" />
+
+    <TextClock
+        android:id="@+id/tv_system_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_46dp"
+        tools:text="16:42"
+        android:textSize="@dimen/_24sp"
+        android:format24Hour="HH:mm"
+        android:format12Hour="hh:mm"
+        android:textColor="@color/color_status_bar_txt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_system_week"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_system_week" />
+
+    <ImageView
+        android:id="@+id/iv_wifi_status"
+        android:layout_width="@dimen/_34dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_42dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_system_time"
+        app:layout_constraintEnd_toStartOf="@+id/tv_system_time"
+        app:layout_constraintTop_toTopOf="@+id/tv_system_time"
+        app:srcCompat="@drawable/ic_wifi_on" />
+
     <com.ubtrobot.smartprojector.launcher.ItemOptionView
         android:id="@+id/item_option_view"
         android:layout_width="0dp"
@@ -27,7 +79,9 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+        </androidx.viewpager.widget.ViewPager>
     </com.ubtrobot.smartprojector.launcher.ItemOptionView>
 
     <androidx.constraintlayout.widget.ConstraintLayout

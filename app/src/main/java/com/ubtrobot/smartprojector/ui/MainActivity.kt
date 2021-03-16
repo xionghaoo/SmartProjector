@@ -42,7 +42,10 @@ import eu.chainfire.libsuperuser.Shell
 import kotlinx.coroutines.*
 import timber.log.Timber
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
@@ -220,6 +223,7 @@ class MainActivity : AppCompatActivity() {
                 .load(R.raw.ic_assistant_bg)
                 .centerCrop()
                 .into(binding.ivMainBackground)
+
     }
 
     override fun onDestroy() {
