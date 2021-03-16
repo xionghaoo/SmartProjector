@@ -83,8 +83,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var settingsFragment: SettingsFragment
     private lateinit var cartoonBookFragment: CartoonBookFragment
 
-    private var wallpaperJob: Job? = null
-
     private lateinit var screenAdapter: ScreenAdapter
 
     // app 安装卸载监听
@@ -150,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                Timber.d("onPageSelected: $position")
                 if (position < pageTitles.size) {
                     binding.tvPageTitle.text = pageTitles[position]
                 }
@@ -158,15 +155,6 @@ class MainActivity : AppCompatActivity() {
                     0 -> R.raw.ic_assistant_bg
                     else -> R.raw.background
                 }
-//                wallpaperJob?.cancel()
-//                wallpaperJob = CoroutineScope(Dispatchers.IO).launch {
-//                    delay(500)
-//                    try {
-//                        WallpaperManager.getInstance(applicationContext).setResource(bg)
-//                    } catch (e: IOException) {
-//                        e.printStackTrace()
-//                    }
-//                }
                 Glide.with(this@MainActivity)
                         .load(bg)
                         .centerCrop()
@@ -212,12 +200,6 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addDataScheme("package")
         registerReceiver(receiver, intentFilter)
 
-        // 修改壁纸
-//        try {
-//            WallpaperManager.getInstance(applicationContext).setResource(R.raw.ic_assistant_bg)
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//        }
 
         Glide.with(this)
                 .load(R.raw.ic_assistant_bg)

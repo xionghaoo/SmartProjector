@@ -4,13 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.children
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.utils.ResourceUtil
-import timber.log.Timber
 import kotlin.math.roundToInt
 
 /**
@@ -43,11 +40,11 @@ class PagerIndicator : LinearLayout {
             override fun onPageSelected(position: Int) {
                 currentSelectedPage = position
                 children.forEach { child ->
-                    child.background = resources.getDrawable(R.drawable.shape_circle_overlay)
+                    child.background = resources.getDrawable(R.drawable.shape_indicator_normal)
                 }
                 val item = getChildAt(position)
                 if (item != null) {
-                    item.background = resources.getDrawable(R.drawable.shape_circle_white)
+                    item.background = resources.getDrawable(R.drawable.shape_indicator_highlight)
                 }
             }
 
@@ -76,9 +73,9 @@ class PagerIndicator : LinearLayout {
             addView(item)
 
             if (i == currentSelectedPage) {
-                item.background = resources.getDrawable(R.drawable.shape_circle_white)
+                item.background = resources.getDrawable(R.drawable.shape_indicator_highlight)
             } else {
-                item.background = resources.getDrawable(R.drawable.shape_circle_overlay)
+                item.background = resources.getDrawable(R.drawable.shape_indicator_normal)
             }
             val itemLp = item.layoutParams as LinearLayout.LayoutParams
             val size = ResourceUtil.convertDpToPixel(12f, context).roundToInt()

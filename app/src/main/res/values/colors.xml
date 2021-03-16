@@ -18,6 +18,9 @@
     <color name="color_979797">#979797</color>
     <color name="color_E3E3E3">#E3E3E3</color>
 
+    <color name="color_indicator_highlight">#EBEBEBEB</color>
+    <color name="color_indicator_normal">#52EBEBEB</color>
+
     <color name="card_bg">#474747</color>
     <color name="color_status_bar_txt">#EBEBEB</color>
     <color name="card_stroke">#979797</color>
