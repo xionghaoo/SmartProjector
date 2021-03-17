@@ -11,6 +11,7 @@ import timber.log.Timber
 class ConnectionStateMonitor : ConnectivityManager.NetworkCallback() {
     private var networkRequest: NetworkRequest? = null
     private var onConnectStateChange: ((isConnected: Boolean) -> Unit)? = null
+    private var connectivityManager: ConnectivityManager? = null
 
     init {
         networkRequest = NetworkRequest.Builder()
@@ -20,8 +21,12 @@ class ConnectionStateMonitor : ConnectivityManager.NetworkCallback() {
     }
 
     fun enable(context: Context) {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        connectivityManager.registerNetworkCallback(networkRequest!!, this)
+        connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        connectivityManager?.registerNetworkCallback(networkRequest!!, this)
+    }
+
+    fun disable() {
+        connectivityManager?.unregisterNetworkCallback(this)
     }
 
     fun setConnectStateListener(call: (Boolean) -> Unit) {

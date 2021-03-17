@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="overlay">#41000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="color_1989FA">#1989FA</color>
     <color name="color_7BBCFD">#7BBCFD</color>
@@ -23,9 +23,10 @@
 
     <color name="card_bg">#474747</color>
     <color name="color_status_bar_txt">#EBEBEB</color>
+    <color name="color_text_dark">#EBEBEB</color>
     <color name="card_stroke">#979797</color>
     <color name="color_card_container">#63979797</color>
-    <color name="text_dark">#8CFBFBFB</color>
+    <color name="color_text_dark_55">#8CFBFBFB</color>
     <color name="color_card_name">#A6A6A6</color>
 
     <color name="color_mark">#53525E</color>

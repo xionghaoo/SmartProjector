@@ -117,17 +117,26 @@
             android:text="查单词"/>
     </FrameLayout>
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/textView48"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/_114dp"
         android:layout_marginStart="@dimen/_48dp"
-        android:src="@mipmap/ic_assistant_search_questions"
+        android:background="@mipmap/ic_assistant_search_questions"
         app:layout_constraintBottom_toBottomOf="@+id/textView47"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView24"
-        app:layout_constraintTop_toTopOf="@+id/textView24" />
+        app:layout_constraintTop_toTopOf="@+id/textView24" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜题"
+            style="@style/CardTitleStyle"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_marginBottom="@dimen/_40dp"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/textView49"

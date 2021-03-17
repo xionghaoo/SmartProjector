@@ -1,11 +1,11 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.Manifest
-import android.app.WallpaperManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -29,7 +29,6 @@ import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.game.GameFragment
@@ -41,8 +40,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
 import kotlinx.coroutines.*
 import timber.log.Timber
-import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -124,6 +121,8 @@ class MainActivity : AppCompatActivity() {
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
 
+        initialStatusBar()
+
         screenAdapter = ScreenAdapter()
         binding.viewPager.adapter = screenAdapter
         // 缓存3页
@@ -132,9 +131,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
             ) {
                 if (position == pageTitles.size - 1) {
                     // 缩放动画
@@ -153,6 +152,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 val bg = when (position) {
                     0 -> R.raw.ic_assistant_bg
+                    1 -> R.raw.ic_chinese_bg
+                    2 -> R.raw.ic_english_bg
+                    3 -> R.raw.ic_mathematics_bg
+                    4 -> R.raw.ic_program_bg
                     else -> R.raw.background
                 }
                 Glide.with(this@MainActivity)
@@ -205,12 +208,12 @@ class MainActivity : AppCompatActivity() {
                 .load(R.raw.ic_assistant_bg)
                 .centerCrop()
                 .into(binding.ivMainBackground)
-
     }
 
     override fun onDestroy() {
         unregisterReceiver(receiver)
         setLauncher(null)
+        connectionStateMonitor.disable()
         super.onDestroy()
     }
 
@@ -227,6 +230,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initialStatusBar() {
+        connectionStateMonitor.enable(this)
+        connectionStateMonitor.setConnectStateListener { isConnected ->
+            runOnUiThread {
+                binding.ivWifiStatus.setImageResource(
+                        if (isConnected) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off
+                )
+            }
+        }
+
+        binding.ivWifiStatus.setImageResource(
+                if (SystemUtil.isNetworkConnected(this)) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off
+        )
+    }
+
     /**.
      * 涂鸦home初始化
      */
@@ -240,9 +258,9 @@ class MainActivity : AppCompatActivity() {
                     repo.prefs.currentHomeName = home.name
 
                     val service = MicroServiceManager.getInstance()
-                        .findServiceByInterface<AbsBizBundleFamilyService>(
-                            AbsBizBundleFamilyService::class.java.name
-                        )
+                            .findServiceByInterface<AbsBizBundleFamilyService>(
+                                    AbsBizBundleFamilyService::class.java.name
+                            )
                     service.currentHomeId = home.homeId
 //                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
 //                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
@@ -317,8 +335,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(
-        supportFragmentManager,
-        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+            supportFragmentManager,
+            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
     ) {
 
         private val MAX_APP_NUM = 20

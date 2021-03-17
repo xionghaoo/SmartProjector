@@ -12,7 +12,7 @@
         android:layout_width="@dimen/_516dp"
         android:layout_height="@dimen/_366dp"
         android:layout_marginStart="@dimen/_61dp"
-        android:background="@drawable/shape_card_transparent"
+        android:background="@mipmap/ic_chinese_prepare"
         app:layout_constraintStart_toEndOf="@+id/menu_search"
         app:layout_constraintTop_toTopOf="@+id/menu_search">
 
@@ -21,12 +21,12 @@
             style="@style/CardTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_60dp"
-            android:layout_marginTop="@dimen/_96dp"
-            android:text="听写"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_marginBottom="@dimen/_48dp"
+            android:text="课本预习"
             android:textSize="@dimen/_46sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -36,12 +36,19 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_61dp"
         android:layout_marginEnd="@dimen/_137dp"
-        android:background="@drawable/shape_card_transparent"
+        android:background="@mipmap/ic_chinese_interest"
         app:layout_constraintBottom_toBottomOf="@+id/menu_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toTopOf="@+id/textView16">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="趣味专题"
+            style="@style/CardTitleStyle"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_marginBottom="@dimen/_40dp"
+            android:layout_gravity="bottom"/>
     </FrameLayout>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
@@ -59,86 +66,52 @@
 
         <TextView
             style="@style/CardTitleStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/_60dp"
-            android:paddingTop="@dimen/_96dp"
-            android:text="预习" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_40dp"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_gravity="bottom"
+            android:text="同步课堂" />
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <TextView
+    <FrameLayout
         android:id="@+id/textView43"
         android:layout_width="@dimen/_244dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_40dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@mipmap/ic_chinese_write"
         app:layout_constraintBottom_toBottomOf="@+id/menu_search"
         app:layout_constraintStart_toStartOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CardTitleStyle"
+            android:layout_marginBottom="@dimen/_48dp"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_gravity="bottom"
+            android:textSize="@dimen/_44sp"
+            android:text="学学练字"/>
+    </FrameLayout>
 
-    <TextView
+    <FrameLayout
         android:id="@+id/textView45"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_30dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@mipmap/ic_chinese_pinyin"
         app:layout_constraintBottom_toBottomOf="@+id/textView43"
         app:layout_constraintEnd_toEndOf="@+id/textView16"
         app:layout_constraintStart_toEndOf="@+id/textView43"
-        app:layout_constraintTop_toTopOf="@+id/textView43" />
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/textView30"-->
-<!--        android:layout_width="@dimen/_362dp"-->
-<!--        android:layout_height="@dimen/_114dp"-->
-<!--        android:layout_marginStart="@dimen/_267dp"-->
-<!--        android:background="@drawable/shape_bg_clock_card"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/menu_level"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/menu_level"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/menu_level">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/textView40"-->
-<!--            android:layout_width="@dimen/_42dp"-->
-<!--            android:layout_height="@dimen/_42dp"-->
-<!--            android:layout_marginStart="@dimen/_28dp"-->
-<!--            android:src="@drawable/ic_clock"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView41"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="@dimen/_16dp"-->
-<!--            android:layout_marginTop="@dimen/_19dp"-->
-<!--            android:text="写作业1小时；预习"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="@dimen/_28sp"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/textView40"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textView42"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/_7dp"-->
-<!--            android:text="完成计划有奖励哦"-->
-<!--            android:textColor="@color/text_dark"-->
-<!--            android:textSize="@dimen/_22sp"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/textView41"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textView41" />-->
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView31"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="同步语文"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="@dimen/_66sp"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/textView24"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/menu_level" />-->
+        app:layout_constraintTop_toTopOf="@+id/textView43" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CardTitleStyle"
+            android:layout_marginBottom="@dimen/_48dp"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_gravity="bottom"
+            android:textSize="@dimen/_44sp"
+            android:text="学拼音"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

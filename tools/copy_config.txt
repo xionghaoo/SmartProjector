@@ -1,1 +1,4 @@
-编组 11.png;ic_assistant_avatar.png
+kd_2icon_编程课程.png;ic_program_lesson.png
+kd_2icon_开始创作.png;ic_program_create.png
+kd_2icon_我的作品.png;ic_program_production.png
+kd_1通用_bg5.png;ic_program_bg.png
