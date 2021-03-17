@@ -339,7 +339,7 @@ class MainActivity : AppCompatActivity() {
             BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
     ) {
 
-        private val MAX_APP_NUM = 20
+        private val MAX_APP_NUM = 18
 
         private var appNum: Int = 0
         private var appPageNum: Int = 0
