@@ -13,8 +13,8 @@
         android:layout_height="@dimen/_366dp"
         android:layout_marginStart="@dimen/_61dp"
         android:background="@mipmap/ic_chinese_prepare"
-        app:layout_constraintStart_toEndOf="@+id/menu_search"
-        app:layout_constraintTop_toTopOf="@+id/menu_search">
+        app:layout_constraintStart_toEndOf="@+id/card_chinese_classroom"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_classroom">
 
         <TextView
             android:id="@+id/textView32"
@@ -30,14 +30,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/textView24"
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/card_chinese_interest"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_61dp"
         android:layout_marginEnd="@dimen/_137dp"
         android:background="@mipmap/ic_chinese_interest"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classroom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toTopOf="@+id/textView16">
@@ -49,10 +49,10 @@
             android:layout_marginStart="@dimen/_40dp"
             android:layout_marginBottom="@dimen/_40dp"
             android:layout_gravity="bottom"/>
-    </FrameLayout>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/menu_search"
+        android:id="@+id/card_chinese_classroom"
         android:layout_width="@dimen/_622dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_53dp"
@@ -80,7 +80,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_40dp"
         android:background="@mipmap/ic_chinese_write"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_search"
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classroom"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" >
         <TextView

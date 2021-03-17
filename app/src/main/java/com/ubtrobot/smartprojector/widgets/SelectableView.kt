@@ -4,12 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.widget.FrameLayout
-import timber.log.Timber
 
 class SelectableView : FrameLayout {
 
     private var listener: (() -> Unit)? = null
     private var selectedState = 0
+    private var isInside = false
 
     constructor(context: Context) : super(context) {
         initial(context)
@@ -19,24 +19,8 @@ class SelectableView : FrameLayout {
     }
 
     private fun initial(context: Context) {
-        Timber.d("initial: $id")
         isFocusable = true
         isFocusableInTouchMode = true
-//        setOnFocusChangeListener { _, hasFocus ->
-//            Timber.d("has focus: $id, $hasFocus")
-//            if (hasFocus) {
-//                animate().scaleX(1.4f)
-//                        .scaleY(1.4f)
-//                        .translationZ(10f)
-//                        .start()
-//            } else {
-//                animate().scaleX(1f)
-//                        .scaleY(1f)
-//                        .translationZ(0f)
-//                        .start()
-//            }
-//        }
-
     }
 
 //    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
@@ -62,6 +46,7 @@ class SelectableView : FrameLayout {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if (event != null) {
+            isInside = event.x > 0 && event.x < width && event.y > 0 && event.y < height
             if (event.actionMasked == MotionEvent.ACTION_DOWN) {
                 animate().cancel()
                 animate().scaleX(1.05f)
@@ -69,13 +54,22 @@ class SelectableView : FrameLayout {
 //                        .translationZ(5f)
                         .start()
             }
-            if (event.actionMasked == MotionEvent.ACTION_UP || event.actionMasked == MotionEvent.ACTION_CANCEL) {
+            if (event.actionMasked == MotionEvent.ACTION_UP) {
                 animate().cancel()
                 animate().scaleX(1f)
                         .scaleY(1f)
 //                        .translationZ(0f)
                         .start()
-                listener?.invoke()
+                if (isInside) {
+                    listener?.invoke()
+                }
+            }
+            if (!isInside || event.actionMasked == MotionEvent.ACTION_CANCEL) {
+                animate().cancel()
+                animate().scaleX(1f)
+                    .scaleY(1f)
+//                        .translationZ(0f)
+                    .start()
             }
         }
         return true

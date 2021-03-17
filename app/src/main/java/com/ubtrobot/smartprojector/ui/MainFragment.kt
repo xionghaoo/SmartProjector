@@ -25,6 +25,9 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import kotlin.math.roundToInt
 
+/**
+ * 桌面 - 一级页面
+ */
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
@@ -109,7 +112,7 @@ class MainFragment : Fragment() {
     }
 
     /**
-     * 桌面1
+     * ai编程
      */
     private fun bindPageOneView() {
         bindingPageOne.menuFingerRead.setSelectListener {
@@ -130,9 +133,17 @@ class MainFragment : Fragment() {
     }
 
     /**
-     * 桌面2
+     * 语文
      */
     private fun bindPageTwoView() {
+        bindingPageTwo.cardChineseClassroom.setSelectListener {
+            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_CLASSROOM)
+        }
+
+        bindingPageTwo.cardChineseInterest.setSelectListener {
+            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_INTEREST)
+        }
+
 //        bindingPageTwo.flApps.removeAllViews()
 //        CoroutineScope(Dispatchers.Default).launch {
 //            val appList = PackageUtil.appList(requireActivity())

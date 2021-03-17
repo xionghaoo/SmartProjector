@@ -1,4 +1,4 @@
-kd_2icon_编程课程.png;ic_program_lesson.png
-kd_2icon_开始创作.png;ic_program_create.png
-kd_2icon_我的作品.png;ic_program_production.png
-kd_1通用_bg5.png;ic_program_bg.png
+kd2icon返回.png;ic_btn_back.png
+kd_2icon_国学课堂.png;ic_chinese_classroom.png
+kd_2icon_成语典故.png;ic_chinese_idiom.png
+kd_1通用_bg.png;ic_chinese_detail_bg.png

@@ -9,7 +9,7 @@
     tools:context=".ui.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/textView24"
+        android:id="@+id/card_chinese_interest"
         android:layout_width="@dimen/_518dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_61dp"
@@ -83,10 +83,10 @@
         android:background="@mipmap/ic_program_production"
         android:layout_marginStart="@dimen/_61dp"
         android:layout_marginEnd="@dimen/_120dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView24"
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_interest"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView24"
-        app:layout_constraintTop_toTopOf="@+id/textView24" >
+        app:layout_constraintStart_toEndOf="@+id/card_chinese_interest"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_interest" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

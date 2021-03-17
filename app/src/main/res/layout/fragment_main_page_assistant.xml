@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="@+id/textView49" />
 
     <FrameLayout
-        android:id="@+id/textView24"
+        android:id="@+id/card_chinese_interest"
         android:layout_width="@dimen/_340dp"
         android:layout_height="@dimen/_340dp"
         android:layout_marginStart="@dimen/_78dp"
@@ -99,9 +99,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_26dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView46"
-        app:layout_constraintEnd_toEndOf="@+id/textView24"
-        app:layout_constraintStart_toStartOf="@+id/textView24"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" >
+        app:layout_constraintEnd_toEndOf="@+id/card_chinese_interest"
+        app:layout_constraintStart_toStartOf="@+id/card_chinese_interest"
+        app:layout_constraintTop_toBottomOf="@+id/card_chinese_interest" >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -126,8 +126,8 @@
         android:background="@mipmap/ic_assistant_search_questions"
         app:layout_constraintBottom_toBottomOf="@+id/textView47"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView24"
-        app:layout_constraintTop_toTopOf="@+id/textView24" >
+        app:layout_constraintStart_toEndOf="@+id/card_chinese_interest"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_interest" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
         android:layout_marginBottom="@dimen/_78dp"
         android:src="@mipmap/ic_assistant_ip_role"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toStartOf="@+id/textView24"
+        app:layout_constraintEnd_toStartOf="@+id/card_chinese_interest"
         app:layout_constraintStart_toEndOf="@+id/menu_finger_read"
         app:layout_constraintTop_toTopOf="@+id/menu_finger_read" />
 
