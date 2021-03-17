@@ -18,7 +18,7 @@ class AppInfoAdapter(
     override fun itemLayoutId(): Int = R.layout.item_app_info
 
     override fun bindView(v: View, item: App, position: Int) {
-        val itemView = v as AppLauncherView
+        val itemView = v.findViewById<AppLauncherView>(R.id.v_app_launcher)
         itemView.setIcon(item.icon)
         itemView.setLabel(item.label)
 
@@ -33,7 +33,7 @@ class AppInfoAdapter(
                 itemClick(item.packageName)
             }
             if (MainActivity.getLauncher() != null) {
-                v.setOnLongClickListener(MainActivity.getLauncher()!!.getItemOptionView().getLongClickListener(item))
+                itemView.setOnLongClickListener(MainActivity.getLauncher()!!.getItemOptionView().getLongClickListener(item))
             }
         }
     }

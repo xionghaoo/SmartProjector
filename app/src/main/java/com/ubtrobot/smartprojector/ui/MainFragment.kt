@@ -112,7 +112,7 @@ class MainFragment : Fragment() {
     }
 
     /**
-     * ai编程
+     * ai智能辅助
      */
     private fun bindPageOneView() {
         bindingPageOne.menuFingerRead.setSelectListener {

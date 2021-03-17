@@ -10,7 +10,10 @@
         android:id="@+id/rc_app_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_26dp"/>
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginEnd="@dimen/_100dp"
+        android:layout_marginBottom="@dimen/_55dp"
+        android:layout_marginTop="@dimen/_158dp"/>
 
 <!--    <TextView-->
 <!--        android:id="@+id/textView18"-->

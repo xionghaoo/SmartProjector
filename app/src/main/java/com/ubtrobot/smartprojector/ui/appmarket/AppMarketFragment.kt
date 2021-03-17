@@ -56,7 +56,10 @@ class AppMarketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rcAppList.layoutManager = GridLayoutManager(context, 6)
+        binding.rcAppList.layoutManager = object : GridLayoutManager(context, 6) {
+            override fun canScrollVertically(): Boolean = false
+            override fun canScrollHorizontally(): Boolean = false
+        }
         adapter = AppInfoAdapter(emptyList()) { pkgName ->
             // 点击图标时启动app
             requireActivity().packageManager.apply {

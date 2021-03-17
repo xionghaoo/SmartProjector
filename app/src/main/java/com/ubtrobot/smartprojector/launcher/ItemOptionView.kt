@@ -143,12 +143,13 @@ class ItemOptionView : FrameLayout {
 //        itemList.add(editItem)
 //        itemList.add(removeItem)
 
-        var x = _dragLocation.x + Tool.dp2px(10f)
+        var x = _dragLocation.x + Tool.dp2px(20f)
         var y = _dragLocation.y
-        val itemListHeight = itemList.size * Tool.dp2px(46f)
-        if (x + Tool.dp2px(200f) > width) {
+        val itemListHeight = itemList.size * resources.getDimension(R.dimen.option_view_height)
+        val optionViewWidth = resources.getDimension(R.dimen.option_view_width)
+        if (x + optionViewWidth > width) {
             _overlayPopup.itemAnimator = _slideInLeftAnimator
-            x -= Tool.dp2px(200f)
+            x -= optionViewWidth
         } else {
             _overlayPopup.itemAnimator = _slideInRightAnimator
         }

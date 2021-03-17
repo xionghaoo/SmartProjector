@@ -1,63 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <androidx.cardview.widget.CardView
-            android:id="@+id/container_app_icon"
-            android:layout_width="@dimen/_120dp"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_20dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="@dimen/_30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <ImageView
-                android:id="@+id/iv_app_icon"
-                android:layout_width="@dimen/_80dp"
-                android:layout_height="@dimen/_80dp"
-                android:layout_gravity="center"
-                tools:srcCompat="@tools:sample/avatars" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/tv_app_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10dp"
-            app:layout_goneMarginTop="@dimen/_20dp"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:maxWidth="@dimen/_110dp"
-            android:textSize="@dimen/_24sp"
-            android:textColor="@color/color_text_dark_55"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_app_icon"
-            tools:text="应用图标" />
-
+    android:layout_width="@dimen/_180dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_app_icon"
+        android:layout_width="@dimen/_120dp"
+        android:layout_height="@dimen/_120dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="@dimen/_30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <ImageView
-            android:id="@+id/iv_app_lock"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/overlay"
-            android:padding="25dp"
-            android:visibility="gone"
-            android:src="@drawable/ic_lock"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/iv_app_icon"
+            android:layout_width="@dimen/_80dp"
+            android:layout_height="@dimen/_80dp"
+            android:layout_gravity="center"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_app_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        app:layout_goneMarginTop="@dimen/_20dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/_180dp"
+        android:textSize="@dimen/_24sp"
+        android:textColor="@color/color_text_dark_55"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_app_icon"
+        tools:text="应用图标" />
+
+    <ImageView
+        android:id="@+id/iv_app_lock"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/overlay"
+        android:padding="25dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_lock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
