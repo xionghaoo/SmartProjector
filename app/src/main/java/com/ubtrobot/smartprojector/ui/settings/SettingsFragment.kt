@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentSettingsBinding
 import com.ubtrobot.smartprojector.repo.Repository
@@ -17,6 +18,7 @@ import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
+import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.RootCommand
 import com.ubtrobot.smartprojector.utils.RootExecutor
@@ -35,6 +37,8 @@ class SettingsFragment : Fragment() {
     lateinit var repo: Repository
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+
+    private var dialog: AlertDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
@@ -59,7 +63,7 @@ class SettingsFragment : Fragment() {
         }
         
         binding.btnStartTuya.setOnClickListener {
-            startPlainActivity(TuyaActivity::class.java)
+            startPlainActivity(TuyaHomeActivity::class.java)
         }
 
         binding.edtPwd.setText(repo.prefs.screenLockPwd)
@@ -116,6 +120,13 @@ class SettingsFragment : Fragment() {
                 ToastUtil.showToast(requireContext(), "网关删除${if (success == 0) "成功" else "失败"}")
             }
         }
+
+
+
+//        val v = layoutInflater.inflate()
+//        dialog = AlertDialog.Builder(requireContext())
+//            .setView()
+//            .show()
     }
 
 

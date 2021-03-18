@@ -24,7 +24,7 @@
         android:layout_height="@dimen/_340dp"
         android:layout_marginStart="@dimen/_78dp"
         app:layout_constraintStart_toEndOf="@+id/textView46"
-        app:layout_constraintTop_toTopOf="@+id/menu_finger_read">
+        app:layout_constraintTop_toTopOf="@+id/card_assistant_finger_read">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,18 +42,20 @@
     </FrameLayout>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/menu_finger_read"
+        android:id="@+id/card_assistant_finger_read"
         android:layout_width="@dimen/_374dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_53dp"
         android:layout_marginStart="@dimen/_114dp"
         android:layout_marginBottom="@dimen/_42dp"
-        android:background="@mipmap/ic_assistant_finger_read"
         android:nextFocusDown="@+id/menu_read"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageView
+            android:id="@+id/iv_assistant_finger_read"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <TextView
             style="@style/CardTitleStyle"
             android:layout_width="wrap_content"
@@ -70,8 +72,8 @@
         android:layout_height="@dimen/_132dp"
         android:layout_marginStart="@dimen/_78dp"
         android:src="@mipmap/ic_assistant_word_book"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_finger_read"
-        app:layout_constraintStart_toEndOf="@+id/menu_finger_read" />
+        app:layout_constraintBottom_toBottomOf="@+id/card_assistant_finger_read"
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_finger_read" />
 
     <ImageView
         android:id="@+id/textView44"
@@ -148,7 +150,7 @@
         android:src="@mipmap/ic_assistant_ip_role"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toStartOf="@+id/card_chinese_interest"
-        app:layout_constraintStart_toEndOf="@+id/menu_finger_read"
-        app:layout_constraintTop_toTopOf="@+id/menu_finger_read" />
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_finger_read"
+        app:layout_constraintTop_toTopOf="@+id/card_assistant_finger_read" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

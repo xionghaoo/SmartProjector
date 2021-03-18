@@ -105,7 +105,10 @@ class MainFragment : Fragment() {
      * ai智能辅助
      */
     private fun bindPageOneView() {
-        bindingPageOne.menuFingerRead.setSelectListener {
+        GlideApp.with(requireContext())
+            .load(R.mipmap.ic_assistant_finger_read)
+            .into(bindingPageOne.ivAssistantFingerRead)
+        bindingPageOne.cardAssistantFingerRead.setSelectListener {
             ToastUtil.showToast(requireContext(), "课本点读")
         }
 //        bindingPageOne.root.requestFocus()

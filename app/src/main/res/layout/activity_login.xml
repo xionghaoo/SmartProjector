@@ -17,7 +17,7 @@
         android:textSize="24sp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="智能投影仪" />
+        android:text="蝌蚪" />
 
     <EditText
         android:id="@+id/edt_login_username"

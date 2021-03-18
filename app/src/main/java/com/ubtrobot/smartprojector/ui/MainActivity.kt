@@ -30,6 +30,7 @@ import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.game.GameFragment
@@ -148,6 +149,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
+                if (position == pageTitles.size - 1) {
+                    val tranX = binding.containerMainHeader.translationX
+                    if (tranX != 0f) {
+                        binding.containerMainHeader.animate().cancel()
+                        binding.containerMainHeader.animate()
+                            .translationX(0f)
+                            .start()
+                    }
+
+                }
                 if (position < pageTitles.size) {
                     binding.tvPageTitle.text = pageTitles[position]
                 }

@@ -54,6 +54,8 @@ class LoginActivity : AppCompatActivity() {
 //                ToastUtil.showToast(this, "账号密码错误")
 //            }
 
+
+
             TuyaHomeSdk.getUserInstance().loginWithPhonePassword(
                 "86",
                 username,
