@@ -1,4 +1,2 @@
-kd2icon返回.png;ic_btn_back.png
-kd_2icon_国学课堂.png;ic_chinese_classroom.png
-kd_2icon_成语典故.png;ic_chinese_idiom.png
-kd_1通用_bg.png;ic_chinese_detail_bg.png
+kd_2icon_同步学习语文.png;ic_chinese_main.png
+kd_2icon_速算练习.png;ic_mathematics_interest.png

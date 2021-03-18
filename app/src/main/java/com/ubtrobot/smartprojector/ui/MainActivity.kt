@@ -23,6 +23,7 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.ubtrobot.smartprojector.BuildConfig
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var pageTitles = arrayOf("AI智能", "同步语文", "同步英语", "同步数学", "AI编程", "优必选严选")
+    private var pageTitles = arrayOf("AI智能", "语文", "英语", "数学", "AI编程", "优必选严选")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -185,10 +186,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         RootExecutor.exec(
-                success = {
-                    eyeProtectionMode()
-                },
-                failure = {}
+            cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
+            success = {
+                eyeProtectionMode()
+            },
+            failure = {
+                Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
+            }
         )
 
         // 拓展网关初始化
@@ -204,7 +208,7 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, intentFilter)
 
 
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(R.raw.ic_assistant_bg)
                 .centerCrop()
                 .into(binding.ivMainBackground)
@@ -287,33 +291,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun eyeProtectionMode() {
         CoroutineScope(Dispatchers.Default).launch {
-            Timber.d("has root permission: ${Shell.SU.available()}")
-            if (Shell.SU.available()) {
-                // 授予权限
-                val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} $${Manifest.permission.SYSTEM_ALERT_WINDOW}")
-                if (exitCode == 0) {
-                    delay(60 * 1000)
-                    withContext(Dispatchers.Main) {
-                        Timber.d("护眼模式")
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            if (Settings.canDrawOverlays(this@MainActivity)) {
-                                eyeProtectionDialog()
-                            } else {
-                                try {
-                                    startActivityForResult(
-                                            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
-                                            RC_SYSTEM_ALERT_WINDOW_PERMISSION
-                                    )
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                    1       }
-                            }
-                        } else {
-                            eyeProtectionDialog()
+            delay(60 * 1000)
+            val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_OVERLAY_PERMISSION}")
+            Timber.d("grant ACTION_MANAGE_OVERLAY_PERMISSION permission: ${exitCode}")
+            withContext(Dispatchers.Main) {
+                Timber.d("护眼模式")
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (Settings.canDrawOverlays(this@MainActivity)) {
+                        eyeProtectionDialog()
+                    } else {
+                        try {
+                            startActivityForResult(
+                                Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
+                                RC_SYSTEM_ALERT_WINDOW_PERMISSION
+                            )
+                        } catch (e: Exception) {
+                            e.printStackTrace()
                         }
                     }
                 } else {
-                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
+                    eyeProtectionDialog()
                 }
             }
         }

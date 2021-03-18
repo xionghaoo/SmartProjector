@@ -36,7 +36,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_61dp"
         android:layout_marginEnd="@dimen/_137dp"
-        android:background="@mipmap/ic_mathematics_practise"
+        android:background="@mipmap/ic_mathematics_interest"
         app:layout_constraintBottom_toBottomOf="@+id/menu_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
@@ -58,12 +58,15 @@
         android:layout_marginTop="@dimen/_53dp"
         android:layout_marginBottom="@dimen/_44dp"
         android:layout_marginStart="@dimen/_137dp"
-        android:background="@mipmap/ic_mathematics_main"
         android:nextFocusDown="@+id/menu_read"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageView
+            android:id="@+id/iv_mathematics_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
         <TextView
             style="@style/CardTitleStyle"
             android:layout_width="wrap_content"

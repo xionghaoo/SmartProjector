@@ -5,25 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.core.view.children
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.ubtrobot.smartprojector.GlideApp
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.test.TestActivity
-import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
-import com.ubtrobot.smartprojector.utils.PackageUtil
-import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
-import com.ubtrobot.smartprojector.widgets.AppLauncherView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
-import kotlin.math.roundToInt
 
 /**
  * 桌面 - 一级页面
@@ -136,6 +126,9 @@ class MainFragment : Fragment() {
      * 语文
      */
     private fun bindPageTwoView() {
+        GlideApp.with(requireContext())
+                .load(R.mipmap.ic_chinese_main)
+                .into(bindingPageTwo.ivChineseMain)
         bindingPageTwo.cardChineseClassroom.setSelectListener {
             ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_CLASSROOM)
         }
@@ -179,6 +172,9 @@ class MainFragment : Fragment() {
     }
 
     private fun bindPageFourView() {
+        GlideApp.with(requireContext())
+                .load(R.mipmap.ic_mathematics_main)
+                .into(bindingPageFour.ivMathematicsMain)
         bindingPageFour.menuSearch.setOnClickListener {
             startPlainActivity(TuyaHomeActivity::class.java)
         }

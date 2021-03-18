@@ -176,7 +176,7 @@ dependencies {
 
     // glide框架
     implementation dpes.glide.main
-    annotationProcessor dpes.glide.compiler
+    kapt dpes.glide.compiler
 
     // Permission
     implementation dpes.easy_permission

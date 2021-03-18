@@ -68,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="编程课程"
+                android:textStyle="bold"
                 android:textColor="@color/color_text_dark"
                 android:layout_marginTop="@dimen/_19sp"
                 android:textSize="@dimen/_46sp"

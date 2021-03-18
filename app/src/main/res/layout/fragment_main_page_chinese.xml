@@ -58,11 +58,15 @@
         android:layout_marginTop="@dimen/_53dp"
         android:layout_marginBottom="@dimen/_44dp"
         android:layout_marginStart="@dimen/_137dp"
-        android:background="@drawable/shape_bg_card"
         android:nextFocusDown="@+id/menu_read"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/iv_chinese_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
 
         <TextView
             style="@style/CardTitleStyle"
