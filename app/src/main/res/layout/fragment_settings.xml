@@ -152,4 +152,14 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_gw_unactive"
         app:layout_constraintTop_toTopOf="@+id/btn_gw_unactive" />
 
+    <Button
+        android:id="@+id/btn_test_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20dp"
+        android:text="显示对话框"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_version_check"
+        app:layout_constraintStart_toEndOf="@+id/btn_version_check"
+        app:layout_constraintTop_toTopOf="@+id/btn_version_check" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

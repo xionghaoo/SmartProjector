@@ -1,73 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.tuya.AddDeviceFragment">
 
+
+
+    <LinearLayout
+        android:id="@+id/textView10"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_80dp"
+        android:background="@android:color/holo_blue_light"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            android:text="添加涂鸦设备"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textView52"
+        android:layout_width="@dimen/_360dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:background="@drawable/shape_card_normal"
+        app:layout_constraintBottom_toTopOf="@+id/textView55"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <TextView
+            android:id="@+id/textView61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:paddingStart="@dimen/_30dp"
+            android:paddingEnd="@dimen/_30dp"
+            android:text="选择2.4GHz Wi-Fi网络并输入密码"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView62"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:paddingStart="@dimen/_30dp"
+            android:paddingEnd="@dimen/_30dp"
+            android:text="如果你的Wi-Fi是5GHz的，请先设置为2.4GHz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+        <LinearLayout
+            android:id="@+id/textView63"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30dp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView62">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wifi名称："
+                android:textColor="@color/color_222222"
+                android:textSize="@dimen/_18sp" />
+
+            <TextView
+                android:id="@+id/tv_connected_wifi_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_10dp"
+                android:paddingEnd="@dimen/_10dp"
+                android:textColor="@color/color_222222"
+                android:textSize="@dimen/_18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/textView64"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView63">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wifi密码："
+                android:textColor="@color/color_222222"
+                android:textSize="@dimen/_18sp" />
+
+            <EditText
+                android:id="@+id/edt_connected_wifi_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingStart="@dimen/_10dp"
+                android:paddingEnd="@dimen/_10dp"
+                android:textSize="@dimen/_18sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_set_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="保存"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView64" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
-        android:id="@+id/tv_new_device_home_info"
+        android:id="@+id/textView55"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="家庭："
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/radar_view" />
-
-
-    <com.ubtrobot.smartprojector.widgets.RadarView
-        android:id="@+id/radar_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:text="步骤1. 配置Wifi"
+        android:textSize="@dimen/_24sp"
+        android:textColor="@color/color_222222"
+        android:layout_marginBottom="@dimen/_20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btn_start_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="寻找设备"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_new_device_home_info" />
-
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="请确认设备在配网状态(指示灯在快闪)\n请确认wifi是2.4G频段"
-        android:textColor="@android:color/holo_red_light"
-        app:layout_constraintEnd_toEndOf="@+id/btn_start_connect"
-        app:layout_constraintStart_toStartOf="@+id/btn_start_connect"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start_connect" />
-
-    <Button
-        android:id="@+id/btn_set_wifi_pwd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设置Wifi"
-        android:layout_marginBottom="@dimen/_10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textView65"
+        android:layout_width="@dimen/_360dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:background="@drawable/shape_card_normal"
+        app:layout_constraintBottom_toTopOf="@+id/textView66"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" >
+<!--        <TextView-->
+<!--            android:id="@+id/tv_new_device_home_info"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_20dp"-->
+<!--            android:text="家庭："-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+        <com.ubtrobot.smartprojector.widgets.RadarView
+            android:id="@+id/radar_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_start_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寻找设备"
+            android:layout_marginBottom="@dimen/_20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/radar_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="请确认设备在配网状态(指示灯在快闪)\n请确认wifi是2.4G频段"
+            android:textColor="@android:color/holo_red_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_set_wifi_pwd"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="@dimen/_10dp"-->
+<!--            android:text="设置Wifi"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline2" />-->
+
+        <TextView
+            android:id="@+id/tv_device_connect_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/btn_start_connect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
-        android:id="@+id/tv_device_connect_status"
+        android:id="@+id/textView66"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/btn_set_wifi_pwd"
+        android:text="步骤2. 连接设备"
+        android:textSize="@dimen/_24sp"
+        android:textColor="@color/color_222222"
+        android:layout_marginBottom="@dimen/_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

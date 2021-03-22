@@ -17,6 +17,7 @@ import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.tuya.smart.sdk.enums.ActivatorModelEnum
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.FragmentAddDeviceBinding
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.utils.*
 import com.ubtrobot.smartprojector.widgets.RadarView
@@ -33,8 +34,11 @@ class AddDeviceFragment : Fragment() {
     private var activator: ITuyaActivator? = null
     private var homeId: Long? = null
     private var wifiSSID: String? = null
-    private var radarView: RadarView? = null
+//    private var radarView: RadarView? = null
     private var statusView: TextView? = null
+
+    private var _binding: FragmentAddDeviceBinding? = null
+    private val binding get() = _binding!!
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -56,15 +60,14 @@ class AddDeviceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_add_device, container, false)
+        _binding = FragmentAddDeviceBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        radarView = view.findViewById(R.id.radar_view)
-        statusView = view.findViewById(R.id.tv_device_connect_status)
-        view.findViewById<View>(R.id.btn_start_connect).setOnClickListener {
+        binding.btnStartConnect.setOnClickListener {
             if (repo.prefs.wifiPwd == null) {
                 ToastUtil.showToast(requireContext(), "请先配置Wifi")
             } else {
@@ -72,23 +75,38 @@ class AddDeviceFragment : Fragment() {
             }
         }
 
+        // 获取wifi名称
         wifiSSID = WifiUtil.getWifiSSID(requireContext())
-        view.findViewById<View>(R.id.btn_set_wifi_pwd).setOnClickListener {
-            PromptDialog.Builder(requireContext())
-                .setView(R.layout.dialog_config_home_wifi)
-                .configView { v ->
-                    v.findViewById<TextView>(R.id.tv_wifi_ssid).text = wifiSSID
-                    v.findViewById<EditText>(R.id.edt_wifi_pwd).setText(repo.prefs.wifiPwd)
-                }
-                .addOperation(OperationType.CONFIRM, R.id.btn_confirm, true) { v ->
-                    val pwd = v.findViewById<EditText>(R.id.edt_wifi_pwd).text.toString()
-                    repo.prefs.wifiPwd = pwd
-                }
-                .build()
-                .show()
+        if (wifiSSID == null) {
+            binding.tvConnectedWifiName.text = "wifi未连接，点我去设置"
+            binding.tvConnectedWifiName.setOnClickListener {
+                SystemUtil.openSettingsWifi(requireContext())
+            }
+        } else {
+            binding.tvConnectedWifiName.text = wifiSSID
+        }
+        binding.edtConnectedWifiPassword.setText(repo.prefs.wifiPwd)
+        binding.btnSetWifi.setOnClickListener {
+            val pwd = binding.edtConnectedWifiPassword.text.toString()
+            repo.prefs.wifiPwd = pwd
         }
 
-        view.findViewById<TextView>(R.id.tv_new_device_home_info).text = "家庭：${homeId}"
+//        view.findViewById<View>(R.id.btn_set_wifi_pwd).setOnClickListener {
+//            PromptDialog.Builder(requireContext())
+//                .setView(R.layout.dialog_config_home_wifi)
+//                .configView { v ->
+//                    v.findViewById<TextView>(R.id.tv_wifi_ssid).text = wifiSSID
+//                    v.findViewById<EditText>(R.id.edt_wifi_pwd).setText(repo.prefs.wifiPwd)
+//                }
+//                .addOperation(OperationType.CONFIRM, R.id.btn_confirm, true) { v ->
+//                    val pwd = v.findViewById<EditText>(R.id.edt_wifi_pwd).text.toString()
+//                    repo.prefs.wifiPwd = pwd
+//                }
+//                .build()
+//                .show()
+//        }
+
+//        view.findViewById<TextView>(R.id.tv_new_device_home_info).text = "家庭：${homeId}"
     }
 
     // 配网token
@@ -158,11 +176,11 @@ class AddDeviceFragment : Fragment() {
 
     fun toggleRadarView(enable: Boolean) {
         if (enable) {
-            radarView?.visibility = View.VISIBLE
-            radarView?.start()
+            binding.radarView.visibility = View.VISIBLE
+            binding.radarView.start()
         } else {
-            radarView?.stop()
-            radarView?.visibility = View.GONE
+            binding.radarView.stop()
+            binding.radarView.visibility = View.GONE
         }
     }
 

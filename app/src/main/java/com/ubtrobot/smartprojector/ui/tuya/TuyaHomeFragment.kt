@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tuya.smart.api.MicroContext
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
+import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
 import com.tuya.smart.panelcaller.api.AbsPanelCallerService
 import com.ubtrobot.smartprojector.R
@@ -31,7 +32,7 @@ class TuyaHomeFragment : Fragment() {
 //    private lateinit var cmdAdapter: TuyaDeviceCmdAdapter
     private var _binding: FragmentTuyaHomeBinding? = null
     private val binding get() = _binding!!
-    private var homeId: Long? = null
+//    private var homeId: Long? = null
 
     @Inject
     lateinit var repo: Repository
@@ -55,8 +56,8 @@ class TuyaHomeFragment : Fragment() {
         adapter = TuyaDeviceAdapter(emptyList()) { index, item ->
             showController(item)
 
-            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
-            service.goPanelWithCheckAndTip(requireActivity(), item.id)
+//            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
+//            service.goPanelWithCheckAndTip(requireActivity(), item.id)
         }
         binding.rcDeviceList.adapter = adapter
         binding.btnAddNewDevice.setOnClickListener {
@@ -65,10 +66,15 @@ class TuyaHomeFragment : Fragment() {
             }
         }
 
-        binding.refreshLayout.setOnRefreshListener {
+        if (repo.prefs.currentHomeId == -1L) {
+            homeQuery()
+        } else {
+            binding.tvHome.text = "家庭：${repo.prefs.currentHomeName}, ${repo.prefs.currentHomeId}"
+            binding.refreshLayout.setOnRefreshListener {
+                homeDevicesQuery(repo.prefs.currentHomeId)
+            }
             homeDevicesQuery(repo.prefs.currentHomeId)
         }
-        homeDevicesQuery(repo.prefs.currentHomeId)
     }
 
     override fun onDestroyView() {
@@ -87,35 +93,37 @@ class TuyaHomeFragment : Fragment() {
             .commit()
     }
 
-//    /**
-//     * 家庭查询
-//     */
-//    private fun homeQuery() {
-//        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(object : ITuyaGetHomeListCallback {
-//            override fun onSuccess(homeBeans: MutableList<HomeBean>?) {
-//                Timber.d("家庭数量: ${homeBeans?.size}")
-//                if (homeBeans?.isNotEmpty() == true) {
-//                    val home = homeBeans.first()
-//                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
-//                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
-//                    homeDevicesQuery(home.homeId)
+    /**
+     * 家庭查询
+     */
+    private fun homeQuery() {
+        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(object : ITuyaGetHomeListCallback {
+            override fun onSuccess(homeBeans: MutableList<HomeBean>?) {
+                Timber.d("家庭数量: ${homeBeans?.size}")
+                if (homeBeans?.isNotEmpty() == true) {
+                    val home = homeBeans.first()
+                    binding.tvHome.text = "家庭：${home.name}, ${home.homeId}"
+                    Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
+                    homeDevicesQuery(home.homeId)
 //                    homeId = home.homeId
-//                } else {
-//                    binding.refreshLayout.finishRefresh(true)
-//                }
-//            }
-//
-//            override fun onError(errorCode: String?, error: String?) {
-//                binding.refreshLayout.finishRefresh(false)
-//
-//                Timber.d("家庭查询失败: $errorCode, $error")
-//                if (errorCode == "USER_SESSION_LOSS") {
-//                    ToastUtil.showToast(requireContext(), "登录已失效")
-//                    LoginActivity.startWithNewTask(requireContext())
-//                }
-//            }
-//        })
-//    }
+                    repo.prefs.currentHomeId = home.homeId
+                    repo.prefs.currentHomeName = home.name
+                } else {
+                    binding.refreshLayout.finishRefresh(true)
+                }
+            }
+
+            override fun onError(errorCode: String?, error: String?) {
+                binding.refreshLayout.finishRefresh(false)
+
+                Timber.d("家庭查询失败: $errorCode, $error")
+                if (errorCode == "USER_SESSION_LOSS") {
+                    ToastUtil.showToast(requireContext(), "登录已失效")
+                    LoginActivity.startWithNewTask(requireContext())
+                }
+            }
+        })
+    }
 
     /**
      * 家庭设备查询
@@ -133,8 +141,9 @@ class TuyaHomeFragment : Fragment() {
                 deviceList?.forEach { d ->
                     // gwType: If device is virtual, the filed value is "v" , else is "s"
                     Timber.d(
-                            "设备：${d.dpName}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, " +
-                                    "category: ${d.category}, ${d.categoryCode}, isOnline: ${d.isOnline}"
+                            "设备：${d.name}, ${d.devId}, gwType: ${d.gwType}, pid: ${d.productId}, " +
+                                    "lat: ${d.lat}, lng: ${d.lon}, ${d.categoryCode}, isOnline: ${d.isOnline}, " +
+                                    "isLocalOnline: ${d.isLocalOnline}"
                     )
 
                     val cmds = ArrayList<TuyaDeviceCmd>()
@@ -145,13 +154,11 @@ class TuyaHomeFragment : Fragment() {
                     if (d.categoryCode == TuyaCategory.ZIGBEE_SOS) {
                         TuyaUtil.registerTuyaDeviceListener(requireContext(), d.devId)
                     }
-                    if (d.isZigBeeWifi) {
-
-                    }
                     items.add(
                             TuyaDevice(
-                                    d.productId,
+                                    if (d.getName() == null) "未命名" else d.getName(),
                                     d.devId,
+                                    d.productId,
                                     d.isOnline,
                                     d.isZigBeeWifi,
                                     d.categoryCode,

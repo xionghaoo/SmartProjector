@@ -1,7 +1,8 @@
 package com.ubtrobot.smartprojector.utils
 
-import android.R.attr.visibility
 import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
@@ -171,6 +172,19 @@ class SystemUtil {
             val uri = Uri.fromParts("package", activity?.packageName, null)
             intent.data = uri
             activity?.startActivity(intent)
+        }
+
+        fun openSettingsWifi(context: Context?) {
+            try {
+                val intent = Intent(Intent.ACTION_MAIN, null)
+                intent.addCategory(Intent.CATEGORY_LAUNCHER)
+                val cn = ComponentName("com.android.settings", "com.android.settings.wifi.WifiSettings")
+                intent.component = cn
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                context?.startActivity(intent)
+            } catch (ignored: ActivityNotFoundException) {
+                context?.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+            }
         }
 
         /**

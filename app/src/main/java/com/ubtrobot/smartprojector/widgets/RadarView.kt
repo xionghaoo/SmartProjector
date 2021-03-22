@@ -23,7 +23,7 @@ class RadarView : View {
         // 每次渲染增加的半径值
         private const val STEP = 10
         // 两个圆之间的间隙
-        private const val CIRCLE_GAP = 250
+        private const val CIRCLE_GAP = 100
         // onDraw刷新时间间隔ms
         private const val DELAY = 30L
         // 起始圆半径

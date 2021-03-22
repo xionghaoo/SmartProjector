@@ -37,6 +37,7 @@ import com.ubtrobot.smartprojector.ui.game.GameFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
+import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell

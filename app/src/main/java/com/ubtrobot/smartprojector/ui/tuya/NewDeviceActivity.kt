@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -28,6 +29,7 @@ class NewDeviceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SystemUtil.statusBarTransparent(window)
         setContentView(R.layout.activity_new_device)
 
         addNewDeviceFragmentTask()

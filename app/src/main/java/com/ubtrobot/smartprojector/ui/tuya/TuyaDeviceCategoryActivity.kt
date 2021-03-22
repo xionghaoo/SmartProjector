@@ -2,11 +2,10 @@ package com.ubtrobot.smartprojector.ui.tuya
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityTuyaDeviceCategoryBinding
 import com.ubtrobot.smartprojector.repo.Repository
-import com.ubtrobot.smartprojector.utils.ToastUtil
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import com.ubtrobot.smartprojector.widgets.TuyaDeviceView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,6 +21,7 @@ class TuyaDeviceCategoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTuyaDeviceCategoryBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        SystemUtil.statusBarTransparent(window)
         super.onCreate(savedInstanceState)
         binding = ActivityTuyaDeviceCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,7 +35,7 @@ class TuyaDeviceCategoryActivity : AppCompatActivity() {
         binding.containerCategory1.removeAllViews()
         val itemView = TuyaDeviceView(this)
         itemView.setTitle("灯")
-        itemView.setIcon(R.drawable.ic_lamp)
+        itemView.setIcon(R.drawable.ic_production_lamp)
         itemView.setOnClickListener {
             NewDeviceActivity.start(this, repo.prefs.currentHomeId)
         }
@@ -46,7 +46,7 @@ class TuyaDeviceCategoryActivity : AppCompatActivity() {
         binding.containerCategory2.removeAllViews()
         val itemView = TuyaDeviceView(this)
         itemView.setTitle("sos")
-        itemView.setIcon(R.drawable.ic_sos)
+        itemView.setIcon(R.drawable.ic_production_sos)
         itemView.setOnClickListener {
             NewDeviceActivity.start(this, repo.prefs.currentHomeId)
         }

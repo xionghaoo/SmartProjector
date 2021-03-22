@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class TuyaDevice(
         val name: String,
         val id: String,
+        val productionId: String,
         val isOnline: Boolean,
         val isZigBeeWifi: Boolean,
         val categoryCode: String,
