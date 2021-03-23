@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.builder.ActivatorBuilder
@@ -16,6 +18,7 @@ import com.tuya.smart.sdk.api.ITuyaActivatorGetToken
 import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener
 import com.tuya.smart.sdk.bean.DeviceBean
 import com.tuya.smart.sdk.enums.ActivatorModelEnum
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentAddDeviceBinding
 import com.ubtrobot.smartprojector.repo.Repository
@@ -34,11 +37,11 @@ class AddDeviceFragment : Fragment() {
     private var activator: ITuyaActivator? = null
     private var homeId: Long? = null
     private var wifiSSID: String? = null
-//    private var radarView: RadarView? = null
-    private var statusView: TextView? = null
 
     private var _binding: FragmentAddDeviceBinding? = null
     private val binding get() = _binding!!
+
+    private var isStartSearch = false
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -71,7 +74,17 @@ class AddDeviceFragment : Fragment() {
             if (repo.prefs.wifiPwd == null) {
                 ToastUtil.showToast(requireContext(), "请先配置Wifi")
             } else {
-                getToken(homeId)
+                if (isStartSearch) {
+                    isStartSearch = false
+                    binding.btnStartConnect.text = "搜索设备"
+                    toggleRadarView(false)
+                    activator?.stop()
+                    binding.tvDeviceConnectStatus.text = ""
+                } else {
+                    getToken(homeId)
+                    isStartSearch = true
+                    binding.btnStartConnect.text = "停止搜索"
+                }
             }
         }
 
@@ -130,7 +143,7 @@ class AddDeviceFragment : Fragment() {
 
     private fun findGWDevice(token: String?) {
         Timber.d("SSID: ${wifiSSID}, wifiPWD: ${repo.prefs.wifiPwd}")
-        statusView?.text = "正在寻找设备..."
+        binding.tvDeviceConnectStatus.text = "正在寻找设备..."
         val builder = ActivatorBuilder()
             .setSsid(wifiSSID)
             .setContext(activity)
@@ -141,12 +154,12 @@ class AddDeviceFragment : Fragment() {
             .setListener(object : ITuyaSmartActivatorListener {
                 override fun onError(errorCode: String?, errorMsg: String?) {
                     Timber.d("findGWDevice error：$errorCode, $errorMsg")
-                    statusView?.text = "发生错误: $errorCode, $errorMsg"
+                    binding.tvDeviceConnectStatus.text = "发生错误: $errorCode, $errorMsg"
                     toggleRadarView(false)
                 }
 
                 override fun onActiveSuccess(devResp: DeviceBean?) {
-                    // 子设备发现回调
+                    // 网关子设备发现回调
                     Timber.d("发现设备：${devResp?.dpName}")
                     toggleRadarView(false)
                 }
@@ -154,24 +167,33 @@ class AddDeviceFragment : Fragment() {
                 override fun onStep(step: String?, data: Any?) {
                     toggleRadarView(false)
                     // 网关设备发现回调
-                    Timber.d("findGWDevice onStep: $step, ${data}")
                     if (step == "device_find") {
                         // 发现设备 6c94af80222594a3dfv4r3
                         val deviceId = data as? String
-                        Timber.d("发现设备： $deviceId")
-                        statusView?.text = "已发现设备: $deviceId, 正在向云端注册..."
+                        binding.tvDeviceConnectStatus.text = "已发现设备: $deviceId, 正在向云端注册..."
                     } else if (step == "device_bind_success") {
-                        statusView?.text = "设备注册成功"
+                        binding.tvDeviceConnectStatus.text = "设备注册成功"
                         val dev = data as? DeviceBean
-                        dev?.apply {
-                            Timber.d("激活设备成功: $dpName, $devId")
-                        }
+                        showDeviceRegisterSuccess(dev?.iconUrl, dev?.getName())
                     }
                 }
             })
 
         activator = TuyaHomeSdk.getActivatorInstance().newMultiActivator(builder)
         activator?.start()
+    }
+
+    private fun showDeviceRegisterSuccess(iconUrl: String?, deviceName: String?) {
+        PromptDialog.Builder(requireContext())
+                .setView(R.layout.dialog_device_register_success)
+                .configView { v ->
+                    GlideApp.with(requireContext())
+                            .load(iconUrl)
+                            .into(v.findViewById<ImageView>(R.id.iv_tuya_device_icon))
+                    v.findViewById<TextView>(R.id.tv_tuya_device_name).text = deviceName
+                }
+                .build()
+                .show()
     }
 
     fun toggleRadarView(enable: Boolean) {

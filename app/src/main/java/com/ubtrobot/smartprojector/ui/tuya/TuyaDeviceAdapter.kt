@@ -3,6 +3,7 @@ package com.ubtrobot.smartprojector.ui.tuya
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.core.PlainListAdapter
 
@@ -35,12 +36,13 @@ class TuyaDeviceAdapter(
 //        v.findViewById<TextView>(R.id.tv_is_zigbee_wifi).text = "Category: ${item.categoryCode}"
 
         v.findViewById<TextView>(R.id.tv_tuya_device_name).text = item.name
-        v.findViewById<ImageView>(R.id.iv_tuya_device_icon).setImageResource(
-            when (item.categoryCode) {
-                "wf_dj" -> R.drawable.ic_production_lamp
-                "zig_sos" -> R.drawable.ic_production_sos
-                else -> R.drawable.ic_info
-            }
+        GlideApp.with(v.context)
+                .load(item.iconUrl)
+                .into(v.findViewById<ImageView>(R.id.iv_tuya_device_icon))
+
+        v.findViewById<TextView>(R.id.tv_tuya_device_status).text = if (item.isOnline) "在线" else "离线"
+        v.findViewById<TextView>(R.id.v_tuya_device_status_indicator).setBackgroundResource(
+                if (item.isOnline) R.drawable.shape_indicator_online else R.drawable.shape_indicator_offline
         )
     }
 }

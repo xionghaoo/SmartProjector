@@ -56,8 +56,8 @@ class TuyaHomeFragment : Fragment() {
         adapter = TuyaDeviceAdapter(emptyList()) { index, item ->
             showController(item)
 
-//            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
-//            service.goPanelWithCheckAndTip(requireActivity(), item.id)
+            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
+            service.goPanelWithCheckAndTip(requireActivity(), item.id)
         }
         binding.rcDeviceList.adapter = adapter
         binding.btnAddNewDevice.setOnClickListener {
@@ -157,6 +157,7 @@ class TuyaHomeFragment : Fragment() {
                     items.add(
                             TuyaDevice(
                                     if (d.getName() == null) "未命名" else d.getName(),
+                                    d.iconUrl,
                                     d.devId,
                                     d.productId,
                                     d.isOnline,

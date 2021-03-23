@@ -37,8 +37,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textView52"
-        android:layout_width="@dimen/_360dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginEnd="@dimen/_100dp"
         android:layout_marginTop="@dimen/_20dp"
         android:layout_marginBottom="@dimen/_20dp"
         android:background="@drawable/shape_card_normal"
@@ -75,7 +77,7 @@
 
         <LinearLayout
             android:id="@+id/textView63"
-            android:layout_width="@dimen/_200dp"
+            android:layout_width="@dimen/_400dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30dp"
             android:gravity="center_vertical"
@@ -102,7 +104,7 @@
 
         <LinearLayout
             android:id="@+id/textView64"
-            android:layout_width="@dimen/_200dp"
+            android:layout_width="@dimen/_400dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20dp"
             android:gravity="center_vertical"
@@ -152,8 +154,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textView65"
-        android:layout_width="@dimen/_360dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginEnd="@dimen/_100dp"
         android:layout_marginTop="@dimen/_20dp"
         android:layout_marginBottom="@dimen/_20dp"
         android:background="@drawable/shape_card_normal"
@@ -184,7 +188,7 @@
             android:id="@+id/btn_start_connect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="寻找设备"
+            android:text="搜索设备"
             android:layout_marginBottom="@dimen/_20dp"
             app:layout_constraintBottom_toBottomOf="@+id/radar_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -196,6 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20dp"
             android:text="请确认设备在配网状态(指示灯在快闪)\n请确认wifi是2.4G频段"
+            android:textSize="@dimen/_16sp"
             android:textColor="@android:color/holo_red_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

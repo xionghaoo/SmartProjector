@@ -174,6 +174,9 @@ class SystemUtil {
             activity?.startActivity(intent)
         }
 
+        /**
+         * 打开wifi设置
+         */
         fun openSettingsWifi(context: Context?) {
             try {
                 val intent = Intent(Intent.ACTION_MAIN, null)
