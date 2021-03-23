@@ -70,6 +70,11 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="TransparentDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="CardTitleStyle">
         <item name="android:textSize">@dimen/_56sp</item>
         <item name="android:textStyle">bold</item>

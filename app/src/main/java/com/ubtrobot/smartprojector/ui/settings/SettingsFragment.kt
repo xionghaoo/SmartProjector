@@ -123,9 +123,10 @@ class SettingsFragment : Fragment() {
 
         binding.btnTestDialog.setOnClickListener {
             val v = layoutInflater.inflate(R.layout.dialog_loading_view, null)
-            dialog = AlertDialog.Builder(requireContext())
+            dialog = AlertDialog.Builder(requireContext(), R.style.TransparentDialog)
                     .setView(v)
                     .show()
+
         }
 
         binding.btnInitialGw.setOnClickListener {
