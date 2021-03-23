@@ -162,4 +162,14 @@
         app:layout_constraintStart_toEndOf="@+id/btn_version_check"
         app:layout_constraintTop_toTopOf="@+id/btn_version_check" />
 
+    <Button
+        android:id="@+id/btn_initial_gw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="初始化网关"
+        android:layout_marginStart="@dimen/_10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_start_tuya"
+        app:layout_constraintStart_toEndOf="@+id/btn_start_tuya"
+        app:layout_constraintTop_toTopOf="@+id/btn_start_tuya" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

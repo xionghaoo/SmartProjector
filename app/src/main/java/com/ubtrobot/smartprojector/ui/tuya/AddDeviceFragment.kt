@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
+import com.tuya.smart.android.common.utils.NetworkUtil
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.builder.ActivatorBuilder
 import com.tuya.smart.sdk.api.ITuyaActivator
@@ -71,6 +72,10 @@ class AddDeviceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnStartConnect.setOnClickListener {
+            if (!SystemUtil.isNetworkConnected(requireContext())) {
+                ToastUtil.showToast(requireContext(), "网络连接已断开")
+                return@setOnClickListener
+            }
             if (repo.prefs.wifiPwd == null) {
                 ToastUtil.showToast(requireContext(), "请先配置Wifi")
             } else {
@@ -101,7 +106,12 @@ class AddDeviceFragment : Fragment() {
         binding.edtConnectedWifiPassword.setText(repo.prefs.wifiPwd)
         binding.btnSetWifi.setOnClickListener {
             val pwd = binding.edtConnectedWifiPassword.text.toString()
-            repo.prefs.wifiPwd = pwd
+            if (pwd.isNotEmpty()) {
+                repo.prefs.wifiPwd = pwd
+                ToastUtil.showToast(requireContext(), "已设置wifi")
+            } else {
+                ToastUtil.showToast(requireContext(), "wifi密码不能为空")
+            }
         }
 
 //        view.findViewById<View>(R.id.btn_set_wifi_pwd).setOnClickListener {

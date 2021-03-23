@@ -128,6 +128,10 @@ class SettingsFragment : Fragment() {
                     .show()
         }
 
+        binding.btnInitialGw.setOnClickListener {
+            TuyaGatewayManager.instance().initial()
+        }
+
 
 //        val v = layoutInflater.inflate()
 //        dialog = AlertDialog.Builder(requireContext())
