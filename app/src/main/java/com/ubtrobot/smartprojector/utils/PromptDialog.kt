@@ -4,15 +4,14 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import androidx.annotation.LayoutRes
-import com.ubtrobot.smartprojector.R
 
 typealias ViewConfigCallback = (v: View) -> Unit
 typealias OperationCallback = (v: View) -> Unit
 
 class PromptDialog private constructor(
     private val context: Context,
+    private val theme: Int,
     @LayoutRes
     private val layoutId: Int,
     private var callback: ViewConfigCallback?,
@@ -24,7 +23,7 @@ class PromptDialog private constructor(
     init {
         val contentView = LayoutInflater.from(context).inflate(layoutId, null)
         callback?.invoke(contentView)
-        dialog = AlertDialog.Builder(context)
+        dialog = AlertDialog.Builder(context, theme)
             .setView(contentView)
             .create()
 
@@ -51,7 +50,8 @@ class PromptDialog private constructor(
     }
 
     class Builder(
-        private val context: Context
+        private val context: Context,
+        private val theme: Int = 0
     ) {
 
         private var layoutId: Int? = null
@@ -84,6 +84,7 @@ class PromptDialog private constructor(
             }
             return PromptDialog(
                 context = context,
+                    theme = theme,
                 layoutId = layoutId!!,
                 callback = callback,
                 operations = operations

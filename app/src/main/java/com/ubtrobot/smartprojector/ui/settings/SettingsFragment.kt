@@ -20,6 +20,7 @@ import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
+import com.ubtrobot.smartprojector.utils.PromptDialog
 import com.ubtrobot.smartprojector.utils.RootCommand
 import com.ubtrobot.smartprojector.utils.RootExecutor
 import com.ubtrobot.smartprojector.utils.ToastUtil
@@ -37,8 +38,6 @@ class SettingsFragment : Fragment() {
     lateinit var repo: Repository
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-
-    private var dialog: AlertDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
@@ -122,9 +121,14 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnTestDialog.setOnClickListener {
-            val v = layoutInflater.inflate(R.layout.dialog_loading_view, null)
-            dialog = AlertDialog.Builder(requireContext(), R.style.TransparentDialog)
-                    .setView(v)
+//            val v = layoutInflater.inflate(R.layout.dialog_loading_view, null)
+//            dialog = AlertDialog.Builder(requireContext(), R.style.TransparentDialog)
+//                    .setView(v)
+//                    .show()
+
+            PromptDialog.Builder(requireContext(), R.style.TransparentDialog)
+                    .setView(R.layout.dialog_loading_view)
+                    .build()
                     .show()
 
         }
