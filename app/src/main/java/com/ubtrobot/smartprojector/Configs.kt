@@ -8,5 +8,7 @@ class Configs {
 
         // ucode网页版
         const val UCODE_URL = "http://ide.ubtrobot.com/"
+
+        const val IFLY_AWAKEN_APPID = "602e2c80"
     }
 }

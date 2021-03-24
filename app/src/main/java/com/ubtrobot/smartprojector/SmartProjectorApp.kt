@@ -8,6 +8,7 @@ import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.optimus.sdk.TuyaOptimusSdk
 import com.tuya.smart.wrapper.api.TuyaWrapper
+import com.ubtrobot.ifly.IflyManager
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
@@ -57,5 +58,8 @@ class SmartProjectorApp : Application() {
 
         // 文件下载
         FileDownloader.setup(this)
+
+        // 讯飞初始化
+        IflyManager.initial(this, Configs.IFLY_AWAKEN_APPID)
     }
 }

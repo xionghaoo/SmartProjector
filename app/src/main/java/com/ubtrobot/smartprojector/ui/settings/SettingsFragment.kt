@@ -19,6 +19,7 @@ import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
+import com.ubtrobot.smartprojector.ui.video.VideoActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
 import com.ubtrobot.smartprojector.utils.PromptDialog
 import com.ubtrobot.smartprojector.utils.RootCommand
@@ -133,6 +134,10 @@ class SettingsFragment : Fragment() {
         }
 
         binding.networkStateLayout.loading()
+
+        binding.btnVideoTest.setOnClickListener {
+            startPlainActivity(VideoActivity::class.java)
+        }
 
 //        val v = layoutInflater.inflate()
 //        dialog = AlertDialog.Builder(requireContext())

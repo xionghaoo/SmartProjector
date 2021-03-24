@@ -181,4 +181,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_gw_unactive" />
 
+    <Button
+        android:id="@+id/btn_video_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="视频测试"
+        android:layout_marginStart="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_lock_screen"
+        app:layout_constraintStart_toEndOf="@+id/btn_lock_screen"
+        app:layout_constraintTop_toTopOf="@+id/btn_lock_screen" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
