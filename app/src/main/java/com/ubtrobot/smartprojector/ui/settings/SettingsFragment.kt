@@ -133,6 +133,7 @@ class SettingsFragment : Fragment() {
             TuyaGatewayManager.instance().initial()
         }
 
+        binding.networkStateLayout.empty()
 
 //        val v = layoutInflater.inflate()
 //        dialog = AlertDialog.Builder(requireContext())

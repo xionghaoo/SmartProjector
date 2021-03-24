@@ -66,6 +66,7 @@ class TuyaHomeFragment : Fragment() {
             }
         }
 
+        binding.networkLayout.loading()
         if (repo.prefs.currentHomeId == -1L) {
             homeQuery()
         } else {
@@ -109,11 +110,13 @@ class TuyaHomeFragment : Fragment() {
                     repo.prefs.currentHomeId = home.homeId
                     repo.prefs.currentHomeName = home.name
                 } else {
+                    binding.networkLayout.empty()
                     binding.refreshLayout.finishRefresh(true)
                 }
             }
 
             override fun onError(errorCode: String?, error: String?) {
+                binding.networkLayout.error()
                 binding.refreshLayout.finishRefresh(false)
 
                 Timber.d("家庭查询失败: $errorCode, $error")
@@ -176,10 +179,12 @@ class TuyaHomeFragment : Fragment() {
 //                    binding.tvProdName.text = "产品id：${firstItem.name}"
 //                    getGatewaySubDevices(firstItem.id)
                 }
+                binding.networkLayout.success()
                 binding.refreshLayout.finishRefresh(true)
             }
 
             override fun onError(errorCode: String?, errorMsg: String?) {
+                binding.networkLayout.error()
                 binding.refreshLayout.finishRefresh(false)
                 Timber.d("家庭设备查询失败: $errorCode, $errorMsg")
                 if (errorCode == "USER_SESSION_LOSS") {
@@ -191,7 +196,6 @@ class TuyaHomeFragment : Fragment() {
     }
 
     companion object {
-
         fun newInstance() = TuyaHomeFragment()
     }
 }

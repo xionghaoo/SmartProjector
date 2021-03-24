@@ -13,4 +13,9 @@
     <declare-styleable name="RadarView">
         <attr name="rv_color" format="color"/>
     </declare-styleable>
+    <declare-styleable name="NetworkStateLayout">
+        <attr name="nsl_loading" format="reference"/>
+        <attr name="nsl_error" format="reference"/>
+        <attr name="nsl_empty" format="reference"/>
+    </declare-styleable>
 </resources>
