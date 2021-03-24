@@ -3,9 +3,10 @@ package com.ubtrobot.smartprojector.test
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.webkit.WebView
+import android.webkit.*
 import android.widget.Button
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.WebInterface
 import com.ubtrobot.smartprojector.replaceFragment
 import eu.chainfire.libsuperuser.Shell
 import timber.log.Timber
@@ -33,7 +34,37 @@ class TestActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         webView.settings.useWideViewPort = true
-        webView.loadUrl("http://ide.ubtrobot.com/")
+
+        webView.loadUrl("file:///android_asset/js_test.html")
+        webView.addJavascriptInterface(WebInterface(this), "Android")
+
+        // 主动调用js方法
+        // webView.loadUrl("javascript:javacalljs()")
+
+    }
+
+    private class MyWebViewClient : WebViewClient() {
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            // 重新定义在webview内点击链接时的行为，Android 的默认行为是启动处理网址的应用
+            return super.shouldOverrideUrlLoading(view, request)
+        }
+
+        override fun onPageFinished(view: WebView?, url: String?) {
+
+            super.onPageFinished(view, url)
+        }
+    }
+
+    private class MyWebChromeClient : WebChromeClient() {
+
+        override fun onProgressChanged(view: WebView?, newProgress: Int) {
+            super.onProgressChanged(view, newProgress)
+        }
+
+        override fun onJsAlert(view: WebView?, url: String?, message: String?, result: JsResult?): Boolean {
+
+            return super.onJsAlert(view, url, message, result)
+        }
 
     }
 }

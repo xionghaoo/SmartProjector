@@ -11,6 +11,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
+/**
+ * 涂鸦Zigbee网关
+ */
 class TuyaGatewayManager {
     companion object {
         init {
@@ -36,7 +39,7 @@ class TuyaGatewayManager {
     // 解绑网关： 0 成功
     private external fun unactiveGW() : Int
 
-    // 允许子设备接入 1 开启， 0 关闭
+    // 允许子设备接入 1 开启， 0 关闭，默认是允许
     private external fun permitJoin(permit: Boolean)
 
     fun initial() {
@@ -51,6 +54,9 @@ class TuyaGatewayManager {
         }.start()
     }
 
+    /**
+     * 网关注册
+     */
     fun activeGateway(homeId: Long, resultCall: (success: Int) -> Unit) {
         TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId, object : ITuyaActivatorGetToken {
             override fun onSuccess(token: String?) {
@@ -75,6 +81,9 @@ class TuyaGatewayManager {
         })
     }
 
+    /**
+     * 网关注销
+     */
     fun unactiveGateway(resultCall: (success: Int) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val result = unactiveGW()

@@ -121,11 +121,6 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnTestDialog.setOnClickListener {
-//            val v = layoutInflater.inflate(R.layout.dialog_loading_view, null)
-//            dialog = AlertDialog.Builder(requireContext(), R.style.TransparentDialog)
-//                    .setView(v)
-//                    .show()
-
             PromptDialog.Builder(requireContext(), R.style.TransparentDialog)
                     .setView(R.layout.dialog_loading_view)
                     .build()
@@ -137,7 +132,7 @@ class SettingsFragment : Fragment() {
             TuyaGatewayManager.instance().initial()
         }
 
-        binding.networkStateLayout.empty()
+        binding.networkStateLayout.loading()
 
 //        val v = layoutInflater.inflate()
 //        dialog = AlertDialog.Builder(requireContext())

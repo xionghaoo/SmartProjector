@@ -1,10 +1,10 @@
 package com.ubtrobot.smartprojector.utils
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 
 typealias ViewConfigCallback = (v: View) -> Unit
 typealias OperationCallback = (v: View) -> Unit
