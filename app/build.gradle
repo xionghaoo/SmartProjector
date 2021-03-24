@@ -101,11 +101,6 @@ android {
     lintOptions {
         abortOnError false
     }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
