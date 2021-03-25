@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/textView51"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_62dp"
+            android:layout_height="@dimen/_62dp"
             android:layout_gravity="center"
             android:src="@mipmap/ic_btn_back" />
     </FrameLayout>

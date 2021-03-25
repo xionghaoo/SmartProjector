@@ -30,7 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.ChineseDetailActivity"></activity>
+        <activity android:name=".ui.ChineseDetailActivity"
+            android:screenOrientation="userLandscape"/>
         <activity android:name=".ui.tuya.TuyaDeviceCategoryActivity" />
         <activity
             android:name=".ui.tuya.NewDeviceActivity"

@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
+        Timber.d("display info: ${SystemUtil.displayInfo(this)}")
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
 

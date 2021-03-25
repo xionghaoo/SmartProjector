@@ -21,10 +21,7 @@ import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.ui.video.VideoActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
-import com.ubtrobot.smartprojector.utils.PromptDialog
-import com.ubtrobot.smartprojector.utils.RootCommand
-import com.ubtrobot.smartprojector.utils.RootExecutor
-import com.ubtrobot.smartprojector.utils.ToastUtil
+import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -138,6 +135,8 @@ class SettingsFragment : Fragment() {
         binding.btnVideoTest.setOnClickListener {
             startPlainActivity(VideoActivity::class.java)
         }
+
+        binding.tvDisplayInfo.text = SystemUtil.displayInfo(requireContext()).toString()
 
 //        val v = layoutInflater.inflate()
 //        dialog = AlertDialog.Builder(requireContext())

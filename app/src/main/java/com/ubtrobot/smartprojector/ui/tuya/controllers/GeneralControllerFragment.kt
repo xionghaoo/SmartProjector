@@ -22,6 +22,7 @@ import com.ubtrobot.smartprojector.utils.PromptDialog
 import com.ubtrobot.smartprojector.utils.ResourceUtil
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import timber.log.Timber
+import kotlin.math.roundToInt
 
 class GeneralControllerFragment : Fragment() {
     private var device: TuyaDevice? = null
@@ -69,7 +70,7 @@ class GeneralControllerFragment : Fragment() {
                 result?.forEach { d ->
                     val tv = TextView(requireContext())
                     tv.text = "子设备：${d.name}"
-                    val padding = ResourceUtil.convertDpToPixel(15f, requireContext()).toInt()
+                    val padding = resources.getDimension(R.dimen._15dp).roundToInt()
                     tv.setPadding(padding, padding, padding, padding)
                     binding.containerSubDevList.addView(tv)
                 }
