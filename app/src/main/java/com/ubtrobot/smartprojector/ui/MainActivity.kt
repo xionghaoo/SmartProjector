@@ -306,6 +306,8 @@ class MainActivity : AppCompatActivity() {
             delay(60 * 1000)
             val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_OVERLAY_PERMISSION}")
             Timber.d("grant ACTION_MANAGE_OVERLAY_PERMISSION permission: ${exitCode}")
+//            val exitCode2 = Shell.Pool.SU.run("content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:1")
+//            Timber.d("改变系统屏幕方向： ${exitCode2}")
             withContext(Dispatchers.Main) {
                 Timber.d("护眼模式")
                 if (Build.VERSION.SDK_INT >= 23) {

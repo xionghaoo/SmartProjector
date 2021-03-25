@@ -1,5 +1,6 @@
 package com.ubtrobot.smartprojector.ui.tuya
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
