@@ -111,6 +111,14 @@ class MainFragment : Fragment() {
         bindingPageOne.cardAssistantFingerRead.setSelectListener {
             ToastUtil.showToast(requireContext(), "课本点读")
         }
+        GlideApp.with(requireContext())
+            .load(R.mipmap.ic_assistant_ip_role)
+            .into(bindingPageOne.ivIpRole)
+
+        GlideApp.with(requireContext())
+            .load(R.mipmap.ic_assistant_search_questions)
+            .into(bindingPageOne.ivSearchQuestions)
+
 //        bindingPageOne.root.requestFocus()
 
 //        bindingPageOne.menuLevel.setOnClickListener {

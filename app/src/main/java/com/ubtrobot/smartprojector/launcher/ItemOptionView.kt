@@ -143,7 +143,7 @@ class ItemOptionView : FrameLayout {
 //        itemList.add(editItem)
 //        itemList.add(removeItem)
 
-        var x = _dragLocation.x + Tool.dp2px(20f)
+        var x = _dragLocation.x + resources.getDimension(R.dimen._20dp)
         var y = _dragLocation.y
         val itemListHeight = itemList.size * resources.getDimension(R.dimen.option_view_height)
         val optionViewWidth = resources.getDimension(R.dimen.option_view_width)

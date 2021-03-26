@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/_224dp"
+        android:layout_height="@dimen/_140dp"
+        android:layout_marginTop="@dimen/_48dp"
+        android:layout_marginBottom="@dimen/_48dp"
+        android:background="@drawable/selector_btn_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/textView51"
+            android:layout_width="@dimen/_62dp"
+            android:layout_height="@dimen/_62dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_btn_back" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="趣味专题"
+        android:layout_marginStart="@dimen/_36dp"
+        android:textSize="@dimen/_56sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_text_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

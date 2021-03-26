@@ -10,7 +10,11 @@ import com.iflytek.cloud.util.ResourceUtil
 import com.iflytek.cloud.util.ResourceUtil.RESOURCE_TYPE
 import java.lang.Exception
 
-class WakeupManger(private val context: Context) {
+class WakeupManager(private val context: Context) {
+
+    companion object {
+        const val TAG = "WakeupManger"
+    }
 
     private val curThresh = 1450
     private val keep_alive = "1"
@@ -27,7 +31,7 @@ class WakeupManger(private val context: Context) {
             val json = result?.resultString
             if (json != null) {
                 val r = Gson().fromJson(json, WakeupResult::class.java)
-
+                Log.d(TAG, "唤醒回调成功： ${json}")
             }
         }
 
@@ -77,6 +81,7 @@ class WakeupManger(private val context: Context) {
                 /*	mIvw.setParameter(SpeechConstant.AUDIO_SOURCE, "-1");*/
                 startListening(wakeupListener)
             } catch (e: Exception) {
+                Log.e(TAG, "唤醒初始化失败")
                 e.printStackTrace()
             }
 

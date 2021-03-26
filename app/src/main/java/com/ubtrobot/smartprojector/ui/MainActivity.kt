@@ -219,7 +219,6 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addDataScheme("package")
         registerReceiver(receiver, intentFilter)
 
-
         GlideApp.with(this)
                 .load(R.raw.ic_assistant_bg)
                 .centerCrop()

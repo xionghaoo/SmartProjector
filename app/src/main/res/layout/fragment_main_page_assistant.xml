@@ -15,10 +15,10 @@
         android:layout_marginBottom="@dimen/_64dp"
         android:background="@drawable/shape_ip_role_pallet"
         app:layout_constraintBottom_toTopOf="@+id/textView44"
-        app:layout_constraintEnd_toEndOf="@+id/textView49"
-        app:layout_constraintStart_toStartOf="@+id/textView49" />
+        app:layout_constraintEnd_toEndOf="@+id/iv_ip_role"
+        app:layout_constraintStart_toStartOf="@+id/iv_ip_role" />
 
-    <FrameLayout
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/card_chinese_interest"
         android:layout_width="@dimen/_340dp"
         android:layout_height="@dimen/_340dp"
@@ -39,7 +39,7 @@
             android:layout_gravity="bottom"
             android:text="查字词"/>
 
-    </FrameLayout>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/card_assistant_finger_read"
@@ -66,36 +66,48 @@
             android:text="课本点读" />
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <ImageView
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/textView12"
         android:layout_width="@dimen/_132dp"
         android:layout_height="@dimen/_132dp"
         android:layout_marginStart="@dimen/_78dp"
-        android:src="@mipmap/ic_assistant_word_book"
         app:layout_constraintBottom_toBottomOf="@+id/card_assistant_finger_read"
-        app:layout_constraintStart_toEndOf="@+id/card_assistant_finger_read" />
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_finger_read" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_assistant_word_book"/>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <ImageView
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/textView44"
         android:layout_width="@dimen/_132dp"
         android:layout_height="@dimen/_132dp"
-        android:src="@mipmap/ic_assistant_chinese_word_book"
         android:layout_marginStart="@dimen/_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        app:layout_constraintTop_toTopOf="@+id/textView12" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_assistant_chinese_word_book"/>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <ImageView
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/textView46"
         android:layout_width="@dimen/_132dp"
         android:layout_height="@dimen/_132dp"
         android:layout_marginStart="@dimen/_24dp"
-        android:src="@mipmap/ic_assistant_wrong_book"
         app:layout_constraintBottom_toBottomOf="@+id/textView44"
         app:layout_constraintStart_toEndOf="@+id/textView44"
-        app:layout_constraintTop_toTopOf="@+id/textView44" />
+        app:layout_constraintTop_toTopOf="@+id/textView44" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_assistant_wrong_book"/>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <FrameLayout
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/textView47"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -117,19 +129,22 @@
             android:layout_marginStart="@dimen/_40dp"
             android:layout_gravity="bottom"
             android:text="查单词"/>
-    </FrameLayout>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-    <FrameLayout
-        android:id="@+id/textView48"
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/card_search_questions"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/_114dp"
         android:layout_marginStart="@dimen/_48dp"
-        android:background="@mipmap/ic_assistant_search_questions"
         app:layout_constraintBottom_toBottomOf="@+id/textView47"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card_chinese_interest"
         app:layout_constraintTop_toTopOf="@+id/card_chinese_interest" >
+        <ImageView
+            android:id="@+id/iv_search_questions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,16 +153,15 @@
             android:layout_marginStart="@dimen/_40dp"
             android:layout_marginBottom="@dimen/_40dp"
             android:layout_gravity="bottom"/>
-    </FrameLayout>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <ImageView
-        android:id="@+id/textView49"
+        android:id="@+id/iv_ip_role"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_163dp"
         android:layout_marginEnd="@dimen/_163dp"
         android:layout_marginBottom="@dimen/_78dp"
-        android:src="@mipmap/ic_assistant_ip_role"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toStartOf="@+id/card_chinese_interest"
         app:layout_constraintStart_toEndOf="@+id/card_assistant_finger_read"
