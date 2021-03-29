@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var screenAdapter: ScreenAdapter
 
+//    private var job: Job? = null
+
     // app 安装卸载监听
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {

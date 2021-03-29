@@ -16,7 +16,9 @@ import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
 import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
+import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
+import com.ubtrobot.smartprojector.ui.tuya.FamilyManagerActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.ui.video.VideoActivity
@@ -105,7 +107,14 @@ class SettingsFragment : Fragment() {
             startPlainActivity(TuyaDeviceCategoryActivity::class.java)
         }
 
+        if (repo.prefs.currentHomeName == null) {
+            LoginActivity.startWithNewTask(requireContext())
+        }
+
         binding.tvHomeInfo.text = repo.prefs.currentHomeName
+        binding.tvHomeInfo.setOnClickListener {
+            startPlainActivity(FamilyManagerActivity::class.java)
+        }
 
         binding.btnGwActive.setOnClickListener {
             TuyaGatewayManager.instance().activeGateway(repo.prefs.currentHomeId) { success ->

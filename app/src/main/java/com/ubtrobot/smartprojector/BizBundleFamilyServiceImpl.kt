@@ -8,13 +8,11 @@ class BizBundleFamilyServiceImpl : AbsBizBundleFamilyService() {
     private var homeId: Long = 0
 
     override fun getCurrentHomeId(): Long {
-        Timber.d("getCurrentHomeId: $homeId")
         return homeId
     }
 
-    override fun setCurrentHomeId(p0: Long) {
-        Timber.d("setCurrentHomeId: $p0")
-        homeId = p0
+    override fun setCurrentHomeId(id: Long) {
+        homeId = id
     }
 
     override fun shiftCurrentFamily(p0: Long, p1: String?) {

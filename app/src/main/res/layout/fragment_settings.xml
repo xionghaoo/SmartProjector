@@ -116,7 +116,7 @@
         android:layout_marginTop="@dimen/_20dp"
         android:layout_marginStart="@dimen/_20dp"
         android:text="用户家庭："
-        android:textSize="@dimen/_20sp"
+        android:textSize="@dimen/_24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         tools:text="home_name"
-        android:textSize="@dimen/_20sp"
+        android:textSize="@dimen/_24sp"
         android:textColor="@color/color_222222"
         app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintStart_toEndOf="@+id/textView15"

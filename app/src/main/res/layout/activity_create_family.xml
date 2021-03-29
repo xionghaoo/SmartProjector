@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".ui.tuya.CreateFamilyActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80dp"
+        android:paddingTop="@dimen/_24dp"
+        android:text="创建家庭"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/_20dp"/>
+
+    <EditText
+        android:id="@+id/edt_family_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="家庭名称（必填）" />
+
+    <EditText
+        android:id="@+id/edt_family_classroom"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="房间" />
+
+    <Button
+        android:id="@+id/btn_save_family"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:text="保存" />
+
+
+</LinearLayout>

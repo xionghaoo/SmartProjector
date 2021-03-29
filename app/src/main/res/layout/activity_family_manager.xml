@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.tuya.FamilyManagerActivity">
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="@dimen/_420dp"
+        android:layout_height="@dimen/_80dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/_20dp"
+        android:paddingTop="@dimen/_24dp"
+        android:text="家庭管理"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/container_family_list"
+        android:layout_width="@dimen/_420dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" >
+
+<!--        <TextView-->
+<!--            android:id="@+id/btn_create_home"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_100dp"-->
+<!--            android:layout_marginTop="@dimen/_20dp"-->
+<!--            android:textSize="@dimen/_24sp"-->
+<!--            android:gravity="center"-->
+<!--            android:background="@android:color/holo_blue_bright"-->
+<!--            android:text="创建家庭"/>-->
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/detail_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/container_family_list"
+        app:layout_constraintTop_toBottomOf="@+id/textView24">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView68"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="标题"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/detail_fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
