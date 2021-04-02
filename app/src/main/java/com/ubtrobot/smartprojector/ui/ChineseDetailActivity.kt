@@ -9,8 +9,12 @@ import com.bumptech.glide.Glide
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityChineseDetailBinding
+import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.SystemUtil
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ChineseDetailActivity : AppCompatActivity() {
 
     companion object {
@@ -28,6 +32,9 @@ class ChineseDetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityChineseDetailBinding
+
+    @Inject
+    lateinit var getLearnAppManager: GetLearnAppManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
@@ -50,10 +57,30 @@ class ChineseDetailActivity : AppCompatActivity() {
             TYPE_CLASSROOM -> {
                 binding.tvTitle.text = "同步课堂"
                 binding.containerChineseClassroom.visibility = View.VISIBLE
+
+                binding.cardChineseClassroomTeacher.setSelectListener {
+                    getLearnAppManager.startChinesePage(this, "名师课堂")
+                }
+                binding.cardChineseClassroomAssist.setSelectListener {
+                    getLearnAppManager.startChinesePage(this, "同步教辅")
+                }
+                binding.cardChineseClassroomKonwledgePoint.setSelectListener {
+                    getLearnAppManager.startChinesePage(this, "知识点巩固")
+                }
+                binding.cardChineseClassroomPractise.setSelectListener {
+                    getLearnAppManager.startChinesePage(this, "同步练习")
+                }
             }
             TYPE_INTEREST -> {
                 binding.tvTitle.text = "趣味专题"
                 binding.containerChineseInterest.visibility = View.VISIBLE
+
+                binding.cardChineseIntersetClassroom.setSelectListener {
+                    getLearnAppManager.startChinesePage(this, "国学课堂")
+                }
+                binding.cardChineseIntersetIdiom.setSelectListener {
+                    getLearnAppManager.startChinesePage(this, "成语典故")
+                }
             }
         }
 
@@ -61,8 +88,6 @@ class ChineseDetailActivity : AppCompatActivity() {
             .load(R.raw.ic_chinese_detail_bg)
             .centerCrop()
             .into(binding.ivBackground)
-
-
-
     }
+
 }

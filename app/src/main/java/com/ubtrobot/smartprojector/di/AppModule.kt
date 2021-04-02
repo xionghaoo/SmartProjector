@@ -12,6 +12,7 @@ import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.CacheDb
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
 import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
+import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -135,4 +136,7 @@ object AppModule {
             .fallbackToDestructiveMigration()
 //            .addMigrations(MIGRATION_28_29)
             .build()
+
+    @Provides @Singleton
+    fun provideGetLearnManager(prefs: PreferenceStorage) = GetLearnAppManager(prefs)
 }

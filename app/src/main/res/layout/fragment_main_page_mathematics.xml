@@ -8,7 +8,7 @@
     tools:context=".ui.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/textView16"
+        android:id="@+id/card_chinese_coursebook"
         android:layout_width="@dimen/_516dp"
         android:layout_height="@dimen/_366dp"
         android:layout_marginStart="@dimen/_61dp"
@@ -39,8 +39,8 @@
         android:background="@mipmap/ic_mathematics_interest"
         app:layout_constraintBottom_toBottomOf="@+id/menu_search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16">
+        app:layout_constraintStart_toEndOf="@+id/card_chinese_coursebook"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_coursebook">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,14 +78,14 @@
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <FrameLayout
-        android:id="@+id/textView43"
+        android:id="@+id/card_chinese_learn_new_word"
         android:layout_width="@dimen/_244dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_40dp"
         android:background="@mipmap/ic_mathematics_wrong_book"
         app:layout_constraintBottom_toBottomOf="@+id/menu_search"
-        app:layout_constraintStart_toStartOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" >
+        app:layout_constraintStart_toStartOf="@+id/card_chinese_coursebook"
+        app:layout_constraintTop_toBottomOf="@+id/card_chinese_coursebook" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,15 +98,15 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/textView45"
+        android:id="@+id/card_chinese_learn_pinyin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_30dp"
         android:background="@mipmap/ic_mathematics_search"
-        app:layout_constraintBottom_toBottomOf="@+id/textView43"
-        app:layout_constraintEnd_toEndOf="@+id/textView16"
-        app:layout_constraintStart_toEndOf="@+id/textView43"
-        app:layout_constraintTop_toTopOf="@+id/textView43" >
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_learn_new_word"
+        app:layout_constraintEnd_toEndOf="@+id/card_chinese_coursebook"
+        app:layout_constraintStart_toEndOf="@+id/card_chinese_learn_new_word"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_learn_new_word" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

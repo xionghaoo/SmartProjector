@@ -55,27 +55,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back" >
-        <ImageView
-            android:id="@+id/textView53"
+        <com.ubtrobot.smartprojector.widgets.SelectableView
+            android:id="@+id/card_chinese_interset_classroom"
             android:layout_width="@dimen/_384dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/_168dp"
             android:layout_marginTop="@dimen/_52dp"
             android:layout_marginBottom="@dimen/_134dp"
-            android:src="@mipmap/ic_chinese_classroom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_chinese_classroom"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="国学课堂"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:textSize="@dimen/_56sp"/>
+        </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-        <ImageView
-            android:id="@+id/textView54"
+        <com.ubtrobot.smartprojector.widgets.SelectableView
+            android:id="@+id/card_chinese_interset_idiom"
             android:layout_width="@dimen/_384dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/_92dp"
-            android:src="@mipmap/ic_chinese_idiom"
-            app:layout_constraintBottom_toBottomOf="@+id/textView53"
-            app:layout_constraintStart_toEndOf="@+id/textView53"
-            app:layout_constraintTop_toTopOf="@+id/textView53" />
+            app:layout_constraintBottom_toBottomOf="@+id/card_chinese_interset_classroom"
+            app:layout_constraintStart_toEndOf="@+id/card_chinese_interset_classroom"
+            app:layout_constraintTop_toTopOf="@+id/card_chinese_interset_classroom" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_chinese_idiom"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="成语典故"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:textSize="@dimen/_56sp"/>
+        </com.ubtrobot.smartprojector.widgets.SelectableView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,8 +116,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back" >
 
-        <TextView
-            android:id="@+id/textView57"
+        <com.ubtrobot.smartprojector.widgets.SelectableView
+            android:id="@+id/card_chinese_classroom_teacher"
             android:layout_width="@dimen/_622dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_52dp"
@@ -98,39 +126,83 @@
             android:background="@android:color/holo_blue_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名师课堂"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:textSize="@dimen/_56sp"/>
+        </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-        <TextView
-            android:id="@+id/textView58"
+        <com.ubtrobot.smartprojector.widgets.SelectableView
+            android:id="@+id/card_chinese_classroom_konwledge_point"
             android:layout_width="@dimen/_384dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/_61dp"
             android:background="@android:color/holo_blue_light"
-            app:layout_constraintBottom_toBottomOf="@+id/textView57"
-            app:layout_constraintStart_toEndOf="@+id/textView57"
-            app:layout_constraintTop_toTopOf="@+id/textView57" />
+            app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classroom_teacher"
+            app:layout_constraintStart_toEndOf="@+id/card_chinese_classroom_teacher"
+            app:layout_constraintTop_toTopOf="@+id/card_chinese_classroom_teacher" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="知识点巩固"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:textSize="@dimen/_56sp"/>
+        </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-        <TextView
-            android:id="@+id/textView59"
+        <com.ubtrobot.smartprojector.widgets.SelectableView
+            android:id="@+id/card_chinese_classroom_assist"
             android:layout_width="0dp"
             android:layout_height="@dimen/_296dp"
             android:layout_marginStart="@dimen/_61dp"
             android:layout_marginEnd="@dimen/_137dp"
             android:background="@android:color/holo_blue_light"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView58"
-            app:layout_constraintTop_toTopOf="@+id/textView58" />
+            app:layout_constraintStart_toEndOf="@+id/card_chinese_classroom_konwledge_point"
+            app:layout_constraintTop_toTopOf="@+id/card_chinese_classroom_konwledge_point" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同步辅导"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:textSize="@dimen/_46sp"/>
+        </com.ubtrobot.smartprojector.widgets.SelectableView>
 
-        <TextView
-            android:id="@+id/textView60"
+        <com.ubtrobot.smartprojector.widgets.SelectableView
+            android:id="@+id/card_chinese_classroom_practise"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_44dp"
             android:background="@android:color/holo_blue_light"
-            app:layout_constraintBottom_toBottomOf="@+id/textView58"
-            app:layout_constraintEnd_toEndOf="@+id/textView59"
-            app:layout_constraintStart_toStartOf="@+id/textView59"
-            app:layout_constraintTop_toBottomOf="@+id/textView59" />
+            app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classroom_konwledge_point"
+            app:layout_constraintEnd_toEndOf="@+id/card_chinese_classroom_assist"
+            app:layout_constraintStart_toStartOf="@+id/card_chinese_classroom_assist"
+            app:layout_constraintTop_toBottomOf="@+id/card_chinese_classroom_assist" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同步练习"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_40dp"
+                android:layout_marginBottom="@dimen/_40dp"
+                android:textSize="@dimen/_46sp"/>
+        </com.ubtrobot.smartprojector.widgets.SelectableView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

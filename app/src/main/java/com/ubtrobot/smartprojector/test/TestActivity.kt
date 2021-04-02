@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.*
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.WebInterface
 import com.ubtrobot.smartprojector.replaceFragment
@@ -40,7 +42,6 @@ class TestActivity : AppCompatActivity() {
 
         // 主动调用js方法
         // webView.loadUrl("javascript:javacalljs()")
-
     }
 
     private class MyWebViewClient : WebViewClient() {

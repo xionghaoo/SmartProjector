@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
+import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * 桌面 - 一级页面
@@ -23,6 +24,8 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private var page: Int? = null
+    @Inject
+    lateinit var getLearnAppManager: GetLearnAppManager
 
     private var _bindingPageOne: FragmentMainPageAssistantBinding? = null
     private var _bindingPageTwo: FragmentMainPageChineseBinding? = null
@@ -148,40 +151,39 @@ class MainFragment : Fragment() {
             ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_INTEREST)
         }
 
-//        bindingPageTwo.flApps.removeAllViews()
-//        CoroutineScope(Dispatchers.Default).launch {
-//            val appList = PackageUtil.appList(requireActivity())
-//            withContext(Dispatchers.Main) {
-//                appList.forEach { app ->
-//                    val appView = AppLauncherView(requireContext())
-//                    appView.setLabel(app.appName)
-//                    appView.setIcon(app.icon)
-//                    val paddingVertical = ResourceUtil.convertDpToPixel(20f, requireContext()).roundToInt()
-//                    val p = (bindingPageTwo.flApps.width - ResourceUtil.convertDpToPixel(120f, context) * 3
-//                            - ResourceUtil.convertDpToPixel(10f, context) * 2) / 6 - 1
-//                    val paddingHorizontal = ResourceUtil.convertDpToPixel(p, requireContext()).roundToInt()
-//                    appView.setPadding(
-//                        paddingHorizontal,
-//                        paddingVertical,
-//                        paddingHorizontal,
-//                        paddingVertical
-//                    )
-//                    appView.setOnClickListener {
-//                        PackageUtil.startApp(requireActivity(), app.packageName)
-//                    }
-//                    bindingPageTwo.flApps.addView(appView)
-//                }
-//            }
-//        }
+        bindingPageTwo.cardChineseCoursebook.setSelectListener {
+
+        }
+
+        bindingPageTwo.cardChineseLearnNewWord.setSelectListener {
+            getLearnAppManager.startChinesePage(requireContext(), "生字词")
+        }
+
+        bindingPageTwo.cardChineseLearnPinyin.setSelectListener {
+            getLearnAppManager.startChinesePage(requireContext(), "拼音学习")
+        }
     }
 
     /**
-     * 桌面3
+     * 英语
      */
     private fun bindPageThreeView() {
+        bindingPageThree.cardEnglishClassroom.setSelectListener {
 
+        }
+
+        bindingPageThree.cardEnglishOralPractise.setSelectListener {
+            getLearnAppManager.startEnglishPage(requireContext(), "同步英语评测")
+        }
+
+        bindingPageThree.cardEnglishWordBook.setSelectListener {
+            getLearnAppManager.startEnglishPage(requireContext(), "分类词汇")
+        }
     }
 
+    /**
+     * 数学
+     */
     private fun bindPageFourView() {
         GlideApp.with(requireContext())
                 .load(R.mipmap.ic_mathematics_main)

@@ -150,6 +150,11 @@
                 android:resource="@xml/filepaths"
                 tools:replace="android:resource" />
         </provider>
+        <receiver android:name=".receivers.GetLearnReceiver">
+            <intent-filter>
+                <action android:name="com.wyt.ybx.register" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
