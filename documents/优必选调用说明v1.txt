@@ -1,0 +1,77 @@
+﻿
+优必选：
+============================ 调用说明 =============================
+val intent = Intent()
+    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    .setClassName(
+        "com.wyt.youbixuan",
+        "com.wyt.youbixuan.main.InvokeYBXActivity"
+    )
+    .putExtra("key_intent_flag", 传入调用flag)   	//String:必传：跳转Flag
+    .putExtra("key_main_grade", 传入调用年级)     	//String:同步学习内容下必传：年级（默认一年级） || （可传入String类型：0~6，不可拼接，需要精确某个年级时候调用）
+    .putExtra("key_subject", 传入调用科目)       	//String:选传：学科 ||（可传入：语文，数学，英语，科学，物理，化学，生物，政治，历史，地理）
+    .putExtra("key_xueduan",传入学段）			//String:选传：（传 2（小学） 3（初中） 4（高中） 可拼接，例如：传2,3（小学、初中），需要精确某些学段时候调用）
+    .putExtra("key_change_graSub",是否切换年级学科) //Boolean:非必传 || 是否可以切换年级学科 默认false,即不能切换年级学科
+
+startActivity(intent)
+
+============================ adb调试说明 =============================
+激活设备：
+adb shell am start -n com.wyt.youbixuan/com.wyt.youbixuan.firstpage.ui.activity.InitLoadingActivity
+例如：
+跳转模块 拼音学习
+adb shell am start -n com.wyt.youbixuan/com.wyt.youbixuan.main.InvokeYBXActivity --es key_intent_flag 拼音学习
+例如 跳转 同步教辅
+adb shell am start -n com.wyt.youbixuan/com.wyt.youbixuan.main.InvokeYBXActivity  --ei key_main_grade 2 --es key_subject 英语 --es key_xueduan 2 --es key_intent_flag 同步教辅
+
+========================== 激活方式说明 =============================
+认证激活：
+授权入口:com.wyt.youbixuan/com.wyt.youbixuan.firstpage.ui.activity.InitLoadingActivity
+	授权成功与失败以广播的形式发送
+	ACTION：com.wyt.ybx.register
+	接收值：register_result_code
+	成功：return 1
+	失败：return 0
+	还没注册时调用模块要返回   失败：return 0
+
+============================ 模块说明 =============================
+1、同步学习
+.putExtra("key_intent_flag", 传入调用flag)
+.putExtra("key_main_grade", 传入调用年级)
+.putExtra("key_subject", 传入调用科目)
+.putExtra("key_xueduan",传入学段）
+.putExtra("key_change_graSub",是否切换年级学科)
+                                                     传入参数值
+	key_intent_flag  ：新点读                       :同步新点读
+					：同步教辅                       :同步教辅
+					：名师课堂                       :名师课堂
+                    ：知识点巩固                    ：知识点巩固
+					：同步练习                        :同步练习
+					：小学科学动漫                        ：小学科学动漫
+					：必考点小升初                          ：必考点小升初
+
+					：生字词                        :生字词
+					：国学课堂                       ：国学课堂
+
+2、学前基础
+.putExtra("key_intent_flag", 传入调用flag)
+	key_intent_flag
+					：拼音学习                           ：拼音学习
+					：成语典故                           ：成语典故
+					：速算闯关                           ：速算闯关
+					：口语测评                       ：同步英语评测
+					：分类词汇                        ：分类词汇
+					：中英互译                           ：中英互译
+                    ：智能语音                       :ai_assistant
+                    :家长助手                       ：家长助手
+
+3、AI智慧学习
+.putExtra("key_intent_flag", 传入调用flag)
+	key_intent_flag ：收藏单词                               :custom_page_zhidu_dan_ci
+					：收藏字词                               :custom_page_zhidu_zi_ci
+					：收藏错题                               :custom_page_zhidu_cuo_ti
+					：搜题                             :custom_page_sou_ti
+					：读课本(点读)                                :custom_page_apk_dian_du
+					：查单词                                :custom_page_cha_dan_ci
+					：查字词                                :custom_page_cha_zi_ci
+                    ：指译                                  ：custom_page_zhi_yi

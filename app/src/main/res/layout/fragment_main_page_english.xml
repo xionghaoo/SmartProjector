@@ -30,8 +30,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/card_english__interest"
+    <com.ubtrobot.smartprojector.widgets.SelectableView
+        android:id="@+id/card_english_interest"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_61dp"
@@ -49,7 +49,7 @@
             android:layout_marginStart="@dimen/_40dp"
             android:layout_marginBottom="@dimen/_40dp"
             android:layout_gravity="bottom"/>
-    </FrameLayout>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/card_english_classroom"

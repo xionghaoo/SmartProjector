@@ -21,6 +21,10 @@ class GetLearnAppManager(private val prefs: PreferenceStorage) {
         startPage(context, flag, "英语")
     }
 
+    fun startAiPage(context: Context, flag: String) {
+        startPage(context, flag, "")
+    }
+
     private fun startPage(context: Context, flag: String, course: String) {
         val i = Intent()
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

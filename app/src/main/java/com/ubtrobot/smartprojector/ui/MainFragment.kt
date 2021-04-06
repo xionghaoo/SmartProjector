@@ -100,7 +100,6 @@ class MainFragment : Fragment() {
             2 -> bindPageThreeView()
             3 -> bindPageFourView()
             4 -> bindPageFiveView()
-            5 -> bindPageSixView()
         }
     }
 
@@ -122,18 +121,24 @@ class MainFragment : Fragment() {
             .load(R.mipmap.ic_assistant_search_questions)
             .into(bindingPageOne.ivSearchQuestions)
 
-//        bindingPageOne.root.requestFocus()
-
-//        bindingPageOne.menuLevel.setOnClickListener {
-//            startPlainActivity(SettingsActivity::class.java)
-//        }
-
-//        bindingPageOne.menuSearch.setSelectListener {
-//            startPlainActivity(TuyaHomeActivity::class.java)
-//        }
-//        bindingPageOne.menuRead.setSelectListener {
-//            ToastUtil.showToast(requireContext(), "指尖点读")
-//        }
+        bindingPageOne.cardAssistantWordBook.setSelectListener {
+            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_dan_ci")
+        }
+        bindingPageOne.cardAssistantChineseWordBook.setSelectListener {
+            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_zi_ci")
+        }
+        bindingPageOne.cardAssistantWrongBook.setSelectListener {
+            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_cuo_ti")
+        }
+        bindingPageOne.cardAssistantQueryWord.setSelectListener {
+            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_dan_ci")
+        }
+        bindingPageOne.cardAssistantQueryChineseWord.setSelectListener {
+            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_zi_ci")
+        }
+        bindingPageOne.cardSearchQuestions.setSelectListener {
+            getLearnAppManager.startAiPage(requireContext(), "custom_page_sou_ti")
+        }
     }
 
     /**
@@ -179,6 +184,10 @@ class MainFragment : Fragment() {
         bindingPageThree.cardEnglishWordBook.setSelectListener {
             getLearnAppManager.startEnglishPage(requireContext(), "分类词汇")
         }
+
+        bindingPageThree.cardEnglishInterest.setSelectListener {
+
+        }
     }
 
     /**
@@ -188,20 +197,27 @@ class MainFragment : Fragment() {
         GlideApp.with(requireContext())
                 .load(R.mipmap.ic_mathematics_main)
                 .into(bindingPageFour.ivMathematicsMain)
-        bindingPageFour.menuSearch.setOnClickListener {
-            startPlainActivity(TuyaHomeActivity::class.java)
+        bindingPageFour.cardMathematicsClassroom.setSelectListener {
+
         }
-//        bindingPageFour.menuStartProgramming.setOnClickListener {
-//            startPlainActivity(TestActivity::class.java)
-//        }
+        bindingPageFour.cardMathematicsCoursebook.setSelectListener {
+        }
+        bindingPageFour.cardMathematicsSearchQuestion.setSelectListener {
+            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_sou_ti")
+        }
+        bindingPageFour.cardMathematicsWrongBook.setSelectListener {
+            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_zhidu_cuo_ti")
+        }
+        bindingPageFour.cardMathematicsCalculate.setSelectListener {
+            getLearnAppManager.startMathematicsPage(requireContext(), "速算闯关")
+        }
     }
 
+    /**
+     * AI编程
+     */
     private fun bindPageFiveView() {
-
-    }
-
-    private fun bindPageSixView() {
-
+    
     }
 
     companion object {

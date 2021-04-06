@@ -14,16 +14,16 @@
         android:layout_height="@dimen/_69dp"
         android:layout_marginBottom="@dimen/_64dp"
         android:background="@drawable/shape_ip_role_pallet"
-        app:layout_constraintBottom_toTopOf="@+id/textView44"
+        app:layout_constraintBottom_toTopOf="@+id/card_assistant_chinese_word_book"
         app:layout_constraintEnd_toEndOf="@+id/iv_ip_role"
         app:layout_constraintStart_toStartOf="@+id/iv_ip_role" />
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/card_chinese_interest"
+        android:id="@+id/card_assistant_query_word"
         android:layout_width="@dimen/_340dp"
         android:layout_height="@dimen/_340dp"
         android:layout_marginStart="@dimen/_78dp"
-        app:layout_constraintStart_toEndOf="@+id/textView46"
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_wrong_book"
         app:layout_constraintTop_toTopOf="@+id/card_assistant_finger_read">
         <ImageView
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/textView12"
+        android:id="@+id/card_assistant_word_book"
         android:layout_width="@dimen/_132dp"
         android:layout_height="@dimen/_132dp"
         android:layout_marginStart="@dimen/_78dp"
@@ -80,13 +80,13 @@
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/textView44"
+        android:id="@+id/card_assistant_chinese_word_book"
         android:layout_width="@dimen/_132dp"
         android:layout_height="@dimen/_132dp"
         android:layout_marginStart="@dimen/_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" >
+        app:layout_constraintBottom_toBottomOf="@+id/card_assistant_word_book"
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_word_book"
+        app:layout_constraintTop_toTopOf="@+id/card_assistant_word_book" >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -94,13 +94,13 @@
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/textView46"
+        android:id="@+id/card_assistant_wrong_book"
         android:layout_width="@dimen/_132dp"
         android:layout_height="@dimen/_132dp"
         android:layout_marginStart="@dimen/_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView44"
-        app:layout_constraintStart_toEndOf="@+id/textView44"
-        app:layout_constraintTop_toTopOf="@+id/textView44" >
+        app:layout_constraintBottom_toBottomOf="@+id/card_assistant_chinese_word_book"
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_chinese_word_book"
+        app:layout_constraintTop_toTopOf="@+id/card_assistant_chinese_word_book" >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -108,14 +108,14 @@
     </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
-        android:id="@+id/textView47"
+        android:id="@+id/card_assistant_query_chinese_word"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_26dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView46"
-        app:layout_constraintEnd_toEndOf="@+id/card_chinese_interest"
-        app:layout_constraintStart_toStartOf="@+id/card_chinese_interest"
-        app:layout_constraintTop_toBottomOf="@+id/card_chinese_interest" >
+        app:layout_constraintBottom_toBottomOf="@+id/card_assistant_wrong_book"
+        app:layout_constraintEnd_toEndOf="@+id/card_assistant_query_word"
+        app:layout_constraintStart_toStartOf="@+id/card_assistant_query_word"
+        app:layout_constraintTop_toBottomOf="@+id/card_assistant_query_word" >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -137,10 +137,10 @@
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/_114dp"
         android:layout_marginStart="@dimen/_48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView47"
+        app:layout_constraintBottom_toBottomOf="@+id/card_assistant_query_chinese_word"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/card_chinese_interest"
-        app:layout_constraintTop_toTopOf="@+id/card_chinese_interest" >
+        app:layout_constraintStart_toEndOf="@+id/card_assistant_query_word"
+        app:layout_constraintTop_toTopOf="@+id/card_assistant_query_word" >
         <ImageView
             android:id="@+id/iv_search_questions"
             android:layout_width="match_parent"
@@ -162,8 +162,8 @@
         android:layout_marginStart="@dimen/_163dp"
         android:layout_marginEnd="@dimen/_163dp"
         android:layout_marginBottom="@dimen/_78dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toStartOf="@+id/card_chinese_interest"
+        app:layout_constraintBottom_toTopOf="@+id/card_assistant_word_book"
+        app:layout_constraintEnd_toStartOf="@+id/card_assistant_query_word"
         app:layout_constraintStart_toEndOf="@+id/card_assistant_finger_read"
         app:layout_constraintTop_toTopOf="@+id/card_assistant_finger_read" />
 
