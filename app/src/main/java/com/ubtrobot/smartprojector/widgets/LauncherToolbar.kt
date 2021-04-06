@@ -28,8 +28,9 @@ class LauncherToolbar : FrameLayout {
         }
     }
 
-    fun setTitle(title: String?) {
+    fun setTitle(title: String?) : LauncherToolbar {
         binding.tvTitle.text = title
+        return this
     }
 
 }

@@ -174,7 +174,7 @@ class MainFragment : Fragment() {
      */
     private fun bindPageThreeView() {
         bindingPageThree.cardEnglishClassroom.setSelectListener {
-
+            startPlainActivity(EnglishClassroomActivity::class.java)
         }
 
         bindingPageThree.cardEnglishOralPractise.setSelectListener {
@@ -198,7 +198,7 @@ class MainFragment : Fragment() {
                 .load(R.mipmap.ic_mathematics_main)
                 .into(bindingPageFour.ivMathematicsMain)
         bindingPageFour.cardMathematicsClassroom.setSelectListener {
-
+            startPlainActivity(MathematicsClassroomActivity::class.java)
         }
         bindingPageFour.cardMathematicsCoursebook.setSelectListener {
         }
