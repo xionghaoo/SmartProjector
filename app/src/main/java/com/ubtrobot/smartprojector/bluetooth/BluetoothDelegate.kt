@@ -1,10 +1,8 @@
 package com.ubtrobot.smartprojector.bluetooth
 
-import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothServerSocket
 import android.bluetooth.BluetoothSocket
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -21,7 +19,8 @@ class BluetoothDelegate(private val activity: Activity,
 
     companion object {
         private const val TAG = "BluetoothDelegate"
-        private val MY_UUID = UUID.randomUUID()
+        // TODO 服务端UUID，一般由需要连接的蓝牙设备给出
+        private val SERVER_UUID = UUID.fromString("xxx")
         private const val REQUEST_ENABLE_BT = 101
     }
 
@@ -115,63 +114,67 @@ class BluetoothDelegate(private val activity: Activity,
         bluetoothAdapter?.startDiscovery()
     }
 
+    fun connect() {
+
+    }
+
     fun manageMyConnectedSocket(socket: BluetoothSocket) {
-
+        val inputStream = socket.inputStream
     }
 
-    private inner class AcceptThread : Thread() {
-        private val mmServerSocket: BluetoothServerSocket? by lazy(LazyThreadSafetyMode.NONE) {
-            bluetoothAdapter?.listenUsingInsecureRfcommWithServiceRecord("bluetooth_accept_socket", MY_UUID)
-        }
-
-        override fun run() {
-            var shouldLoop = true
-            while (shouldLoop) {
-                val socket: BluetoothSocket? = try {
-                    mmServerSocket?.accept()
-                } catch (e: IOException) {
-                    Log.e(TAG, "Socket's accept() method failed", e)
-                    shouldLoop = false
-                    null
-                }
-                // 获取到一个客户端连接后立即关闭监听
-                socket?.also {
-                    manageMyConnectedSocket(it)
-                    mmServerSocket?.close()
-                    shouldLoop = false
-                }
-            }
-        }
-
-        fun cancel() {
-            try {
-                mmServerSocket?.close()
-            } catch (e: IOException) {
-                Log.e(TAG, "Could not close the connect socket", e)
-            }
-        }
-    }
-
-//    private inner class ConnectThread(device: BluetoothDevice) : Thread() {
-//        private val mmSocket: BluetoothSocket? by lazy(LazyThreadSafetyMode.NONE) {
-//            device.createInsecureRfcommSocketToServiceRecord(MY_UUID)
+//    private inner class AcceptThread : Thread() {
+//        private val mmServerSocket: BluetoothServerSocket? by lazy(LazyThreadSafetyMode.NONE) {
+//            bluetoothAdapter?.listenUsingInsecureRfcommWithServiceRecord("bluetooth_server", MY_UUID)
 //        }
 //
 //        override fun run() {
-//            bluetoothAdapter?.cancelDiscovery()
-//
-//            mmSocket?.use { socket ->
-//                socket.connect()
-//                manageMyConnectedSocket(socket)
+//            var shouldLoop = true
+//            while (shouldLoop) {
+//                val socket: BluetoothSocket? = try {
+//                    mmServerSocket?.accept()
+//                } catch (e: IOException) {
+//                    Log.e(TAG, "Socket's accept() method failed", e)
+//                    shouldLoop = false
+//                    null
+//                }
+//                // 获取到一个客户端连接后立即关闭监听
+//                socket?.also {
+//                    manageMyConnectedSocket(it)
+//                    mmServerSocket?.close()
+//                    shouldLoop = false
+//                }
 //            }
 //        }
 //
 //        fun cancel() {
 //            try {
-//                mmSocket?.close()
+//                mmServerSocket?.close()
 //            } catch (e: IOException) {
-//                Log.e(TAG, "Could not close the client socket", e)
+//                Log.e(TAG, "Could not close the connect socket", e)
 //            }
 //        }
 //    }
+
+    private inner class ConnectThread(device: BluetoothDevice) : Thread() {
+        private val mmSocket: BluetoothSocket? by lazy(LazyThreadSafetyMode.NONE) {
+            device.createInsecureRfcommSocketToServiceRecord(SERVER_UUID)
+        }
+
+        override fun run() {
+            bluetoothAdapter?.cancelDiscovery()
+
+            mmSocket?.use { socket ->
+                socket.connect()
+                manageMyConnectedSocket(socket)
+            }
+        }
+
+        fun cancel() {
+            try {
+                mmSocket?.close()
+            } catch (e: IOException) {
+                Log.e(TAG, "Could not close the client socket", e)
+            }
+        }
+    }
 }

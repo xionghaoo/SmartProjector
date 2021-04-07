@@ -1,6 +1,6 @@
 package com.ubtrobot.smartprojector.bluetooth
 
-data class BluetoothDevice(
+data class BluetoothDeviceItem(
     val name: String?,
     val address: String?
 )

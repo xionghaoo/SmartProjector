@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDelegate
-import com.ubtrobot.smartprojector.bluetooth.BluetoothDevice
+import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceItem
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceAdapter
 import com.ubtrobot.smartprojector.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,10 +26,10 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
     }
 
     private lateinit var bluetoothDelegate: BluetoothDelegate
-    private var btDevices = ArrayList<BluetoothDevice>()
+    private var btDevices = ArrayList<BluetoothDeviceItem>()
     private var adapter: BluetoothDeviceAdapter? = null
     private var btDevicesDialog: AlertDialog? = null
-    private var currentSelectedDevice: BluetoothDevice? = null
+    private var currentSelectedDeviceItem: BluetoothDeviceItem? = null
     private var progressBar: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +41,11 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
         bluetoothDelegate = BluetoothDelegate(
                 activity = this,
                 pairedDeviceAdd = { name, address ->
-                    btDevices.add(BluetoothDevice(name, address))
+                    btDevices.add(BluetoothDeviceItem(name, address))
                     adapter?.notifyDataSetChanged()
                 },
                 newDeviceAdd = { name, address ->
-                    btDevices.add(BluetoothDevice(name, address))
+                    btDevices.add(BluetoothDeviceItem(name, address))
                     adapter?.notifyDataSetChanged()
                 },
                 discoveryFinished = {
@@ -54,7 +54,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
         )
         bluetoothDelegate.onCreate()
         adapter = BluetoothDeviceAdapter(btDevices) { position, item ->
-            currentSelectedDevice = item
+            currentSelectedDeviceItem = item
             btDevicesDialog?.dismiss()
         }
     }
