@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector.ui.settings
 
 import android.Manifest
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,6 +39,21 @@ class SettingsFragment : Fragment() {
     lateinit var repo: Repository
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+    private var listener: OnFragmentActionListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentActionListener) {
+            listener = context
+        } else {
+            throw IllegalArgumentException("activity must implement OnFragmentActionListener")
+        }
+    }
+
+    override fun onDetach() {
+        listener = null
+        super.onDetach()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
@@ -127,12 +143,8 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        binding.btnTestDialog.setOnClickListener {
-            PromptDialog.Builder(requireContext(), R.style.TransparentDialog)
-                    .setView(R.layout.dialog_loading_view)
-                    .build()
-                    .show()
-
+        binding.btnTestBluetooth.setOnClickListener {
+            listener?.showBluetoothDialog()
         }
 
         binding.btnInitialGw.setOnClickListener {
@@ -161,6 +173,10 @@ class SettingsFragment : Fragment() {
     }
 
 //    external fun helloStr() : String?
+
+    interface OnFragmentActionListener {
+        fun showBluetoothDialog()
+    }
 
     companion object {
         init {
