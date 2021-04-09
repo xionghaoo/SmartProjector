@@ -30,8 +30,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.MathematicsClassroomActivity"></activity>
-        <activity android:name=".ui.EnglishClassroomActivity" />
+        <activity android:name=".ui.MathematicsClassroomActivity"
+            android:screenOrientation="userLandscape" />
+        <activity android:name=".ui.EnglishClassroomActivity"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.tuya.FamilyManagerActivity"
             android:screenOrientation="userLandscape" />

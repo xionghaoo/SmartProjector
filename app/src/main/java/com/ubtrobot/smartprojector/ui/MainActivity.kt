@@ -33,7 +33,6 @@ import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
-import com.ubtrobot.smartprojector.ui.game.GameFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
@@ -79,7 +78,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var educationFragment: EducationFragment
     private lateinit var magicSpaceFragment: MagicSpaceFragment
     private lateinit var appMarketFragment: AppMarketFragment
-    private lateinit var gameMarketFragment: GameFragment
     private lateinit var settingsFragment: SettingsFragment
     private lateinit var cartoonBookFragment: CartoonBookFragment
 

@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
+import android.media.AudioManager
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
@@ -22,6 +23,7 @@ import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 
 
 class SystemUtil {
@@ -314,6 +316,7 @@ class SystemUtil {
                 stringBuilder.append(component!!.packageName)
                 context?.startActivity(Intent(str, Uri.parse(stringBuilder.toString())))
             } catch (e: java.lang.Exception) {
+                e.printStackTrace()
 //                Tool.toast(_homeActivity, R.string.toast_app_uninstalled)
             }
         }
@@ -326,5 +329,34 @@ class SystemUtil {
             val activeNetworkInfo = connectivityManager.activeNetworkInfo
             return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
         }
+
+        /**
+         * 调节系统音量
+         */
+        fun systemVolumeAdjust(
+                context: Context,
+                musicIndex: Int = 0,
+                ringIndex: Int = 0,
+                alarmIndex: Int = 0,
+                systemIndex: Int = 0,
+                notificationIndex: Int = 0
+        ) {
+            val mgr = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+            mgr?.apply {
+                val musicVolume = getStreamVolume(AudioManager.STREAM_MUSIC)
+                val ringVolume = getStreamVolume(AudioManager.STREAM_RING)
+                val alarmVolume = getStreamVolume(AudioManager.STREAM_ALARM)
+                val systemVolume = getStreamVolume(AudioManager.STREAM_SYSTEM)
+                val notificationVolume = getStreamVolume(AudioManager.STREAM_NOTIFICATION)
+
+                setStreamVolume(AudioManager.STREAM_MUSIC, musicIndex, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE)
+                setStreamVolume(AudioManager.STREAM_RING, ringIndex, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE)
+                setStreamVolume(AudioManager.STREAM_ALARM, alarmIndex, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE)
+                setStreamVolume(AudioManager.STREAM_SYSTEM, systemIndex, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE)
+                setStreamVolume(AudioManager.STREAM_NOTIFICATION, notificationIndex, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE)
+            }
+        }
+
+
     }
 }
