@@ -5,11 +5,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.telephony.TelephonyManager
 import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -30,13 +31,11 @@ import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
-import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
@@ -155,10 +154,9 @@ class MainActivity : AppCompatActivity() {
                     if (tranX != 0f) {
                         binding.containerMainHeader.animate().cancel()
                         binding.containerMainHeader.animate()
-                            .translationX(0f)
-                            .start()
+                                .translationX(0f)
+                                .start()
                     }
-
                 }
                 if (position < pageTitles.size) {
                     binding.tvPageTitle.text = pageTitles[position]
@@ -198,13 +196,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         RootExecutor.exec(
-            cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
-            success = {
-                eyeProtectionMode()
-            },
-            failure = {
-                Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
-            }
+                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
+                success = {
+                    eyeProtectionMode()
+                },
+                failure = {
+                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
+                }
         )
 
         // 拓展网关初始化
@@ -223,7 +221,25 @@ class MainActivity : AppCompatActivity() {
                 .load(R.raw.ic_assistant_bg)
                 .centerCrop()
                 .into(binding.ivMainBackground)
+
+//        test()
     }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun test() {
+//        RootExecutor.exec(
+//                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.READ_PHONE_STATE}",
+//                success = {
+//                    val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+//                    val imei: String? = telephonyManager.imei
+//                    Timber.d("设备SN号： ${Build.getSerial()}, imei: $imei")
+//                },
+//                failure = {
+//                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
+//                }
+//        )
+//
+//    }
 
     override fun onDestroy() {
         unregisterReceiver(receiver)
@@ -315,8 +331,8 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         try {
                             startActivityForResult(
-                                Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
-                                RC_SYSTEM_ALERT_WINDOW_PERMISSION
+                                    Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
+                                    RC_SYSTEM_ALERT_WINDOW_PERMISSION
                             )
                         } catch (e: Exception) {
                             e.printStackTrace()

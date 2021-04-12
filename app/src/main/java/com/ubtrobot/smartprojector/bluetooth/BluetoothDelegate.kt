@@ -20,7 +20,7 @@ class BluetoothDelegate(private val activity: Activity,
     companion object {
         private const val TAG = "BluetoothDelegate"
         // TODO 服务端UUID，一般由需要连接的蓝牙设备给出
-        private val SERVER_UUID = UUID.fromString("xxx")
+        private val SERVER_UUID = UUID.randomUUID()
         private const val REQUEST_ENABLE_BT = 101
     }
 

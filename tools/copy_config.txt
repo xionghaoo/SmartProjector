@@ -1,2 +1,1 @@
-kd_2icon_同步学习语文.png;ic_chinese_main.png
-kd_2icon_速算练习.png;ic_mathematics_interest.png
+kd_1通用_一级bg1.png;ic_settings_bg.png

@@ -12,8 +12,7 @@ class GetLearnReceiver : BroadcastReceiver() {
         if (action == "com.wyt.ybx.register") {
             val code = intent.getStringExtra("register_result_code")
             // 注册成功 1, 失败 0
-            Timber.d("code = $code")
-
+            Timber.d("激活${if (code == "0") "失败" else "成功"}")
         }
     }
 }

@@ -20,7 +20,9 @@
         <com.ubtrobot.smartprojector.widgets.LauncherToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_48dp"
+            android:layout_marginBottom="@dimen/_48dp"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_chinese_classroom"
             android:layout_width="match_parent"

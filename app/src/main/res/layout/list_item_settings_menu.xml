@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_settings_menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_139dp"
+        android:paddingStart="@dimen/_90dp"
+        android:paddingEnd="@dimen/_90dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/_42sp"
+        android:textColor="@color/color_text_dark"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:background="@color/color_menu_split"/>
+</LinearLayout>

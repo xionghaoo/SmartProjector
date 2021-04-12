@@ -9,11 +9,14 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDelegate
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceItem
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceAdapter
+import com.ubtrobot.smartprojector.databinding.ActivitySettingsBinding
 import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -32,9 +35,28 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
     private var currentSelectedDeviceItem: BluetoothDeviceItem? = null
     private var progressBar: ProgressBar? = null
 
+    private lateinit var binding: ActivitySettingsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        GlideApp.with(this)
+                .load(R.mipmap.ic_settings_bg)
+                .centerCrop()
+                .into(binding.ivBackground)
+
+        binding.rcSettingsMenu.layoutManager = LinearLayoutManager(this)
+        binding.rcSettingsMenu.adapter = SettingsMenuAdapter(listOf(
+                "屏幕亮度", "系统音量", "网络设置"
+        )) { position ->
+
+        }
+
+        binding.toolbar.setTitle("设置")
+                .configBackButton(this)
 
         replaceFragment(SettingsFragment.newInstance(), R.id.fragment_container)
 
