@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.ProgressBar
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +20,8 @@ import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceAdapter
 import com.ubtrobot.smartprojector.core.ListDividerDecoration
 import com.ubtrobot.smartprojector.databinding.ActivitySettingsBinding
 import com.ubtrobot.smartprojector.replaceFragment
+import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsFragment
+import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsSelectFragment
 import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
@@ -33,7 +34,9 @@ import pub.devrel.easypermissions.EasyPermissions
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
-class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionListener {
+class SettingsActivity : AppCompatActivity(),
+    SettingsFragment.OnFragmentActionListener
+{
 
     companion object {
         private const val REQUEST_CODE_FINE_PERMISSION = 1
@@ -48,6 +51,8 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
 
     private lateinit var binding: ActivitySettingsBinding
 
+    private lateinit var eyesProtectSettingsFragment: EyesProtectSettingsFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
@@ -59,18 +64,23 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
                 .centerCrop()
                 .into(binding.ivBackground)
 
+        eyesProtectSettingsFragment = EyesProtectSettingsFragment.newInstance()
+
         binding.rcSettingsMenu.layoutManager = LinearLayoutManager(this)
         binding.rcSettingsMenu.addItemDecoration(ListDividerDecoration(
                 lineHeight = resources.getDimension(R.dimen._1dp).roundToInt(),
                 lineColor = resources.getColor(R.color.color_menu_split),
-                padding = resources.getDimension(R.dimen._40dp)
+                padding = resources.getDimension(R.dimen._40dp),
+                ignoreLastChildNum = 0
         ))
         binding.rcSettingsMenu.adapter = SettingsMenuAdapter(listOf(
-                "屏幕亮度", "系统音量", "网络设置"
+                "屏幕亮度", "系统音量", "网络设置", "护眼功能", "姿势检测", "编程设备管理"
         )) { position ->
             when (position) {
                 0 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_LIGHT_ADJUST), R.id.fragment_container)
                 1 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_VOLUME_ADJUST), R.id.fragment_container)
+                2 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_NETWORK), R.id.fragment_container)
+                3 -> replaceFragment(eyesProtectSettingsFragment, R.id.fragment_container)
             }
         }
 
@@ -175,5 +185,4 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
     private fun hasFineLocationPermission() : Boolean {
         return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)
     }
-
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_140dp"
+    tools:text="12分钟"
+    android:textSize="@dimen/_42sp"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/_80dp"
+    android:paddingEnd="@dimen/_80dp"
+    android:textColor="@color/color_text_dark">
+
+</TextView>

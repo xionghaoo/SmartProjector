@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.settings.eyesprotect.EyesProtectSettingsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_settings_connected_network"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_140dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_settings_wifi_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_80dp"
+            android:textColor="@color/color_text_dark"
+            android:textSize="@dimen/_42sp"
+            android:layout_marginTop="@dimen/_10dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_settings_wifi_level"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="立即开启" />
+
+        <TextView
+            android:id="@+id/tv_settings_wifi_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text_dark_75"
+            android:layout_marginBottom="@dimen/_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_settings_wifi_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_settings_wifi_name"
+            android:text="使用达到间隔时间后，会提醒宝贝休息，以保护眼睛" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="@dimen/_115dp"
+            android:layout_height="@dimen/_64dp"
+            android:layout_marginEnd="@dimen/_120dp"
+            android:background="@color/color_menu_split"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/split_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:background="@color/color_menu_split"/>
+
+    <com.ubtrobot.smartprojector.widgets.SettingsMenuItemView
+        android:id="@+id/menu_item_use_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:smiv_title="可用时长"/>
+
+    <com.ubtrobot.smartprojector.widgets.SettingsMenuItemView
+        android:id="@+id/menu_item_rest_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:smiv_title="休息时长"/>
+
+</LinearLayout>

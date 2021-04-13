@@ -18,4 +18,7 @@
         <attr name="nsl_error" format="reference"/>
         <attr name="nsl_empty" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="SettingsMenuItemView">
+        <attr name="smiv_title" format="string"/>
+    </declare-styleable>
 </resources>

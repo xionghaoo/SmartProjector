@@ -11,13 +11,14 @@ import android.view.WindowManager
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.ubtrobot.smartprojector.databinding.FragmentSettingsLightBinding
+import com.ubtrobot.smartprojector.databinding.FragmentSettingsNetworkBinding
 import com.ubtrobot.smartprojector.databinding.FragmentSettingsVolumeBinding
 import com.ubtrobot.smartprojector.utils.SystemUtil
-import timber.log.Timber
+import com.ubtrobot.smartprojector.utils.WifiUtil
 import kotlin.math.roundToInt
 
 /**
- * 通用系统设置，亮度、音量
+ * 通用系统设置，亮度、音量，网络
  */
 class GeneralSettingsFragment : Fragment() {
     private var type: Int = 0
@@ -26,6 +27,8 @@ class GeneralSettingsFragment : Fragment() {
     private val bindingLight get() = _bindingLight!!
     private var _bindingVolume: FragmentSettingsVolumeBinding? = null
     private val bindingVolume get() = _bindingVolume!!
+    private var _bindingNetwork: FragmentSettingsNetworkBinding? = null
+    private val bindingNetwork get() = _bindingNetwork!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,10 @@ class GeneralSettingsFragment : Fragment() {
                 _bindingVolume = FragmentSettingsVolumeBinding.inflate(inflater, container, false)
                 return bindingVolume.root
             }
+            TYPE_NETWORK -> {
+                _bindingNetwork = FragmentSettingsNetworkBinding.inflate(inflater, container, false)
+                return bindingNetwork.root
+            }
             else -> {
                 throw IllegalStateException("Not matched GeneralSettingsFragment layout")
             }
@@ -58,6 +65,7 @@ class GeneralSettingsFragment : Fragment() {
         when(type) {
             TYPE_LIGHT_ADJUST -> bindLightFragment()
             TYPE_VOLUME_ADJUST -> bindVolumeFragment()
+            TYPE_NETWORK -> bindNetworkFragment()
         }
     }
 
@@ -120,10 +128,29 @@ class GeneralSettingsFragment : Fragment() {
 
     }
 
+    /**
+     * 网络设置
+     */
+    private fun bindNetworkFragment() {
+        val wifiName = WifiUtil.getWifiSSID(requireContext())
+        if (wifiName != null) {
+            bindingNetwork.tvSettingsWifiName.text = wifiName
+            bindingNetwork.tvSettingsWifiLevel.text = "信号较强"
+        } else {
+            bindingNetwork.containerSettingsConnectedNetwork.visibility = View.GONE
+            bindingNetwork.splitLine1.visibility = View.GONE
+        }
+
+        bindingNetwork.btnToNetworkSetting.setOnClickListener {
+            SystemUtil.openSettingsWifi(context)
+        }
+    }
+
     companion object {
 
         const val TYPE_LIGHT_ADJUST = 0
         const val TYPE_VOLUME_ADJUST = 1
+        const val TYPE_NETWORK = 2
 
         private const val ARG_TYPE = "ARG_TYPE"
 

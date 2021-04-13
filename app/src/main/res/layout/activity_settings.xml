@@ -41,6 +41,15 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/color_menu_split"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_background"
         app:layout_constraintStart_toEndOf="@+id/rc_settings_menu"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 

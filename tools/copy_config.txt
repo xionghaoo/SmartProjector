@@ -1,2 +1,1 @@
-kd_2icon_声音小.png;ic_settings_volume_min.png
-kd_2icon_声音大.png;ic_settings_volume_max.png
+kd_2icon_wifi已连接.png;ic_settings_network_status.png
