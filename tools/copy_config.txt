@@ -1,1 +1,2 @@
-kd_1通用_一级bg1.png;ic_settings_bg.png
+kd_2icon_声音小.png;ic_settings_volume_min.png
+kd_2icon_声音大.png;ic_settings_volume_max.png

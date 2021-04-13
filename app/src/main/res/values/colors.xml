@@ -24,6 +24,8 @@
     <color name="card_bg">#474747</color>
     <color name="color_menu_split">#2F344E</color>
     <color name="color_menu_item_highlight">#5975E5</color>
+    <color name="color_seek_bar_progress">#3AADFF</color>
+    <color name="color_seek_bar_background">#171717</color>
     <color name="color_status_bar_txt">#EBEBEB</color>
     <color name="color_text_dark">#EBEBEB</color>
     <color name="card_stroke">#979797</color>

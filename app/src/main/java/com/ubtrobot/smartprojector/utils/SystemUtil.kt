@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.ColorRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
@@ -190,6 +191,18 @@ class SystemUtil {
             } catch (ignored: ActivityNotFoundException) {
                 context?.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
             }
+        }
+
+        /**
+         * 打开设置-当前App权限设置
+         */
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun openSettingsWrite(activity: Activity?) {
+            val intent = Intent()
+            intent.action = Settings.ACTION_MANAGE_WRITE_SETTINGS
+            val uri = Uri.fromParts("package", activity?.packageName, null)
+            intent.data = uri
+            activity?.startActivity(intent)
         }
 
         /**

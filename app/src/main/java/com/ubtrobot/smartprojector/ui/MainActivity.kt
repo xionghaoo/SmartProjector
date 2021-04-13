@@ -40,6 +40,8 @@ import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
 import kotlinx.coroutines.*
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 2
+        private const val RC_READ_PHONE_STATE_PERMISSION = 3
 
         fun startWithNewTask(context: Context?) {
             val i = Intent(context, MainActivity::class.java)
@@ -195,15 +198,15 @@ class MainActivity : AppCompatActivity() {
             startPlainActivity(SettingsActivity::class.java)
         }
 
-        RootExecutor.exec(
-                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
-                success = {
-                    eyeProtectionMode()
-                },
-                failure = {
-                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
-                }
-        )
+//        RootExecutor.exec(
+//                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
+//                success = {
+//                    eyeProtectionMode()
+//                },
+//                failure = {
+//                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
+//                }
+//        )
 
         // 拓展网关初始化
 //        TuyaGatewayManager.instance().initial()
@@ -222,11 +225,28 @@ class MainActivity : AppCompatActivity() {
                 .centerCrop()
                 .into(binding.ivMainBackground)
 
-//        test()
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            test()
+//        }
     }
 
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    fun test() {
+    // ---------------------- 读取SN 测试------------------------
+   @RequiresApi(Build.VERSION_CODES.O)
+    @AfterPermissionGranted(RC_READ_PHONE_STATE_PERMISSION)
+    fun test() {
+        if (hasReadPhoneStatePermission()) {
+            val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+            val imei: String? = telephonyManager.imei
+            Timber.d("设备SN号： ${Build.getSerial()}, imei: $imei")
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                "App需要获取设备ID的权限，请授予",
+                RC_READ_PHONE_STATE_PERMISSION,
+                Manifest.permission.READ_PHONE_STATE
+            )
+        }
+
 //        RootExecutor.exec(
 //                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.READ_PHONE_STATE}",
 //                success = {
@@ -238,8 +258,22 @@ class MainActivity : AppCompatActivity() {
 //                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
 //                }
 //        )
-//
-//    }
+
+    }
+
+    private fun hasReadPhoneStatePermission() : Boolean {
+        return EasyPermissions.hasPermissions(this, Manifest.permission.READ_PHONE_STATE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+    // ---------------------- 读取SN 测试------------------------
 
     override fun onDestroy() {
         unregisterReceiver(receiver)

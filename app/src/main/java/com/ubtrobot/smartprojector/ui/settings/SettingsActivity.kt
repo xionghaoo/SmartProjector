@@ -2,24 +2,35 @@ package com.ubtrobot.smartprojector.ui.settings
 
 import android.Manifest
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.ProgressBar
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDelegate
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceItem
 import com.ubtrobot.smartprojector.bluetooth.BluetoothDeviceAdapter
+import com.ubtrobot.smartprojector.core.ListDividerDecoration
 import com.ubtrobot.smartprojector.databinding.ActivitySettingsBinding
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
+import eu.chainfire.libsuperuser.Shell
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionListener {
@@ -49,16 +60,24 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
                 .into(binding.ivBackground)
 
         binding.rcSettingsMenu.layoutManager = LinearLayoutManager(this)
+        binding.rcSettingsMenu.addItemDecoration(ListDividerDecoration(
+                lineHeight = resources.getDimension(R.dimen._1dp).roundToInt(),
+                lineColor = resources.getColor(R.color.color_menu_split),
+                padding = resources.getDimension(R.dimen._40dp)
+        ))
         binding.rcSettingsMenu.adapter = SettingsMenuAdapter(listOf(
                 "屏幕亮度", "系统音量", "网络设置"
         )) { position ->
-
+            when (position) {
+                0 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_LIGHT_ADJUST), R.id.fragment_container)
+                1 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_VOLUME_ADJUST), R.id.fragment_container)
+            }
         }
 
         binding.toolbar.setTitle("设置")
                 .configBackButton(this)
 
-        replaceFragment(SettingsFragment.newInstance(), R.id.fragment_container)
+        grantWriteSettingsPermission()
 
         bluetoothDelegate = BluetoothDelegate(
                 activity = this,
@@ -100,6 +119,10 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
         showDeviceList()
     }
 
+    private fun showFirstSettingsPage() {
+        replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_LIGHT_ADJUST), R.id.fragment_container)
+    }
+
     @AfterPermissionGranted(REQUEST_CODE_FINE_PERMISSION)
     private fun showDeviceList() {
         if (hasFineLocationPermission()) {
@@ -127,7 +150,30 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.OnFragmentActionL
         }
     }
 
+    private fun grantWriteSettingsPermission() {
+        CoroutineScope(Dispatchers.Default).launch {
+            Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.WRITE_SETTINGS}")
+            Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_WRITE_SETTINGS}")
+            withContext(Dispatchers.Main) {
+                settingsPageTask()
+            }
+        }
+    }
+
+    private fun settingsPageTask() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (Settings.System.canWrite(this)) {
+                showFirstSettingsPage()
+            } else {
+                SystemUtil.openSettingsWrite(this)
+            }
+        } else {
+            showFirstSettingsPage()
+        }
+    }
+
     private fun hasFineLocationPermission() : Boolean {
         return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)
     }
+
 }

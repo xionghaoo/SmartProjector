@@ -8,16 +8,16 @@
     <TextView
         android:id="@+id/tv_settings_menu_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_139dp"
+        android:layout_height="@dimen/_140dp"
         android:paddingStart="@dimen/_90dp"
         android:paddingEnd="@dimen/_90dp"
         android:gravity="center_vertical"
         android:textSize="@dimen/_42sp"
         android:textColor="@color/color_text_dark"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1dp"
-        android:layout_marginStart="@dimen/_40dp"
-        android:layout_marginEnd="@dimen/_40dp"
-        android:background="@color/color_menu_split"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_1dp"-->
+<!--        android:layout_marginStart="@dimen/_40dp"-->
+<!--        android:layout_marginEnd="@dimen/_40dp"-->
+<!--        android:background="@color/color_menu_split"/>-->
 </LinearLayout>
