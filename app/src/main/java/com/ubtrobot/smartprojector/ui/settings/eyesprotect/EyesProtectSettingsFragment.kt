@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentEyesProtectSettingsBinding
 
+/**
+ * 护眼设置项
+ */
 class EyesProtectSettingsFragment : Fragment() {
 
     private var _binding: FragmentEyesProtectSettingsBinding? = null
@@ -29,7 +32,7 @@ class EyesProtectSettingsFragment : Fragment() {
         binding.menuItemUseTime.setDetail("30分钟")
         binding.menuItemUseTime.setOnSelectListener {
         }
-
+        binding.menuItemRestTime.setDetail("30分钟")
 
     }
 
