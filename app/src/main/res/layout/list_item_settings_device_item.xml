@@ -8,11 +8,10 @@
     android:background="@mipmap/ic_settings_device_bg">
 
 
-    <TextView
-        android:id="@+id/textView48"
+    <ImageView
+        android:id="@+id/iv_settings_device_icon"
         android:layout_width="@dimen/_114dp"
         android:layout_height="@dimen/_140dp"
-        android:background="@color/color_menu_split"
         android:layout_marginStart="@dimen/_55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,14 +19,18 @@
 
     <TextView
         android:id="@+id/tv_settings_device_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView48"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/_40sp"
+        android:layout_marginEnd="@dimen/_18dp"
         android:textColor="@color/color_text_dark"
+        android:textSize="@dimen/_40sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_settings_device_icon"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="TCL抽湿机" />
 
     <TextView

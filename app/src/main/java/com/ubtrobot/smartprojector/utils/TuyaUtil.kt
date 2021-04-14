@@ -3,6 +3,7 @@ package com.ubtrobot.smartprojector.utils
 import android.content.Context
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.sdk.api.IDevListener
+import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import timber.log.Timber
 
 class TuyaUtil {
@@ -31,6 +32,13 @@ class TuyaUtil {
                     Timber.d("onDevInfoUpdate: $devId")
                 }
             })
+        }
+
+        fun handleOnError(context: Context, errorCode: String?) {
+            if (errorCode == "USER_SESSION_LOSS") {
+                ToastUtil.showToast(context, "登录已失效")
+                LoginActivity.startWithNewTask(context)
+            }
         }
     }
 }

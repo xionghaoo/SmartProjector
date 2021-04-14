@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<com.ubtrobot.smartprojector.core.NetworkStateLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/network_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.settings.programdevices.ProgramDevicesSettingsFragment">
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/list_devices"
+        android:layout_height="match_parent">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_84dp"
-            android:orientation="vertical"/>
-
-        <ImageView
-            android:id="@+id/btn_settings_device_add"
-            android:layout_width="@dimen/_96dp"
-            android:layout_height="@dimen/_96dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="@dimen/_36dp"
-            android:layout_marginEnd="@dimen/_55dp"
-            android:src="@mipmap/ic_settings_device_add" />
-    </FrameLayout>
-</ScrollView>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/list_devices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_84dp"
+                android:orientation="vertical"/>
+            <ImageView
+                android:id="@+id/btn_settings_device_add"
+                android:layout_width="@dimen/_96dp"
+                android:layout_height="@dimen/_96dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/_36dp"
+                android:layout_marginEnd="@dimen/_55dp"
+                android:src="@mipmap/ic_settings_device_add" />
+        </FrameLayout>
+    </ScrollView>
+</com.ubtrobot.smartprojector.core.NetworkStateLayout>

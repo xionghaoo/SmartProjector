@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:text="暂无数据"
     android:visibility="gone"
-    android:textSize="16sp"
+    android:textSize="@dimen/_32sp"
+    android:textColor="@color/color_text_dark"
     android:gravity="center">
 
 </TextView>
