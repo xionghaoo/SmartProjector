@@ -20,6 +20,8 @@ interface PreferenceStorage {
     var wifiPwd: String?
     var currentHomeId: Long
     var currentHomeName: String?
+    var isEyesProtectOpen: Boolean
+    var isPostureDetectOpen: Boolean
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -38,6 +40,8 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
     override var wifiPwd: String? by StringPreference(prefs, PREF_WIFI_PWD, null)
     override var currentHomeId: Long by LongPreference(prefs, PREF_HOME_ID)
     override var currentHomeName: String? by StringPreference(prefs, PREF_HOME_NAME, null)
+    override var isEyesProtectOpen: Boolean by BooleanPreference(prefs, PREF_IS_EYES_PROTECT_OPEN, false)
+    override var isPostureDetectOpen: Boolean by BooleanPreference(prefs, PREF_IS_POSTURE_DETECT_OPEN, false)
 
     // 登出时清理缓存
     fun clearCache() {
@@ -54,6 +58,8 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
         const val PREF_WIFI_PWD = "pref_wifi_pwd"
         const val PREF_HOME_ID = "pref_home_id"
         const val PREF_HOME_NAME = "pref_home_name"
+        const val PREF_IS_EYES_PROTECT_OPEN = "pref_is_eyes_protect_open"
+        const val PREF_IS_POSTURE_DETECT_OPEN = "pref_is_posture_detect_open"
     }
 }
 

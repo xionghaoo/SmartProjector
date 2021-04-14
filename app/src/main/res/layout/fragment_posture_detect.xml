@@ -20,7 +20,7 @@
             android:textColor="@color/color_text_dark"/>
 
         <com.suke.widget.SwitchButton
-            android:id="@+id/textView20"
+            android:id="@+id/sw_settings_posture"
             android:layout_width="@dimen/_115dp"
             android:layout_height="@dimen/_64dp"
             android:layout_gravity="center_vertical|end"

@@ -38,7 +38,7 @@
             android:text="使用达到间隔时间后，会提醒宝贝休息，以保护眼睛" />
 
         <com.suke.widget.SwitchButton
-            android:id="@+id/textView23"
+            android:id="@+id/sw_settings_eyes_protect"
             android:layout_width="@dimen/_115dp"
             android:layout_height="@dimen/_64dp"
             android:layout_marginEnd="@dimen/_120dp"

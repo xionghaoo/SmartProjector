@@ -7,12 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentEyesProtectSettingsBinding
+import com.ubtrobot.smartprojector.repo.Repository
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * 护眼设置项
  */
+@AndroidEntryPoint
 class EyesProtectSettingsFragment : Fragment() {
 
+    @Inject
+    lateinit var repo: Repository
     private var _binding: FragmentEyesProtectSettingsBinding? = null
     private val binding get() = _binding!!
 
@@ -34,6 +40,10 @@ class EyesProtectSettingsFragment : Fragment() {
         }
         binding.menuItemRestTime.setDetail("30分钟")
 
+        binding.swSettingsEyesProtect.isChecked = repo.prefs.isEyesProtectOpen
+        binding.swSettingsEyesProtect.setOnCheckedChangeListener { _, isChecked ->
+            repo.prefs.isEyesProtectOpen = isChecked
+        }
     }
 
 //    fun showSelectionPage(isShow: Boolean) {

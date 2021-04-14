@@ -129,7 +129,7 @@ class NetworkStateLayout : FrameLayout {
     }
 
     private fun show(index: Array<Boolean>) {
-        Timber.d("show $index, is anim: $isAnimShow")
+//        Timber.d("show $index, is anim: $isAnimShow")
         if (isAnimShow) {
             fadeShow(loadingView, index[0])
             fadeShow(errorView, index[1])
