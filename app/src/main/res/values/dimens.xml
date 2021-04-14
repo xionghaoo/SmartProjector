@@ -5,6 +5,7 @@
 	<dimen name="toolbar_height">56dp</dimen>
 	<dimen name="option_view_height">72dp</dimen>
 	<dimen name="option_view_width">250dp</dimen>
+	<dimen name="main_card_height">706dp</dimen>
 	<!--adaptation size start-->
 	<dimen name="_1sp">1sp</dimen>
 	<dimen name="_2sp">2sp</dimen>

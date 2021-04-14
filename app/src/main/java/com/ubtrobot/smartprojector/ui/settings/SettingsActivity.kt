@@ -164,12 +164,16 @@ class SettingsActivity : AppCompatActivity(),
     }
 
     private fun grantWriteSettingsPermission() {
-        CoroutineScope(Dispatchers.Default).launch {
-            Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.WRITE_SETTINGS}")
-            Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_WRITE_SETTINGS}")
-            withContext(Dispatchers.Main) {
-                settingsPageTask()
+        if (Shell.SU.available()) {
+            CoroutineScope(Dispatchers.Default).launch {
+                Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.WRITE_SETTINGS}")
+                Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_WRITE_SETTINGS}")
+                withContext(Dispatchers.Main) {
+                    settingsPageTask()
+                }
             }
+        } else {
+            settingsPageTask()
         }
     }
 

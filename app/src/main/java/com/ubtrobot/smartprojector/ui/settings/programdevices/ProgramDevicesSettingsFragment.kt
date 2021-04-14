@@ -56,11 +56,13 @@ class ProgramDevicesSettingsFragment : Fragment() {
     }
 
     private fun updateDevicesCategory(devices: List<TuyaDevice>) {
-        binding.listDevices.removeAllViews()
-        // 设备分类
-        addCategory("两季", devices.slice(0..3))
-        addCategory("小家电", devices.slice(4..5))
-        addCategory("其他", devices.slice(6 until devices.size))
+        binding.listDevices.post {
+            binding.listDevices.removeAllViews()
+            // 设备分类
+            addCategory("两季", devices.slice(0..3))
+            addCategory("小家电", devices.slice(4..5))
+            addCategory("其他", devices.slice(6 until devices.size))
+        }
     }
 
     private fun addCategory(title: String, items: List<TuyaDevice>) {
@@ -69,20 +71,23 @@ class ProgramDevicesSettingsFragment : Fragment() {
         val tvTitle = categoryView.findViewById<TextView>(R.id.tv_settings_device_category_title)
         tvTitle.text = title
         val categoryBox = categoryView.findViewById<FlexboxLayout>(R.id.container_settings_devices)
+//        Timber.d("post listDevices width: ${binding.listDevices.width}")
         val lp = categoryBox.layoutParams
         val rowNum = (items.size / 2f).roundToInt()
         lp.height = rowNum * resources.getDimension(R.dimen._226dp).roundToInt() + (rowNum - 1) * resources.getDimension(R.dimen._40dp).roundToInt()
         categoryBox.removeAllViews()
+        // 148 = 60 + 60 + 28
+        val itemWidth = (binding.listDevices.width - resources.getDimension(R.dimen._148dp).roundToInt()) / 2
         items.forEach { item ->
-            addItemView(categoryBox, item.name, item.iconUrl)
+            addItemView(categoryBox, item.name, item.iconUrl, itemWidth)
         }
     }
 
-    private fun addItemView(categoryBox: FlexboxLayout, title: String, iconUrl: String?) {
+    private fun addItemView(categoryBox: FlexboxLayout, title: String, iconUrl: String?, itemWidth: Int) {
         val itemView = layoutInflater.inflate(R.layout.list_item_settings_device_item, null)
         categoryBox.addView(itemView)
         val itemLp = itemView.layoutParams as FlexboxLayout.LayoutParams
-        itemLp.width = resources.getDimension(R.dimen._536dp).roundToInt()
+        itemLp.width = itemWidth
         itemLp.height = resources.getDimension(R.dimen._226dp).roundToInt()
         itemView.findViewById<TextView>(R.id.tv_settings_device_name).text = title
         val icon = itemView.findViewById<ImageView>(R.id.iv_settings_device_icon)
@@ -127,7 +132,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
                     val cmds = ArrayList<TuyaDeviceCmd>()
                     d.dps.forEach { p ->
                         cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value?.toString() ?: ""))
-                        Timber.d("功能点: ${p.key}, ${p.value}")
+//                        Timber.d("功能点: ${p.key}, ${p.value}")
                     }
                     items.add(
                         TuyaDevice(

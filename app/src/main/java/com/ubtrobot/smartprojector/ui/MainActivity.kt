@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             instance = launcher
         }
 
-        private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 2
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
 
         fun startWithNewTask(context: Context?) {
@@ -350,48 +349,9 @@ class MainActivity : AppCompatActivity() {
 
     fun getItemOptionView() = binding.itemOptionView
 
-    private fun eyeProtectionMode() {
-        CoroutineScope(Dispatchers.Default).launch {
-            delay(60 * 1000)
-            val exitCode = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_OVERLAY_PERMISSION}")
-            Timber.d("grant ACTION_MANAGE_OVERLAY_PERMISSION permission: ${exitCode}")
-//            val exitCode2 = Shell.Pool.SU.run("content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:1")
-//            Timber.d("改变系统屏幕方向： ${exitCode2}")
-            withContext(Dispatchers.Main) {
-                Timber.d("护眼模式")
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (Settings.canDrawOverlays(this@MainActivity)) {
-                        eyeProtectionDialog()
-                    } else {
-                        try {
-                            startActivityForResult(
-                                    Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
-                                    RC_SYSTEM_ALERT_WINDOW_PERMISSION
-                            )
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
-                } else {
-                    eyeProtectionDialog()
-                }
-            }
-        }
-    }
-
     // Launcher 禁止返回
     override fun onBackPressed() {
 
-    }
-
-    private fun eyeProtectionDialog() {
-        Timber.d("显示护眼模式弹窗")
-        val dialog = AlertDialog.Builder(this@MainActivity)
-            .setTitle("护眼模式")
-            .setMessage("小朋友，你该休息了")
-            .create()
-        dialog.window?.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
-        dialog.show()
     }
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(

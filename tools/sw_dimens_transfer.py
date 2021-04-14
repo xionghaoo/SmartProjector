@@ -10,7 +10,7 @@ UI_SCREEN_SCALE = 1
 UI_SCREEN_WIDTH = 1080
 
 # 目标屏幕宽度(px)
-sw_dp_list = [1080, 720, 411, 360, 752]
+sw_dp_list = [1080, 720, 411, 360, 752, 552]
 # 默认的dimens.xml文件目录
 res_path = '../app/src/main/res'
 # res_path = '.'

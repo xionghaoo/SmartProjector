@@ -44,7 +44,7 @@
     <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/card_assistant_finger_read"
         android:layout_width="@dimen/_374dp"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/main_card_height"
         android:layout_marginTop="@dimen/_53dp"
         android:layout_marginStart="@dimen/_114dp"
         android:layout_marginBottom="@dimen/_42dp"
@@ -55,7 +55,8 @@
         <ImageView
             android:id="@+id/iv_assistant_finger_read"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
         <TextView
             style="@style/CardTitleStyle"
             android:layout_width="wrap_content"
@@ -119,6 +120,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitXY"
             android:src="@mipmap/ic_assistant_lookup_word" />
         <TextView
             android:layout_width="wrap_content"
@@ -144,7 +146,8 @@
         <ImageView
             android:id="@+id/iv_search_questions"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

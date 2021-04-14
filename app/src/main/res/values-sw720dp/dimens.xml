@@ -105,6 +105,7 @@
 	<dimen name="toolbar_height">37.33dp</dimen>
 	<dimen name="option_view_height">48.00dp</dimen>
 	<dimen name="option_view_width">166.67dp</dimen>
+	<dimen name="main_card_height">470.67dp</dimen>
 	<dimen name="_2dp">1.33dp</dimen>
 	<dimen name="_3dp">2.00dp</dimen>
 	<dimen name="_4dp">2.67dp</dimen>
