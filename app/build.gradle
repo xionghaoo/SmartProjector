@@ -210,6 +210,6 @@ dependencies {
     implementation dpes.flexbox
 
     // switch组件
-    implementation 'com.kyleduo.switchbutton:library:2.0.3'
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 
 }

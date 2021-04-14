@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_536dp"
+    android:layout_height="@dimen/_226dp"
+    android:background="@mipmap/ic_settings_device_bg">
+
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="@dimen/_114dp"
+        android:layout_height="@dimen/_140dp"
+        android:background="@color/color_menu_split"
+        android:layout_marginStart="@dimen/_55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_settings_device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView48"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/_40sp"
+        android:textColor="@color/color_text_dark"
+        tools:text="TCL抽湿机" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="@dimen/_52dp"
+        android:layout_height="@dimen/_52dp"
+        android:layout_marginTop="@dimen/_18dp"
+        android:layout_marginEnd="@dimen/_18dp"
+        android:background="@color/color_menu_split"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

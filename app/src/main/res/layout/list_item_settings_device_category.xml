@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:background="@color/color_menu_split"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings_device_category_title" />
+
+    <TextView
+        android:id="@+id/tv_settings_device_category_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_80dp"
+        android:layout_marginTop="@dimen/_10dp"
+        tools:text="两季"
+        android:textStyle="bold"
+        android:textColor="@color/color_text_dark"
+        android:textSize="@dimen/_42sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/container_settings_devices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_60dp"
+        android:layout_marginTop="@dimen/_42dp"
+        android:layout_marginEnd="@dimen/_60dp"
+        android:layout_marginBottom="@dimen/_40dp"
+        app:alignItems="flex_start"
+        app:justifyContent="space_between"
+        app:alignContent="space_between"
+        app:flexWrap="wrap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

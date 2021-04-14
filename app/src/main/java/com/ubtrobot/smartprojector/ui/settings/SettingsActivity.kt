@@ -22,6 +22,7 @@ import com.ubtrobot.smartprojector.databinding.ActivitySettingsBinding
 import com.ubtrobot.smartprojector.replaceFragment
 import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsFragment
 import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsSelectFragment
+import com.ubtrobot.smartprojector.ui.settings.programdevices.ProgramDevicesSettingsFragment
 import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
@@ -81,6 +82,8 @@ class SettingsActivity : AppCompatActivity(),
                 1 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_VOLUME_ADJUST), R.id.fragment_container)
                 2 -> replaceFragment(GeneralSettingsFragment.newInstance(GeneralSettingsFragment.TYPE_NETWORK), R.id.fragment_container)
                 3 -> replaceFragment(eyesProtectSettingsFragment, R.id.fragment_container)
+                4 -> replaceFragment(PostureDetectFragment.newInstance(), R.id.fragment_container)
+                5 -> replaceFragment(ProgramDevicesSettingsFragment.newInstance(), R.id.fragment_container)
             }
         }
 

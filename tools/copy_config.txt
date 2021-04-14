@@ -1,1 +1,2 @@
-kd_2icon_wifi已连接.png;ic_settings_network_status.png
+kd_1通用_二级状态未点亮(2).png;ic_settings_device_bg.png
+kd_2icon_添加设备.png;ic_settings_device_add.png

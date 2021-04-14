@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.settings.PostureDetectFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="@dimen/_140dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即开启"
+            android:textSize="@dimen/_42sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_80dp"
+            android:textColor="@color/color_text_dark"/>
 
-</FrameLayout>
+        <com.suke.widget.SwitchButton
+            android:id="@+id/textView20"
+            android:layout_width="@dimen/_115dp"
+            android:layout_height="@dimen/_64dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="@dimen/_80dp"
+            app:sb_border_width="0dp"
+            app:sb_show_indicator="false"
+            app:sb_button_color="@color/color_text_dark"
+            app:sb_background="@color/color_seek_bar_background"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/split_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_40dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:background="@color/color_menu_split"/>
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12dp"
+        android:layout_marginStart="@dimen/_80dp"
+        android:layout_marginEnd="@dimen/_80dp"
+        android:textSize="@dimen/_32dp"
+        android:textColor="@color/color_text_dark_75"
+        android:text="检测在书桌前写作业场景下的不良姿势，包括趴桌子，头离书本过近、歪脑袋检测则触发提醒" />
+
+</LinearLayout>

@@ -37,15 +37,18 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_settings_wifi_name"
             android:text="使用达到间隔时间后，会提醒宝贝休息，以保护眼睛" />
 
-        <com.kyleduo.switchbutton.SwitchButton
+        <com.suke.widget.SwitchButton
             android:id="@+id/textView23"
             android:layout_width="@dimen/_115dp"
             android:layout_height="@dimen/_64dp"
             android:layout_marginEnd="@dimen/_120dp"
+            app:sb_border_width="0dp"
+            app:sb_show_indicator="false"
+            app:sb_button_color="@color/color_text_dark"
+            app:sb_background="@color/color_seek_bar_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:kswThumbColor="@android:color/holo_green_dark"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
