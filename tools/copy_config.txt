@@ -1,4 +1,5 @@
-kd_2icon_名师课堂.png;ic_classroom_teacher.png
-kd_2icon_知识点巩固.png;ic_classroom_knowledge.png
-kd_2icon_同步辅导.png;ic_classroom_assistant.png
-kd_2icon_同步练习.png;ic_classroom_practise.png
+kd_1通用_bg1(1).png;ic_assistant_bg.png
+kd_1通用_bg2(1).png;ic_chinese_bg.png
+kd_1通用_bg3(1).png;ic_mathematics_bg.png
+kd_1通用_bg3(2).png;ic_english_bg.png
+kd_1通用_bg4(1).png;ic_program_bg.png
