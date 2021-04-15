@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.ubtrobot.smartprojector.BuildConfig
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityChineseDetailBinding
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
@@ -56,6 +57,23 @@ class ChineseDetailActivity : AppCompatActivity() {
         when(type) {
             TYPE_CLASSROOM -> {
                 binding.tvTitle.text = "同步课堂"
+
+                GlideApp.with(this)
+                        .load(R.mipmap.ic_classroom_teacher)
+                        .into(binding.ivClassroomTeacher)
+
+                GlideApp.with(this)
+                        .load(R.mipmap.ic_classroom_knowledge)
+                        .into(binding.ivClassroomKnowledge)
+
+                GlideApp.with(this)
+                        .load(R.mipmap.ic_classroom_assistant)
+                        .into(binding.ivClassroomAssistant)
+
+                GlideApp.with(this)
+                        .load(R.mipmap.ic_classroom_practise)
+                        .into(binding.ivClassroomPractise)
+
                 binding.containerChineseClassroom.visibility = View.VISIBLE
 
                 binding.cardChineseClassroomTeacher.setSelectListener {

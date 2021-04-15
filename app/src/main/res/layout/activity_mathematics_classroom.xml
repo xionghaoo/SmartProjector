@@ -36,14 +36,18 @@
             <com.ubtrobot.smartprojector.widgets.SelectableView
                 android:id="@+id/card_mathematics_classroom_teacher"
                 android:layout_width="@dimen/_622dp"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/main_card_height"
                 android:layout_marginTop="@dimen/_52dp"
                 android:layout_marginBottom="@dimen/_134dp"
                 android:layout_marginStart="@dimen/_137dp"
-                android:background="@android:color/holo_blue_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" >
+                <ImageView
+                    android:id="@+id/iv_classroom_teacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,10 +65,14 @@
                 android:layout_width="@dimen/_384dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_61dp"
-                android:background="@android:color/holo_blue_light"
                 app:layout_constraintBottom_toBottomOf="@+id/card_mathematics_classroom_teacher"
                 app:layout_constraintStart_toEndOf="@+id/card_mathematics_classroom_teacher"
                 app:layout_constraintTop_toTopOf="@+id/card_mathematics_classroom_teacher" >
+                <ImageView
+                    android:id="@+id/iv_classroom_knowledge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,10 +91,14 @@
                 android:layout_height="@dimen/_296dp"
                 android:layout_marginStart="@dimen/_61dp"
                 android:layout_marginEnd="@dimen/_137dp"
-                android:background="@android:color/holo_blue_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/card_mathematics_classroom_knowledge_point"
                 app:layout_constraintTop_toTopOf="@+id/card_mathematics_classroom_knowledge_point" >
+                <ImageView
+                    android:id="@+id/iv_classroom_assistant"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,11 +116,15 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/_44dp"
-                android:background="@android:color/holo_blue_light"
                 app:layout_constraintBottom_toBottomOf="@+id/card_mathematics_classroom_knowledge_point"
                 app:layout_constraintEnd_toEndOf="@+id/card_mathematics_classroom_assist"
                 app:layout_constraintStart_toStartOf="@+id/card_mathematics_classroom_assist"
                 app:layout_constraintTop_toBottomOf="@+id/card_mathematics_classroom_assist" >
+                <ImageView
+                    android:id="@+id/iv_classroom_practise"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

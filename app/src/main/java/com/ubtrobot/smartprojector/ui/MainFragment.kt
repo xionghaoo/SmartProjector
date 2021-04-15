@@ -110,9 +110,6 @@ class MainFragment : Fragment() {
         GlideApp.with(requireContext())
             .load(R.mipmap.ic_assistant_finger_read)
             .into(bindingPageOne.ivAssistantFingerRead)
-        bindingPageOne.cardAssistantFingerRead.setSelectListener {
-            ToastUtil.showToast(requireContext(), "课本点读")
-        }
         GlideApp.with(requireContext())
             .load(R.mipmap.ic_assistant_ip_role)
             .into(bindingPageOne.ivIpRole)
@@ -121,6 +118,9 @@ class MainFragment : Fragment() {
             .load(R.mipmap.ic_assistant_search_questions)
             .into(bindingPageOne.ivSearchQuestions)
 
+        bindingPageOne.cardAssistantFingerRead.setSelectListener {
+            getLearnAppManager.startChinesePage(requireContext(), "custom_page_apk_dian_du")
+        }
         bindingPageOne.cardAssistantWordBook.setSelectListener {
             getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_dan_ci")
         }
@@ -157,7 +157,7 @@ class MainFragment : Fragment() {
         }
 
         bindingPageTwo.cardChineseCoursebook.setSelectListener {
-
+            getLearnAppManager.startChinesePage(requireContext(), "custom_page_apk_dian_du")
         }
 
         bindingPageTwo.cardChineseLearnNewWord.setSelectListener {
