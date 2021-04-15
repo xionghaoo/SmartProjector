@@ -56,41 +56,46 @@
         android:layout_marginEnd="@dimen/_40dp"
         android:background="@color/color_menu_split"/>
 
-    <LinearLayout
-        android:id="@+id/btn_to_network_setting"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_140dp"
-        style="@style/Ripple"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/_42sp"
-            android:textColor="@color/color_text_dark"
-            android:layout_marginStart="@dimen/_80dp"
-            android:text="连接其他网络"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_49dp"
-            android:textSize="@dimen/_42sp"
-            android:textColor="@color/color_text_dark"
-            android:text="前往设置"/>
-        <ImageView
-            android:layout_width="@dimen/_60dp"
-            android:layout_height="@dimen/_60dp"
-            android:layout_marginEnd="@dimen/_80dp"
-            android:background="@color/color_menu_split"/>
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:id="@+id/btn_to_network_setting"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_140dp"-->
+<!--        style="@style/Ripple"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true"-->
+<!--        android:gravity="center_vertical">-->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textSize="@dimen/_42sp"-->
+<!--            android:textColor="@color/color_text_dark"-->
+<!--            android:layout_marginStart="@dimen/_80dp"-->
+<!--            android:text="连接其他网络"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="@dimen/_49dp"-->
+<!--            android:textSize="@dimen/_42sp"-->
+<!--            android:textColor="@color/color_text_dark"-->
+<!--            android:text="前往设置"/>-->
+<!--        <ImageView-->
+<!--            android:layout_width="@dimen/_60dp"-->
+<!--            android:layout_height="@dimen/_60dp"-->
+<!--            android:layout_marginEnd="@dimen/_80dp"-->
+<!--            android:background="@color/color_menu_split"/>-->
+<!--    </LinearLayout>-->
 
-    <TextView
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_1dp"-->
+<!--        android:layout_marginStart="@dimen/_40dp"-->
+<!--        android:layout_marginEnd="@dimen/_40dp"-->
+<!--        android:background="@color/color_menu_split"/>-->
+    <com.ubtrobot.smartprojector.widgets.SettingsMenuItemView
+        android:id="@+id/menu_item_to_network_setting"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_1dp"
-        android:layout_marginStart="@dimen/_40dp"
-        android:layout_marginEnd="@dimen/_40dp"
-        android:background="@color/color_menu_split"/>
+        android:layout_height="wrap_content"
+        app:smiv_title="连接其他网络"/>
 
 </LinearLayout>

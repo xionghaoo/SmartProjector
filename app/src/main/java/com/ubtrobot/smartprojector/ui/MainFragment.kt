@@ -157,7 +157,7 @@ class MainFragment : Fragment() {
         }
 
         bindingPageTwo.cardChineseCoursebook.setSelectListener {
-            getLearnAppManager.startChinesePage(requireContext(), "custom_page_apk_dian_du")
+            getLearnAppManager.startChinesePage(requireContext(), "同步新点读")
         }
 
         bindingPageTwo.cardChineseLearnNewWord.setSelectListener {
@@ -177,6 +177,10 @@ class MainFragment : Fragment() {
             startPlainActivity(EnglishClassroomActivity::class.java)
         }
 
+        bindingPageThree.cardEnglishCoursebook.setSelectListener {
+            getLearnAppManager.startEnglishPage(requireContext(), "同步新点读")
+        }
+
         bindingPageThree.cardEnglishOralPractise.setSelectListener {
             getLearnAppManager.startEnglishPage(requireContext(), "同步英语评测")
         }
@@ -186,7 +190,8 @@ class MainFragment : Fragment() {
         }
 
         bindingPageThree.cardEnglishInterest.setSelectListener {
-
+//            getLearnAppManager.startEnglishPage(requireContext(), "小学科学动漫")
+//            getLearnAppManager.startEnglishPage(requireContext(), "必考点小升初")
         }
     }
 
@@ -201,6 +206,7 @@ class MainFragment : Fragment() {
             startPlainActivity(MathematicsClassroomActivity::class.java)
         }
         bindingPageFour.cardMathematicsCoursebook.setSelectListener {
+            getLearnAppManager.startMathematicsPage(requireContext(), "同步新点读")
         }
         bindingPageFour.cardMathematicsSearchQuestion.setSelectListener {
             getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_sou_ti")

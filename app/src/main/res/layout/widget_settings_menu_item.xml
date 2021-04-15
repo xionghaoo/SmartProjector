@@ -26,9 +26,9 @@
         android:textColor="@color/color_text_dark"
         android:gravity="end"/>
     <ImageView
-        android:layout_width="@dimen/_60dp"
-        android:layout_height="@dimen/_60dp"
+        android:layout_width="@dimen/_55dp"
+        android:layout_height="@dimen/_55dp"
         android:layout_marginEnd="@dimen/_80dp"
-        android:background="@color/color_menu_split"/>
+        android:src="@mipmap/ic_settings_forward"/>
 
 </LinearLayout>

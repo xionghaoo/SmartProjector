@@ -58,7 +58,7 @@
         <com.ubtrobot.smartprojector.widgets.SelectableView
             android:id="@+id/card_chinese_interset_classroom"
             android:layout_width="@dimen/_384dp"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/main_card_height"
             android:layout_marginStart="@dimen/_168dp"
             android:layout_marginTop="@dimen/_52dp"
             android:layout_marginBottom="@dimen/_134dp"

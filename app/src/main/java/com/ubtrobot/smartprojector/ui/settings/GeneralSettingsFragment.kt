@@ -132,16 +132,19 @@ class GeneralSettingsFragment : Fragment() {
      * 网络设置
      */
     private fun bindNetworkFragment() {
-        val wifiName = WifiUtil.getWifiSSID(requireContext())
-        if (wifiName != null) {
-            bindingNetwork.tvSettingsWifiName.text = wifiName
-            bindingNetwork.tvSettingsWifiLevel.text = "信号较强"
-        } else {
-            bindingNetwork.containerSettingsConnectedNetwork.visibility = View.GONE
-            bindingNetwork.splitLine1.visibility = View.GONE
+        WifiUtil.getWifiSSID(requireContext()) { ssid ->
+            val wifiLevel = WifiUtil.getWifiLevel(requireContext())
+            if (ssid != null) {
+                bindingNetwork.tvSettingsWifiName.text = ssid
+                bindingNetwork.tvSettingsWifiLevel.text = "信号${if (wifiLevel >= 2) "较强" else "较弱"}"
+            } else {
+                bindingNetwork.containerSettingsConnectedNetwork.visibility = View.GONE
+                bindingNetwork.splitLine1.visibility = View.GONE
+            }
         }
 
-        bindingNetwork.btnToNetworkSetting.setOnClickListener {
+        bindingNetwork.menuItemToNetworkSetting.setDetail("前往设置")
+        bindingNetwork.menuItemToNetworkSetting.setOnSelectListener {
             SystemUtil.openSettingsWifi(context)
         }
     }

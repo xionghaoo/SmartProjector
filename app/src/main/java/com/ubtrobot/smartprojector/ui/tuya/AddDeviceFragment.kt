@@ -94,25 +94,28 @@ class AddDeviceFragment : Fragment() {
         }
 
         // 获取wifi名称
-        wifiSSID = WifiUtil.getWifiSSID(requireContext())
-        if (wifiSSID == null) {
-            binding.tvConnectedWifiName.text = "wifi未连接，点我去设置"
-            binding.tvConnectedWifiName.setOnClickListener {
-                SystemUtil.openSettingsWifi(requireContext())
-            }
-        } else {
-            binding.tvConnectedWifiName.text = wifiSSID
-        }
-        binding.edtConnectedWifiPassword.setText(repo.prefs.wifiPwd)
-        binding.btnSetWifi.setOnClickListener {
-            val pwd = binding.edtConnectedWifiPassword.text.toString()
-            if (pwd.isNotEmpty()) {
-                repo.prefs.wifiPwd = pwd
-                ToastUtil.showToast(requireContext(), "已设置wifi")
+        WifiUtil.getWifiSSID(requireContext()) { ssid ->
+            wifiSSID = ssid
+            if (wifiSSID == null) {
+                binding.tvConnectedWifiName.text = "wifi未连接，点我去设置"
+                binding.tvConnectedWifiName.setOnClickListener {
+                    SystemUtil.openSettingsWifi(requireContext())
+                }
             } else {
-                ToastUtil.showToast(requireContext(), "wifi密码不能为空")
+                binding.tvConnectedWifiName.text = wifiSSID
+            }
+            binding.edtConnectedWifiPassword.setText(repo.prefs.wifiPwd)
+            binding.btnSetWifi.setOnClickListener {
+                val pwd = binding.edtConnectedWifiPassword.text.toString()
+                if (pwd.isNotEmpty()) {
+                    repo.prefs.wifiPwd = pwd
+                    ToastUtil.showToast(requireContext(), "已设置wifi")
+                } else {
+                    ToastUtil.showToast(requireContext(), "wifi密码不能为空")
+                }
             }
         }
+
 
 //        view.findViewById<View>(R.id.btn_set_wifi_pwd).setOnClickListener {
 //            PromptDialog.Builder(requireContext())

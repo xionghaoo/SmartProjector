@@ -79,21 +79,32 @@ class ProgramDevicesSettingsFragment : Fragment() {
         // 148 = 60 + 60 + 28
         val itemWidth = (binding.listDevices.width - resources.getDimension(R.dimen._148dp).roundToInt()) / 2
         items.forEach { item ->
-            addItemView(categoryBox, item.name, item.iconUrl, itemWidth)
+            addItemView(categoryBox, item, itemWidth)
         }
     }
 
-    private fun addItemView(categoryBox: FlexboxLayout, title: String, iconUrl: String?, itemWidth: Int) {
+    private fun addItemView(categoryBox: FlexboxLayout, item: TuyaDevice, itemWidth: Int) {
         val itemView = layoutInflater.inflate(R.layout.list_item_settings_device_item, null)
         categoryBox.addView(itemView)
         val itemLp = itemView.layoutParams as FlexboxLayout.LayoutParams
         itemLp.width = itemWidth
         itemLp.height = resources.getDimension(R.dimen._226dp).roundToInt()
-        itemView.findViewById<TextView>(R.id.tv_settings_device_name).text = title
+        itemView.findViewById<TextView>(R.id.tv_settings_device_name).text = item.name
         val icon = itemView.findViewById<ImageView>(R.id.iv_settings_device_icon)
         GlideApp.with(requireContext())
-            .load(iconUrl)
+            .load(item.iconUrl)
             .into(icon)
+        GlideApp.with(requireContext())
+            .load(if (item.isOnline) R.mipmap.ic_settings_device_online else R.mipmap.ic_settings_device_bg)
+            .into(itemView.findViewById(R.id.iv_item_background))
+        if (item.isZigBeeWifi) {
+            GlideApp.with(requireContext())
+                .load(R.mipmap.ic_settings_device_type_wifi)
+                .into(itemView.findViewById(R.id.iv_settings_device_type))
+        } else {
+
+        }
+
 
         itemView.setOnClickListener {
             ToastUtil.showToast(requireContext(), "点击设备")
@@ -115,6 +126,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
             }
 
             override fun onError(errorCode: String?, error: String?) {
+                ToastUtil.showToast(requireContext(), "家庭查询错误：${errorCode}, $error")
                 binding.networkLayout.error()
 //                binding.refreshLayout.finishRefresh(false)
 
@@ -123,6 +135,9 @@ class ProgramDevicesSettingsFragment : Fragment() {
         })
     }
 
+    /**
+     * 家庭下的设备查询
+     */
     private fun queryDevices(homeId: Long) {
         TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(object : ITuyaHomeResultCallback {
             override fun onSuccess(bean: HomeBean?) {
@@ -142,6 +157,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
                             d.productId,
                             d.isOnline,
                             d.isZigBeeWifi,
+                            d.isZigBeeSubDev,
                             d.categoryCode,
                             d.schema,
                             cmds
@@ -153,6 +169,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
             }
 
             override fun onError(errorCode: String?, errorMsg: String?) {
+                ToastUtil.showToast(requireContext(), "设备查询错误：${errorCode}, $errorMsg")
                 binding.networkLayout.error()
                 TuyaUtil.handleOnError(requireContext(), errorCode)
             }

@@ -166,6 +166,7 @@ class TuyaHomeFragment : Fragment() {
                                     d.productId,
                                     d.isOnline,
                                     d.isZigBeeWifi,
+                                    d.isZigBeeSubDev,
                                     d.categoryCode,
                                     d.schema,
                                     cmds

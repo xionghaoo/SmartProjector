@@ -76,6 +76,7 @@ class EyesProtectSettingsFragment : Fragment() {
 //    }
 
     private fun eyeProtectionMode() {
+        if (!Shell.SU.available()) return
         CoroutineScope(Dispatchers.Default).launch {
             delay(10 * 1000)
             Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Settings.ACTION_MANAGE_OVERLAY_PERMISSION}")

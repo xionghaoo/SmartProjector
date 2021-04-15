@@ -11,6 +11,7 @@ data class TuyaDevice(
         val productionId: String,
         val isOnline: Boolean,
         val isZigBeeWifi: Boolean,
+        val isZigBeeSubDevice: Boolean,
         val categoryCode: String,
         val schema: String,
         val dps: List<TuyaDeviceCmd>

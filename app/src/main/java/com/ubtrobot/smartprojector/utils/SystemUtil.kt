@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.media.AudioManager
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.provider.Settings
 import android.text.method.DigitsKeyListener
@@ -24,7 +25,6 @@ import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 
 
 class SystemUtil {

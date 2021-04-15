@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/_206dp"
     tools:context=".ui.MainFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/card_english_coursebook"
         android:layout_width="@dimen/_516dp"
         android:layout_height="@dimen/_366dp"
@@ -25,10 +25,9 @@
             android:layout_marginBottom="@dimen/_48dp"
             android:text="课本预习"
             android:textSize="@dimen/_46sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_gravity="bottom"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.ubtrobot.smartprojector.widgets.SelectableView>
 
     <com.ubtrobot.smartprojector.widgets.SelectableView
         android:id="@+id/card_english_interest"
