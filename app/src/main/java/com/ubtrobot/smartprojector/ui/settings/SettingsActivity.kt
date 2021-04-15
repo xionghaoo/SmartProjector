@@ -62,7 +62,6 @@ class SettingsActivity : AppCompatActivity(),
 
         GlideApp.with(this)
                 .load(R.mipmap.ic_settings_bg)
-                .centerCrop()
                 .into(binding.ivBackground)
 
         eyesProtectSettingsFragment = EyesProtectSettingsFragment.newInstance()
