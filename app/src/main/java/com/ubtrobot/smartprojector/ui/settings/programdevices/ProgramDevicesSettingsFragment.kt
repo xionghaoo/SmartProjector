@@ -92,6 +92,9 @@ class ProgramDevicesSettingsFragment : Fragment() {
         }
     }
 
+    /**
+     * 添加设备项UI
+     */
     private fun addItemView(categoryBox: FlexboxLayout, item: TuyaDevice, itemWidth: Int) {
         val itemView = layoutInflater.inflate(R.layout.list_item_settings_device_item, null)
         categoryBox.addView(itemView)
@@ -106,12 +109,14 @@ class ProgramDevicesSettingsFragment : Fragment() {
         GlideApp.with(requireContext())
             .load(if (item.isOnline) R.mipmap.ic_settings_device_online else R.mipmap.ic_settings_device_bg)
             .into(itemView.findViewById(R.id.iv_item_background))
-        if (item.isZigBeeWifi) {
+        if (item.isZigBeeWifi || item.categoryCode.contains("wf")) {
             GlideApp.with(requireContext())
                 .load(R.mipmap.ic_settings_device_type_wifi)
                 .into(itemView.findViewById(R.id.iv_settings_device_type))
-        } else {
-
+        } else if (item.categoryCode.contains("zig")) {
+            GlideApp.with(requireContext())
+                .load(R.drawable.ic_zigbee)
+                .into(itemView.findViewById(R.id.iv_settings_device_type))
         }
 
         itemView.setOnClickListener {
