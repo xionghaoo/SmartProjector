@@ -1,29 +1,26 @@
 [
   {
-    "id": 1,
-    "type": "运动健康",
-    "devices": {
-      "name": "Wifi氛围灯",
-      "icon": "",
-      "category": "wf_dj"
-    }
+    "name": "网关",
+    "categoryCodes": [
+      "wg2_0001", "wf_zig_wg2"
+    ]
   },
   {
-    "id": 3,
-    "type": "网关中控",
-    "devices": {
-      "name": "Zigbee无线网关",
-      "icon": "",
-      "category": "zig_sos"
-    }
+    "name": "传感器",
+    "categoryCodes": [
+      "zig_ldcg", "zig_wsdcg"
+    ]
   },
   {
-    "id": 2,
-    "type": "其他",
-    "devices": {
-      "name": "sos报警器",
-      "icon": "",
-      "category": "zig_sos"
-    }
+    "name": "安防",
+    "categoryCodes": [
+      "zig_mcs", "wf_pir", "zig_sos"
+    ]
+  },
+  {
+    "name": "灯",
+    "categoryCodes": [
+      "wf_dj"
+    ]
   }
 ]

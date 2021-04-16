@@ -15,16 +15,27 @@ import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
 import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentProgramDevicesSettingsBinding
+import com.ubtrobot.smartprojector.repo.Repository
+import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
+import com.ubtrobot.smartprojector.ui.tuya.DeviceCategory
+import com.ubtrobot.smartprojector.ui.tuya.NewDeviceActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDevice
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCmd
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.utils.TuyaUtil
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 import kotlin.math.roundToInt
 
+@AndroidEntryPoint
 class ProgramDevicesSettingsFragment : Fragment() {
 
+    @Inject
+    lateinit var deviceCategories: List<DeviceCategory>
+    @Inject
+    lateinit var repo: Repository
     private var _binding: FragmentProgramDevicesSettingsBinding? = null
     private val binding get() = _binding!!
 
@@ -44,28 +55,24 @@ class ProgramDevicesSettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSettingsDeviceAdd.setOnClickListener {
-            ToastUtil.showToast(requireContext(), "添加新设备")
+            NewDeviceActivity.start(requireContext(), repo.prefs.currentHomeId)
         }
-
-//        addCategory("两季")
-//
-//        addCategory("小家电")
-
         binding.networkLayout.loading()
         homeQuery()
     }
 
-    private fun updateDevicesCategory(devices: List<TuyaDevice>) {
+    private fun updateDevicesCategory(otherDevices: ArrayList<TuyaDevice>) {
         binding.listDevices.post {
             binding.listDevices.removeAllViews()
-            // 设备分类
-            addCategory("两季", devices.slice(0..3))
-            addCategory("小家电", devices.slice(4..5))
-            addCategory("其他", devices.slice(6 until devices.size))
+            deviceCategories.forEach { category ->
+                addCategory(category.name, category.devices)
+            }
+
+            addCategory("其他", otherDevices)
         }
     }
 
-    private fun addCategory(title: String, items: List<TuyaDevice>) {
+    private fun addCategory(title: String, items: ArrayList<TuyaDevice>) {
         val categoryView = layoutInflater.inflate(R.layout.list_item_settings_device_category, null)
         binding.listDevices.addView(categoryView)
         val tvTitle = categoryView.findViewById<TextView>(R.id.tv_settings_device_category_title)
@@ -149,8 +156,9 @@ class ProgramDevicesSettingsFragment : Fragment() {
                         cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value?.toString() ?: ""))
 //                        Timber.d("功能点: ${p.key}, ${p.value}")
                     }
-                    items.add(
-                        TuyaDevice(
+                    Timber.d("device: ${d.name}, categoryCode: ${d.categoryCode}")
+
+                    val tuyaDevice = TuyaDevice(
                             if (d.getName() == null) "未命名" else d.getName(),
                             d.iconUrl,
                             d.devId,
@@ -161,11 +169,26 @@ class ProgramDevicesSettingsFragment : Fragment() {
                             d.categoryCode,
                             d.schema,
                             cmds
-                        )
                     )
+                    items.add(tuyaDevice)
+
+                    deviceCategories.forEach { category ->
+                        if (category.categoryCodes.contains(d.categoryCode)) {
+                            tuyaDevice.isInCategory = true
+                            category.devices.add(tuyaDevice)
+                        }
+                    }
                 }
+
+                val otherItems = ArrayList<TuyaDevice>()
+                items.forEach { item ->
+                    if (!item.isInCategory) {
+                        otherItems.add(item)
+                    }
+                }
+
                 binding.networkLayout.success()
-                updateDevicesCategory(items)
+                updateDevicesCategory(otherItems)
             }
 
             override fun onError(errorCode: String?, errorMsg: String?) {

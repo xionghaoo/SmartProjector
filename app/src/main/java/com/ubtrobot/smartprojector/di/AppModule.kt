@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import androidx.room.Room
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.MqttClient
 import com.ubtrobot.smartprojector.repo.ApiService
@@ -12,6 +14,8 @@ import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.CacheDb
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
 import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
+import com.ubtrobot.smartprojector.ui.tuya.DeviceCategory
+import com.ubtrobot.smartprojector.utils.FileUtil
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import dagger.Module
 import dagger.Provides
@@ -139,4 +143,10 @@ object AppModule {
 
     @Provides @Singleton
     fun provideGetLearnManager(prefs: PreferenceStorage) = GetLearnAppManager(prefs)
+
+    @Provides @Singleton
+    fun provideTuyaDeviceCategories(@ApplicationContext context: Context) : List<DeviceCategory> {
+        val json = FileUtil.readAssetsJson("tuya_devices.json", context)
+        return Gson().fromJson(json, object : TypeToken<List<DeviceCategory>>(){}.type)
+    }
 }

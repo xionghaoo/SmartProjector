@@ -14,7 +14,8 @@ data class TuyaDevice(
         val isZigBeeSubDevice: Boolean,
         val categoryCode: String,
         val schema: String,
-        val dps: List<TuyaDeviceCmd>
+        val dps: List<TuyaDeviceCmd>,
+        var isInCategory: Boolean = false
 ) : Parcelable
 
 @Parcelize
