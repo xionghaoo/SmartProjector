@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.flexbox.FlexboxLayout
+import com.tuya.smart.api.MicroContext
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
+import com.tuya.smart.panelcaller.api.AbsPanelCallerService
 import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentProgramDevicesSettingsBinding
@@ -112,9 +114,9 @@ class ProgramDevicesSettingsFragment : Fragment() {
 
         }
 
-
         itemView.setOnClickListener {
-            ToastUtil.showToast(requireContext(), "点击设备")
+            val service = MicroContext.getServiceManager().findServiceByInterface<AbsPanelCallerService>(AbsPanelCallerService::class.java.name)
+            service.goPanelWithCheckAndTip(requireActivity(), item.id)
         }
     }
 
@@ -146,6 +148,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
      * 家庭下的设备查询
      */
     private fun queryDevices(homeId: Long) {
+        deviceCategories.forEach { it.devices.clear() }
         TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(object : ITuyaHomeResultCallback {
             override fun onSuccess(bean: HomeBean?) {
                 val deviceList = bean?.deviceList
@@ -171,7 +174,6 @@ class ProgramDevicesSettingsFragment : Fragment() {
                             cmds
                     )
                     items.add(tuyaDevice)
-
                     deviceCategories.forEach { category ->
                         if (category.categoryCodes.contains(d.categoryCode)) {
                             tuyaDevice.isInCategory = true

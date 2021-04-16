@@ -1,17 +1,19 @@
 # 根据默认的dimens.xml文件生成sw尺寸文件
-# 1. 需要知道目标屏幕的宽度(px)和屏幕缩放因子
+# 1. 需要知道目标屏幕的宽度(dp)和屏幕缩放因子
 # 2. 计算方式是dp的百分比尺寸
+# 3. 以设计稿宽度方向来适配
 
 import re
 import os
 
-# 默认dimens.xml文件的缩放因子和屏幕宽度
+# 默认dimens.xml文件的缩放因子和屏幕宽度（设计稿尺寸）
 UI_SCREEN_SCALE = 1
 UI_SCREEN_WIDTH = 1080
 UI_SCREEN_HEIGHT = 1920
 
-# 目标屏幕宽度(px)
+# 目标屏幕宽度(dp)
 sw_dp_list = [1080, 720, 411, 360, 752, 552]
+# 目标屏幕高度(dp)
 height_dp_list = [1920, 1280, 731, 640, 1336, 960]
 # 默认的dimens.xml文件目录
 res_path = '../app/src/main/res'
@@ -54,7 +56,7 @@ def create_dimen_file(target_dp, target_height_dp):
     f.close()
 
 
-# 计算适配尺寸
+# 计算适配尺寸，一般height_ratio和width_ratio的差别比较小，如果差别较大，以其中大的为适配标准
 def get_dpi_size(size, target_dp, target_height_dp):
     height_ratio = UI_SCREEN_HEIGHT / UI_SCREEN_SCALE / target_height_dp
     width_ratio = UI_SCREEN_WIDTH / UI_SCREEN_SCALE / target_dp
