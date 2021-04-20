@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
+import timber.log.Timber
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
@@ -89,8 +90,6 @@ class SettingsActivity : AppCompatActivity(),
         binding.toolbar.setTitle("设置")
                 .configBackButton(this)
 
-        grantWriteSettingsPermission()
-
         bluetoothDelegate = BluetoothDelegate(
                 activity = this,
                 pairedDeviceAdd = { name, address ->
@@ -110,6 +109,11 @@ class SettingsActivity : AppCompatActivity(),
             currentSelectedDeviceItem = item
             btDevicesDialog?.dismiss()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        grantWriteSettingsPermission()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -181,7 +185,14 @@ class SettingsActivity : AppCompatActivity(),
             if (Settings.System.canWrite(this)) {
                 showFirstSettingsPage()
             } else {
-                SystemUtil.openSettingsWrite(this)
+                AlertDialog.Builder(this)
+                    .setMessage("App需要在设置里面打开读写系统设置的权限")
+                    .setCancelable(false)
+                    .setPositiveButton("去设置") { _, _ ->
+                        SystemUtil.openSettingsWrite(this)
+                    }
+                    .setNegativeButton("取消") { _, _ -> finish() }
+                    .show()
             }
         } else {
             showFirstSettingsPage()
