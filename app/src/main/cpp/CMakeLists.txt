@@ -20,11 +20,6 @@ add_library( # Specifies the name of the library.
         tuya_ext.cpp
         hal_wifi.c)
 
-# 测试库
-add_library(lib_gperf SHARED IMPORTED)
-set_target_properties(lib_gperf PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${ANDROID_ABI}/libgperf.so)
-
 # 涂鸦sdk
 add_library(libtuya_gw_ext_sdk STATIC IMPORTED)
 set_target_properties( libtuya_gw_ext_sdk PROPERTIES IMPORTED_LOCATION
@@ -47,7 +42,6 @@ find_library( # Defines the name of the path variable that stores the
 
 target_link_libraries(
         tuya_ext
-        lib_gperf
         libtuya_gw_ext_sdk
         # Links the log library to the target library.
         ${log-lib} )

@@ -6,8 +6,6 @@
 #include <string>
 #include <jni.h>
 #include <android/log.h>
-// 测试
-#include <gperf.h>
 
 #include <tuya_gw_infra_api.h>
 
@@ -35,15 +33,6 @@ static char g_uuid[64]    = {0};
 static char g_authkey[64] = {0};
 
 using namespace std;
-
-JNIEXPORT jstring JNICALL
-Java_com_ubtrobot_smartprojector_ui_settings_SettingsFragment_helloStr(JNIEnv* env, jobject thiz) {
-    LOGD("log form jni");
-    auto ticks = GetTicks();
-    auto str = "Hello JNI, " + to_string(TY_LOG_DEBUG);
-
-    return env->NewStringUTF(str.c_str());
-}
 
 void usage()
 {
