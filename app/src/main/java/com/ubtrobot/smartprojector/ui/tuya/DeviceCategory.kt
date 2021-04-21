@@ -1,5 +1,8 @@
 package com.ubtrobot.smartprojector.ui.tuya
 
+import androidx.annotation.Keep
+
+@Keep
 class DeviceCategory {
     val name: String = ""
     var order: Int = 0

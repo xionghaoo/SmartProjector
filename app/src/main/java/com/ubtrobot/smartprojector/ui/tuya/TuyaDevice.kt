@@ -1,8 +1,10 @@
 package com.ubtrobot.smartprojector.ui.tuya
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 
+@Keep
 @Parcelize
 data class TuyaDevice(
         val name: String,
@@ -18,6 +20,7 @@ data class TuyaDevice(
         var isInCategory: Boolean = false
 ) : Parcelable
 
+@Keep
 @Parcelize
 data class TuyaDeviceCmd(
     val deviceId: String,
