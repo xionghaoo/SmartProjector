@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 /**

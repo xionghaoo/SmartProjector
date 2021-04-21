@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.ubtrobot.smartprojector.repo.Repository
-import com.ubtrobot.smartprojector.repo.data.TestData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

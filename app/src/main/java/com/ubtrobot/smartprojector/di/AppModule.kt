@@ -6,10 +6,12 @@ import android.widget.Toast
 import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.MqttClient
 import com.ubtrobot.smartprojector.repo.ApiService
 import com.ubtrobot.smartprojector.core.LiveDataCallAdapterFactory
+import com.ubtrobot.smartprojector.core.MockInterceptor
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.CacheDb
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
@@ -28,6 +30,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -40,10 +43,16 @@ object AppModule {
     }
 
     @Provides @Singleton
-    fun provideOkHttpClient(@ApplicationContext context: Context) : OkHttpClient {
+    fun provideOkHttpClient(
+            @ApplicationContext context: Context,
+            @Named("MockInterceptor") mockInterceptor: MockInterceptor
+    ) : OkHttpClient {
         val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         val client = OkHttpClient.Builder()
                 .addInterceptor(logInterceptor)
+        if (BuildConfig.DEBUG) {
+            client.addInterceptor(mockInterceptor)
+        }
         client.addInterceptor { chain: Interceptor.Chain ->
             // 发起请求
             val request = chain.request()
@@ -115,6 +124,13 @@ object AppModule {
             return@addInterceptor response
         }
         return client.build()
+    }
+
+    @Provides @Singleton
+    @Named("MockInterceptor")
+    fun provideMockInterceptor(@ApplicationContext context: Context) : MockInterceptor {
+        val json = FileUtil.readAssetsJson("api_mock.json", context)
+        return MockInterceptor(BuildConfig.DEBUG, json)
     }
 
     @Provides @Singleton

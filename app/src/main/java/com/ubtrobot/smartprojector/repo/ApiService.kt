@@ -7,6 +7,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("/test")
+    @GET("/test_mock")
     fun test() : LiveData<ApiResponse<TestData>>
 }

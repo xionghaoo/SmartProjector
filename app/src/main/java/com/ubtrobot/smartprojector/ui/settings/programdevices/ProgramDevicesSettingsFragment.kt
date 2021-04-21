@@ -153,9 +153,9 @@ class ProgramDevicesSettingsFragment : Fragment() {
      * 家庭下的设备查询
      */
     private fun queryDevices(homeId: Long) {
-        deviceCategories.forEach { it.devices.clear() }
         TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(object : ITuyaHomeResultCallback {
             override fun onSuccess(bean: HomeBean?) {
+                deviceCategories.forEach { it.devices.clear() }
                 val deviceList = bean?.deviceList
                 val items = ArrayList<TuyaDevice>()
                 deviceList?.forEach { d ->
