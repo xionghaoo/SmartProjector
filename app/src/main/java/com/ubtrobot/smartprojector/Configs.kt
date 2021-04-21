@@ -10,5 +10,7 @@ class Configs {
         const val UCODE_URL = "http://ide.ubtrobot.com/"
 
         const val IFLY_AWAKEN_APPID = "602e2c80"
+
+        const val DEFAULT_HOME = "default-home"
     }
 }

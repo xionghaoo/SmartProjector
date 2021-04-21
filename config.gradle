@@ -29,6 +29,7 @@ ext {
     versions.flexbox = '2.0.1'
     versions.okhttp = '4.9.0'
     versions.camerax = '1.0.0-rc02'
+    versions.asm = '9.1'
 
     dpes = [:]
     dpes.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
@@ -75,6 +76,10 @@ ext {
         lifecycle: "androidx.camera:camera-lifecycle:$versions.camerax",
         view: "androidx.camera:camera-view:1.0.0-alpha21",
         extensions: "androidx.camera:camera-extensions:1.0.0-alpha21"
+    ]
+    dpes.asm = [
+        "core": "org.ow2.asm:asm:$versions.asm",
+        "commons": "org.ow2.asm:asm-commons:$versions.asm"
     ]
     // ----------- dependencies version end -------------
 
