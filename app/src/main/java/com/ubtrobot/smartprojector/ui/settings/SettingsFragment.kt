@@ -1,26 +1,20 @@
 package com.ubtrobot.smartprojector.ui.settings
 
-import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
-import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentSettingsBinding
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
-import com.ubtrobot.smartprojector.ui.tuya.TuyaActivity
-import com.ubtrobot.smartprojector.ui.cartoonbook.FlipTestActivity
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.restrict.AppWhiteListActivity
 import com.ubtrobot.smartprojector.ui.tuya.FamilyManagerActivity
-import com.ubtrobot.smartprojector.ui.tuya.TuyaDeviceCategoryActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.ui.video.VideoActivity
 import com.ubtrobot.smartprojector.update.UpdateDelegate
@@ -97,10 +91,6 @@ class SettingsFragment : Fragment() {
             startPlainActivity(AppWhiteListActivity::class.java)
         }
 
-        binding.btnFlipTest.setOnClickListener {
-            startPlainActivity(FlipTestActivity::class.java)
-        }
-
         binding.btnRootCmd.setOnClickListener {
 //            RootExecutor.exec(
 //                cmd = RootCommand.grantPermission(Manifest.permission.SYSTEM_ALERT_WINDOW),
@@ -117,10 +107,6 @@ class SettingsFragment : Fragment() {
 
         binding.btnTest.setOnClickListener {
             startPlainActivity(TestActivity::class.java)
-        }
-
-        binding.btnDeviceSelect.setOnClickListener {
-            startPlainActivity(TuyaDeviceCategoryActivity::class.java)
         }
 
         if (repo.prefs.currentHomeName == null) {

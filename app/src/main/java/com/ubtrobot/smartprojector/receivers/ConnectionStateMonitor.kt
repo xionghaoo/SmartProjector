@@ -8,6 +8,9 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import timber.log.Timber
 
+/**
+ * wifi连接状态监听
+ */
 class ConnectionStateMonitor : ConnectivityManager.NetworkCallback() {
     private var networkRequest: NetworkRequest? = null
     private var onConnectStateChange: ((isConnected: Boolean) -> Unit)? = null

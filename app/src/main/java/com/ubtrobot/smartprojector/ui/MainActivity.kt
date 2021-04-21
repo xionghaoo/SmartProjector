@@ -32,7 +32,6 @@ import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
-import com.ubtrobot.smartprojector.ui.cartoonbook.CartoonBookFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
@@ -75,12 +74,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var repo: Repository
 
-    private lateinit var mainFragment: MainFragment
-    private lateinit var educationFragment: EducationFragment
-    private lateinit var magicSpaceFragment: MagicSpaceFragment
     private lateinit var appMarketFragment: AppMarketFragment
     private lateinit var settingsFragment: SettingsFragment
-    private lateinit var cartoonBookFragment: CartoonBookFragment
 
     private lateinit var screenAdapter: ScreenAdapter
 
@@ -230,7 +225,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // ---------------------- 读取SN 测试------------------------
-   @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     @AfterPermissionGranted(RC_READ_PHONE_STATE_PERMISSION)
     fun test() {
         if (hasReadPhoneStatePermission()) {

@@ -62,16 +62,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_lock_screen" />
 
     <Button
-        android:id="@+id/btn_flip_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="翻页效果测试"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_version_check"
-        app:layout_constraintEnd_toStartOf="@+id/btn_version_check"
-        app:layout_constraintTop_toTopOf="@+id/btn_version_check" />
-
-    <Button
         android:id="@+id/btn_root_cmd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,15 +89,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/btn_white_list"
         app:layout_constraintEnd_toStartOf="@+id/btn_white_list"
         app:layout_constraintTop_toTopOf="@+id/btn_white_list" />
-
-    <Button
-        android:id="@+id/btn_device_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="涂鸦设备选择"
-        app:layout_constraintEnd_toEndOf="@+id/btn_white_list"
-        app:layout_constraintStart_toStartOf="@+id/btn_white_list"
-        app:layout_constraintTop_toBottomOf="@+id/btn_white_list" />
 
     <TextView
         android:id="@+id/textView15"
