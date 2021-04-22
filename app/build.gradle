@@ -8,6 +8,8 @@ plugins {
 
 apply from: '../config.gradle'
 
+apply plugin: 'com.ubtrobot.transformplugin'
+
 android {
     signingConfigs {
         release {

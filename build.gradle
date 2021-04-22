@@ -10,6 +10,11 @@ buildscript {
 //        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' } // uKit use
 //        maven { url "https://raw.github.com/pinchbv/android-analyzer/master/repo" } // uKit use
 //        maven { url "https://plugins.gradle.org/m2/" } // uKit use
+
+        maven {//本地Maven仓库地址
+            url uri('E:/repos')
+        }
+
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
@@ -17,6 +22,7 @@ buildscript {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
 
 //        classpath "com.justpinch:androidanalyzer:1.3.3" // uKit use
+        classpath 'com.ubtrobot.transformplugin:transformPlugin:1.0.19'
     }
 }
 

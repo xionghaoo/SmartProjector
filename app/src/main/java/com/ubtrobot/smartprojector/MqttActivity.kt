@@ -1,8 +1,10 @@
 package com.ubtrobot.smartprojector
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.tuya.smart.panel.base.activity.TYRCTSmartPanelActivity
 import com.ubtrobot.smartprojector.databinding.ActivityMqttBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken

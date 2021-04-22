@@ -17,4 +17,6 @@ public class Test {
     public int scale;
     public int step;
     public String type;
+
+
 }
