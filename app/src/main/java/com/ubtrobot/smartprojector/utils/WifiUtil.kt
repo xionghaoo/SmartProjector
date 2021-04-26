@@ -34,5 +34,23 @@ class WifiUtil {
             val wifiInfo = wifiManager.connectionInfo
             return WifiManager.calculateSignalLevel(wifiInfo.rssi, numberOfLevels)
         }
+
+        fun is24GWifi(context: Context) : Boolean {
+            val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val wifiInfo = wifiManager.connectionInfo
+            return wifiInfo.frequency in 2400..2500
+        }
+
+        fun is5GWifi(context: Context) : Boolean {
+            val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val wifiInfo = wifiManager.connectionInfo
+            return wifiInfo.frequency in 4900..5900
+        }
+
+        fun wifiFrequency(context: Context) : Int {
+            val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val wifiInfo = wifiManager.connectionInfo
+            return wifiInfo.frequency
+        }
     }
 }

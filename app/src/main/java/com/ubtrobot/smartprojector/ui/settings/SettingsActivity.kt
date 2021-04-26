@@ -54,6 +54,7 @@ class SettingsActivity : AppCompatActivity(),
     private lateinit var binding: ActivitySettingsBinding
 
     private lateinit var eyesProtectSettingsFragment: EyesProtectSettingsFragment
+    private lateinit var settingsMenuAdapter: SettingsMenuAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
@@ -74,7 +75,7 @@ class SettingsActivity : AppCompatActivity(),
                 padding = resources.getDimension(R.dimen._40dp),
                 ignoreLastChildNum = 0
         ))
-        binding.rcSettingsMenu.adapter = SettingsMenuAdapter(listOf(
+        settingsMenuAdapter = SettingsMenuAdapter(listOf(
                 "屏幕亮度", "系统音量", "网络设置", "护眼功能", "姿势检测", "编程设备管理"
         )) { position ->
             when (position) {
@@ -86,6 +87,7 @@ class SettingsActivity : AppCompatActivity(),
                 5 -> replaceFragment(ProgramDevicesSettingsFragment.newInstance(), R.id.fragment_container)
             }
         }
+        binding.rcSettingsMenu.adapter = settingsMenuAdapter
 
         binding.toolbar.setTitle("设置")
                 .configBackButton(this)
@@ -109,11 +111,11 @@ class SettingsActivity : AppCompatActivity(),
             currentSelectedDeviceItem = item
             btDevicesDialog?.dismiss()
         }
+        grantWriteSettingsPermission()
     }
 
     override fun onStart() {
         super.onStart()
-        grantWriteSettingsPermission()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

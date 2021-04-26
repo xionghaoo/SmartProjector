@@ -27,4 +27,9 @@ class SettingsMenuAdapter(
             notifyDataSetChanged()
         }
     }
+
+    fun reset() {
+        selectionPosition = 0
+        notifyDataSetChanged()
+    }
 }

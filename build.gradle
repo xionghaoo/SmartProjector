@@ -7,13 +7,9 @@ buildscript {
         google()
         jcenter()
 
-//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' } // uKit use
-//        maven { url "https://raw.github.com/pinchbv/android-analyzer/master/repo" } // uKit use
-//        maven { url "https://plugins.gradle.org/m2/" } // uKit use
-
-        maven {//本地Maven仓库地址
-            url uri('E:/repos')
-        }
+//        maven {//本地Maven仓库地址
+//            url uri('https://github.com/xionghaoo/AsmAssist/blob/master/tuyaassist/repo')
+//        }
 
     }
     dependencies {
@@ -21,8 +17,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
 
-//        classpath "com.justpinch:androidanalyzer:1.3.3" // uKit use
-        classpath 'com.ubtrobot.transformplugin:transformPlugin:1.0.19'
+//        classpath 'xh.zero.tuyaassist:tuyaassist:0.0.1'
     }
 }
 

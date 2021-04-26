@@ -8,7 +8,7 @@ plugins {
 
 apply from: '../config.gradle'
 
-apply plugin: 'com.ubtrobot.transformplugin'
+//apply plugin: 'xh.zero.tuyassist'
 
 android {
     signingConfigs {

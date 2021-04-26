@@ -134,8 +134,9 @@ class GeneralSettingsFragment : Fragment() {
     private fun bindNetworkFragment() {
         WifiUtil.getWifiSSID(requireContext()) { ssid ->
             val wifiLevel = WifiUtil.getWifiLevel(requireContext())
+            val is24GWifi = WifiUtil.is24GWifi(requireContext())
             if (ssid != null) {
-                bindingNetwork.tvSettingsWifiName.text = ssid
+                bindingNetwork.tvSettingsWifiName.text = "${ssid}${if (is24GWifi) "(2.4G)" else ""}"
                 bindingNetwork.tvSettingsWifiLevel.text = "信号${if (wifiLevel >= 2) "较强" else "较弱"}"
             } else {
                 bindingNetwork.containerSettingsConnectedNetwork.visibility = View.GONE

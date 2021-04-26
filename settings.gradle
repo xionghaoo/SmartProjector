@@ -1,4 +1,4 @@
-include ':transformPlugin'
+//include ':transformPlugin'
 include ':ifly'
 include ':tuya_biz'
 include ':app'
