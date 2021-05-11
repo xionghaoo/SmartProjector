@@ -60,7 +60,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10dp"
                 android:layout_marginEnd="@dimen/_10dp"
-                android:layout_width="@dimen/_150dp"
+                android:layout_width="@dimen/_450dp"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_light_progress"
@@ -79,25 +79,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_weight="1">
 
-        <Button
-            android:id="@+id/btn_colour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="调节灯光"/>
-
-        <TextView
-            android:id="@+id/v_color"
-            android:layout_width="@dimen/_40dp"
-            android:layout_height="@dimen/_40dp"
-            android:layout_marginStart="@dimen/_10dp"/>
-
         <SeekBar
-            android:id="@+id/sb_adjust_colour"
-            android:layout_width="@dimen/_200dp"
+            android:id="@+id/sb_adjust_colour_H"
+            android:layout_width="@dimen/_400dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_10dp"/>
+        <SeekBar
+            android:id="@+id/sb_adjust_colour_S"
+            android:layout_width="@dimen/_400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_10dp" />
+        <SeekBar
+            android:id="@+id/sb_adjust_colour_V"
+            android:layout_width="@dimen/_400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
             android:layout_marginStart="@dimen/_10dp"
             android:layout_marginEnd="@dimen/_10dp"/>
     </LinearLayout>

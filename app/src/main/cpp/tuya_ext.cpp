@@ -59,6 +59,12 @@ int _iot_get_product_key_cb(char *pk, int pk_size)
     return 0;
 }
 
+/**
+ * 网关模式通知
+ * 当网关模式发生变化时，会触发网关模式通知回调。网关包含两种模式：设备配网开始、设备配网结束（超时）。第三方系统开发者可以在回调中实现指示灯控制逻辑。
+ * @param mode
+ * @return
+ */
 int _gw_configure_op_mode_cb(ty_op_mode_t mode)
 {
     LOGD("gw configure operation mode callback");
@@ -99,6 +105,12 @@ int _gw_upgrade_cb(const char *img)
     return 0;
 }
 
+/**
+ * 网关激活通知
+ * 当网关成功绑定或者解绑涂鸦云时，会触发网关激活通知回调，第三方系统开发者可以在回调中处理其业务（如控制指示灯）。
+ * @param status
+ * @return
+ */
 int _gw_active_status_changed_cb(ty_gw_status_t status)
 {
     LOGD("active status changed, status: %d", status);
@@ -155,6 +167,7 @@ void test_tuya_user_iot_permit_join()
 
 /**
  * 初始化
+ * /storage/emulated/0/Download 路径需要外部存储权限
  */
 void initial() {
     LOGD("initial gw");

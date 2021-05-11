@@ -164,7 +164,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
                         cmds.add(TuyaDeviceCmd(d.devId, p.key, p.value?.toString() ?: ""))
 //                        Timber.d("功能点: ${p.key}, ${p.value}")
                     }
-                    Timber.d("device: ${d.name}, categoryCode: ${d.categoryCode}")
+                    Timber.d("device: ${d.name}, categoryCode: ${d.categoryCode}, id: ${d.devId}")
 
                     val tuyaDevice = TuyaDevice(
                             if (d.getName() == null) "未命名" else d.getName(),

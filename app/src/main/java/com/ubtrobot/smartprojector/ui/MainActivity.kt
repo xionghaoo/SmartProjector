@@ -31,10 +31,12 @@ import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
+import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
@@ -189,7 +191,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.containerAvatar.setOnClickListener {
-            startPlainActivity(SettingsActivity::class.java)
+            startPlainActivity(TuyaHomeActivity::class.java)
         }
 
 //        RootExecutor.exec(
@@ -203,7 +205,7 @@ class MainActivity : AppCompatActivity() {
 //        )
 
         // 拓展网关初始化
-//        TuyaGatewayManager.instance().initial()
+        TuyaGatewayManager.instance().initial()
 
         initialTuyaHome()
 

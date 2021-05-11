@@ -42,6 +42,10 @@ class TuyaGatewayManager {
     // 允许子设备接入 1 开启， 0 关闭，默认是允许
     private external fun permitJoin(permit: Boolean)
 
+//    public fun onlineCallback() {
+//        Timber.d("online callback")
+//    }
+
     fun initial() {
         Thread {
             val exitCode1 = Shell.Pool.SU.run("pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.WRITE_EXTERNAL_STORAGE}")

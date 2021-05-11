@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.tuya.smart.centralcontrol.TuyaLightDevice
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.sdk.api.IResultCallback
+import com.tuya.smart.sdk.centralcontrol.api.ILightListener
+import com.tuya.smart.sdk.centralcontrol.api.ITuyaLightDevice
+import com.tuya.smart.sdk.centralcontrol.api.bean.LightDataPoint
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentWifiLampControllerBinding
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDevice
@@ -29,6 +33,10 @@ class WifiLampControllerFragment : Fragment() {
     private val binding get() = _binding!!
     private var adjustColor: Int = 0
     private var lightValue: Int = 0
+    private lateinit var lightDev: ITuyaLightDevice
+    private var colorH: Int = 0
+    private var colorS: Int = 0
+    private var colorV: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +55,31 @@ class WifiLampControllerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        device?.also {
+            lightDev = TuyaLightDevice(it.id)
+            lightDev.registerLightListener(object : ILightListener {
+                override fun onDpUpdate(p0: LightDataPoint?) {
+
+                }
+
+                override fun onRemoved() {
+
+                }
+
+                override fun onStatusChanged(status: Boolean) {
+
+                }
+
+                override fun onNetworkStatusChanged(p0: Boolean) {
+
+                }
+
+                override fun onDevInfoUpdate() {
+
+                }
+            })
+        }
+
 //        Timber.d("schema: ${device?.schema}")
         if (device != null) {
             device?.dps?.forEach { dp ->
@@ -94,24 +127,63 @@ class WifiLampControllerFragment : Fragment() {
                         binding.tvLightProgress.text = progress.toString()
                     }
                     CMD_COLOUR -> {
-                        binding.vColor.setBackgroundColor(Color.HSVToColor(floatArrayOf(150f, 400f, 500f)))
-                        binding.btnColour.setOnClickListener {
-                            adjustLightColour("\"${lightValue.toHexString()}${fix4Hex(adjustColor)}${fix4Hex(400)}${fix4Hex(500)}\"")
-//                            adjustLightColour("\"0012430116b943\"")
-                        }
-                        binding.sbAdjustColour.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+//                        binding.vColor.setBackgroundColor(Color.HSVToColor(floatArrayOf(150f, 400f, 500f)))
+//                        binding.btnColour.setOnClickListener {
+////                            adjustLightColour("\"${lightValue.toHexString()}${fix4Hex(adjustColor)}${fix4Hex(400)}${fix4Hex(500)}\"")
+//                            lightDev.colorHSV()
+//                        }
+                        binding.sbAdjustColourH.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                             override fun onProgressChanged(
                                 seekBar: SeekBar?,
                                 progress: Int,
                                 fromUser: Boolean
                             ) {
-                                val colorHex = Integer.parseInt("FFFF", 16)
-                                val color = progress.toFloat() / 100 * colorHex
-                                adjustColor = color.toInt()
-                                binding.vColor.setBackgroundColor(Color.HSVToColor(floatArrayOf(color / colorHex * 360, 600f, 500f)))
+//                                val colorHex = Integer.parseInt("FFFF", 16)
+//                                val color = progress.toFloat() / 100 * colorHex
+//                                adjustColor = color.toInt()
+//                                lightDev.colorHSV()
+//                                binding.vColor.setBackgroundColor(Color.HSVToColor(floatArrayOf(color / colorHex * 360, 600f, 500f)))
+                                colorH = (progress.toFloat() / 100 * 360).roundToInt()
+                                lightDev.colorHSV(colorH, colorS, colorV, null)
                             }
 
                             override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                            }
+
+                            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                            }
+                        })
+                        binding.sbAdjustColourS.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                            override fun onProgressChanged(
+                                seekBar: SeekBar?,
+                                progress: Int,
+                                fromUser: Boolean
+                            ) {
+                                colorS = progress
+                                lightDev.colorHSV(colorH, colorS, colorV, null)
+                            }
+
+                            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+                            }
+
+                            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                            }
+                        })
+                        binding.sbAdjustColourV.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                            override fun onProgressChanged(
+                                seekBar: SeekBar?,
+                                progress: Int,
+                                fromUser: Boolean
+                            ) {
+                                colorV = progress
+                                lightDev.colorHSV(colorH, colorS, colorV, null)
+                            }
+
+                            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
                             }
 
                             override fun onStopTrackingTouch(seekBar: SeekBar?) {
