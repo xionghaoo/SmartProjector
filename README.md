@@ -25,6 +25,13 @@ DisplayMetrics{density=2.0, width=1920, height=1104, scaledDensity=2.0, xdpi=284
 5. 图像识别(查题)
 6. 儿歌模块
 
+## 相关资源
+
+1. Ucode Android版本，第一版没有舞台，但是会在后续的版本增加
+2. 语音，腾讯叮当
+3. 课程资源，九学王
+4. 直播，暂定小鹅通
+
 ## 其他
 
 wifi密码存储位置：

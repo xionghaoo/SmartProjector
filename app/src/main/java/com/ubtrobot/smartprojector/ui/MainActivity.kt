@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
 //        )
 
         // 拓展网关初始化
-        TuyaGatewayManager.instance().initial()
+//        TuyaGatewayManager.instance().initial()
 
         initialTuyaHome()
 

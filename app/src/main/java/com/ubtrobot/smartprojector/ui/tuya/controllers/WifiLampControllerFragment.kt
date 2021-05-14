@@ -78,6 +78,15 @@ class WifiLampControllerFragment : Fragment() {
 
                 }
             })
+
+            val hsv = lightDev.lightDataPoint.colorHSV
+            colorH = hsv.h
+            colorS = hsv.s
+            colorV = hsv.v
+
+            binding.sbAdjustColourH.progress = (colorH.toFloat() / 360 * 100).roundToInt()
+            binding.sbAdjustColourS.progress = colorS
+            binding.sbAdjustColourV.progress = colorV
         }
 
 //        Timber.d("schema: ${device?.schema}")
@@ -127,22 +136,12 @@ class WifiLampControllerFragment : Fragment() {
                         binding.tvLightProgress.text = progress.toString()
                     }
                     CMD_COLOUR -> {
-//                        binding.vColor.setBackgroundColor(Color.HSVToColor(floatArrayOf(150f, 400f, 500f)))
-//                        binding.btnColour.setOnClickListener {
-////                            adjustLightColour("\"${lightValue.toHexString()}${fix4Hex(adjustColor)}${fix4Hex(400)}${fix4Hex(500)}\"")
-//                            lightDev.colorHSV()
-//                        }
                         binding.sbAdjustColourH.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                             override fun onProgressChanged(
                                 seekBar: SeekBar?,
                                 progress: Int,
                                 fromUser: Boolean
                             ) {
-//                                val colorHex = Integer.parseInt("FFFF", 16)
-//                                val color = progress.toFloat() / 100 * colorHex
-//                                adjustColor = color.toInt()
-//                                lightDev.colorHSV()
-//                                binding.vColor.setBackgroundColor(Color.HSVToColor(floatArrayOf(color / colorHex * 360, 600f, 500f)))
                                 colorH = (progress.toFloat() / 100 * 360).roundToInt()
                                 lightDev.colorHSV(colorH, colorS, colorV, null)
                             }
@@ -208,30 +207,6 @@ class WifiLampControllerFragment : Fragment() {
                     }
                 }
             }
-        }
-    }
-
-    private fun fix4Hex(value: Int) : String {
-        val hex = value.toHexString()
-        return when (hex.length) {
-            1 -> "000$hex"
-            2 -> "00$hex"
-            3 -> "0$hex"
-            4 -> hex
-            else -> "0000"
-        }
-    }
-
-    private fun fix6Hex(value: Int) : String {
-        val hex = value.toHexString()
-        return when (hex.length) {
-            1 -> "00000$hex"
-            2 -> "0000$hex"
-            3 -> "000$hex"
-            4 -> "00$hex"
-            5 -> "0$hex"
-            6 -> hex
-            else -> "000000"
         }
     }
 
