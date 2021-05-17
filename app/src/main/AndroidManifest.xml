@@ -5,8 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-<!--    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" /> -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,21 +21,27 @@
          ACCESS_COARSE_LOCATION instead.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".SmartProjectorApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.MathematicsClassroomActivity"
+        <activity android:name=".ui.video.VideoPlayerActivity"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".ui.MathematicsClassroomActivity"
             android:screenOrientation="userLandscape" />
-        <activity android:name=".ui.EnglishClassroomActivity"
+        <activity
+            android:name=".ui.EnglishClassroomActivity"
             android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.tuya.FamilyManagerActivity"
@@ -47,7 +52,6 @@
         <activity
             android:name=".ui.ChineseDetailActivity"
             android:screenOrientation="userLandscape" />
-        <activity android:name=".ui.tuya.TuyaDeviceCategoryActivity" />
         <activity
             android:name=".ui.tuya.NewDeviceActivity"
             android:screenOrientation="userLandscape" />
@@ -57,7 +61,6 @@
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="userLandscape" />
-        <activity android:name=".ui.cartoonbook.FlipTestActivity" />
         <activity
             android:name=".test.TestActivity"
             android:screenOrientation="userLandscape" />

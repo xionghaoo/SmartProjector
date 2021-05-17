@@ -101,7 +101,7 @@
 	<dimen name="_100sp">100.00sp</dimen>
 
 	<!--dp transfer from default-->
-	<dimen name="player_normal_height">240.00dp</dimen>
+	<dimen name="player_normal_height">300.00dp</dimen>
 	<dimen name="toolbar_height">56.00dp</dimen>
 	<dimen name="option_view_height">72.00dp</dimen>
 	<dimen name="option_view_width">250.00dp</dimen>

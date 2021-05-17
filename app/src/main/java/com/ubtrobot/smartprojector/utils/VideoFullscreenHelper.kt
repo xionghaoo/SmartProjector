@@ -19,7 +19,8 @@ class VideoFullscreenHelper {
                 activity: AppCompatActivity,
                 playView: ViewGroup,
                 btnFullscreen: ImageView?,
-                defaultHeight: Int = 200
+                defaultHeight: Int = 200,
+                onScreenStateChange: ((isFullScreen: Boolean) -> Unit)? = null
         ) {
             activity.apply {
                 val screenOrientation = requestedOrientation
@@ -39,7 +40,7 @@ class VideoFullscreenHelper {
                         isFullscreen = false
                     } else {
                         // 正常状态， 开启全屏
-                        btnFullscreen?.setImageResource(R.drawable.ic_fullscreen_close)
+                        btnFullscreen.setImageResource(R.drawable.ic_fullscreen_close)
                         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
                                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
@@ -51,6 +52,7 @@ class VideoFullscreenHelper {
                         playView.layoutParams = params
                         isFullscreen = true
                     }
+                    onScreenStateChange?.invoke(isFullscreen)
                 }
             }
         }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
@@ -117,6 +118,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
 
+        // 视频全屏处理
         VideoFullscreenHelper.handle(
                 activity = this,
                 playView = binding.playerView,
@@ -126,6 +128,7 @@ class VideoActivity : AppCompatActivity(), Player.EventListener {
 
         player!!.addListener(this)
         binding.playerView.player = player
+        binding.playerView.findViewById<TextView>(R.id.exo_video_title).text = "测试视频"
 
         val testVideo = "https://storage.googleapis.com/wvmedia/clear/hevc/tears/tears.mpd"
 //        val video1 = File(

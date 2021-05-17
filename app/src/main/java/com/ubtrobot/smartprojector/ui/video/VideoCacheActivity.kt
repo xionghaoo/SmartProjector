@@ -19,13 +19,13 @@ class VideoCacheActivity : AppCompatActivity() {
 //        }
 //        rc_cache_list.adapter = adapter
 
-        val items = MutableList<VideoItem>(0) {VideoItem("", "")}
-        VideoDownloadHelper.loadDownloads(this)?.values?.forEach { download ->
-            items.add(VideoItem(title = "测试视频", url = download.request.uri.toString()))
-        }
+//        val items = MutableList<VideoItem>(0) {VideoItem("", "")}
+//        VideoDownloadHelper.loadDownloads(this)?.values?.forEach { download ->
+//            items.add(VideoItem(title = "测试视频", url = download.request.uri.toString()))
+//        }
 
-        adapter.items = items
-        adapter.notifyDataSetChanged()
+//        adapter.items = items
+//        adapter.notifyDataSetChanged()
 
     }
 }

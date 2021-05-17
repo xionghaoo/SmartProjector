@@ -23,20 +23,21 @@ import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
-import com.ubtrobot.smartprojector.BuildConfig
-import com.ubtrobot.smartprojector.GlideApp
-import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.repo.Repository
-import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
+import com.ubtrobot.smartprojector.ui.video.VideoActivity
+import com.ubtrobot.smartprojector.ui.video.VideoItem
+import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import eu.chainfire.libsuperuser.Shell
@@ -191,7 +192,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.containerAvatar.setOnClickListener {
-            startPlainActivity(TuyaHomeActivity::class.java)
+            startPlainActivity(SettingsActivity::class.java)
+        }
+
+        // TODO 测试
+        binding.tvPageTitle.setOnClickListener {
+            val items = ArrayList<VideoItem>()
+            items.add(VideoItem("视频1", MockData.video1))
+            items.add(VideoItem("视频2", MockData.video2))
+            items.add(VideoItem("视频3", MockData.video3))
+            items.add(VideoItem("视频4", MockData.video4))
+            VideoPlayerActivity.start(this, items)
         }
 
 //        RootExecutor.exec(

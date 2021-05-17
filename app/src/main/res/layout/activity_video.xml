@@ -14,7 +14,7 @@
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/player_view"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="@dimen/player_normal_height"
             app:resize_mode="fixed_height"
             app:show_buffering="when_playing"/>
 
