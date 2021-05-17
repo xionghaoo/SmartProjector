@@ -1,23 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.video.VideoPlayerActivity">
-
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/player_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_500dp"
-        android:background="@color/black"
-        app:resize_mode="fixed_height"
-        app:show_buffering="when_playing" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_500dp"
+            android:background="@color/black"
+            app:resize_mode="fixed_height"
+            app:show_buffering="when_playing" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_video_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_video_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_player_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginEnd="@dimen/_20dp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:text="播放列表"/>
+
+    <LinearLayout
+        android:id="@+id/player_list"
+        android:layout_width="@dimen/_300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@android:color/holo_blue_light"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/btn_player_list_close"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60dp"
+            android:gravity="center"
+            android:text="收起"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_player_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</FrameLayout>

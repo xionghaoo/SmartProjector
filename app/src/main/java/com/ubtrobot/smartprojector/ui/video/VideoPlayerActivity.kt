@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -12,6 +13,7 @@ import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityVideoPlayerBinding
+import com.ubtrobot.smartprojector.utils.ToastUtil
 import com.ubtrobot.smartprojector.utils.VideoFullscreenHelper
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -47,6 +49,20 @@ class VideoPlayerActivity : AppCompatActivity() {
             player?.seekTo(index, 0)
             player?.playWhenReady = true
         }
+
+        binding.playerList.translationX = resources.getDimension(R.dimen._300dp)
+        binding.btnPlayerList.setOnClickListener {
+            binding.playerList.animate()
+                .translationX(0f)
+                .start()
+        }
+
+        binding.btnPlayerListClose.setOnClickListener {
+            binding.playerList.animate()
+                .translationX(resources.getDimension(R.dimen._300dp))
+                .start()
+        }
+
         videoPlayerTask()
     }
 
@@ -97,6 +113,9 @@ class VideoPlayerActivity : AppCompatActivity() {
         ) { isFullScreen ->
             if (!isFullScreen) {
                 binding.rcVideoList.adapter?.notifyDataSetChanged()
+                binding.btnPlayerList.visibility = View.GONE
+            } else {
+                binding.btnPlayerList.visibility = View.VISIBLE
             }
         }
 
