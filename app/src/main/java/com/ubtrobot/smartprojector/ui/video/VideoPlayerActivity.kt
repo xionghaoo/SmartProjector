@@ -45,7 +45,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         items = intent.getParcelableArrayListExtra(EXTRA_VIDEO_ITEMS)
 
         binding.rcVideoList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rcVideoList.adapter = PlayerItemAdapter(items ?: ArrayList()) { index ->
+        binding.rcVideoList.adapter = PlayerItemAdapter(items ?: ArrayList(), PlayerItemAdapter.Type.GRID) { index ->
             player?.seekTo(index, 0)
             player?.playWhenReady = true
         }
@@ -61,6 +61,12 @@ class VideoPlayerActivity : AppCompatActivity() {
             binding.playerList.animate()
                 .translationX(resources.getDimension(R.dimen._300dp))
                 .start()
+        }
+
+        binding.rcPlayerList.layoutManager = LinearLayoutManager(this)
+        binding.rcPlayerList.adapter = PlayerItemAdapter(items ?: ArrayList(), PlayerItemAdapter.Type.LIST) { index ->
+            player?.seekTo(index, 0)
+            player?.playWhenReady = true
         }
 
         videoPlayerTask()

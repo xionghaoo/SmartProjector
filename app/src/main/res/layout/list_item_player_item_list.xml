@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_100dp"
+    android:gravity="center_vertical"
+    android:textColor="@color/white"
+    android:textSize="@dimen/_20sp"
+    android:paddingStart="@dimen/_20dp"
+    android:paddingEnd="@dimen/_20dp"
+    tools:text="视频名称">
+</TextView>
