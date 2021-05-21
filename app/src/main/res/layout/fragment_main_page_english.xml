@@ -14,7 +14,17 @@
         android:layout_marginTop="@dimen/_6dp"
         android:background="@mipmap/ic_english_learn_record_bg"
         app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:layout_marginStart="@dimen/_73dp"
+            android:text="学习记录"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView20"
@@ -34,7 +44,17 @@
         android:layout_marginTop="@dimen/_5dp"
         android:background="@mipmap/ic_english_preparation_bg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:layout_marginStart="@dimen/_73dp"
+            android:text="课前预习"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView29"
@@ -64,7 +84,17 @@
         android:background="@mipmap/ic_english_keep_bg"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+        app:layout_constraintTop_toTopOf="@+id/textView13" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:layout_marginStart="@dimen/_73dp"
+            android:text="经典巩固"/>
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/textView23"
@@ -74,7 +104,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="@+id/textView17"
         app:layout_constraintStart_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
+        app:layout_constraintTop_toTopOf="@+id/textView19" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:layout_marginStart="@dimen/_73dp"
+            android:text="测试练习"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView30"
