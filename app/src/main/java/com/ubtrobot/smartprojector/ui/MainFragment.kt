@@ -176,26 +176,24 @@ class MainFragment : Fragment() {
      * 英语
      */
     private fun bindPageThreeView() {
-        bindingPageThree.cardEnglishClassroom.setSelectListener {
-            startPlainActivity(EnglishClassroomActivity::class.java)
-        }
-
-        bindingPageThree.cardEnglishCoursebook.setSelectListener {
-            getLearnAppManager.startEnglishPage(requireContext(), "同步新点读")
-        }
-
-        bindingPageThree.cardEnglishOralPractise.setSelectListener {
-            getLearnAppManager.startEnglishPage(requireContext(), "同步英语评测")
-        }
-
-        bindingPageThree.cardEnglishWordBook.setSelectListener {
-            getLearnAppManager.startEnglishPage(requireContext(), "分类词汇")
-        }
-
-        bindingPageThree.cardEnglishInterest.setSelectListener {
-//            getLearnAppManager.startEnglishPage(requireContext(), "小学科学动漫")
-//            getLearnAppManager.startEnglishPage(requireContext(), "必考点小升初")
-        }
+//        bindingPageThree.cardEnglishClassroom.setSelectListener {
+//            startPlainActivity(EnglishClassroomActivity::class.java)
+//        }
+//
+//        bindingPageThree.cardEnglishCoursebook.setSelectListener {
+//            getLearnAppManager.startEnglishPage(requireContext(), "同步新点读")
+//        }
+//
+//        bindingPageThree.cardEnglishOralPractise.setSelectListener {
+//            getLearnAppManager.startEnglishPage(requireContext(), "同步英语评测")
+//        }
+//
+//        bindingPageThree.cardEnglishWordBook.setSelectListener {
+//            getLearnAppManager.startEnglishPage(requireContext(), "分类词汇")
+//        }
+//
+//        bindingPageThree.cardEnglishInterest.setSelectListener {
+//        }
     }
 
     /**

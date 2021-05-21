@@ -161,6 +161,7 @@ class MainActivity : AppCompatActivity() {
                 if (position < pageTitles.size) {
                     binding.tvPageTitle.text = pageTitles[position]
                 }
+
                 val bg = when (position) {
                     0 -> R.raw.ic_assistant_bg
                     1 -> R.raw.ic_chinese_bg

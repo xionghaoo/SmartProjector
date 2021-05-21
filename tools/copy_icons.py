@@ -6,8 +6,8 @@ from os import listdir
 from os.path import isfile, join
 
 
-SOURCE_DIR = 'D:\\resources\\icons'
-TARGET_DIR = 'D:\\Projects\\android\\SmartProjector\\app\\src\\main\\res'
+SOURCE_DIR = '/Users/destiny/work/优必选/蝌蚪项目/icons'
+TARGET_DIR = '../app/src/main/res'
 CONFIG_FILE = 'copy_config.txt'
 # 将';'号左边的文件名修改成右边的名称
 SPLIT_CHARACTER = ';'

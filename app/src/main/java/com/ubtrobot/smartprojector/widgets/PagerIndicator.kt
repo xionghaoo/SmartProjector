@@ -77,7 +77,7 @@ class PagerIndicator : LinearLayout {
                 item.background = resources.getDrawable(R.drawable.shape_indicator_normal)
             }
             val itemLp = item.layoutParams as LinearLayout.LayoutParams
-            val size = resources.getDimension(R.dimen._12dp).roundToInt()
+            val size = resources.getDimension(R.dimen._8dp).roundToInt()
             itemLp.width = size
             itemLp.height = size
             if (i > 0) {
