@@ -148,28 +148,28 @@ class MainFragment : Fragment() {
      * 语文
      */
     private fun bindPageTwoView() {
-        GlideApp.with(requireContext())
-                .load(R.mipmap.ic_chinese_main)
-                .into(bindingPageTwo.ivChineseMain)
-        bindingPageTwo.cardChineseClassroom.setSelectListener {
-            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_CLASSROOM)
-        }
-
-        bindingPageTwo.cardChineseInterest.setSelectListener {
-            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_INTEREST)
-        }
-
-        bindingPageTwo.cardChineseCoursebook.setSelectListener {
-            getLearnAppManager.startChinesePage(requireContext(), "同步新点读")
-        }
-
-        bindingPageTwo.cardChineseLearnNewWord.setSelectListener {
-            getLearnAppManager.startChinesePage(requireContext(), "生字词")
-        }
-
-        bindingPageTwo.cardChineseLearnPinyin.setSelectListener {
-            getLearnAppManager.startChinesePage(requireContext(), "拼音学习")
-        }
+//        GlideApp.with(requireContext())
+//                .load(R.mipmap.ic_chinese_main)
+//                .into(bindingPageTwo.ivChineseMain)
+//        bindingPageTwo.cardChineseClassroom.setSelectListener {
+//            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_CLASSROOM)
+//        }
+//
+//        bindingPageTwo.cardChineseInterest.setSelectListener {
+//            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_INTEREST)
+//        }
+//
+//        bindingPageTwo.cardChineseCoursebook.setSelectListener {
+//            getLearnAppManager.startChinesePage(requireContext(), "同步新点读")
+//        }
+//
+//        bindingPageTwo.cardChineseLearnNewWord.setSelectListener {
+//            getLearnAppManager.startChinesePage(requireContext(), "生字词")
+//        }
+//
+//        bindingPageTwo.cardChineseLearnPinyin.setSelectListener {
+//            getLearnAppManager.startChinesePage(requireContext(), "拼音学习")
+//        }
     }
 
     /**
