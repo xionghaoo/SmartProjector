@@ -21,7 +21,7 @@
     <LinearLayout
         android:id="@+id/textView7"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_44dp"
+        android:layout_height="@dimen/_48dp"
         android:gravity="center_vertical|end"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
             android:format12Hour="EEEE"
             android:format24Hour="EEEE"
             android:layout_marginEnd="@dimen/_24dp"
-            android:textColor="@color/color_status_bar_txt"
+            android:textColor="@color/color_text_dark"
             android:textSize="@dimen/_16sp"
             tools:text="星期天" />
 
@@ -45,7 +45,7 @@
             android:format12Hour="yyyy年MM月dd日"
             android:format24Hour="yyyy年MM月dd日"
             android:layout_marginEnd="@dimen/_62dp"
-            android:textColor="@color/color_status_bar_txt"
+            android:textColor="@color/color_text_dark"
             android:textSize="@dimen/_16sp"
             tools:text="2020年1月1日" />
 
@@ -58,7 +58,7 @@
             android:textSize="@dimen/_16sp"
             android:format24Hour="HH:mm"
             android:format12Hour="hh:mm"
-            android:textColor="@color/color_status_bar_txt"/>
+            android:textColor="@color/color_text_dark"/>
 
         <ImageView
             android:id="@+id/iv_wifi_status"
@@ -87,7 +87,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_main_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_110dp"
+        android:layout_height="@dimen/_92dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
@@ -95,8 +95,7 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="@dimen/_258dp"
-            android:layout_height="@dimen/_86dp"
-            android:layout_marginStart="@dimen/_8dp"
+            android:layout_height="@dimen/_74dp"
             android:background="@mipmap/ic_assistant_avatar_bg"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/container_avatar"
@@ -105,8 +104,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/_114dp"
-                android:layout_marginTop="@dimen/_13dp"
+                android:layout_marginStart="@dimen/_104dp"
+                android:layout_marginTop="@dimen/_7dp"
                 android:layout_weight="1"
                 android:includeFontPadding="false"
                 android:text="Eva"
@@ -117,9 +116,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_115dp"
+                android:layout_marginStart="@dimen/_105dp"
                 android:layout_marginTop="@dimen/_4dp"
-                android:layout_marginBottom="@dimen/_6dp"
+                android:layout_marginBottom="@dimen/_2dp"
                 android:includeFontPadding="false"
                 android:text="等级2"
                 android:textColor="@color/white"
@@ -143,7 +142,7 @@
             android:id="@+id/textView58"
             android:layout_width="@dimen/_24dp"
             android:layout_height="@dimen/_8dp"
-            android:layout_marginStart="@dimen/_155dp"
+            android:layout_marginStart="@dimen/_173dp"
             android:background="@drawable/shape_connect_line_left"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
             app:layout_constraintStart_toEndOf="@+id/container_avatar"
@@ -151,15 +150,15 @@
 
         <ImageView
             android:id="@+id/container_avatar"
-            android:layout_width="@dimen/_107dp"
-            android:layout_height="@dimen/_107dp"
-            android:layout_marginStart="@dimen/_75dp"
-            android:layout_marginTop="@dimen/_3dp"
+            android:layout_width="@dimen/_80dp"
+            android:layout_height="@dimen/_80dp"
+            android:layout_marginStart="@dimen/_86dp"
             android:src="@mipmap/ic_assistant_avatar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="@dimen/_75dp"
             android:layout_height="@dimen/_75dp"
             android:layout_marginStart="@dimen/_11dp"

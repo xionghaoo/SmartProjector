@@ -201,7 +201,7 @@
                 android:layout_width="@dimen/_76dp"
                 android:layout_height="@dimen/_76dp"
                 android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_english_special_word" />
+                android:src="@mipmap/ic_chinese_idiom" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -8,29 +8,72 @@
     tools:context=".ui.MainFragment">
 
     <FrameLayout
-        android:id="@+id/textView19"
-        android:layout_width="@dimen/_265dp"
-        android:layout_height="@dimen/_265dp"
-        android:layout_marginTop="@dimen/_6dp"
-        android:background="@mipmap/ic_english_learn_record_bg"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" >
+        android:id="@+id/textView23"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:background="@mipmap/ic_chinese_after_school"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toTopOf="@+id/textView19">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_26sp"
-            android:textColor="@color/white"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/_18dp"
             android:layout_marginStart="@dimen/_73dp"
-            android:text="学习记录"/>
+            android:layout_marginBottom="@dimen/_18dp"
+            android:text="课后练习"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_26sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="@dimen/_20dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_connect_line_bottom"
+        app:layout_constraintBottom_toBottomOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="@dimen/_36dp"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_254dp"
+        android:background="@drawable/shape_connect_line_right"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/textView19"
+        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+    <FrameLayout
+        android:id="@+id/textView19"
+        android:layout_width="@dimen/_265dp"
+        android:layout_height="@dimen/_250dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="@mipmap/ic_chinese_classic"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_73dp"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:text="经典巩固"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_26sp" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="@dimen/_20dp"
         android:layout_height="@dimen/_36dp"
-        android:layout_marginBottom="@dimen/_255dp"
+        android:layout_marginBottom="@dimen/_246dp"
         android:background="@drawable/shape_connect_line_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="@+id/textView19"
@@ -38,123 +81,54 @@
 
     <FrameLayout
         android:id="@+id/textView13"
-        android:layout_width="@dimen/_265dp"
-        android:layout_height="@dimen/_265dp"
+        android:layout_width="@dimen/_538dp"
+        android:layout_height="@dimen/_249dp"
         android:layout_marginStart="@dimen/_75dp"
-        android:layout_marginTop="@dimen/_5dp"
-        android:background="@mipmap/ic_english_preparation_bg"
+        android:layout_marginTop="@dimen/_29dp"
+        android:background="@mipmap/ic_chinese_prepare"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_26sp"
-            android:textColor="@color/white"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/_18dp"
             android:layout_marginStart="@dimen/_73dp"
-            android:text="课前预习"/>
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="@dimen/_36dp"
-        android:layout_height="@dimen/_20dp"
-        android:layout_marginStart="@dimen/_254dp"
-        android:background="@drawable/shape_connect_line_left"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="@dimen/_36dp"
-        android:layout_height="@dimen/_20dp"
-        android:layout_marginStart="@dimen/_254dp"
-        android:background="@drawable/shape_connect_line_left"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
-
-    <FrameLayout
-        android:id="@+id/textView17"
-        android:layout_width="@dimen/_265dp"
-        android:layout_height="@dimen/_265dp"
-        android:layout_marginStart="@dimen/_7dp"
-        android:background="@mipmap/ic_english_keep_bg"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_26sp"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:text="课前预习"
             android:textColor="@color/white"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/_18dp"
-            android:layout_marginStart="@dimen/_73dp"
-            android:text="经典巩固"/>
+            android:textSize="@dimen/_26sp" />
     </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/textView23"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@mipmap/ic_english_test_bg"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="@+id/textView17"
-        app:layout_constraintStart_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView19" >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_26sp"
-            android:textColor="@color/white"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/_18dp"
-            android:layout_marginStart="@dimen/_73dp"
-            android:text="测试练习"/>
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="@dimen/_20dp"
-        android:layout_height="@dimen/_16dp"
-        android:layout_marginBottom="@dimen/_256dp"
-        android:background="@drawable/shape_connect_line_bottom"
-        app:layout_constraintBottom_toBottomOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="@+id/textView23" />
 
     <LinearLayout
         android:id="@+id/textView41"
-        android:layout_width="@dimen/_410dp"
+        android:layout_width="@dimen/_346dp"
         android:layout_height="@dimen/_548dp"
-        android:layout_marginStart="@dimen/_22dp"
+        android:layout_marginStart="@dimen/_51dp"
         android:background="@mipmap/ic_english_special_container_bg"
         android:orientation="vertical"
         android:paddingStart="@dimen/_18dp"
         android:paddingEnd="@dimen/_32dp"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_28dp"
-            android:background="@drawable/shape_round_rect_red"
+            android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="@dimen/_98dp"
-                android:layout_height="@dimen/_98dp"
-                android:layout_marginStart="@dimen/_40dp"
-                android:src="@mipmap/ic_english_special_word" />
+                android:layout_width="@dimen/_76dp"
+                android:layout_height="@dimen/_76dp"
+                android:layout_marginStart="@dimen/_23dp"
+                android:src="@mipmap/ic_english_word" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_36dp"
+                android:layout_marginStart="@dimen/_24dp"
                 android:layout_marginEnd="@dimen/_15dp"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -168,19 +142,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_blue"
+            android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="@dimen/_98dp"
-                android:layout_height="@dimen/_98dp"
-                android:layout_marginStart="@dimen/_40dp"
-                android:src="@mipmap/ic_english_special_read" />
+                android:layout_width="@dimen/_76dp"
+                android:layout_height="@dimen/_76dp"
+                android:layout_marginStart="@dimen/_23dp"
+                android:src="@mipmap/ic_english_read" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_36dp"
+                android:layout_marginStart="@dimen/_24dp"
                 android:layout_marginEnd="@dimen/_15dp"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -194,19 +168,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_purple"
+            android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="@dimen/_98dp"
-                android:layout_height="@dimen/_98dp"
-                android:layout_marginStart="@dimen/_40dp"
-                android:src="@mipmap/ic_english_special_grammar" />
+                android:layout_width="@dimen/_76dp"
+                android:layout_height="@dimen/_76dp"
+                android:layout_marginStart="@dimen/_23dp"
+                android:src="@mipmap/ic_english_grammar" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_36dp"
+                android:layout_marginStart="@dimen/_24dp"
                 android:layout_marginEnd="@dimen/_15dp"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -220,19 +194,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_green"
+            android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="@dimen/_98dp"
-                android:layout_height="@dimen/_98dp"
-                android:layout_marginStart="@dimen/_40dp"
-                android:src="@mipmap/ic_english_special_writing" />
+                android:layout_width="@dimen/_76dp"
+                android:layout_height="@dimen/_76dp"
+                android:layout_marginStart="@dimen/_23dp"
+                android:src="@mipmap/ic_english_write" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_36dp"
+                android:layout_marginStart="@dimen/_24dp"
                 android:layout_marginEnd="@dimen/_15dp"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -246,7 +220,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textView42"
-        android:layout_width="@dimen/_138dp"
+        android:layout_width="@dimen/_148dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_22dp"
         android:layout_marginEnd="@dimen/_76dp"

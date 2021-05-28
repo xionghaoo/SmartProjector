@@ -200,24 +200,24 @@ class MainFragment : Fragment() {
      * 数学
      */
     private fun bindPageFourView() {
-        GlideApp.with(requireContext())
-                .load(R.mipmap.ic_mathematics_main)
-                .into(bindingPageFour.ivMathematicsMain)
-        bindingPageFour.cardMathematicsClassroom.setSelectListener {
-            startPlainActivity(MathematicsClassroomActivity::class.java)
-        }
-        bindingPageFour.cardMathematicsCoursebook.setSelectListener {
-            getLearnAppManager.startMathematicsPage(requireContext(), "同步新点读")
-        }
-        bindingPageFour.cardMathematicsSearchQuestion.setSelectListener {
-            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_sou_ti")
-        }
-        bindingPageFour.cardMathematicsWrongBook.setSelectListener {
-            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_zhidu_cuo_ti")
-        }
-        bindingPageFour.cardMathematicsCalculate.setSelectListener {
-            getLearnAppManager.startMathematicsPage(requireContext(), "速算闯关")
-        }
+//        GlideApp.with(requireContext())
+//                .load(R.mipmap.ic_mathematics_main)
+//                .into(bindingPageFour.ivMathematicsMain)
+//        bindingPageFour.cardMathematicsClassroom.setSelectListener {
+//            startPlainActivity(MathematicsClassroomActivity::class.java)
+//        }
+//        bindingPageFour.cardMathematicsCoursebook.setSelectListener {
+//            getLearnAppManager.startMathematicsPage(requireContext(), "同步新点读")
+//        }
+//        bindingPageFour.cardMathematicsSearchQuestion.setSelectListener {
+//            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_sou_ti")
+//        }
+//        bindingPageFour.cardMathematicsWrongBook.setSelectListener {
+//            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_zhidu_cuo_ti")
+//        }
+//        bindingPageFour.cardMathematicsCalculate.setSelectListener {
+//            getLearnAppManager.startMathematicsPage(requireContext(), "速算闯关")
+//        }
     }
 
     /**
