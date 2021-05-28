@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var pageTitles = arrayOf("AI智能", "语文", "英语", "数学", "AI编程", "优必选严选")
+    private var pageTitles = arrayOf("智能学习", "语文", "英语", "数学", "AI编程", "优必选严选")
 
     private lateinit var binding: ActivityMainBinding
 
@@ -162,18 +162,14 @@ class MainActivity : AppCompatActivity() {
                     binding.tvPageTitle.text = pageTitles[position]
                 }
 
-                val bg = when (position) {
-                    0 -> R.raw.ic_assistant_bg
-                    1 -> R.raw.ic_chinese_bg
-                    2 -> R.raw.ic_english_bg
-                    3 -> R.raw.ic_mathematics_bg
-                    4 -> R.raw.ic_program_bg
-                    else -> R.raw.background
-                }
-                Glide.with(this@MainActivity)
-                        .load(bg)
-                        .centerCrop()
-                        .into(binding.ivMainBackground)
+//                val bg = when (position) {
+//                    0 -> R.raw.ic_assistant_bg
+//                    1 -> R.raw.ic_chinese_bg
+//                    2 -> R.raw.ic_english_bg
+//                    3 -> R.raw.ic_mathematics_bg
+//                    4 -> R.raw.ic_program_bg
+//                    else -> R.raw.background
+//                }
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -228,10 +224,10 @@ class MainActivity : AppCompatActivity() {
         intentFilter.addDataScheme("package")
         registerReceiver(receiver, intentFilter)
 
-        GlideApp.with(this)
-                .load(R.raw.ic_assistant_bg)
-                .centerCrop()
-                .into(binding.ivMainBackground)
+        Glide.with(this@MainActivity)
+            .load(R.mipmap.ic_launcher_bg)
+            .centerCrop()
+            .into(binding.ivMainBackground)
 
 //        if (Build.VERSION.SDK_INT >= 26) {
 //            test()

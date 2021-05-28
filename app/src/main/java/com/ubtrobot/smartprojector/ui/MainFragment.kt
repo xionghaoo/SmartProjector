@@ -110,38 +110,38 @@ class MainFragment : Fragment() {
      * ai智能辅助
      */
     private fun bindPageOneView() {
-        GlideApp.with(requireContext())
-            .load(R.mipmap.ic_assistant_finger_read)
-            .into(bindingPageOne.ivAssistantFingerRead)
-        GlideApp.with(requireContext())
-            .load(R.mipmap.ic_assistant_ip_role)
-            .into(bindingPageOne.ivIpRole)
-
-        GlideApp.with(requireContext())
-            .load(R.mipmap.ic_assistant_search_questions)
-            .into(bindingPageOne.ivSearchQuestions)
-
-        bindingPageOne.cardAssistantFingerRead.setSelectListener {
-            getLearnAppManager.startChinesePage(requireContext(), "custom_page_apk_dian_du")
-        }
-        bindingPageOne.cardAssistantWordBook.setSelectListener {
-            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_dan_ci")
-        }
-        bindingPageOne.cardAssistantChineseWordBook.setSelectListener {
-            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_zi_ci")
-        }
-        bindingPageOne.cardAssistantWrongBook.setSelectListener {
-            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_cuo_ti")
-        }
-        bindingPageOne.cardAssistantQueryWord.setSelectListener {
-            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_dan_ci")
-        }
-        bindingPageOne.cardAssistantQueryChineseWord.setSelectListener {
-            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_zi_ci")
-        }
-        bindingPageOne.cardSearchQuestions.setSelectListener {
-            getLearnAppManager.startAiPage(requireContext(), "custom_page_sou_ti")
-        }
+//        GlideApp.with(requireContext())
+//            .load(R.mipmap.ic_assistant_finger_read)
+//            .into(bindingPageOne.ivAssistantFingerRead)
+//        GlideApp.with(requireContext())
+//            .load(R.mipmap.ic_assistant_ip_role)
+//            .into(bindingPageOne.ivIpRole)
+//
+//        GlideApp.with(requireContext())
+//            .load(R.mipmap.ic_assistant_search_questions)
+//            .into(bindingPageOne.ivSearchQuestions)
+//
+//        bindingPageOne.cardAssistantFingerRead.setSelectListener {
+//            getLearnAppManager.startChinesePage(requireContext(), "custom_page_apk_dian_du")
+//        }
+//        bindingPageOne.cardAssistantWordBook.setSelectListener {
+//            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_dan_ci")
+//        }
+//        bindingPageOne.cardAssistantChineseWordBook.setSelectListener {
+//            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_zi_ci")
+//        }
+//        bindingPageOne.cardAssistantWrongBook.setSelectListener {
+//            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_cuo_ti")
+//        }
+//        bindingPageOne.cardAssistantQueryWord.setSelectListener {
+//            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_dan_ci")
+//        }
+//        bindingPageOne.cardAssistantQueryChineseWord.setSelectListener {
+//            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_zi_ci")
+//        }
+//        bindingPageOne.cardSearchQuestions.setSelectListener {
+//            getLearnAppManager.startAiPage(requireContext(), "custom_page_sou_ti")
+//        }
     }
 
     /**
