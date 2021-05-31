@@ -14,6 +14,7 @@ import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
+import com.ubtrobot.smartprojector.utils.JXWAppManager
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -29,6 +30,8 @@ class MainFragment : Fragment() {
     private var page: Int? = null
     @Inject
     lateinit var getLearnAppManager: GetLearnAppManager
+    @Inject
+    lateinit var jxwAppManager: JXWAppManager
 
     private var _bindingPageOne: FragmentMainPageAssistantBinding? = null
     private var _bindingPageTwo: FragmentMainPageChineseBinding? = null
@@ -148,6 +151,9 @@ class MainFragment : Fragment() {
      * 语文
      */
     private fun bindPageTwoView() {
+        bindingPageTwo.tvChinesePrepareRead.setOnClickListener {
+            jxwAppManager.startBookRead(requireContext(), "语文");
+        }
 //        GlideApp.with(requireContext())
 //                .load(R.mipmap.ic_chinese_main)
 //                .into(bindingPageTwo.ivChineseMain)

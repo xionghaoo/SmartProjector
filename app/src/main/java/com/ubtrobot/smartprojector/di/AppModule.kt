@@ -19,6 +19,7 @@ import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import com.ubtrobot.smartprojector.ui.tuya.DeviceCategory
 import com.ubtrobot.smartprojector.utils.FileUtil
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
+import com.ubtrobot.smartprojector.utils.JXWAppManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -159,6 +160,9 @@ object AppModule {
 
     @Provides @Singleton
     fun provideGetLearnManager(prefs: PreferenceStorage) = GetLearnAppManager(prefs)
+
+    @Provides @Singleton
+    fun provideJXWManager(prefs: PreferenceStorage) = JXWAppManager(prefs)
 
     @Provides @Singleton
     fun provideTuyaDeviceCategories(@ApplicationContext context: Context) : List<DeviceCategory> {
