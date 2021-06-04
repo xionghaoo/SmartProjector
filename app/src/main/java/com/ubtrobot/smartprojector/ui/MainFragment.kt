@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.databinding.*
+import com.ubtrobot.smartprojector.startPlainActivity
+import com.ubtrobot.smartprojector.ui.video.VideoItem
+import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.JXWAppManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -222,7 +226,14 @@ class MainFragment : Fragment() {
      * AI编程
      */
     private fun bindPageFiveView() {
-    
+        bindingPageFive.tvProgramTeachingVideo.setOnClickListener {
+            val items = ArrayList<VideoItem>()
+            items.add(VideoItem("视频1", MockData.video1))
+            items.add(VideoItem("视频2", MockData.video2))
+            items.add(VideoItem("视频3", MockData.video3))
+            items.add(VideoItem("视频4", MockData.video4))
+            VideoPlayerActivity.start(requireContext(), items)
+        }
     }
 
     companion object {

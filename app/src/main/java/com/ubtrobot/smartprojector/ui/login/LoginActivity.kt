@@ -57,15 +57,6 @@ class LoginActivity : AppCompatActivity() {
             val username = binding.edtLoginUsername.text.toString()
             val password = binding.edtLoginPassword.text.toString()
 
-//            if (username == "abc" && password == "123") {
-//                viewModel.saveLoginInfo(username)
-//                MainActivity.startWithNewTask(this)
-//            } else {
-//                ToastUtil.showToast(this, "账号密码错误")
-//            }
-
-
-
             TuyaHomeSdk.getUserInstance().loginWithPhonePassword(
                 "86",
                 username,
