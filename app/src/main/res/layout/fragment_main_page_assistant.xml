@@ -120,8 +120,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_blue">
+            android:layout_marginTop="@dimen/_8dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -158,8 +157,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_purple">
+            android:layout_marginTop="@dimen/_8dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -196,8 +194,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_green">
+            android:layout_marginTop="@dimen/_8dp">
 
             <ImageView
                 android:layout_width="match_parent"

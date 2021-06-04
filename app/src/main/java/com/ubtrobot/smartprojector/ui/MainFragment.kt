@@ -6,18 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import com.ubtrobot.smartprojector.GlideApp
-import com.ubtrobot.smartprojector.R
-import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.*
-import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.JXWAppManager
-import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -152,7 +144,7 @@ class MainFragment : Fragment() {
      */
     private fun bindPageTwoView() {
         bindingPageTwo.tvChinesePrepareRead.setOnClickListener {
-            jxwAppManager.startBookRead(requireContext(), "语文");
+            jxwAppManager.startBookFingerRead(requireActivity(), "语文");
         }
 //        GlideApp.with(requireContext())
 //                .load(R.mipmap.ic_chinese_main)

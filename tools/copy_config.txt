@@ -1,7 +1,6 @@
-kd／2icon／数学-五维记单词.png;ic_mathematics_knowledge_points.png
-kd／2icon／数学-数学基础.png;ic_mathematics_foundation.png
-kd／2icon／数学-应用题训练.png;ic_mathematics_practise.png
-kd／2icon／数学-奥数学习.png;ic_mathematics_olympic.png
-kd／2icon／专注力.png;ic_mathematics_tools_focus.png
-kd_2icon_趣味数学.png;ic_mathematics_tools_interest.png
-kd／2icon／四则运算.png;ic_mathematics_tools_arithmetic.png
+kd／2icon／编程-动手编程.png;ic_program_practise.png
+kd／2icon／编程-我的作品.png;ic_program_my_works.png
+kd／2icon／编程-编程思维.png;ic_program_mind.png
+kd／2icon／编程-趣味scratch.png;ic_program_scratch.png
+kd／2icon／编程-python.png;ic_program_python.png
+kd／2icon／编程-编程竞赛.png;ic_program_competition.png

@@ -103,8 +103,8 @@
 	<!--dp transfer from default-->
 	<dimen name="player_normal_height">150.00dp</dimen>
 	<dimen name="toolbar_height">28.00dp</dimen>
-	<dimen name="option_view_height">36.00dp</dimen>
-	<dimen name="option_view_width">125.00dp</dimen>
+	<dimen name="option_view_height">24.00dp</dimen>
+	<dimen name="option_view_width">83.00dp</dimen>
 	<dimen name="main_card_height">353.00dp</dimen>
 	<dimen name="_2dp">1.00dp</dimen>
 	<dimen name="_3dp">1.50dp</dimen>
