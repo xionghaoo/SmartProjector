@@ -3,3 +3,4 @@ include ':tuya_biz'
 include ':app'
 rootProject.name = "SmartProjector"
 include ':voice'
+include ':agora_call'

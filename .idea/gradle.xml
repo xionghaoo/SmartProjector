@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/agora_call" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/tuya_biz" />
             <option value="$PROJECT_DIR$/voice" />

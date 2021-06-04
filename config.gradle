@@ -1,7 +1,7 @@
 ext {
     packageName = 'com.ubtrobot.smartprojector'
 
-    minSdkVersion = 21
+    minSdkVersion = 24
     compileSdkVersion = 30
     targetSdkVersion = 29
     buildToolsVersion = '30.0.2'
@@ -30,6 +30,7 @@ ext {
     versions.okhttp = '4.9.0'
     versions.camerax = '1.0.0-rc02'
     versions.asm = '9.1'
+    versions.qrcode = '4.2.0'
 
     dpes = [:]
     dpes.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
@@ -81,6 +82,7 @@ ext {
         "core": "org.ow2.asm:asm:$versions.asm",
         "commons": "org.ow2.asm:asm-commons:$versions.asm"
     ]
+    dpes.qrcode = "com.journeyapps:zxing-android-embedded:$versions.qrcode"
     // ----------- dependencies version end -------------
 
     // ----------- 项目环境配置 start -----------

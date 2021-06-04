@@ -10,4 +10,8 @@ class LoginViewModel @ViewModelInject internal constructor(
     fun saveLoginInfo(username: String) {
         repo.prefs.loginUsername = username
     }
+
+    fun saveSerialNumber(sn: String) {
+        repo.prefs.serialNumber = sn
+    }
 }
