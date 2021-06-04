@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.view.*
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback
 import com.ubtrobot.smartprojector.*
+import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
@@ -31,6 +33,7 @@ import com.ubtrobot.smartprojector.repo.Repository
 import com.ubtrobot.smartprojector.test.TestActivity
 import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
+import com.ubtrobot.smartprojector.ui.login.LoginViewModel
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
@@ -74,8 +77,10 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var connectionStateMonitor: ConnectionStateMonitor
-    @Inject
-    lateinit var repo: Repository
+//    @Inject
+//    lateinit var repo: Repository
+
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var appMarketFragment: AppMarketFragment
     private lateinit var settingsFragment: SettingsFragment
@@ -184,7 +189,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 检查锁屏状态
-        if (repo.prefs.isScreenLocked) {
+        if (viewModel.prefs().isScreenLocked) {
             ScreenLockActivity.lock(this)
         }
 
@@ -232,6 +237,8 @@ class MainActivity : AppCompatActivity() {
 //        if (Build.VERSION.SDK_INT >= 26) {
 //            test()
 //        }
+
+        initialAgoraToken()
     }
 
     // ---------------------- 读取SN 测试------------------------
@@ -299,6 +306,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 获取声网token
+     */
+    private fun initialAgoraToken() {
+        viewModel.getRTCToken("test", "1200").observe(this, { r ->
+            if (r.status == Status.SUCCESS) {
+                val token = r.data?.data as? String
+                viewModel.prefs().rtcToken = token
+            }
+        })
+
+        viewModel.getRTMToken("1200").observe(this, {  r ->
+            if (r.status == Status.SUCCESS) {
+                val token = r.data?.data as? String
+                viewModel.prefs().rtmToken = token
+            }
+        })
+    }
+
     private fun initialStatusBar() {
         connectionStateMonitor.enable(this)
         connectionStateMonitor.setConnectStateListener { isConnected ->
@@ -323,8 +349,8 @@ class MainActivity : AppCompatActivity() {
                 Timber.d("家庭数量: ${homeBeans?.size}")
                 if (homeBeans?.isNotEmpty() == true) {
                     val home = homeBeans.first()
-                    repo.prefs.currentHomeId = home.homeId
-                    repo.prefs.currentHomeName = home.name
+                    viewModel.prefs().currentHomeId = home.homeId
+                    viewModel.prefs().currentHomeName = home.name
 
                     val service = MicroServiceManager.getInstance()
                             .findServiceByInterface<AbsBizBundleFamilyService>(

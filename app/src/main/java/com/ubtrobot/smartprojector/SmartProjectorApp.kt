@@ -1,6 +1,8 @@
 package com.ubtrobot.smartprojector
 
 import android.app.Application
+import android.os.Build
+import android.provider.Settings
 import android.util.Log
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.liulishuo.filedownloader.FileDownloader

@@ -31,4 +31,10 @@ class MainViewModel @ViewModelInject internal constructor(
 //    }
 
     fun apiTest() = repo.test()
+
+    fun prefs() = repo.prefs
+
+    fun getRTMToken(uid: String) = repo.getRTMToken(uid)
+
+    fun getRTCToken(roomId: String, uid: String) = repo.getRTCToken(roomId, uid)
 }

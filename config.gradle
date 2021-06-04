@@ -89,9 +89,9 @@ ext {
     // 本地缓存数据库版本
     cache_db_version = '1'
     domain = [:]
-    domain.uat = '\"ip.jsontest.com\"'
-    domain.pre = '\"ip.jsontest.com\"'
-    domain.prod = '\"ip.jsontest.com\"'
+    domain.uat = '\"test79.ubtrobot.com\"'
+    domain.pre = '\"xxx.ubtrobot.com\"'
+    domain.prod = '\"xxx.ubtrobot.com\"'
 
     tecentStorageHostUat = '\"https://cdn-vesta-dev.pgyscm.com\"'
     tecentStorageHost = '\"https://cdn-vesta-pro.pgyscm.com\"'

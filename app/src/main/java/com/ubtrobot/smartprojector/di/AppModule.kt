@@ -17,6 +17,7 @@ import com.ubtrobot.smartprojector.repo.CacheDb
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
 import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import com.ubtrobot.smartprojector.ui.tuya.DeviceCategory
+import com.ubtrobot.smartprojector.utils.CryptoUtil
 import com.ubtrobot.smartprojector.utils.FileUtil
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.JXWAppManager
@@ -27,12 +28,14 @@ import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import javax.inject.Named
 import javax.inject.Singleton
+import kotlin.random.Random
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -46,9 +49,10 @@ object AppModule {
     @Provides @Singleton
     fun provideOkHttpClient(
             @ApplicationContext context: Context,
+            prefs: PreferenceStorage,
             @Named("MockInterceptor") mockInterceptor: MockInterceptor
     ) : OkHttpClient {
-        val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+        val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
         val client = OkHttpClient.Builder()
                 .addInterceptor(logInterceptor)
         if (BuildConfig.DEBUG) {
@@ -57,8 +61,10 @@ object AppModule {
         client.addInterceptor { chain: Interceptor.Chain ->
             // 发起请求
             val request = chain.request()
-            val newRequest = request.newBuilder()
-                    .addHeader("Content-Type", "application/json")
+            val newRequestBuilder = request.newBuilder()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("X-UBT-AppId", Configs.ubtAppId)
+                .addHeader("product", Configs.ubtProduct)
                     // 登录接口占位符：invalid，其他接口会有具体的值
 //                    ?.addHeader(
 //                            preferenceStorage.tokenKey ?: "invalid",
@@ -66,7 +72,8 @@ object AppModule {
 //                    )
 //                    ?.addHeader("Api-Key", "admin")
 //                    ?.addHeader("Api-Secret", "SGeV1dFmCADUp8XWVpWObO62rIfbpf7Y")
-                    .build()
+            refreshSign(newRequestBuilder, prefs.deviceId)
+            val newRequest = newRequestBuilder.build()
             val response = chain.proceed(newRequest)
 
             // 接收响应
@@ -125,6 +132,16 @@ object AppModule {
             return@addInterceptor response
         }
         return client.build()
+    }
+
+    // 生成随机签名
+    private fun refreshSign(builder: Request.Builder, id: String?) {
+        val deviceId = id ?: (Random(1).nextInt(90000000) + 10000000).toString()
+        val randStr = "${Random(System.currentTimeMillis()).nextInt(10)}${Random(System.currentTimeMillis()).nextLong(900000000) + 100000000}"
+        val now = System.currentTimeMillis() / 1000
+        val md5Str = CryptoUtil.encryptToMD5("$now${Configs.ubtAppKey}$randStr$deviceId")
+        builder.addHeader("X-UBT-Sign", "$md5Str $now $randStr v2")
+        builder.addHeader("X-UBT-DeviceId", deviceId)
     }
 
     @Provides @Singleton

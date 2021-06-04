@@ -22,6 +22,14 @@ class Repository @Inject constructor(
         apiService.test()
     }
 
+    fun getRTMToken(uid: String) = remoteRequestStrategy {
+        apiService.getRTMToken(uid)
+    }
+
+    fun getRTCToken(roomId: String, uid: String) = remoteRequestStrategy {
+        apiService.getRTCToken(roomId, uid)
+    }
+
     fun loadThirdApps() : LiveData<List<ThirdApp>> {
         return cacheDb.thirdAppDao().findAll()
     }

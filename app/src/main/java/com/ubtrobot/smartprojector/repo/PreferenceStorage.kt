@@ -2,6 +2,7 @@ package com.ubtrobot.smartprojector.repo
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.provider.Settings
 import androidx.annotation.WorkerThread
 import androidx.core.content.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -24,6 +25,9 @@ interface PreferenceStorage {
     var isPostureDetectOpen: Boolean
     var grade: Int
     var serialNumber: String?
+    var deviceId: String?
+    var rtmToken: String?
+    var rtcToken: String?
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -47,6 +51,13 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
     // 年级，默认是一年级
     override var grade: Int by IntPreference(prefs, PREF_GRADE, 1)
     override var serialNumber: String? by StringPreference(prefs, PREF_SERIAL_NUMBER, null)
+    override var deviceId: String? by StringPreference(prefs, PREF_DEVICE_ID, null)
+    override var rtmToken: String? by StringPreference(prefs, PREF_DEVICE_ID, null)
+    override var rtcToken: String? by StringPreference(prefs, PREF_DEVICE_ID, null)
+
+    init {
+        deviceId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+    }
 
     // 登出时清理缓存
     fun clearCache() {
@@ -67,6 +78,9 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
         const val PREF_IS_POSTURE_DETECT_OPEN = "pref_is_posture_detect_open"
         const val PREF_GRADE = "pref_grade"
         const val PREF_SERIAL_NUMBER = "pref_serial_number"
+        const val PREF_DEVICE_ID = "pref_device_id"
+        const val PREF_RTM_TOKEN = "pref_rtm_token"
+        const val PREF_RTC_TOKEN = "pref_rtc_token"
     }
 }
 
