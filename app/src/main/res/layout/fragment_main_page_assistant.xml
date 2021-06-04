@@ -81,6 +81,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
+            android:id="@+id/btn_assistant_chinese"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_28dp">

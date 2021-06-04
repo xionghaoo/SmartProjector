@@ -31,6 +31,7 @@ ext {
     versions.camerax = '1.0.0-rc02'
     versions.asm = '9.1'
     versions.qrcode = '4.2.0'
+    versions.blurry = '4.0.0'
 
     dpes = [:]
     dpes.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
@@ -82,7 +83,10 @@ ext {
         "core": "org.ow2.asm:asm:$versions.asm",
         "commons": "org.ow2.asm:asm-commons:$versions.asm"
     ]
+    // 二维码生成和扫描
     dpes.qrcode = "com.journeyapps:zxing-android-embedded:$versions.qrcode"
+    // 毛玻璃背景
+    dpes.blurry = "jp.wasabeef:blurry:$versions.blurry"
     // ----------- dependencies version end -------------
 
     // ----------- 项目环境配置 start -----------

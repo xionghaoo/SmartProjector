@@ -1,5 +1,6 @@
 package com.ubtrobot.smartprojector.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.JXWAppManager
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -29,6 +31,8 @@ class MainFragment : Fragment() {
     @Inject
     lateinit var jxwAppManager: JXWAppManager
 
+    private var listener: OnFragmentActionListener? = null
+
     private var _bindingPageOne: FragmentMainPageAssistantBinding? = null
     private var _bindingPageTwo: FragmentMainPageChineseBinding? = null
     private var _bindingPageThree: FragmentMainPageEnglishBinding? = null
@@ -42,6 +46,20 @@ class MainFragment : Fragment() {
     private val bindingPageFour get() = _bindingPageFour!!
     private val bindingPageFive get() = _bindingPageFive!!
     private val bindingPageSix get() = _bindingPageSix!!
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentActionListener) {
+            listener = context
+        } else {
+            throw IllegalArgumentException("Activity must implement OnFragmentActionListener")
+        }
+    }
+
+    override fun onDetach() {
+        listener = null
+        super.onDetach()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,6 +127,10 @@ class MainFragment : Fragment() {
      * ai智能辅助
      */
     private fun bindPageOneView() {
+        bindingPageOne.btnAssistantChinese.setOnClickListener {
+            listener?.onItemSelected(it)
+        }
+
 //        GlideApp.with(requireContext())
 //            .load(R.mipmap.ic_assistant_finger_read)
 //            .into(bindingPageOne.ivAssistantFingerRead)
@@ -234,6 +256,10 @@ class MainFragment : Fragment() {
             items.add(VideoItem("视频4", MockData.video4))
             VideoPlayerActivity.start(requireContext(), items)
         }
+    }
+
+    interface OnFragmentActionListener {
+        fun onItemSelected(v: View)
     }
 
     companion object {

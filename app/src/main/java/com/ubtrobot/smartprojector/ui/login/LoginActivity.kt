@@ -96,13 +96,15 @@ class LoginActivity : AppCompatActivity() {
             val bitmap = barcodeEncoder.encodeBitmap(serialNumber, BarcodeFormat.QR_CODE, 400, 400)
             binding.qrcodeSerialNumber.setImageBitmap(bitmap)
         } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     @AfterPermissionGranted(RC_READ_PHONE_STATE_PERMISSION)
     fun getSerialNumberTask() {
         if (hasReadPhoneStatePermission()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                // Android 10 以上拿不到序列号
                 val serialNumber = Build.getSerial()
                 viewModel.saveSerialNumber(serialNumber)
                 generateQrcode(serialNumber)

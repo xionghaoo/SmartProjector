@@ -217,6 +217,7 @@ dependencies {
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 
     implementation dpes.qrcode
+    implementation dpes.blurry
 
     testImplementation dpes.asm.core
     testImplementation dpes.asm.commons

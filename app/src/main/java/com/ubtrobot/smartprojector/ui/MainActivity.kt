@@ -5,14 +5,17 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.view.*
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -29,21 +32,15 @@ import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
-import com.ubtrobot.smartprojector.repo.Repository
-import com.ubtrobot.smartprojector.test.TestActivity
-import com.ubtrobot.smartprojector.tuyagw.TuyaGatewayManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
-import com.ubtrobot.smartprojector.ui.login.LoginViewModel
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
-import com.ubtrobot.smartprojector.ui.tuya.TuyaHomeActivity
-import com.ubtrobot.smartprojector.ui.video.VideoActivity
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import eu.chainfire.libsuperuser.Shell
+import jp.wasabeef.blurry.Blurry
 import kotlinx.coroutines.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -54,7 +51,7 @@ import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener {
 
     companion object {
 
@@ -67,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
+//        private const val RC_PREMISSIONS = 4
 
         fun startWithNewTask(context: Context?) {
             val i = Intent(context, MainActivity::class.java)
@@ -87,7 +85,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var screenAdapter: ScreenAdapter
 
-//    private var job: Job? = null
 
     // app 安装卸载监听
     private val receiver = object : BroadcastReceiver() {
@@ -122,6 +119,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setLauncher(this)
         SystemUtil.statusBarTransparent(window)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            requestPermissionsTask()
+//        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
@@ -275,6 +276,7 @@ class MainActivity : AppCompatActivity() {
     private fun hasReadPhoneStatePermission() : Boolean {
         return EasyPermissions.hasPermissions(this, Manifest.permission.READ_PHONE_STATE)
     }
+    // ---------------------- 读取SN 测试------------------------
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -284,7 +286,6 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
-    // ---------------------- 读取SN 测试------------------------
 
     override fun onDestroy() {
         unregisterReceiver(receiver)
@@ -305,6 +306,26 @@ class MainActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = flags
         }
     }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    @AfterPermissionGranted(RC_PREMISSIONS)
+//    fun requestPermissionsTask() {
+//        if (hasPermissions()) {
+//
+//        } else {
+//            EasyPermissions.requestPermissions(
+//                this,
+//                "App需要申请权限，请授予",
+//                RC_PREMISSIONS,
+//                Manifest.permission.REQUEST_DELETE_PACKAGES
+//            )
+//        }
+//    }
+//
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun hasPermissions() : Boolean {
+//        return EasyPermissions.hasPermissions(this, Manifest.permission.REQUEST_DELETE_PACKAGES)
+//    }
 
     /**
      * 获取声网token
@@ -384,6 +405,45 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
 
     }
+
+    // -------------------------- OnFragmentActionListener Method Start -------------------------------
+    override fun onItemSelected(v: View) {
+        Blurry.with(this).radius(25).sampling(2).onto(binding.root)
+        showSelectDialog(v)
+    }
+
+    private fun showSelectDialog(target: View) {
+        val bg = FrameLayout(this)
+        bg.setOnClickListener {
+            binding.root.removeView(bg)
+            Blurry.delete(binding.root)
+        }
+        binding.root.addView(bg)
+        bg.layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT
+        bg.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
+        val tv = ImageView(this)
+        bg.addView(tv)
+        tv.layoutParams.width = target.width
+        tv.layoutParams.height = target.height
+        tv.setImageBitmap(loadBitmapFromView(target))
+        val arr = IntArray(2)
+        target.getLocationInWindow(arr)
+        tv.x = arr[0].toFloat()
+        tv.y = arr[1].toFloat()
+    }
+
+    private fun loadBitmapFromView(v: View): Bitmap? {
+        val b = Bitmap.createBitmap(
+            v.width,
+            v.height,
+            Bitmap.Config.ARGB_8888
+        )
+        val c = Canvas(b)
+        v.layout(v.left, v.top, v.right, v.bottom)
+        v.draw(c)
+        return b
+    }
+    // -------------------------- OnFragmentActionListener Method End -------------------------------
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(
             supportFragmentManager,
