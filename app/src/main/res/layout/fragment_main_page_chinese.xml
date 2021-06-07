@@ -113,6 +113,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/btn_chinese_learn_pinyin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_28dp"

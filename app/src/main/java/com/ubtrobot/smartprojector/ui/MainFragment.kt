@@ -172,6 +172,10 @@ class MainFragment : Fragment() {
         bindingPageTwo.tvChinesePrepareRead.setOnClickListener {
             jxwAppManager.startBookFingerRead(requireActivity(), "语文");
         }
+
+        bindingPageTwo.btnChineseLearnPinyin.setOnClickListener {
+            listener?.onItemSelected(it)
+        }
 //        GlideApp.with(requireContext())
 //                .load(R.mipmap.ic_chinese_main)
 //                .into(bindingPageTwo.ivChineseMain)

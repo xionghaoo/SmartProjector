@@ -13,7 +13,6 @@ import android.telephony.TelephonyManager
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -408,7 +407,11 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 
     // -------------------------- OnFragmentActionListener Method Start -------------------------------
     override fun onItemSelected(v: View) {
-        Blurry.with(this).radius(25).sampling(2).onto(binding.root)
+        Blurry.with(this)
+            .radius(25)
+            .sampling(2)
+            .animate(100)
+            .onto(binding.root)
         showSelectDialog(v)
     }
 
@@ -421,15 +424,34 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
         binding.root.addView(bg)
         bg.layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT
         bg.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
-        val tv = ImageView(this)
-        bg.addView(tv)
-        tv.layoutParams.width = target.width
-        tv.layoutParams.height = target.height
-        tv.setImageBitmap(loadBitmapFromView(target))
+        val iv = ImageView(this)
+        iv.isFocusable = true
+        iv.isClickable = true
+        bg.addView(iv)
+        iv.layoutParams.width = target.width
+        iv.layoutParams.height = target.height
+        iv.setImageBitmap(loadBitmapFromView(target))
         val arr = IntArray(2)
         target.getLocationInWindow(arr)
-        tv.x = arr[0].toFloat()
-        tv.y = arr[1].toFloat()
+        iv.x = arr[0].toFloat()
+        iv.y = arr[1].toFloat()
+
+        // 显示内容
+        val content = layoutInflater.inflate(R.layout.dialog_main_menu, null)
+        content.scaleX = 0.5f
+        content.scaleY = 0.5f
+        content.alpha = 0f
+        bg.addView(content)
+        content.layoutParams.width = resources.getDimension(R.dimen._200dp).toInt()
+        content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
+        content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._20dp)
+        content.y = iv.y
+        content.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .alpha(1f)
+            .setDuration(100)
+            .start()
     }
 
     private fun loadBitmapFromView(v: View): Bitmap? {
