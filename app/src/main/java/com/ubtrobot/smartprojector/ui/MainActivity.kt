@@ -44,6 +44,7 @@ import kotlinx.coroutines.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
+import xh.zero.agora_call.AgoraCallManager
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -74,6 +75,8 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 
     @Inject
     lateinit var connectionStateMonitor: ConnectionStateMonitor
+    @Inject
+    lateinit var agoraCallManager: AgoraCallManager
 //    @Inject
 //    lateinit var repo: Repository
 
@@ -290,6 +293,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
         unregisterReceiver(receiver)
         setLauncher(null)
         connectionStateMonitor.disable()
+        agoraCallManager.destroy()
         super.onDestroy()
     }
 
@@ -341,6 +345,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
             if (r.status == Status.SUCCESS) {
                 val token = r.data?.data as? String
                 viewModel.prefs().rtmToken = token
+                agoraCallManager.login(token, "1200")
             }
         })
     }

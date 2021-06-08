@@ -115,6 +115,7 @@ dependencies {
 
     implementation project(':tuya_biz')
     implementation project(':voice')
+    implementation project(':agora_call')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlin_version"
     implementation dpes.core_ktx

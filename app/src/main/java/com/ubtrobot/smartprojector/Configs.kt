@@ -6,6 +6,8 @@ class Configs {
 
         const val HOST = "https://${BuildConfig.DOMAIN_RELEASE}/"
 
+        const val PACKAGE_NAME = BuildConfig.APPLICATION_ID
+
         // ucode网页版
         const val UCODE_URL = "http://ide.ubtrobot.com/"
 

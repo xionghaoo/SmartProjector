@@ -26,6 +26,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -33,12 +34,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import xh.zero.agora_call.AgoraCallManager
 import javax.inject.Named
 import javax.inject.Singleton
 import kotlin.random.Random
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides @Singleton
@@ -72,7 +74,10 @@ object AppModule {
 //                    )
 //                    ?.addHeader("Api-Key", "admin")
 //                    ?.addHeader("Api-Secret", "SGeV1dFmCADUp8XWVpWObO62rIfbpf7Y")
-            refreshSign(newRequestBuilder, prefs.deviceId)
+            // 如果device id为空，那么随机生成一个8位的id
+            val deviceId = prefs.deviceId ?: (Random(1).nextInt(90000000) + 10000000).toString()
+            prefs.deviceId = deviceId
+            refreshSign(newRequestBuilder, deviceId)
             val newRequest = newRequestBuilder.build()
             val response = chain.proceed(newRequest)
 
@@ -135,8 +140,8 @@ object AppModule {
     }
 
     // 生成随机签名
-    private fun refreshSign(builder: Request.Builder, id: String?) {
-        val deviceId = id ?: (Random(1).nextInt(90000000) + 10000000).toString()
+    private fun refreshSign(builder: Request.Builder, deviceId: String) {
+
         val randStr = "${Random(System.currentTimeMillis()).nextInt(10)}${Random(System.currentTimeMillis()).nextLong(900000000) + 100000000}"
         val now = System.currentTimeMillis() / 1000
         val md5Str = CryptoUtil.encryptToMD5("$now${Configs.ubtAppKey}$randStr$deviceId")
@@ -185,5 +190,14 @@ object AppModule {
     fun provideTuyaDeviceCategories(@ApplicationContext context: Context) : List<DeviceCategory> {
         val json = FileUtil.readAssetsJson("tuya_devices.json", context)
         return Gson().fromJson(json, object : TypeToken<List<DeviceCategory>>(){}.type)
+    }
+
+    @Provides @Singleton
+    fun provideAgoraCallManager(@ApplicationContext context: Context) : AgoraCallManager {
+        return AgoraCallManager(
+            context = context,
+            isDebug = BuildConfig.DEBUG,
+            appId = Configs.agoraAppId
+        )
     }
 }

@@ -46,3 +46,15 @@ $ cd /data/misc/wifi/
 2. ViewPager2对于焦点处理有问题，nextFocusDown等方向键焦点无法自动获取，ViewPager正常（只有在使用导航键时）
 
 3. 涂鸦的用户注册需要放到后端
+
+## 命令
+
+获取应用包名
+```shell
+aapt dump badging <path-to-apk> | grep package:\ name
+```
+
+获取应用启动页
+```shell
+aapt d badging jxwgb_kypc.apk | grep launchable-activity
+```
