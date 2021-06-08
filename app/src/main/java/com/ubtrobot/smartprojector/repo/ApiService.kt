@@ -2,6 +2,7 @@ package com.ubtrobot.smartprojector.repo
 
 import androidx.lifecycle.LiveData
 import com.ubtrobot.smartprojector.core.vo.ApiResponse
+import com.ubtrobot.smartprojector.repo.data.LoginData
 import com.ubtrobot.smartprojector.repo.data.PlainData
 import com.ubtrobot.smartprojector.repo.data.TestData
 import retrofit2.Call
@@ -22,4 +23,7 @@ interface ApiService {
     fun getRTMToken(
         @Path("uid") uid: String
     ) : LiveData<ApiResponse<PlainData>>
+
+    @GET("/user-service-rest/v2/robot-login")
+    fun login() : LiveData<ApiResponse<LoginData>>
 }

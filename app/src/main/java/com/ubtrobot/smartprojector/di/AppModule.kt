@@ -54,7 +54,7 @@ object AppModule {
             prefs: PreferenceStorage,
             @Named("MockInterceptor") mockInterceptor: MockInterceptor
     ) : OkHttpClient {
-        val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
+        val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         val client = OkHttpClient.Builder()
                 .addInterceptor(logInterceptor)
         if (BuildConfig.DEBUG) {
@@ -75,8 +75,8 @@ object AppModule {
 //                    ?.addHeader("Api-Key", "admin")
 //                    ?.addHeader("Api-Secret", "SGeV1dFmCADUp8XWVpWObO62rIfbpf7Y")
             // 如果device id为空，那么随机生成一个8位的id
-            val deviceId = prefs.deviceId ?: (Random(1).nextInt(90000000) + 10000000).toString()
-            prefs.deviceId = deviceId
+            val deviceId = prefs.serialNumber ?: (Random(1).nextInt(90000000) + 10000000).toString()
+            prefs.serialNumber = deviceId
             refreshSign(newRequestBuilder, deviceId)
             val newRequest = newRequestBuilder.build()
             val response = chain.proceed(newRequest)

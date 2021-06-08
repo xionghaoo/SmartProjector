@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
     private lateinit var settingsFragment: SettingsFragment
 
     private lateinit var screenAdapter: ScreenAdapter
+    private lateinit var agoraCallDelegate: AgoraCallDelegate
 
 
     // app 安装卸载监听
@@ -124,6 +125,8 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //            requestPermissionsTask()
 //        }
+
+        agoraCallDelegate = AgoraCallDelegate(this, agoraCallManager)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -240,7 +243,8 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 //        if (Build.VERSION.SDK_INT >= 26) {
 //            test()
 //        }
-
+        // TODO 模拟序列号
+        viewModel.prefs().serialNumber = "12345678"
         initialAgoraToken()
     }
 
@@ -334,18 +338,24 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
      * 获取声网token
      */
     private fun initialAgoraToken() {
-        viewModel.getRTCToken("test", "1200").observe(this, { r ->
-            if (r.status == Status.SUCCESS) {
-                val token = r.data?.data as? String
-                viewModel.prefs().rtcToken = token
-            }
-        })
+        viewModel.login().observe(this, { loginResult ->
+            val userId = loginResult.data?.user?.userId?.toString()
+            viewModel.prefs().agoraUID = userId
+            if (loginResult.status == Status.SUCCESS && userId != null) {
+                viewModel.getRTCToken(Configs.agoraRoomId, userId).observe(this, { r ->
+                    if (r.status == Status.SUCCESS) {
+                        val token = r.data?.data as? String
+                        viewModel.prefs().rtcToken = token
+                    }
+                })
 
-        viewModel.getRTMToken("1200").observe(this, {  r ->
-            if (r.status == Status.SUCCESS) {
-                val token = r.data?.data as? String
-                viewModel.prefs().rtmToken = token
-                agoraCallManager.login(token, "1200")
+                viewModel.getRTMToken(userId).observe(this, { r ->
+                    if (r.status == Status.SUCCESS) {
+                        val token = r.data?.data as? String
+                        viewModel.prefs().rtmToken = token
+                        agoraCallManager.login(token, userId)
+                    }
+                })
             }
         })
     }

@@ -22,6 +22,10 @@ class Repository @Inject constructor(
         apiService.test()
     }
 
+    fun login() = remoteRequestStrategy {
+        apiService.login()
+    }
+
     fun getRTMToken(uid: String) = remoteRequestStrategy {
         apiService.getRTMToken(uid)
     }

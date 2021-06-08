@@ -6,6 +6,7 @@ import io.agora.rtc.Constants
 import io.agora.rtc.RtcEngine
 import io.agora.rtm.*
 import xh.zero.agora_call.agora.EngineEventListener
+import xh.zero.agora_call.agora.IEventListener
 import xh.zero.agora_call.utils.FileUtil
 
 class AgoraCallManager(
@@ -63,6 +64,14 @@ class AgoraCallManager(
                 Log.i(TAG, "rtm client login failed:" + errorInfo.errorDescription)
             }
         })
+    }
+
+    fun registerEventListener(listener: IEventListener?) {
+        eventListener?.registerEventListener(listener)
+    }
+
+    fun removeEventListener(listener: IEventListener?) {
+        eventListener?.removeEventListener(listener)
     }
 
 //    fun initial(context: Context, isDebug: Boolean, appId: String, userId: String, rtcToken: String, rtmToken: String) {

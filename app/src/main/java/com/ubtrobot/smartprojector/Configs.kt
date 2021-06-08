@@ -20,5 +20,6 @@ class Configs {
         const val ubtAppKey = "c3ba293280655a66165dd8cdf4e58217"
 
         const val agoraAppId = "cf309a3e129847bcb31703c7e6283721"
+        const val agoraRoomId = "test"
     }
 }

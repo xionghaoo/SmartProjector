@@ -37,7 +37,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.call.CallingActivity"></activity>
+        <activity android:name=".ui.call.AgoraVideoActivity"/>
+        <activity android:name=".ui.call.CallingActivity" />
         <activity android:name=".ui.call.CallWithPatriarchActivity" />
         <activity
             android:name=".ui.video.VideoPlayerActivity"
@@ -84,12 +85,12 @@
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.Launcher">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- <category android:name="android.intent.category.HOME" /> -->
-            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
-            <!-- </intent-filter> -->
+<!--             <intent-filter>-->
+<!--                 <action android:name="android.intent.action.MAIN" />-->
+<!--                 <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                 <category android:name="android.intent.category.HOME" />-->
+<!--                 <category android:name="android.intent.category.DEFAULT" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".ui.FileDownloadActivity"
