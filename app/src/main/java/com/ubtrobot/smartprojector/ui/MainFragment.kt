@@ -13,6 +13,7 @@ import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.JXWAppManager
+import com.ubtrobot.smartprojector.utils.JxwAppType
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -160,19 +161,19 @@ class MainFragment : Fragment() {
         bindingPageTwo.btnChineseFontFundamental.setOnClickListener {
             listener?.onItemSelected(it, HomeMenuDialog.Align.TOP, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
-                    ToastUtil.showToast(requireContext(), "拼音学习1")
+                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.LEARN_PINYIN)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
-                    ToastUtil.showToast(requireContext(), "拼音学习2")
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "笔画名称") {
+                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.BIHUA_NAME)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
-                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "偏旁部首") {
+                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.PIANPANG_BUSHOU)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
-                    ToastUtil.showToast(requireContext(), "拼音学习4")
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "笔画规则") {
+                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.BISHUN_RULE)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
-                    ToastUtil.showToast(requireContext(), "拼音学习5")
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "汉字学习") {
+                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.LEARN_CHINESE)
                 }
             ))
         }
@@ -202,28 +203,12 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-//        GlideApp.with(requireContext())
-//                .load(R.mipmap.ic_chinese_main)
-//                .into(bindingPageTwo.ivChineseMain)
-//        bindingPageTwo.cardChineseClassroom.setSelectListener {
-//            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_CLASSROOM)
-//        }
-//
-//        bindingPageTwo.cardChineseInterest.setSelectListener {
-//            ChineseDetailActivity.start(requireContext(), ChineseDetailActivity.TYPE_INTEREST)
-//        }
-//
-//        bindingPageTwo.cardChineseCoursebook.setSelectListener {
-//            getLearnAppManager.startChinesePage(requireContext(), "同步新点读")
-//        }
-//
-//        bindingPageTwo.cardChineseLearnNewWord.setSelectListener {
-//            getLearnAppManager.startChinesePage(requireContext(), "生字词")
-//        }
-//
-//        bindingPageTwo.cardChineseLearnPinyin.setSelectListener {
-//            getLearnAppManager.startChinesePage(requireContext(), "拼音学习")
-//        }
+        bindingPageTwo.btnChineseToolsWord.setOnClickListener {
+            jxwAppManager.startChinesePage(requireContext(), JxwAppType.ZICI_LISTEN)
+        }
+        bindingPageTwo.btnChineseToolsInterest.setOnClickListener {
+            jxwAppManager.startChinesePage(requireContext(), JxwAppType.INTEREST_CHINESE)
+        }
     }
 
     /**

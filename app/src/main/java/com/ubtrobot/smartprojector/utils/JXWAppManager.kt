@@ -16,7 +16,8 @@ import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsFr
 import timber.log.Timber
 
 enum class JxwAppType {
-    LEARN_PINYIN, PIANPANG_BUSHOU, BIHUA_NAME, BISHUN_RULE, LEARN_CHINESE
+    LEARN_PINYIN, PIANPANG_BUSHOU, BIHUA_NAME, BISHUN_RULE,
+    LEARN_CHINESE, ZICI_LISTEN, INTEREST_CHINESE
 }
 
 class JXWAppManager(private val prefs: PreferenceStorage) {
@@ -28,7 +29,7 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
     /**
      * 语文功能点
      */
-    fun startChinesePage(context: Activity, type: JxwAppType) {
+    fun startChinesePage(context: Context, type: JxwAppType) {
         when (type) {
             // 拼音学习
             JxwAppType.LEARN_PINYIN ->
@@ -45,6 +46,11 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
             // 汉字学习
             JxwAppType.LEARN_CHINESE ->
                 startOtherApp(context, "com.jxw.characterlearning", "com.jxw.characterlearning.MainActivity")
+            JxwAppType.ZICI_LISTEN ->
+                startOtherApp(context, "com.jxw.handwrite", "com.jxw.handwrite.ZymsActivity")
+            JxwAppType.INTEREST_CHINESE ->
+                startOtherApp(context, "com.jxw.yuwenxiezuo", "com.jxw.yuwenxiezuo.MainActivity")
+
         }
     }
 
@@ -98,7 +104,7 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
 //        showFloatButton(context)
     }
 
-    private fun startOtherApp(context: Activity, packageName: String, className: String) {
+    private fun startOtherApp(context: Context, packageName: String, className: String) {
         val i = Intent()
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             .setClassName(packageName, className)

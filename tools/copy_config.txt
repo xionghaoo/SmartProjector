@@ -1,1 +1,1 @@
-kd／3容器／工具背景板.png;ic_english_tool_container_bg.png
+kd／2icon／头像.png;ic_assistant_avatar.png
