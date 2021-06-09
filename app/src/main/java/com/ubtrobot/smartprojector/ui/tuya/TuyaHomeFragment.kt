@@ -1,6 +1,5 @@
 package com.ubtrobot.smartprojector.ui.tuya
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,20 +61,20 @@ class TuyaHomeFragment : Fragment() {
         }
         binding.rcDeviceList.adapter = adapter
         binding.btnAddNewDevice.setOnClickListener {
-            if (repo.prefs.currentHomeId != -1L) {
-                NewDeviceActivity.start(requireContext(), repo.prefs.currentHomeId)
+            if (repo.prefs.tuyaHomeId != -1L) {
+                NewDeviceActivity.start(requireContext(), repo.prefs.tuyaHomeId)
             }
         }
 
         binding.networkLayout.loading()
-        if (repo.prefs.currentHomeId == -1L) {
+        if (repo.prefs.tuyaHomeId == -1L) {
             homeQuery()
         } else {
-            binding.tvHome.text = "家庭：${repo.prefs.currentHomeName}, ${repo.prefs.currentHomeId}"
+            binding.tvHome.text = "家庭：${repo.prefs.tuyaHomeName}, ${repo.prefs.tuyaHomeId}"
             binding.refreshLayout.setOnRefreshListener {
-                homeDevicesQuery(repo.prefs.currentHomeId)
+                homeDevicesQuery(repo.prefs.tuyaHomeId)
             }
-            homeDevicesQuery(repo.prefs.currentHomeId)
+            homeDevicesQuery(repo.prefs.tuyaHomeId)
         }
     }
 
@@ -108,8 +107,8 @@ class TuyaHomeFragment : Fragment() {
                     Timber.d("家庭：${home.homeId}, ${home.name}, ${home.deviceList.size}")
                     homeDevicesQuery(home.homeId)
 //                    homeId = home.homeId
-                    repo.prefs.currentHomeId = home.homeId
-                    repo.prefs.currentHomeName = home.name
+                    repo.prefs.tuyaHomeId = home.homeId
+                    repo.prefs.tuyaHomeName = home.name
                 } else {
                     binding.networkLayout.empty()
                     binding.refreshLayout.finishRefresh(true)

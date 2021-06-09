@@ -86,8 +86,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
     private lateinit var settingsFragment: SettingsFragment
 
     private lateinit var screenAdapter: ScreenAdapter
-    private lateinit var agoraCallDelegate: AgoraCallDelegate
-
+    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
     // app 安装卸载监听
     private val receiver = object : BroadcastReceiver() {
@@ -126,7 +125,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 //            requestPermissionsTask()
 //        }
 
-        agoraCallDelegate = AgoraCallDelegate(this, agoraCallManager)
+        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.MAIN)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -298,6 +297,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
         setLauncher(null)
         connectionStateMonitor.disable()
         agoraCallManager.destroy()
+        agoraListenerDelegate.destroy()
         super.onDestroy()
     }
 
@@ -338,24 +338,19 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
      * 获取声网token
      */
     private fun initialAgoraToken() {
-        viewModel.login().observe(this, { loginResult ->
-            val userId = loginResult.data?.user?.userId?.toString()
-            viewModel.prefs().agoraUID = userId
-            if (loginResult.status == Status.SUCCESS && userId != null) {
-                viewModel.getRTCToken(Configs.agoraRoomId, userId).observe(this, { r ->
-                    if (r.status == Status.SUCCESS) {
-                        val token = r.data?.data as? String
-                        viewModel.prefs().rtcToken = token
-                    }
-                })
+        val userId = viewModel.prefs().agoraUID ?: return
+        viewModel.getRTCToken(Configs.agoraChannel, userId).observe(this, { r ->
+            if (r.status == Status.SUCCESS) {
+                val token = r.data?.data as? String
+                viewModel.prefs().rtcToken = token
+            }
+        })
 
-                viewModel.getRTMToken(userId).observe(this, { r ->
-                    if (r.status == Status.SUCCESS) {
-                        val token = r.data?.data as? String
-                        viewModel.prefs().rtmToken = token
-                        agoraCallManager.login(token, userId)
-                    }
-                })
+        viewModel.getRTMToken(userId).observe(this, { r ->
+            if (r.status == Status.SUCCESS) {
+                val token = r.data?.data as? String
+                viewModel.prefs().rtmToken = token
+                agoraCallManager.login(token, userId)
             }
         })
     }
@@ -384,8 +379,10 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
                 Timber.d("家庭数量: ${homeBeans?.size}")
                 if (homeBeans?.isNotEmpty() == true) {
                     val home = homeBeans.first()
-                    viewModel.prefs().currentHomeId = home.homeId
-                    viewModel.prefs().currentHomeName = home.name
+                    viewModel.prefs().tuyaHomeId = home.homeId
+                    viewModel.prefs().tuyaHomeName = home.name
+
+                    Timber.d("home name: ${home.name}, home id: ${home.homeId}")
 
                     val service = MicroServiceManager.getInstance()
                             .findServiceByInterface<AbsBizBundleFamilyService>(

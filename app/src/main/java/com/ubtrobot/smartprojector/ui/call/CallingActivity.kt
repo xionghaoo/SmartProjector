@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.ui.AgoraListenerDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtm.*
 import xh.zero.agora_call.AgoraCallManager
@@ -16,7 +17,7 @@ import javax.inject.Inject
  * 呼叫
  */
 @AndroidEntryPoint
-class CallingActivity : AppCompatActivity(), RtmCallEventListener, ResultCallback<Void> {
+class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
 
     companion object {
 
@@ -38,25 +39,39 @@ class CallingActivity : AppCompatActivity(), RtmCallEventListener, ResultCallbac
     private var peerId: String? = null
     private var isCallee: Boolean = false
 
+    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calling)
 
+        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.CALLING)
+
         peerId = intent.getStringExtra(EXTRA_PEER_ID)
         isCallee = intent.getBooleanExtra(EXTRA_IS_CALLEE, false)
 
-        if (!isCallee) {
+        if (isCallee) {
+            // 被呼叫
+
+        } else {
             // 主动呼叫
             inviteCall()
         }
+    }
+
+    override fun onDestroy() {
+        agoraListenerDelegate.destroy()
+        super.onDestroy()
     }
 
     private fun inviteCall() {
         val rtmCallManager = agoraCallManager.rtmCallManager
         val invitation = rtmCallManager.createLocalInvitation(peerId)
         // 设置通道Channel
-        invitation.content = ""
+        invitation.content = Configs.agoraChannel
         rtmCallManager.sendLocalInvitation(invitation, this)
+        // 保存本地邀请
+        agoraCallManager.localInvitation = invitation
     }
 
     private fun startRinging() {
@@ -91,37 +106,5 @@ class CallingActivity : AppCompatActivity(), RtmCallEventListener, ResultCallbac
 
     }
 
-    override fun onLocalInvitationReceivedByPeer(p0: LocalInvitation?) {
-    }
 
-    override fun onLocalInvitationAccepted(p0: LocalInvitation?, p1: String?) {
-        // 本地呼叫邀请被接受
-    }
-
-    override fun onLocalInvitationRefused(p0: LocalInvitation?, p1: String?) {
-
-    }
-
-    override fun onLocalInvitationCanceled(p0: LocalInvitation?) {
-    }
-
-    override fun onLocalInvitationFailure(p0: LocalInvitation?, p1: Int) {
-    }
-
-    override fun onRemoteInvitationReceived(invitation: RemoteInvitation?) {
-        agoraCallManager.remoteInvitation = invitation
-    }
-
-    override fun onRemoteInvitationAccepted(p0: RemoteInvitation?) {
-        // 接受远程呼叫
-    }
-
-    override fun onRemoteInvitationRefused(p0: RemoteInvitation?) {
-    }
-
-    override fun onRemoteInvitationCanceled(p0: RemoteInvitation?) {
-    }
-
-    override fun onRemoteInvitationFailure(p0: RemoteInvitation?, p1: Int) {
-    }
 }

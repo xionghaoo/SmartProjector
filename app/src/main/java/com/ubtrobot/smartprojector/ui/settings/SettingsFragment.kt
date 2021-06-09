@@ -109,17 +109,17 @@ class SettingsFragment : Fragment() {
             startPlainActivity(TestActivity::class.java)
         }
 
-        if (repo.prefs.currentHomeName == null) {
+        if (repo.prefs.tuyaHomeName == null) {
             LoginActivity.startWithNewTask(requireContext())
         }
 
-        binding.tvHomeInfo.text = repo.prefs.currentHomeName
+        binding.tvHomeInfo.text = repo.prefs.tuyaHomeName
         binding.tvHomeInfo.setOnClickListener {
             startPlainActivity(FamilyManagerActivity::class.java)
         }
 
         binding.btnGwActive.setOnClickListener {
-            TuyaGatewayManager.instance().activeGateway(repo.prefs.currentHomeId) { success ->
+            TuyaGatewayManager.instance().activeGateway(repo.prefs.tuyaHomeId) { success ->
                 ToastUtil.showToast(requireContext(), "网关激活${if (success == 0) "成功" else "失败"}")
             }
         }

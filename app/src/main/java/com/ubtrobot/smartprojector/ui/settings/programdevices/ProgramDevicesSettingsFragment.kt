@@ -18,8 +18,6 @@ import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.FragmentProgramDevicesSettingsBinding
 import com.ubtrobot.smartprojector.repo.Repository
-import com.ubtrobot.smartprojector.startPlainActivity
-import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.ui.tuya.DeviceCategory
 import com.ubtrobot.smartprojector.ui.tuya.NewDeviceActivity
 import com.ubtrobot.smartprojector.ui.tuya.TuyaDevice
@@ -57,7 +55,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSettingsDeviceAdd.setOnClickListener {
-            NewDeviceActivity.start(requireContext(), repo.prefs.currentHomeId)
+            NewDeviceActivity.start(requireContext(), repo.prefs.tuyaHomeId)
         }
         binding.networkLayout.loading()
         homeQuery()

@@ -19,8 +19,8 @@ interface PreferenceStorage {
     var isScreenLocked: Boolean
     var screenLockPwd: String?
     var wifiPwd: String?
-    var currentHomeId: Long
-    var currentHomeName: String?
+    var tuyaHomeId: Long
+    var tuyaHomeName: String?
     var isEyesProtectOpen: Boolean
     var isPostureDetectOpen: Boolean
     var grade: Int
@@ -45,8 +45,8 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
     override var isScreenLocked by BooleanPreference(prefs, PREF_IS_SCREEN_LOCKED, false)
     override var screenLockPwd by StringPreference(prefs, PREF_SCREEN_LOCK_PWD, null)
     override var wifiPwd: String? by StringPreference(prefs, PREF_WIFI_PWD, null)
-    override var currentHomeId: Long by LongPreference(prefs, PREF_HOME_ID)
-    override var currentHomeName: String? by StringPreference(prefs, PREF_HOME_NAME, null)
+    override var tuyaHomeId: Long by LongPreference(prefs, PREF_HOME_ID)
+    override var tuyaHomeName: String? by StringPreference(prefs, PREF_HOME_NAME, null)
     override var isEyesProtectOpen: Boolean by BooleanPreference(prefs, PREF_IS_EYES_PROTECT_OPEN, false)
     override var isPostureDetectOpen: Boolean by BooleanPreference(prefs, PREF_IS_POSTURE_DETECT_OPEN, false)
     // 年级，默认是一年级

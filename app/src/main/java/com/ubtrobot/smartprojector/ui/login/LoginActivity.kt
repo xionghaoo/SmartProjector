@@ -5,17 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import com.tuya.smart.android.user.api.ILoginCallback
+import com.tuya.smart.android.user.api.IUidLoginCallback
 import com.tuya.smart.android.user.bean.User
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.ubtrobot.smartprojector.BuildConfig
-import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityLoginBinding
+import com.ubtrobot.smartprojector.ui.BaseActivity
 import com.ubtrobot.smartprojector.ui.MainActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +27,7 @@ import timber.log.Timber
  * 登录页面
  */
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     companion object {
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
@@ -57,21 +56,36 @@ class LoginActivity : AppCompatActivity() {
             val username = binding.edtLoginUsername.text.toString()
             val password = binding.edtLoginPassword.text.toString()
 
-            TuyaHomeSdk.getUserInstance().loginWithPhonePassword(
-                "86",
-                username,
-                password,
-                object : ILoginCallback {
-                    override fun onSuccess(user: User?) {
-                        MainActivity.startWithNewTask(this@LoginActivity)
-                        ToastUtil.showToast(this@LoginActivity, "登录成功")
-                    }
-
-                    override fun onError(code: String?, error: String?) {
-                        ToastUtil.showToast(this@LoginActivity, "登陆失败")
-                    }
+//            TuyaHomeSdk.getUserInstance().loginWithPhonePassword(
+//                "86",
+//                username,
+//                password,
+//                object : ILoginCallback {
+//                    override fun onSuccess(user: User?) {
+//                        MainActivity.startWithNewTask(this@LoginActivity)
+//                        ToastUtil.showToast(this@LoginActivity, "登录成功")
+//                    }
+//
+//                    override fun onError(code: String?, error: String?) {
+//                        ToastUtil.showToast(this@LoginActivity, "登陆失败")
+//                    }
+//                }
+//            )
+            // 序列号登陆
+            viewModel.login().observe(this, { loginResult ->
+                if (loginResult.status == Status.SUCCESS) {
+                    val userId = loginResult.data?.user?.userId?.toString()
+                    viewModel.prefs().agoraUID = userId
+                    // 涂鸦账号登陆
+                    tuyaUidLogin(userId)
                 }
-            )
+                if (loginResult.status == Status.LOADING) {
+                    loadingDialog.show()
+                }
+                if (loginResult.status == Status.ERROR) {
+                    loadingDialog.dismiss()
+                }
+            })
         }
 
         getSerialNumberTask()
@@ -84,6 +98,35 @@ class LoginActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    private fun tuyaUidLogin(uid: String?) {
+        if (uid == null) {
+            ToastUtil.showToast(this, "用户id不能为空")
+            loadingDialog.dismiss()
+            return
+        }
+        TuyaHomeSdk.getUserInstance().loginOrRegisterWithUid(
+            "86",
+            uid,
+            // 密码
+            viewModel.prefs().serialNumber,
+            true,
+            object : IUidLoginCallback {
+                override fun onSuccess(user: User?, homeId: Long) {
+                    viewModel.prefs().tuyaHomeId = homeId
+                    loadingDialog.dismiss()
+//                    viewModel.prefs().
+                    MainActivity.startWithNewTask(this@LoginActivity)
+                    ToastUtil.showToast(this@LoginActivity, "登录成功")
+                }
+
+                override fun onError(code: String?, error: String?) {
+                    loadingDialog.dismiss()
+                    ToastUtil.showToast(this@LoginActivity, "登陆失败")
+                }
+            }
+        )
     }
 
     /**
