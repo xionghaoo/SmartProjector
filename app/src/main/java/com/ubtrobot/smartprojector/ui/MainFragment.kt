@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.MockData
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.JXWAppManager
+import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -145,39 +147,6 @@ class MainFragment : Fragment() {
             jxwAppManager.startFingerRead(requireContext(), "keben")
         }
 
-
-//        GlideApp.with(requireContext())
-//            .load(R.mipmap.ic_assistant_finger_read)
-//            .into(bindingPageOne.ivAssistantFingerRead)
-//        GlideApp.with(requireContext())
-//            .load(R.mipmap.ic_assistant_ip_role)
-//            .into(bindingPageOne.ivIpRole)
-//
-//        GlideApp.with(requireContext())
-//            .load(R.mipmap.ic_assistant_search_questions)
-//            .into(bindingPageOne.ivSearchQuestions)
-//
-//        bindingPageOne.cardAssistantFingerRead.setSelectListener {
-//            getLearnAppManager.startChinesePage(requireContext(), "custom_page_apk_dian_du")
-//        }
-//        bindingPageOne.cardAssistantWordBook.setSelectListener {
-//            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_dan_ci")
-//        }
-//        bindingPageOne.cardAssistantChineseWordBook.setSelectListener {
-//            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_zi_ci")
-//        }
-//        bindingPageOne.cardAssistantWrongBook.setSelectListener {
-//            getLearnAppManager.startAiPage(requireContext(), "custom_page_zhidu_cuo_ti")
-//        }
-//        bindingPageOne.cardAssistantQueryWord.setSelectListener {
-//            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_dan_ci")
-//        }
-//        bindingPageOne.cardAssistantQueryChineseWord.setSelectListener {
-//            getLearnAppManager.startAiPage(requireContext(), "custom_page_cha_zi_ci")
-//        }
-//        bindingPageOne.cardSearchQuestions.setSelectListener {
-//            getLearnAppManager.startAiPage(requireContext(), "custom_page_sou_ti")
-//        }
     }
 
     /**
@@ -188,8 +157,50 @@ class MainFragment : Fragment() {
             jxwAppManager.startBookFingerRead(requireActivity(), "语文");
         }
 
-        bindingPageTwo.btnChineseLearnPinyin.setOnClickListener {
-            listener?.onItemSelected(it)
+        bindingPageTwo.btnChineseFontFundamental.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.TOP, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习1")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习2")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习4")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习5")
+                }
+            ))
+        }
+        bindingPageTwo.btnChineseReadWrite.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习1")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习2")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                }
+            ))
+        }
+        bindingPageTwo.btnChineseIdiom.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习1")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习2")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                }
+            ))
         }
 //        GlideApp.with(requireContext())
 //                .load(R.mipmap.ic_chinese_main)
@@ -278,7 +289,7 @@ class MainFragment : Fragment() {
     }
 
     interface OnFragmentActionListener {
-        fun onItemSelected(v: View)
+        fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>)
     }
 
     companion object {

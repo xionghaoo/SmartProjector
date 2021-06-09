@@ -113,9 +113,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/btn_chinese_learn_pinyin"
+            android:id="@+id/btn_chinese_font_fundamental"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
+            android:layout_height="@dimen/_160dp"
             android:layout_marginTop="@dimen/_28dp"
             android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
@@ -124,7 +124,7 @@
                 android:layout_width="@dimen/_76dp"
                 android:layout_height="@dimen/_76dp"
                 android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_chinese_pinyin" />
+                android:src="@mipmap/ic_chinese_font_fundamental" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -133,15 +133,16 @@
                 android:layout_marginEnd="@dimen/_15dp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="拼音学习"
+                android:text="汉字基础"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_chinese_read_write"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
+            android:layout_height="@dimen/_160dp"
             android:layout_marginTop="@dimen/_8dp"
             android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
@@ -159,15 +160,16 @@
                 android:layout_marginEnd="@dimen/_15dp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="笔顺笔画"
+                android:text="阅读写作"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_chinese_idiom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
+            android:layout_height="@dimen/_160dp"
             android:layout_marginTop="@dimen/_8dp"
             android:background="@drawable/shape_round_rect_white_alpha2"
             android:gravity="center_vertical">
@@ -191,32 +193,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/shape_round_rect_white_alpha2"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="@dimen/_76dp"
-                android:layout_height="@dimen/_76dp"
-                android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_chinese_idiom" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_24dp"
-                android:layout_marginEnd="@dimen/_15dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="阅读写作"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_26sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,6 +202,7 @@
         android:layout_marginStart="@dimen/_22dp"
         android:layout_marginEnd="@dimen/_76dp"
         android:orientation="vertical"
+        android:paddingRight="@dimen/_14dp"
         android:gravity="center_horizontal"
         android:background="@mipmap/ic_english_tool_container_bg"
         app:layout_constraintBottom_toBottomOf="@+id/textView41"

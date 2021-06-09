@@ -13,9 +13,12 @@ import android.telephony.TelephonyManager
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginStart
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
@@ -48,6 +51,7 @@ import xh.zero.agora_call.AgoraCallManager
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 
 @AndroidEntryPoint
@@ -418,65 +422,103 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
     }
 
     // -------------------------- OnFragmentActionListener Method Start -------------------------------
-    override fun onItemSelected(v: View) {
-        Blurry.with(this)
-            .radius(25)
-            .sampling(2)
-            .animate(100)
-            .onto(binding.root)
-        showSelectDialog(v)
+    override fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>) {
+//        Blurry.with(this)
+//            .radius(25)
+//            .sampling(2)
+//            .animate(100)
+//            .onto(binding.root)
+//        showSelectDialog(v)
+        HomeMenuDialog(
+            context = this,
+            rootView = binding.root,
+            target = v,
+            align = align,
+            listData = data
+        ).show()
     }
 
-    private fun showSelectDialog(target: View) {
-        val bg = FrameLayout(this)
-        bg.setOnClickListener {
-            binding.root.removeView(bg)
-            Blurry.delete(binding.root)
-        }
-        binding.root.addView(bg)
-        bg.layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT
-        bg.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
-        val iv = ImageView(this)
-        iv.isFocusable = true
-        iv.isClickable = true
-        bg.addView(iv)
-        iv.layoutParams.width = target.width
-        iv.layoutParams.height = target.height
-        iv.setImageBitmap(loadBitmapFromView(target))
-        val arr = IntArray(2)
-        target.getLocationInWindow(arr)
-        iv.x = arr[0].toFloat()
-        iv.y = arr[1].toFloat()
-
-        // 显示内容
-        val content = layoutInflater.inflate(R.layout.dialog_main_menu, null)
-        content.scaleX = 0.5f
-        content.scaleY = 0.5f
-        content.alpha = 0f
-        bg.addView(content)
-        content.layoutParams.width = resources.getDimension(R.dimen._200dp).toInt()
-        content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
-        content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._20dp)
-        content.y = iv.y
-        content.animate()
-            .scaleX(1f)
-            .scaleY(1f)
-            .alpha(1f)
-            .setDuration(100)
-            .start()
-    }
-
-    private fun loadBitmapFromView(v: View): Bitmap? {
-        val b = Bitmap.createBitmap(
-            v.width,
-            v.height,
-            Bitmap.Config.ARGB_8888
-        )
-        val c = Canvas(b)
-        v.layout(v.left, v.top, v.right, v.bottom)
-        v.draw(c)
-        return b
-    }
+//    /**
+//     * 毛玻璃弹窗，需要指定对齐方式
+//     */
+//    private fun showSelectDialog(target: View) {
+//        val bg = FrameLayout(this)
+//        bg.setOnClickListener {
+//            binding.root.removeView(bg)
+//            Blurry.delete(binding.root)
+//        }
+//        binding.root.addView(bg)
+//        bg.layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT
+//        bg.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
+//        val iv = ImageView(this)
+//        iv.isFocusable = true
+//        iv.isClickable = true
+//        bg.addView(iv)
+//        iv.layoutParams.width = target.width
+//        iv.layoutParams.height = target.height
+//        iv.setImageBitmap(loadBitmapFromView(target))
+//        val arr = IntArray(2)
+//        target.getLocationInWindow(arr)
+//        iv.x = arr[0].toFloat()
+//        iv.y = arr[1].toFloat()
+//
+//        // 显示内容
+//        val content: LinearLayout = layoutInflater.inflate(R.layout.dialog_main_menu, null) as LinearLayout
+//        content.scaleX = 0.5f
+//        content.scaleY = 0.5f
+//        content.alpha = 0f
+//        bg.addView(content)
+//        content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
+//        content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
+//        content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
+//        content.y = iv.y
+//        content.animate()
+//            .scaleX(1f)
+//            .scaleY(1f)
+//            .alpha(1f)
+//            .setDuration(100)
+//            .start()
+//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
+//        addDivider(content)
+//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
+//        addDivider(content)
+//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
+//        addDivider(content)
+//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
+//        addDivider(content)
+//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
+//    }
+//
+//    private fun addItemView(container: LinearLayout, icon: Int, title: String?) {
+//        val itemView = layoutInflater.inflate(R.layout.item_dialog_main_menu, null)
+//        container.addView(itemView)
+//        itemView.layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT
+//        itemView.layoutParams.height = resources.getDimension(R.dimen._78dp).toInt()
+//        itemView.findViewById<ImageView>(R.id.iv_dialog_menu_icon).setImageResource(icon)
+//        itemView.findViewById<TextView>(R.id.tv_dialog_menu_title).text = title
+//    }
+//
+//    private fun addDivider(container: LinearLayout) {
+//        val divider = View(this)
+//        container.addView(divider)
+//        divider.setBackgroundColor(resources.getColor(R.color.color_DDDDDD))
+//        val lp = divider.layoutParams as LinearLayout.LayoutParams
+//        lp.width = LinearLayout.LayoutParams.MATCH_PARENT
+//        lp.height = resources.getDimension(R.dimen._1dp).roundToInt()
+//        lp.leftMargin = resources.getDimension(R.dimen._64dp).roundToInt()
+//    }
+//
+//    private fun loadBitmapFromView(v: View): Bitmap? {
+//        val b = Bitmap.createBitmap(
+//            v.width,
+//            v.height,
+//            Bitmap.Config.ARGB_8888
+//        )
+//        val c = Canvas(b)
+//        v.layout(v.left, v.top, v.right, v.bottom)
+//        v.draw(c)
+//        return b
+//    }
     // -------------------------- OnFragmentActionListener Method End -------------------------------
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(
