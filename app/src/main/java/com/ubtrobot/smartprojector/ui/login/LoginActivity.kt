@@ -75,7 +75,6 @@ class LoginActivity : BaseActivity() {
             viewModel.login().observe(this, { loginResult ->
                 if (loginResult.status == Status.SUCCESS) {
                     val userId = loginResult.data?.user?.userId?.toString()
-                    viewModel.prefs().agoraUID = userId
                     // 涂鸦账号登陆
                     tuyaUidLogin(userId)
                 }
@@ -88,7 +87,11 @@ class LoginActivity : BaseActivity() {
             })
         }
 
-        getSerialNumberTask()
+        if (viewModel.prefs().serialNumber == null) {
+            getSerialNumberTask()
+        } else {
+            generateQrcode(viewModel.prefs().serialNumber!!)
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -115,6 +118,7 @@ class LoginActivity : BaseActivity() {
             object : IUidLoginCallback {
                 override fun onSuccess(user: User?, homeId: Long) {
                     viewModel.prefs().tuyaHomeId = homeId
+                    viewModel.prefs().userID = uid
                     loadingDialog.dismiss()
 //                    viewModel.prefs().
                     MainActivity.startWithNewTask(this@LoginActivity)

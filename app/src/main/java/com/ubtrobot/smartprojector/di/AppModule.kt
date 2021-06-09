@@ -19,12 +19,10 @@ import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import com.ubtrobot.smartprojector.ui.tuya.DeviceCategory
 import com.ubtrobot.smartprojector.utils.CryptoUtil
 import com.ubtrobot.smartprojector.utils.FileUtil
-import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.JXWAppManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
@@ -141,7 +139,7 @@ object AppModule {
 
     // 生成随机签名
     private fun refreshSign(builder: Request.Builder, deviceId: String) {
-
+        Timber.d("device id = $deviceId")
         val randStr = "${Random(System.currentTimeMillis()).nextInt(10)}${Random(System.currentTimeMillis()).nextLong(900000000) + 100000000}"
         val now = System.currentTimeMillis() / 1000
         val md5Str = CryptoUtil.encryptToMD5("$now${Configs.ubtAppKey}$randStr$deviceId")
@@ -180,8 +178,8 @@ object AppModule {
 //            .addMigrations(MIGRATION_28_29)
             .build()
 
-    @Provides @Singleton
-    fun provideGetLearnManager(prefs: PreferenceStorage) = GetLearnAppManager(prefs)
+//    @Provides @Singleton
+//    fun provideGetLearnManager(prefs: PreferenceStorage) = GetLearnAppManager(prefs)
 
     @Provides @Singleton
     fun provideJXWManager(prefs: PreferenceStorage) = JXWAppManager(prefs)

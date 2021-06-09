@@ -13,8 +13,6 @@ class Configs {
 
         const val TENCENT_DINGDANG_APPKEY = "93200b80b2f311eb9b89153abe2c55df"
 
-        const val DEFAULT_HOME = "default-home"
-
         const val ubtAppId = "940010010"
         const val ubtProduct = "90101"
         const val ubtAppKey = "c3ba293280655a66165dd8cdf4e58217"

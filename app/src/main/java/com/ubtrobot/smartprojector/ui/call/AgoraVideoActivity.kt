@@ -59,7 +59,7 @@ class AgoraVideoActivity : AppCompatActivity() {
     }
 
     private fun setupLocalPreview() {
-        val surfaceView = setupVideo(viewModel.prefs().agoraUID?.toInt()!!, true)
+        val surfaceView = setupVideo(viewModel.prefs().userID?.toInt()!!, true)
         surfaceView!!.setZOrderOnTop(true)
         binding.localPreviewLayout.addView(surfaceView)
     }

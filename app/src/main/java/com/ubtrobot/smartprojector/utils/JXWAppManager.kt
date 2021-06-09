@@ -1,6 +1,7 @@
 package com.ubtrobot.smartprojector.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.Build
@@ -18,7 +19,7 @@ enum class JxwAppType {
     LEARN_PINYIN, PIANPANG_BUSHOU, BIHUA_NAME, BISHUN_RULE, LEARN_CHINESE
 }
 
-class JXWAppManager(prefs: PreferenceStorage) {
+class JXWAppManager(private val prefs: PreferenceStorage) {
 
     companion object {
         private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 1
@@ -50,7 +51,7 @@ class JXWAppManager(prefs: PreferenceStorage) {
     /**
      * 同步点读
      */
-    fun startBookFingerRead(context: Activity, subject: String) {
+    fun startBookFingerRead(context: Context, subject: String) {
         startApp(
             context,
             "com.jxw.online_study",
@@ -59,7 +60,35 @@ class JXWAppManager(prefs: PreferenceStorage) {
         )
     }
 
-    private fun startApp(context: Activity, packageName: String, className: String, subject: String) {
+    /**
+     * 名师课堂
+     */
+    fun startFamousTeacherClassroom(context: Context, subject: String) {
+        val i = Intent()
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .setClassName("com.jxw.mskt.video", "com.jxw.mskt.filelist.activity.FileListActivity")
+            .putExtra("StartArgs","d: ${prefs.grade}|e: $subject")
+        context.startActivity(i)
+    }
+
+    /**
+     * 指尖点读
+     * subject: keben - K12指读, huiben - 绘本
+     */
+    fun startFingerRead(context: Context, subject: String) {
+        try {
+            val i = Intent()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setClassName("com.jxw.huiben", "com.jxw.huiben.activity.SplashActivity")
+                .putExtra("StartArgs", subject)
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ToastUtil.showToast(context, "启动指尖点读失败")
+        }
+    }
+
+    private fun startApp(context: Context, packageName: String, className: String, subject: String) {
         val i = Intent()
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             .setClassName(packageName, className)

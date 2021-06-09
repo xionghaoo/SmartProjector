@@ -2,7 +2,6 @@ package com.ubtrobot.smartprojector.repo
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.Settings
 import androidx.annotation.WorkerThread
 import androidx.core.content.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -23,12 +22,12 @@ interface PreferenceStorage {
     var tuyaHomeName: String?
     var isEyesProtectOpen: Boolean
     var isPostureDetectOpen: Boolean
-    var grade: Int
+    var grade: String?
     var serialNumber: String?
 //    var deviceId: String?
     var rtmToken: String?
     var rtcToken: String?
-    var agoraUID: String?
+    var userID: String?
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -50,12 +49,12 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
     override var isEyesProtectOpen: Boolean by BooleanPreference(prefs, PREF_IS_EYES_PROTECT_OPEN, false)
     override var isPostureDetectOpen: Boolean by BooleanPreference(prefs, PREF_IS_POSTURE_DETECT_OPEN, false)
     // 年级，默认是一年级
-    override var grade: Int by IntPreference(prefs, PREF_GRADE, 1)
+    override var grade: String? by StringPreference(prefs, PREF_GRADE, "小学")
     override var serialNumber: String? by StringPreference(prefs, PREF_SERIAL_NUMBER, null)
 //    override var deviceId: String? by StringPreference(prefs, PREF_DEVICE_ID, null)
     override var rtmToken: String? by StringPreference(prefs, PREF_RTM_TOKEN, null)
     override var rtcToken: String? by StringPreference(prefs, PREF_RTC_TOKEN, null)
-    override var agoraUID: String? by StringPreference(prefs, PREF_AGORA_UID, null)
+    override var userID: String? by StringPreference(prefs, PREF_USER_ID, null)
 
     init {
 //        deviceId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
@@ -83,7 +82,7 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
 //        const val PREF_DEVICE_ID = "pref_device_id"
         const val PREF_RTM_TOKEN = "pref_rtm_token"
         const val PREF_RTC_TOKEN = "pref_rtc_token"
-        const val PREF_AGORA_UID = "pref_agora_uid"
+        const val PREF_USER_ID = "pref_user_id"
     }
 }
 

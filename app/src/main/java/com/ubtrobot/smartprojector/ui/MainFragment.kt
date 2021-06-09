@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.databinding.*
-import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
-import com.ubtrobot.smartprojector.utils.GetLearnAppManager
 import com.ubtrobot.smartprojector.utils.JXWAppManager
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -26,8 +23,8 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private var page: Int? = null
-    @Inject
-    lateinit var getLearnAppManager: GetLearnAppManager
+//    @Inject
+//    lateinit var getLearnAppManager: GetLearnAppManager
     @Inject
     lateinit var jxwAppManager: JXWAppManager
 
@@ -128,8 +125,26 @@ class MainFragment : Fragment() {
      */
     private fun bindPageOneView() {
         bindingPageOne.btnAssistantChinese.setOnClickListener {
-            listener?.onItemSelected(it)
+            jxwAppManager.startBookFingerRead(requireContext(), "语文")
         }
+        bindingPageOne.btnAssistantEnglish.setOnClickListener {
+            jxwAppManager.startBookFingerRead(requireContext(), "英语")
+        }
+        bindingPageOne.btnAssistantMath.setOnClickListener {
+            jxwAppManager.startBookFingerRead(requireContext(), "数学")
+        }
+        bindingPageOne.btnAssistantMorals.setOnClickListener {
+            jxwAppManager.startBookFingerRead(requireContext(), "科学")
+        }
+
+        bindingPageOne.cardAssistantFamousTeacherClassroom.setOnClickListener {
+            jxwAppManager.startFamousTeacherClassroom(requireContext(), "语文")
+        }
+
+        bindingPageOne.cardAssistantFingerRead.setOnClickListener {
+            jxwAppManager.startFingerRead(requireContext(), "keben")
+        }
+
 
 //        GlideApp.with(requireContext())
 //            .load(R.mipmap.ic_assistant_finger_read)

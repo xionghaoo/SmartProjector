@@ -1,7 +1,6 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.R

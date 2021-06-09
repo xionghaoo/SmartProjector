@@ -10,6 +10,7 @@ import com.tuya.smart.utils.ToastUtil
 import com.ubtrobot.smartprojector.repo.SharedPreferenceStorage
 import com.ubtrobot.smartprojector.ui.MainActivity
 import com.ubtrobot.smartprojector.ui.login.LoginActivity
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -31,7 +32,9 @@ class SplashActivity : AppCompatActivity() {
     private val handler: Handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
+        SystemUtil.statusBarTransparent(window)
         setContentView(R.layout.activity_splash)
 
         getSerialNumberTask()
@@ -51,12 +54,12 @@ class SplashActivity : AppCompatActivity() {
     fun getSerialNumberTask() {
         if (hasReadPhoneStatePermission()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                // Android 10 以上拿不到序列号
-                perfs.serialNumber = Build.getSerial()
+                // TODO 加个0为了测试，后端序列号要求8位以上, Android 10 以上拿不到序列号
+                perfs.serialNumber = Build.getSerial() + "a"
 
-                val username = perfs.loginUsername
+                val userId = perfs.userID
                 handler.postDelayed({
-                    if (username != null) {
+                    if (userId != null) {
                         startPlainActivity(MainActivity::class.java)
                     } else {
                         startPlainActivity(LoginActivity::class.java)

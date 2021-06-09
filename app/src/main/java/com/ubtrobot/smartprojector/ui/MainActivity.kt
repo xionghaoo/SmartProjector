@@ -338,7 +338,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
      * 获取声网token
      */
     private fun initialAgoraToken() {
-        val userId = viewModel.prefs().agoraUID ?: return
+        val userId = viewModel.prefs().userID ?: return
         viewModel.getRTCToken(Configs.agoraChannel, userId).observe(this, { r ->
             if (r.status == Status.SUCCESS) {
                 val token = r.data?.data as? String
