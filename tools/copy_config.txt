@@ -1,13 +1,1 @@
-kd／2icon／语文／拼音学习.png;ic_chinese_pinyin.png
-kd／2icon／语文／汉字学习.png;ic_chinese_hanzi.png
-kd／2icon／语文／笔画名称.png;ic_chinese_bihua.png
-kd／2icon／语文／偏旁部首.png;ic_chinese_pianpang.png
-kd／2icon／语文／笔画规则.png;ic_chinese_bishun.png
-kd／2icon／语文／课文阅读.png;ic_chinese_book_read.png
-kd／2icon／语文／课文朗读.png;ic_chinese_book_read_aloud.png
-kd／2icon／语文／诗词朗读.png;ic_chinese_poem.png
-kd／2icon／语文／作文写作.png;ic_chinese_composition.png
-kd／2icon／语文／同步古诗.png;ic_chinese_ancient_poetry.png
-kd／2icon／语文／动漫成语.png;ic_chinese_anime_idiom.png
-kd／2icon／语文／动漫学国学.png;ic_chinese_anime_guoxue.png
-kd／2icon／阅读写作.png;ic_chinese_write.png
+kd／3容器／工具背景板-编程.png;ic_assistant_tools_container.png

@@ -38,14 +38,14 @@ class MainFragment : Fragment() {
     private var _bindingPageThree: FragmentMainPageEnglishBinding? = null
     private var _bindingPageFour: FragmentMainPageMathematicsBinding? = null
     private var _bindingPageFive: FragmentMainPageAiProgramBinding? = null
-    private var _bindingPageSix: FragmentMainPageRecommendBinding? = null
+//    private var _bindingPageSix: FragmentMainPageRecommendBinding? = null
 
     private val bindingPageOne get() = _bindingPageOne!!
     private val bindingPageTwo get() = _bindingPageTwo!!
     private val bindingPageThree get() = _bindingPageThree!!
     private val bindingPageFour get() = _bindingPageFour!!
     private val bindingPageFive get() = _bindingPageFive!!
-    private val bindingPageSix get() = _bindingPageSix!!
+//    private val bindingPageSix get() = _bindingPageSix!!
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -93,10 +93,10 @@ class MainFragment : Fragment() {
                 _bindingPageFive = FragmentMainPageAiProgramBinding.inflate(inflater, container, false)
                 bindingPageFive.root
             }
-            5 -> {
-                _bindingPageSix = FragmentMainPageRecommendBinding.inflate(inflater, container, false)
-                bindingPageSix.root
-            }
+//            5 -> {
+//                _bindingPageSix = FragmentMainPageRecommendBinding.inflate(inflater, container, false)
+//                bindingPageSix.root
+//            }
             else -> throw IllegalStateException("not found main fragment layout")
         }
     }
@@ -108,7 +108,7 @@ class MainFragment : Fragment() {
         _bindingPageThree = null
         _bindingPageFour = null
         _bindingPageFive = null
-        _bindingPageSix = null
+//        _bindingPageSix = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

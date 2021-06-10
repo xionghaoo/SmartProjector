@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
         }
     }
 
-    private var pageTitles = arrayOf("智能学习", "语文", "英语", "数学", "AI编程", "优必选严选")
+    private var pageTitles = arrayOf("智能学习", "语文", "英语", "数学", "AI编程")
 
     private lateinit var binding: ActivityMainBinding
 

@@ -284,7 +284,7 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="@dimen/_24sp"
-            android:layout_marginTop="@dimen/_38dp"
+            android:layout_marginTop="@dimen/_36dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView47" />
@@ -303,7 +303,7 @@
             android:id="@+id/textView53"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_35dp"
+            android:layout_marginTop="@dimen/_33dp"
             android:text="进阶学习"
             android:textStyle="bold"
             android:textColor="@color/white"
