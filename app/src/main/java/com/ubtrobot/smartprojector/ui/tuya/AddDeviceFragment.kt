@@ -107,11 +107,17 @@ class AddDeviceFragment : Fragment() {
             binding.edtConnectedWifiPassword.setText(repo.prefs.wifiPwd)
             binding.btnSetWifi.setOnClickListener {
                 val pwd = binding.edtConnectedWifiPassword.text.toString()
-                if (pwd.isNotEmpty()) {
-                    repo.prefs.wifiPwd = pwd
-                    ToastUtil.showToast(requireContext(), "已设置wifi")
+                val is24GWifi = WifiUtil.is24GWifi(requireContext())
+                if (is24GWifi) {
+                    if (pwd.isNotEmpty()) {
+                        repo.prefs.wifiPwd = pwd
+                        ToastUtil.showToast(requireContext(), "已设置wifi")
+                    } else {
+                        ToastUtil.showToast(requireContext(), "wifi密码不能为空")
+                    }
                 } else {
-                    ToastUtil.showToast(requireContext(), "wifi密码不能为空")
+                    binding.edtConnectedWifiPassword.text.clear()
+                    ToastUtil.showToast(requireContext(), "您连接的Wifi不是2.4G wifi")
                 }
             }
         }

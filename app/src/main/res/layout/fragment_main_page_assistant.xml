@@ -112,21 +112,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_51dp"
+                android:layout_marginStart="@dimen/_46dp"
                 android:layout_gravity="start|top"
-                android:layout_marginTop="@dimen/_43dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="小学"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_32dp"
-                android:layout_gravity="end|top"
                 android:layout_marginTop="@dimen/_43dp"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -151,27 +138,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
-                android:layout_marginStart="@dimen/_51dp"
+                android:layout_marginStart="@dimen/_46dp"
                 android:layout_marginTop="@dimen/_43dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="小学"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|top"
-                android:layout_marginTop="@dimen/_43dp"
-                android:layout_marginEnd="@dimen/_32dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="英语"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -189,27 +164,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
-                android:layout_marginStart="@dimen/_51dp"
+                android:layout_marginStart="@dimen/_46dp"
                 android:layout_marginTop="@dimen/_43dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="小学"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_26sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|top"
-                android:layout_marginTop="@dimen/_43dp"
-                android:layout_marginEnd="@dimen/_32dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="数学"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -227,11 +190,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
-                android:layout_marginStart="@dimen/_51dp"
-                android:layout_marginTop="@dimen/_43dp"
+                android:layout_marginStart="@dimen/_46dp"
+                android:layout_marginTop="@dimen/_19dp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="小学"
+                android:text="道德"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
@@ -239,15 +202,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|top"
-                android:layout_marginTop="@dimen/_43dp"
-                android:layout_marginEnd="@dimen/_32dp"
+                android:layout_gravity="start|bottom"
+                android:layout_marginStart="@dimen/_46dp"
+                android:layout_marginBottom="@dimen/_19dp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="科学"
+                android:text="法制"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="@dimen/_64dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="与"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="bold" />
+
         </FrameLayout>
 
     </LinearLayout>

@@ -12,23 +12,23 @@
         android:id="@+id/tv_settings_menu_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_42sp"
+        android:textSize="@dimen/_28sp"
         android:textColor="@color/color_text_dark"
-        android:layout_marginStart="@dimen/_80dp"
+        android:layout_marginStart="@dimen/_53dp"
         android:text="可用时长"/>
     <TextView
         android:id="@+id/tv_settings_menu_item_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginEnd="@dimen/_49dp"
-        android:textSize="@dimen/_42sp"
+        android:layout_marginEnd="@dimen/_33dp"
+        android:textSize="@dimen/_28sp"
         android:textColor="@color/color_text_dark"
         android:gravity="end"/>
     <ImageView
-        android:layout_width="@dimen/_55dp"
-        android:layout_height="@dimen/_55dp"
-        android:layout_marginEnd="@dimen/_80dp"
+        android:layout_width="@dimen/_37dp"
+        android:layout_height="@dimen/_37dp"
+        android:layout_marginEnd="@dimen/_53dp"
         android:src="@mipmap/ic_settings_forward"/>
 
 </LinearLayout>

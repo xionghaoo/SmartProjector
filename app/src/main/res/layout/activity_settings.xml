@@ -22,7 +22,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/_12dp"
+        android:paddingTop="@dimen/_8dp"
         android:paddingBottom="@dimen/_2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_settings_menu"
-        android:layout_width="@dimen/_691dp"
+        android:layout_width="@dimen/_461dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

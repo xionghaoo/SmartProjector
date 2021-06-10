@@ -65,10 +65,14 @@ class ProgramDevicesSettingsFragment : Fragment() {
         binding.listDevices.post {
             binding.listDevices.removeAllViews()
             deviceCategories.forEach { category ->
-                addCategory(category.name, category.devices)
+                if (category.devices.size > 0) {
+                    addCategory(category.name, category.devices)
+                }
             }
 
-            addCategory("其他", otherDevices)
+            if (otherDevices.size > 0) {
+                addCategory("其他", otherDevices)
+            }
         }
     }
 
@@ -81,10 +85,10 @@ class ProgramDevicesSettingsFragment : Fragment() {
 //        Timber.d("post listDevices width: ${binding.listDevices.width}")
         val lp = categoryBox.layoutParams
         val rowNum = (items.size / 2f).roundToInt()
-        lp.height = rowNum * resources.getDimension(R.dimen._226dp).roundToInt() + (rowNum - 1) * resources.getDimension(R.dimen._40dp).roundToInt()
+        lp.height = rowNum * resources.getDimension(R.dimen._151dp).roundToInt() + (rowNum - 1) * resources.getDimension(R.dimen._27dp).roundToInt()
         categoryBox.removeAllViews()
         // 148 = 60 + 60 + 28
-        val itemWidth = (binding.listDevices.width - resources.getDimension(R.dimen._148dp).roundToInt()) / 2
+        val itemWidth = (binding.listDevices.width - resources.getDimension(R.dimen._98dp).roundToInt()) / 2
         items.forEach { item ->
             addItemView(categoryBox, item, itemWidth)
         }
@@ -98,7 +102,7 @@ class ProgramDevicesSettingsFragment : Fragment() {
         categoryBox.addView(itemView)
         val itemLp = itemView.layoutParams as FlexboxLayout.LayoutParams
         itemLp.width = itemWidth
-        itemLp.height = resources.getDimension(R.dimen._226dp).roundToInt()
+        itemLp.height = resources.getDimension(R.dimen._151dp).roundToInt()
         itemView.findViewById<TextView>(R.id.tv_settings_device_name).text = item.name
         val icon = itemView.findViewById<ImageView>(R.id.iv_settings_device_icon)
         GlideApp.with(requireContext())

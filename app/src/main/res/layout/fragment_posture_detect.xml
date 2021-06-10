@@ -9,22 +9,22 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_140dp">
+        android:layout_height="@dimen/_93dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="立即开启"
-            android:textSize="@dimen/_42sp"
+            android:textSize="@dimen/_28sp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_80dp"
+            android:layout_marginStart="@dimen/_53dp"
             android:textColor="@color/color_text_dark"/>
 
         <com.suke.widget.SwitchButton
             android:id="@+id/sw_settings_posture"
-            android:layout_width="@dimen/_115dp"
-            android:layout_height="@dimen/_64dp"
+            android:layout_width="@dimen/_77dp"
+            android:layout_height="@dimen/_43dp"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="@dimen/_80dp"
+            android:layout_marginEnd="@dimen/_53dp"
             app:sb_border_width="0dp"
             app:sb_show_indicator="false"
             app:sb_button_color="@color/color_text_dark"
@@ -35,18 +35,18 @@
         android:id="@+id/split_line_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1dp"
-        android:layout_marginStart="@dimen/_40dp"
-        android:layout_marginEnd="@dimen/_40dp"
+        android:layout_marginStart="@dimen/_27dp"
+        android:layout_marginEnd="@dimen/_27dp"
         android:background="@color/color_menu_split"/>
 
     <TextView
         android:id="@+id/textView43"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12dp"
-        android:layout_marginStart="@dimen/_80dp"
-        android:layout_marginEnd="@dimen/_80dp"
-        android:textSize="@dimen/_32dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginStart="@dimen/_53dp"
+        android:layout_marginEnd="@dimen/_53dp"
+        android:textSize="@dimen/_21dp"
         android:textColor="@color/color_text_dark_75"
         android:text="检测在书桌前写作业场景下的不良姿势，包括趴桌子，头离书本过近、歪脑袋检测则触发提醒" />
 

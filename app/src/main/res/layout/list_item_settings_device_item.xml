@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_536dp"
-    android:layout_height="@dimen/_226dp">
+    android:layout_width="@dimen/_357dp"
+    android:layout_height="@dimen/_151dp">
 
     <ImageView
         android:id="@+id/iv_item_background"
@@ -18,9 +18,9 @@
 
     <ImageView
         android:id="@+id/iv_settings_device_icon"
-        android:layout_width="@dimen/_114dp"
-        android:layout_height="@dimen/_140dp"
-        android:layout_marginStart="@dimen/_55dp"
+        android:layout_width="@dimen/_76dp"
+        android:layout_height="@dimen/_93dp"
+        android:layout_marginStart="@dimen/_37dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,10 +29,10 @@
         android:id="@+id/tv_settings_device_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_36dp"
-        android:layout_marginEnd="@dimen/_18dp"
+        android:layout_marginStart="@dimen/_24dp"
+        android:layout_marginEnd="@dimen/_12dp"
         android:textColor="@color/color_text_dark"
-        android:textSize="@dimen/_40sp"
+        android:textSize="@dimen/_27sp"
         android:maxLines="2"
         android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,10 +43,10 @@
 
     <ImageView
         android:id="@+id/iv_settings_device_type"
-        android:layout_width="@dimen/_52dp"
-        android:layout_height="@dimen/_52dp"
-        android:layout_marginTop="@dimen/_18dp"
-        android:layout_marginEnd="@dimen/_18dp"
+        android:layout_width="@dimen/_35dp"
+        android:layout_height="@dimen/_35dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:layout_marginEnd="@dimen/_12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

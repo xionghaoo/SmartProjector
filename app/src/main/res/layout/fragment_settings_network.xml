@@ -10,17 +10,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_settings_connected_network"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_140dp"
+        android:layout_height="@dimen/_93dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_settings_wifi_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_80dp"
+            android:layout_marginStart="@dimen/_53dp"
             android:textColor="@color/color_text_dark"
-            android:textSize="@dimen/_42sp"
-            android:layout_marginTop="@dimen/_10dp"
+            android:textSize="@dimen/_28sp"
+            android:layout_marginTop="@dimen/_7dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_settings_wifi_level"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_text_dark_75"
-            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_settings_wifi_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_settings_wifi_name"
@@ -39,9 +39,9 @@
 
         <ImageView
             android:id="@+id/iv_settings_network_status"
-            android:layout_width="@dimen/_36dp"
-            android:layout_height="@dimen/_36dp"
-            android:layout_marginStart="@dimen/_40dp"
+            android:layout_width="@dimen/_24dp"
+            android:layout_height="@dimen/_24dp"
+            android:layout_marginStart="@dimen/_27dp"
             android:src="@mipmap/ic_settings_network_status"
             app:layout_constraintBottom_toBottomOf="@+id/tv_settings_wifi_name"
             app:layout_constraintStart_toEndOf="@+id/tv_settings_wifi_name"
@@ -52,46 +52,10 @@
         android:id="@+id/split_line_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1dp"
-        android:layout_marginStart="@dimen/_40dp"
-        android:layout_marginEnd="@dimen/_40dp"
+        android:layout_marginStart="@dimen/_27dp"
+        android:layout_marginEnd="@dimen/_27dp"
         android:background="@color/color_menu_split"/>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/btn_to_network_setting"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/_140dp"-->
-<!--        style="@style/Ripple"-->
-<!--        android:clickable="true"-->
-<!--        android:focusable="true"-->
-<!--        android:gravity="center_vertical">-->
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:textSize="@dimen/_42sp"-->
-<!--            android:textColor="@color/color_text_dark"-->
-<!--            android:layout_marginStart="@dimen/_80dp"-->
-<!--            android:text="连接其他网络"/>-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="@dimen/_49dp"-->
-<!--            android:textSize="@dimen/_42sp"-->
-<!--            android:textColor="@color/color_text_dark"-->
-<!--            android:text="前往设置"/>-->
-<!--        <ImageView-->
-<!--            android:layout_width="@dimen/_60dp"-->
-<!--            android:layout_height="@dimen/_60dp"-->
-<!--            android:layout_marginEnd="@dimen/_80dp"-->
-<!--            android:background="@color/color_menu_split"/>-->
-<!--    </LinearLayout>-->
-
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/_1dp"-->
-<!--        android:layout_marginStart="@dimen/_40dp"-->
-<!--        android:layout_marginEnd="@dimen/_40dp"-->
-<!--        android:background="@color/color_menu_split"/>-->
     <com.ubtrobot.smartprojector.widgets.SettingsMenuItemView
         android:id="@+id/menu_item_to_network_setting"
         android:layout_width="match_parent"

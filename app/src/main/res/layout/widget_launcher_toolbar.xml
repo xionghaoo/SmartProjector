@@ -8,8 +8,8 @@
 
     <FrameLayout
         android:id="@+id/btn_back"
-        android:layout_width="@dimen/_224dp"
-        android:layout_height="@dimen/_140dp"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_93dp"
         android:background="@drawable/selector_btn_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/textView51"
-            android:layout_width="@dimen/_62dp"
-            android:layout_height="@dimen/_62dp"
+            android:layout_width="@dimen/_41dp"
+            android:layout_height="@dimen/_41dp"
             android:layout_gravity="center"
             android:src="@mipmap/ic_btn_back" />
     </FrameLayout>
@@ -28,8 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="趣味专题"
-        android:layout_marginStart="@dimen/_36dp"
-        android:textSize="@dimen/_56sp"
+        android:layout_marginStart="@dimen/_24dp"
+        android:textSize="@dimen/_37sp"
         android:textStyle="bold"
         android:textColor="@color/color_text_dark"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
