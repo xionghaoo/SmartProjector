@@ -26,12 +26,12 @@ class HomeMenuDialog(
     private val context: Context,
     private val rootView: ViewGroup,
     private val target: View,
-    private var align: Align = Align.TOP,
+    private var align: Align = Align.LEFT_TOP,
     private val listData: ArrayList<HomeMenuData>
 ) {
 
     enum class Align {
-        TOP, BOTTOM
+        LEFT_TOP, LEFT_BOTTOM, RIGHT_TOP, RIGHT_BOTTOM
     }
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -83,12 +83,23 @@ class HomeMenuDialog(
         bg.addView(content)
         content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
         content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
-        content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
         when (align) {
-            Align.TOP -> {
+            Align.LEFT_TOP -> {
+                content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
             }
-            Align.BOTTOM -> {
+            Align.LEFT_BOTTOM -> {
+                content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
+                content.y = iv.y + iv.layoutParams.height -
+                    listData.size * resources.getDimension(R.dimen._78dp).toInt() -
+                    content.paddingTop - content.paddingBottom
+            }
+            Align.RIGHT_TOP -> {
+                content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
+                content.y = iv.y
+            }
+            Align.RIGHT_BOTTOM -> {
+                content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
                     listData.size * resources.getDimension(R.dimen._78dp).toInt() -
                     content.paddingTop - content.paddingBottom

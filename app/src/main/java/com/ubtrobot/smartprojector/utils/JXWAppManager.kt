@@ -17,7 +17,8 @@ import timber.log.Timber
 
 enum class JxwAppType {
     LEARN_PINYIN, PIANPANG_BUSHOU, BIHUA_NAME, BISHUN_RULE,
-    LEARN_CHINESE, ZICI_LISTEN, INTEREST_CHINESE
+    LEARN_CHINESE, ZICI_LISTEN, INTEREST_CHINESE, ORAL_ENGLISH_TEST,
+    MATH_LEARN_NUMBER, MATH_FORMULA
 }
 
 class JXWAppManager(private val prefs: PreferenceStorage) {
@@ -27,9 +28,9 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
     }
 
     /**
-     * 语文功能点
+     * 其他页面
      */
-    fun startChinesePage(context: Context, type: JxwAppType) {
+    fun startOtherPage(context: Context, type: JxwAppType) {
         when (type) {
             // 拼音学习
             JxwAppType.LEARN_PINYIN ->
@@ -46,11 +47,40 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
             // 汉字学习
             JxwAppType.LEARN_CHINESE ->
                 startOtherApp(context, "com.jxw.characterlearning", "com.jxw.characterlearning.MainActivity")
+            // 字词听写
             JxwAppType.ZICI_LISTEN ->
                 startOtherApp(context, "com.jxw.handwrite", "com.jxw.handwrite.ZymsActivity")
+            // 趣味语文
             JxwAppType.INTEREST_CHINESE ->
                 startOtherApp(context, "com.jxw.yuwenxiezuo", "com.jxw.yuwenxiezuo.MainActivity")
+            // 口语测评
+            JxwAppType.ORAL_ENGLISH_TEST ->
+                startOtherApp(context, "com.jxw.singsound", "com.jxw.singsound.ui.ZXSplashActivity")
+            // 认识数字
+            JxwAppType.MATH_LEARN_NUMBER ->
+                startOtherApp(context, "com.jxw.studydigital", "com.jxw.studydigital.StuDydigitalActivity")
+            // 算术口诀
+            JxwAppType.MATH_FORMULA ->
+                startOtherApp(context, "com.example.arithmeticformula", "com.example.arithmeticformula.MainActivity")
 
+
+
+        }
+    }
+
+    /**
+     * 固化数据
+     */
+    fun startFixDataPage(context: Context, item: String) {
+        try {
+            val i = Intent()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setClassName("com.jxw.online_studys", "com.jxw.online_study.activity.XBookStudyActivity")
+                .putExtra("StartArgs", "f:/ansystem/固化数据/${item}.JXW")
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ToastUtil.showToast(context, "页面启动失败")
         }
     }
 
@@ -58,23 +88,32 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
      * 同步点读
      */
     fun startBookFingerRead(context: Context, subject: String) {
-        startApp(
-            context,
-            "com.jxw.online_study",
-            "com.jxw.online_study.activity.BookCaseWrapperActivity",
-            subject
-        )
+        try {
+            val i = Intent()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setClassName("com.jxw.online_study", "com.jxw.online_study.activity.BookCaseWrapperActivity")
+                .putExtra("StartArgs", "d:/同步学习/${subject}|e:JWLB")   	//String:必传：跳转Flag
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ToastUtil.showToast(context, "页面启动失败")
+        }
     }
 
     /**
      * 名师课堂
      */
     fun startFamousTeacherClassroom(context: Context, subject: String) {
-        val i = Intent()
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            .setClassName("com.jxw.mskt.video", "com.jxw.mskt.filelist.activity.FileListActivity")
-            .putExtra("StartArgs","d: ${prefs.grade}|e: $subject")
-        context.startActivity(i)
+        try {
+            val i = Intent()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setClassName("com.jxw.mskt.video", "com.jxw.mskt.filelist.activity.FileListActivity")
+                .putExtra("StartArgs","d: ${prefs.grade}|e: $subject")
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ToastUtil.showToast(context, "页面启动失败")
+        }
     }
 
     /**
@@ -90,25 +129,20 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
             context.startActivity(i)
         } catch (e: Exception) {
             e.printStackTrace()
-            ToastUtil.showToast(context, "启动指尖点读失败")
+            ToastUtil.showToast(context, "指尖点读启动失败")
         }
     }
 
-    private fun startApp(context: Context, packageName: String, className: String, subject: String) {
-        val i = Intent()
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            .setClassName(packageName, className)
-            .putExtra("StartArgs", "d:/同步学习/${subject}|e:JWLB")   	//String:必传：跳转Flag
-        context.startActivity(i)
-
-//        showFloatButton(context)
-    }
-
     private fun startOtherApp(context: Context, packageName: String, className: String) {
-        val i = Intent()
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            .setClassName(packageName, className)
-        context.startActivity(i)
+        try {
+            val i = Intent()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setClassName(packageName, className)
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ToastUtil.showToast(context, "页面启动失败")
+        }
     }
 
     private fun showFloatButton(context: Activity) {

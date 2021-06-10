@@ -8,15 +8,15 @@
     tools:context=".ui.MainFragment">
 
     <FrameLayout
-        android:id="@+id/textView23"
+        android:id="@+id/card_chinese_after_school"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_8dp"
         android:background="@mipmap/ic_chinese_after_school"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classic"
         app:layout_constraintEnd_toEndOf="@+id/tv_chinese_prepare_read"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19">
+        app:layout_constraintStart_toEndOf="@+id/card_chinese_classic"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_classic">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,8 +35,8 @@
         android:layout_height="0dp"
         android:background="@drawable/shape_connect_line_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="@+id/card_chinese_after_school"
+        app:layout_constraintStart_toStartOf="@+id/card_chinese_after_school"
         app:layout_constraintTop_toTopOf="@+id/textView20" />
 
     <TextView
@@ -45,12 +45,12 @@
         android:layout_height="@dimen/_20dp"
         android:layout_marginStart="@dimen/_254dp"
         android:background="@drawable/shape_connect_line_right"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classic"
+        app:layout_constraintStart_toStartOf="@+id/card_chinese_classic"
+        app:layout_constraintTop_toTopOf="@+id/card_chinese_classic" />
 
     <FrameLayout
-        android:id="@+id/textView19"
+        android:id="@+id/card_chinese_classic"
         android:layout_width="@dimen/_265dp"
         android:layout_height="@dimen/_250dp"
         android:layout_marginTop="@dimen/_15dp"
@@ -75,9 +75,9 @@
         android:layout_height="@dimen/_36dp"
         android:layout_marginBottom="@dimen/_246dp"
         android:background="@drawable/shape_connect_line_bottom"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="@+id/textView19" />
+        app:layout_constraintBottom_toBottomOf="@+id/card_chinese_classic"
+        app:layout_constraintEnd_toEndOf="@+id/card_chinese_classic"
+        app:layout_constraintStart_toStartOf="@+id/card_chinese_classic" />
 
     <FrameLayout
         android:id="@+id/tv_chinese_prepare_read"

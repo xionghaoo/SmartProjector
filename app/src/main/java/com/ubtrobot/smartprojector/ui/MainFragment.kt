@@ -155,59 +155,94 @@ class MainFragment : Fragment() {
      */
     private fun bindPageTwoView() {
         bindingPageTwo.tvChinesePrepareRead.setOnClickListener {
-            jxwAppManager.startBookFingerRead(requireActivity(), "语文");
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
+                    jxwAppManager.startFamousTeacherClassroom(requireContext(), "语文")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本点读") {
+                    jxwAppManager.startBookFingerRead(requireActivity(), "语文");
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "指尖阅读") {
+                    jxwAppManager.startFingerRead(requireContext(), "keben")
+                }
+            ))
+        }
+        bindingPageTwo.cardChineseClassic.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本讲解") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "字词学习") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "背诵课文") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "专题扩展") {
+                }
+            ))
+        }
+        bindingPageTwo.cardChineseAfterSchool.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "字词听写") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步试题") {
+                }
+            ))
         }
 
         bindingPageTwo.btnChineseFontFundamental.setOnClickListener {
-            listener?.onItemSelected(it, HomeMenuDialog.Align.TOP, arrayListOf(
+            listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_TOP, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
-                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.LEARN_PINYIN)
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.LEARN_PINYIN)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "笔画名称") {
-                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.BIHUA_NAME)
+                HomeMenuData(R.mipmap.ic_chinese_bihua, "笔画名称") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.BIHUA_NAME)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "偏旁部首") {
-                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.PIANPANG_BUSHOU)
+                HomeMenuData(R.mipmap.ic_chinese_pianpang, "偏旁部首") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.PIANPANG_BUSHOU)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "笔画规则") {
-                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.BISHUN_RULE)
+                HomeMenuData(R.mipmap.ic_chinese_bishun, "笔顺规则") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.BISHUN_RULE)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "汉字学习") {
-                    jxwAppManager.startChinesePage(requireContext(), JxwAppType.LEARN_CHINESE)
+                HomeMenuData(R.mipmap.ic_chinese_hanzi, "汉字学习") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.LEARN_CHINESE)
                 }
             ))
         }
         bindingPageTwo.btnChineseReadWrite.setOnClickListener {
-            listener?.onItemSelected(it, HomeMenuDialog.Align.BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_book_read, "课文阅读") {
                     ToastUtil.showToast(requireContext(), "拼音学习1")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                HomeMenuData(R.mipmap.ic_chinese_book_read_aloud, "课文朗读") {
                     ToastUtil.showToast(requireContext(), "拼音学习2")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                HomeMenuData(R.mipmap.ic_chinese_poem, "诗词朗读") {
+                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_composition, "作文写作") {
                     ToastUtil.showToast(requireContext(), "拼音学习3")
                 }
             ))
         }
         bindingPageTwo.btnChineseIdiom.setOnClickListener {
-            listener?.onItemSelected(it, HomeMenuDialog.Align.BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_ancient_poetry, "同步古诗") {
                     ToastUtil.showToast(requireContext(), "拼音学习1")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                HomeMenuData(R.mipmap.ic_chinese_anime_idiom, "动漫成语") {
                     ToastUtil.showToast(requireContext(), "拼音学习2")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
+                HomeMenuData(R.mipmap.ic_chinese_anime_guoxue, "动漫学国学") {
                     ToastUtil.showToast(requireContext(), "拼音学习3")
                 }
             ))
         }
         bindingPageTwo.btnChineseToolsWord.setOnClickListener {
-            jxwAppManager.startChinesePage(requireContext(), JxwAppType.ZICI_LISTEN)
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.ZICI_LISTEN)
         }
         bindingPageTwo.btnChineseToolsInterest.setOnClickListener {
-            jxwAppManager.startChinesePage(requireContext(), JxwAppType.INTEREST_CHINESE)
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.INTEREST_CHINESE)
         }
     }
 
@@ -215,48 +250,100 @@ class MainFragment : Fragment() {
      * 英语
      */
     private fun bindPageThreeView() {
-//        bindingPageThree.cardEnglishClassroom.setSelectListener {
-//            startPlainActivity(EnglishClassroomActivity::class.java)
-//        }
-//
-//        bindingPageThree.cardEnglishCoursebook.setSelectListener {
-//            getLearnAppManager.startEnglishPage(requireContext(), "同步新点读")
-//        }
-//
-//        bindingPageThree.cardEnglishOralPractise.setSelectListener {
-//            getLearnAppManager.startEnglishPage(requireContext(), "同步英语评测")
-//        }
-//
-//        bindingPageThree.cardEnglishWordBook.setSelectListener {
-//            getLearnAppManager.startEnglishPage(requireContext(), "分类词汇")
-//        }
-//
-//        bindingPageThree.cardEnglishInterest.setSelectListener {
-//        }
+        bindingPageThree.cardEnglishPrepareRead.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
+                    jxwAppManager.startFamousTeacherClassroom(requireContext(), "英语")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本点读") {
+                    jxwAppManager.startBookFingerRead(requireActivity(), "英语");
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "指尖阅读") {
+                    jxwAppManager.startFingerRead(requireContext(), "keben")
+                }
+            ))
+        }
+        bindingPageThree.cardEnglishClassic.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点视频") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点归纳") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "记单词") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "背课文") {
+                }
+            ))
+        }
+        bindingPageThree.cardEnglishAfterSchool.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "口语测评") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.ORAL_ENGLISH_TEST)
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "自我评测") {
+                }
+            ))
+        }
+        bindingPageThree.btnEnglishWrite.setOnClickListener {
+            jxwAppManager.startFixDataPage(requireContext(), "小学英语写作")
+        }
     }
 
     /**
      * 数学
      */
     private fun bindPageFourView() {
-//        GlideApp.with(requireContext())
-//                .load(R.mipmap.ic_mathematics_main)
-//                .into(bindingPageFour.ivMathematicsMain)
-//        bindingPageFour.cardMathematicsClassroom.setSelectListener {
-//            startPlainActivity(MathematicsClassroomActivity::class.java)
-//        }
-//        bindingPageFour.cardMathematicsCoursebook.setSelectListener {
-//            getLearnAppManager.startMathematicsPage(requireContext(), "同步新点读")
-//        }
-//        bindingPageFour.cardMathematicsSearchQuestion.setSelectListener {
-//            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_sou_ti")
-//        }
-//        bindingPageFour.cardMathematicsWrongBook.setSelectListener {
-//            getLearnAppManager.startMathematicsPage(requireContext(), "custom_page_zhidu_cuo_ti")
-//        }
-//        bindingPageFour.cardMathematicsCalculate.setSelectListener {
-//            getLearnAppManager.startMathematicsPage(requireContext(), "速算闯关")
-//        }
+        bindingPageFour.cardMathematicsPrepareRead.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
+                    jxwAppManager.startFamousTeacherClassroom(requireContext(), "数学")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本点读") {
+                    jxwAppManager.startBookFingerRead(requireActivity(), "数学");
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "指尖阅读") {
+                    jxwAppManager.startFingerRead(requireContext(), "keben")
+                }
+            ))
+        }
+        bindingPageFour.cardMathematicsClassic.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点精讲") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "数学图形") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "数学公式") {
+                }
+            ))
+        }
+        bindingPageFour.cardMathematicsAfterSchool.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "例题解析") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步测试") {
+                }
+            ))
+        }
+        bindingPageFour.btnMathematicsFundament.setOnClickListener {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_TOP, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "认识数字") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_LEARN_NUMBER)
+                },
+                HomeMenuData(R.mipmap.ic_chinese_bihua, "算术口诀") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_FORMULA)
+                },
+                HomeMenuData(R.mipmap.ic_chinese_pianpang, "数学公式") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_bishun, "数学图形") {
+                }
+            ))
+        }
     }
 
     /**

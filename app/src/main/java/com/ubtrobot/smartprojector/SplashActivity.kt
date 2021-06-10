@@ -14,6 +14,7 @@ import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -54,9 +55,9 @@ class SplashActivity : AppCompatActivity() {
     fun getSerialNumberTask() {
         if (hasReadPhoneStatePermission()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                Timber.d("本机序列号：${Build.getSerial()}")
                 // TODO 加个0为了测试，后端序列号要求8位以上, Android 10 以上拿不到序列号
                 perfs.serialNumber = Build.getSerial() + "a"
-
                 val userId = perfs.userID
                 handler.postDelayed({
                     if (userId != null) {
