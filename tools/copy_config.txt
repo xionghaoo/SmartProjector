@@ -1,1 +1,1 @@
-kd／3容器／工具背景板-编程.png;ic_assistant_tools_container.png
+kd／2icon／直播／播放.png;ic_live_play.png
