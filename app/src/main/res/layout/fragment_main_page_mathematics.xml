@@ -113,6 +113,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/btn_mathematics_knowledge_points"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_28dp"
@@ -166,6 +167,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_mathematics_practise"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
@@ -192,6 +194,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_mathematics_olympic"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
@@ -235,7 +238,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView41" >
 
         <ImageView
-            android:id="@+id/textView46"
+            android:id="@+id/btn_mathematics_tools_focus"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginTop="@dimen/_28dp"
@@ -257,7 +260,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/textView47"
+            android:id="@+id/btn_mathematics_tools_interest"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginTop="@dimen/_158dp"
@@ -276,10 +279,10 @@
             android:layout_marginTop="@dimen/_13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView47" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_mathematics_tools_interest" />
 
         <ImageView
-            android:id="@+id/textView49"
+            android:id="@+id/btn_mathematics_tools_arithmetic"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginBottom="@dimen/_185dp"
@@ -298,10 +301,10 @@
             android:textSize="@dimen/_24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView49" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_mathematics_tools_arithmetic" />
 
         <ImageView
-            android:id="@+id/textView54"
+            android:id="@+id/btn_mathematics_tool_error_book"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginBottom="@dimen/_56dp"
@@ -320,7 +323,7 @@
             android:layout_marginTop="@dimen/_13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_mathematics_tool_error_book" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

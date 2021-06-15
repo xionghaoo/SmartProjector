@@ -93,16 +93,27 @@
         android:layout_marginStart="@dimen/_32dp"
         android:background="@mipmap/ic_assistant_special_container"
         android:orientation="vertical"
+        android:gravity="bottom"
         android:paddingStart="@dimen/_18dp"
         android:paddingEnd="@dimen/_32dp"
         app:layout_constraintStart_toEndOf="@+id/card_assistant_famous_teacher_classroom"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_32sp"
+            android:includeFontPadding="false"
+            android:text="电子书"
+            android:layout_marginBottom="@dimen/_8dp"/>
+
         <FrameLayout
             android:id="@+id/btn_assistant_chinese"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_28dp">
+            android:layout_height="@dimen/_104dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -113,8 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_46dp"
-                android:layout_gravity="start|top"
-                android:layout_marginTop="@dimen/_43dp"
+                android:layout_gravity="start|center_vertical"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="语文"
@@ -126,8 +136,8 @@
         <FrameLayout
             android:id="@+id/btn_assistant_english"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp">
+            android:layout_height="@dimen/_104dp"
+            android:layout_marginTop="@dimen/_12dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -137,9 +147,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start|top"
+                android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="@dimen/_46dp"
-                android:layout_marginTop="@dimen/_43dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="英语"
@@ -152,8 +161,8 @@
         <FrameLayout
             android:id="@+id/btn_assistant_math"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp">
+            android:layout_height="@dimen/_104dp"
+            android:layout_marginTop="@dimen/_12dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -163,9 +172,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start|top"
+                android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="@dimen/_46dp"
-                android:layout_marginTop="@dimen/_43dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="数学"
@@ -178,8 +186,9 @@
         <FrameLayout
             android:id="@+id/btn_assistant_morals"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_8dp">
+            android:layout_height="@dimen/_104dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:layout_marginBottom="@dimen/_22dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -191,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
                 android:layout_marginStart="@dimen/_46dp"
-                android:layout_marginTop="@dimen/_19dp"
+                android:layout_marginTop="@dimen/_12dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="道德"
@@ -204,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|bottom"
                 android:layout_marginStart="@dimen/_46dp"
-                android:layout_marginBottom="@dimen/_19dp"
+                android:layout_marginBottom="@dimen/_12dp"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="法制"

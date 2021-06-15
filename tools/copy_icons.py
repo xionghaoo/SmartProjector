@@ -14,7 +14,7 @@ SPLIT_CHARACTER = ';'
 
 
 def copy_file(source, target):
-    copy_file_dpi(source, target, 'xxhdpi')
+    copy_file_dpi(source, target, 'xxxhdpi')
     # xh_source = join('{0}\\mipmap-xhdpi'.format(SOURCE_DIR), source)
     # xh_target_path = '{0}\\mipmap-xhdpi'.format(TARGET_DIR)
     # if not os.path.exists(xh_target_path):

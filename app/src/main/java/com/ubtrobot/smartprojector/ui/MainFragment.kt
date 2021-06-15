@@ -14,6 +14,7 @@ import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.JXWAppManager
 import com.ubtrobot.smartprojector.utils.JxwAppType
+import com.ubtrobot.smartprojector.utils.OnceClickStrategy
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -154,43 +155,46 @@ class MainFragment : Fragment() {
      * 语文
      */
     private fun bindPageTwoView() {
-        bindingPageTwo.tvChinesePrepareRead.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageTwo.tvChinesePrepareRead) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_classroom, "名师课堂") {
                     jxwAppManager.startFamousTeacherClassroom(requireContext(), "语文")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本点读") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_book_read, "课本点读") {
                     jxwAppManager.startBookFingerRead(requireActivity(), "语文");
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "指尖阅读") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_finger_read, "指尖阅读") {
                     jxwAppManager.startFingerRead(requireContext(), "keben")
                 }
             ))
         }
-        bindingPageTwo.cardChineseClassic.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageTwo.cardChineseClassic) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本讲解") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_book_explain, "课本讲解") {
+                    jxwAppManager.startSyncAssistPage(requireContext(), "语文")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "字词学习") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_learn_word, "字词学习") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "背诵课文") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_recite_text, "背诵课文") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "专题扩展") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_extension, "专题扩展") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.CHINESE_EXTENSION)
                 }
             ))
         }
-        bindingPageTwo.cardChineseAfterSchool.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageTwo.cardChineseAfterSchool) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "字词听写") {
+                HomeMenuData(R.mipmap.ic_chinese_after_school_word, "字词听写") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.ZICI_LISTEN)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "错题本") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步试题") {
+                HomeMenuData(R.mipmap.ic_chinese_after_school_exam, "同步试题") {
                 }
             ))
         }
 
-        bindingPageTwo.btnChineseFontFundamental.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseFontFundamental) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_TOP, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "拼音学习") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.LEARN_PINYIN)
@@ -209,40 +213,50 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-        bindingPageTwo.btnChineseReadWrite.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseReadWrite) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_book_read, "课文阅读") {
-                    ToastUtil.showToast(requireContext(), "拼音学习1")
+                    jxwAppManager.startFixDataPage(requireContext(), "小学阅读指导")
                 },
                 HomeMenuData(R.mipmap.ic_chinese_book_read_aloud, "课文朗读") {
                     ToastUtil.showToast(requireContext(), "拼音学习2")
                 },
                 HomeMenuData(R.mipmap.ic_chinese_poem, "诗词朗读") {
-                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                    jxwAppManager.startFixDataPage(requireContext(), "小学古诗词")
                 },
                 HomeMenuData(R.mipmap.ic_chinese_composition, "作文写作") {
-                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                    jxwAppManager.startFixDataPage(requireContext(), "语文写作")
                 }
             ))
         }
-        bindingPageTwo.btnChineseIdiom.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseIdiom) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_ancient_poetry, "同步古诗") {
-                    ToastUtil.showToast(requireContext(), "拼音学习1")
+                    jxwAppManager.startFixDataPage(requireContext(), "小学古诗词")
                 },
                 HomeMenuData(R.mipmap.ic_chinese_anime_idiom, "动漫成语") {
-                    ToastUtil.showToast(requireContext(), "拼音学习2")
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.CHINESE_ANIME_IDIOM)
                 },
                 HomeMenuData(R.mipmap.ic_chinese_anime_guoxue, "动漫学国学") {
-                    ToastUtil.showToast(requireContext(), "拼音学习3")
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.CHINESE_ANIME_GUOXUE)
                 }
             ))
         }
-        bindingPageTwo.btnChineseToolsWord.setOnClickListener {
+        // 查词典
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseToolsDict) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.CHINESE_DICT)
+        }
+        // 字词听写
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseToolsWord) {
             jxwAppManager.startOtherPage(requireContext(), JxwAppType.ZICI_LISTEN)
         }
-        bindingPageTwo.btnChineseToolsInterest.setOnClickListener {
-            jxwAppManager.startOtherPage(requireContext(), JxwAppType.INTEREST_CHINESE)
+        // 趣味语文
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseToolsInterest) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.CHINESE_INTEREST)
+        }
+        // 错题本
+        OnceClickStrategy.onceClick(bindingPageTwo.btnChineseToolsWrongBook) {
+            ToastUtil.showToast(requireContext(), "错题本")
         }
     }
 
@@ -250,7 +264,7 @@ class MainFragment : Fragment() {
      * 英语
      */
     private fun bindPageThreeView() {
-        bindingPageThree.cardEnglishPrepareRead.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageThree.cardEnglishPrepareRead) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
                     jxwAppManager.startFamousTeacherClassroom(requireContext(), "英语")
@@ -263,7 +277,7 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-        bindingPageThree.cardEnglishClassic.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageThree.cardEnglishClassic) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点视频") {
                 },
@@ -275,7 +289,7 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-        bindingPageThree.cardEnglishAfterSchool.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageThree.cardEnglishAfterSchool) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "口语测评") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.ORAL_ENGLISH_TEST)
@@ -288,8 +302,17 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-        bindingPageThree.btnEnglishWrite.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishWrite) {
             jxwAppManager.startFixDataPage(requireContext(), "小学英语写作")
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishMemorizeWords) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.ENGLISH_MEMORIZE_WORDS)
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishRead) {
+            jxwAppManager.startFixDataPage(requireContext(), "小学英语阅读")
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishGrammar) {
+            jxwAppManager.startFixDataPage(requireContext(), "小学英语语法")
         }
     }
 
@@ -297,7 +320,7 @@ class MainFragment : Fragment() {
      * 数学
      */
     private fun bindPageFourView() {
-        bindingPageFour.cardMathematicsPrepareRead.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsPrepareRead) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
                     jxwAppManager.startFamousTeacherClassroom(requireContext(), "数学")
@@ -310,17 +333,19 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-        bindingPageFour.cardMathematicsClassic.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsClassic) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点精讲") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "数学图形") {
+                HomeMenuData(R.mipmap.ic_math_fundament_graph, "数学图形") {
+                    jxwAppManager.startFixDataPage(requireContext(), "小学数学图形")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "数学公式") {
+                HomeMenuData(R.mipmap.ic_math_fundament_formula, "数学公式") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_FORMULA)
                 }
             ))
         }
-        bindingPageFour.cardMathematicsAfterSchool.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsAfterSchool) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "例题解析") {
                 },
@@ -330,19 +355,42 @@ class MainFragment : Fragment() {
                 }
             ))
         }
-        bindingPageFour.btnMathematicsFundament.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsFundament) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_TOP, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "认识数字") {
+                HomeMenuData(R.mipmap.ic_math_fundament_know_number, "认识数字") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_LEARN_NUMBER)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_bihua, "算术口诀") {
+                HomeMenuData(R.mipmap.ic_math_fundament_arithmetic, "算术口诀") {
+                    jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_ARITHMETIC)
+                },
+                HomeMenuData(R.mipmap.ic_math_fundament_formula, "数学公式") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_FORMULA)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pianpang, "数学公式") {
-                },
-                HomeMenuData(R.mipmap.ic_chinese_bishun, "数学图形") {
+                HomeMenuData(R.mipmap.ic_math_fundament_graph, "数学图形") {
+                    jxwAppManager.startFixDataPage(requireContext(), "小学数学图形")
                 }
             ))
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsKnowledgePoints) {
+            ToastUtil.showToast(requireContext(), "知识点图谱")
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsOlympic) {
+            jxwAppManager.startFixDataPage(requireContext(), "小学奥数训练")
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsPractise) {
+            jxwAppManager.startFixDataPage(requireContext(), "小学应用题训练")
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsToolsFocus) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_FOCUS_PRACTISE)
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsToolsInterest) {
+            jxwAppManager.startFixDataPage(requireContext(), "小学趣味数学")
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsToolsArithmetic) {
+            jxwAppManager.startFixDataPage(requireContext(), "小学数的运算")
+        }
+        OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsToolErrorBook) {
+            ToastUtil.showToast(requireContext(), "错题本")
         }
     }
 
@@ -350,13 +398,17 @@ class MainFragment : Fragment() {
      * AI编程
      */
     private fun bindPageFiveView() {
-        bindingPageFive.tvProgramTeachingVideo.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageFive.tvProgramTeachingVideo) {
             val items = ArrayList<VideoItem>()
             items.add(VideoItem("视频1", MockData.video1))
             items.add(VideoItem("视频2", MockData.video2))
             items.add(VideoItem("视频3", MockData.video3))
             items.add(VideoItem("视频4", MockData.video4))
             VideoPlayerActivity.start(requireContext(), items)
+        }
+        // 少儿编程思维
+        OnceClickStrategy.onceClick(bindingPageFive.btnProgramThinking) {
+            ToastUtil.showToast(requireContext(), "少儿编程思维")
         }
     }
 

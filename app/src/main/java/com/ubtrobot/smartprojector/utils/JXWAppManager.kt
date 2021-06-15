@@ -12,13 +12,14 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.repo.PreferenceStorage
-import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsFragment
 import timber.log.Timber
 
 enum class JxwAppType {
     LEARN_PINYIN, PIANPANG_BUSHOU, BIHUA_NAME, BISHUN_RULE,
-    LEARN_CHINESE, ZICI_LISTEN, INTEREST_CHINESE, ORAL_ENGLISH_TEST,
-    MATH_LEARN_NUMBER, MATH_FORMULA
+    LEARN_CHINESE, ZICI_LISTEN, CHINESE_INTEREST, ORAL_ENGLISH_TEST,
+    MATH_LEARN_NUMBER, MATH_FORMULA, CHINESE_ANIME_IDIOM, CHINESE_ANIME_GUOXUE,
+    CHINESE_DICT, MATH_ARITHMETIC, MATH_FOCUS_PRACTISE, ENGLISH_MEMORIZE_WORDS,
+    CHINESE_EXTENSION
 }
 
 class JXWAppManager(private val prefs: PreferenceStorage) {
@@ -50,9 +51,12 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
             // 字词听写
             JxwAppType.ZICI_LISTEN ->
                 startOtherApp(context, "com.jxw.handwrite", "com.jxw.handwrite.ZymsActivity")
+            // 语文写作
+//            JxwAppType.CHINESE_WRITE ->
+//                startOtherApp(context, "com.jxw.yuwenxiezuo", "com.jxw.yuwenxiezuo.MainActivity")
             // 趣味语文
-            JxwAppType.INTEREST_CHINESE ->
-                startOtherApp(context, "com.jxw.yuwenxiezuo", "com.jxw.yuwenxiezuo.MainActivity")
+            JxwAppType.CHINESE_INTEREST ->
+                startOtherApp(context, "com.jxw.qwyw", "com.jxw.qwyw.MainActivity")
             // 口语测评
             JxwAppType.ORAL_ENGLISH_TEST ->
                 startOtherApp(context, "com.jxw.singsound", "com.jxw.singsound.ui.ZXSplashActivity")
@@ -60,11 +64,32 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
             JxwAppType.MATH_LEARN_NUMBER ->
                 startOtherApp(context, "com.jxw.studydigital", "com.jxw.studydigital.StuDydigitalActivity")
             // 算术口诀
-            JxwAppType.MATH_FORMULA ->
+            JxwAppType.MATH_ARITHMETIC ->
                 startOtherApp(context, "com.example.arithmeticformula", "com.example.arithmeticformula.MainActivity")
-
-
-
+            // 动漫学成语
+            JxwAppType.CHINESE_ANIME_IDIOM ->
+                startOtherApp(context, "com.jxw.dmxcy", "com.jxw.dmxcy.MainActivity")
+            // 动漫学国学
+            JxwAppType.CHINESE_ANIME_GUOXUE ->
+                startOtherApp(context, "com.jxw.dmxgx", "com.jxw.dmxgx.MainActivity")
+            // 指尖查词
+            JxwAppType.CHINESE_DICT ->
+                startOtherApp(context, "com.jxw.zncd", "com.jxw.zncd.MainActivity")
+            // 数学公式
+            JxwAppType.MATH_FORMULA ->
+                startOtherApp(context, "com.oirsdfg89.flg", "com.nsc.mathformulas.MainActivity")
+            // 专注力训练
+            JxwAppType.MATH_FOCUS_PRACTISE -> {
+                startOtherApp(context, "com.jxw.schultegrid", "com.jxw.schultegrid.SettingActivity")
+            }
+            // 五维记单词
+            JxwAppType.ENGLISH_MEMORIZE_WORDS -> {
+                startOtherApp(context, "com.jxw.wuweijidanci", "com.jxw.wuweijidanci.MainActivity")
+            }
+            // 专题学习
+            JxwAppType.CHINESE_EXTENSION -> {
+                startOtherApp(context, "com.jxw.special.video", "com.jxw.special.video.MainActivity")
+            }
         }
     }
 
@@ -75,8 +100,24 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
         try {
             val i = Intent()
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .setClassName("com.jxw.online_studys", "com.jxw.online_study.activity.XBookStudyActivity")
+                .setClassName("com.jxw.online_study", "com.jxw.online_study.activity.XBookStudyActivity")
                 .putExtra("StartArgs", "f:/ansystem/固化数据/${item}.JXW")
+            context.startActivity(i)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ToastUtil.showToast(context, "页面启动失败")
+        }
+    }
+
+    /**
+     * 同步辅导
+     */
+    fun startSyncAssistPage(context: Context, subject: String) {
+        try {
+            val i = Intent()
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .setClassName("com.jxw.online_study", "com.jxw.online_study.activity.BookCaseWrapperActivity")
+                .putExtra("StartArgs", "d:/同步学习/${subject}|e:JWFD")
             context.startActivity(i)
         } catch (e: Exception) {
             e.printStackTrace()

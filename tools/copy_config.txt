@@ -1,1 +1,7 @@
-kd／2icon／直播／播放.png;ic_live_play.png
+kd／2icon／编程-编程思维.png;ic_program_thinking.png
+kd／2icon／编程-趣味scratch.png;ic_program_scratch.png
+kd／2icon／编程-python.png;ic_program_python.png
+kd／2icon／编程-编程竞赛.png;ic_program_competition.png
+kd／2icon／编程／社区交流.png;ic_program_community.png
+kd／2icon／编程／教具.png;ic_program_steam.png
+kd／2icon／编程／疑难解答.png;ic_program_solution.png

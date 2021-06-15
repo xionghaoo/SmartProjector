@@ -35,6 +35,7 @@ import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
+import com.ubtrobot.smartprojector.ui.profile.ProfileActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
@@ -202,8 +203,9 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
             ScreenLockActivity.lock(this)
         }
 
+        // 头像跳转
         binding.containerAvatar.setOnClickListener {
-            startPlainActivity(SettingsActivity::class.java)
+            startPlainActivity(ProfileActivity::class.java)
         }
 
         // TODO 测试
@@ -247,7 +249,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 //            test()
 //        }
         // TODO 模拟序列号
-        viewModel.prefs().serialNumber = "12345678"
+//        viewModel.prefs().serialNumber = "12345678"
         initialAgoraToken()
     }
 

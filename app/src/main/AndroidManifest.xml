@@ -37,9 +37,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.call.AgoraVideoActivity"/>
-        <activity android:name=".ui.call.CallingActivity" />
-        <activity android:name=".ui.call.CallWithPatriarchActivity" />
+        <activity android:name=".ui.profile.ProfileActivity"
+            android:screenOrientation="userLandscape"/>
+        <activity android:name=".ui.call.AgoraVideoActivity"
+            android:screenOrientation="userLandscape"/>
+        <activity android:name=".ui.call.CallingActivity"
+            android:screenOrientation="userLandscape"/>
+        <activity android:name=".ui.call.CallWithPatriarchActivity"
+            android:screenOrientation="userLandscape"/>
         <activity
             android:name=".ui.video.VideoPlayerActivity"
             android:screenOrientation="userLandscape" />
@@ -79,24 +84,26 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="userLandscape"
-            android:theme="@style/AppTheme.NoAnimation" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                <category android:name="android.intent.category.HOME" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
+            android:theme="@style/AppTheme.NoAnimation">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- <category android:name="android.intent.category.HOME" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.Launcher">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-                 <category android:name="android.intent.category.LAUNCHER" />
-                 <category android:name="android.intent.category.HOME" />
-                 <category android:name="android.intent.category.DEFAULT" />
-             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.FileDownloadActivity"
@@ -138,13 +145,15 @@
             android:launchMode="singleTask"
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.Main">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                <category android:name="android.intent.category.HOME" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- <category android:name="android.intent.category.HOME" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />

@@ -19,5 +19,6 @@ class Configs {
 
         const val agoraAppId = "cf309a3e129847bcb31703c7e6283721"
         const val agoraChannel = "test"
+        const val agoraPeerUserId = "1234"
     }
 }

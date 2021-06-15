@@ -113,6 +113,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/btn_program_thinking"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_28dp"
@@ -123,7 +124,7 @@
                 android:layout_width="@dimen/_76dp"
                 android:layout_height="@dimen/_76dp"
                 android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_english_word" />
+                android:src="@mipmap/ic_program_thinking" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -139,6 +140,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_program_scratch"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
@@ -149,7 +151,7 @@
                 android:layout_width="@dimen/_76dp"
                 android:layout_height="@dimen/_76dp"
                 android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_english_read" />
+                android:src="@mipmap/ic_program_scratch" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,6 +167,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_program_python"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
@@ -175,7 +178,7 @@
                 android:layout_width="@dimen/_76dp"
                 android:layout_height="@dimen/_76dp"
                 android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_english_grammar" />
+                android:src="@mipmap/ic_program_python" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -191,6 +194,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_program_competition"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120dp"
             android:layout_marginTop="@dimen/_8dp"
@@ -201,7 +205,7 @@
                 android:layout_width="@dimen/_76dp"
                 android:layout_height="@dimen/_76dp"
                 android:layout_marginStart="@dimen/_23dp"
-                android:src="@mipmap/ic_english_write" />
+                android:src="@mipmap/ic_program_competition" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -238,7 +242,7 @@
             android:layout_width="@dimen/_64dp"
             android:layout_height="@dimen/_64dp"
             android:layout_marginTop="@dimen/_53dp"
-            android:src="@mipmap/ic_assistant_tools_answer"
+            android:src="@mipmap/ic_program_community"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -261,7 +265,7 @@
             android:layout_width="@dimen/_64dp"
             android:layout_height="@dimen/_64dp"
             android:layout_marginTop="@dimen/_233dp"
-            android:src="@mipmap/ic_assistant_tools_query"
+            android:src="@mipmap/ic_program_steam"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -284,7 +288,7 @@
             android:layout_width="@dimen/_64dp"
             android:layout_height="@dimen/_64dp"
             android:layout_marginBottom="@dimen/_83dp"
-            android:src="@mipmap/ic_assistant_tools_advance"
+            android:src="@mipmap/ic_program_solution"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

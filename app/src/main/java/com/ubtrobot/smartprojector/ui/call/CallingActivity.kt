@@ -7,9 +7,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.databinding.ActivityCallingBinding
 import com.ubtrobot.smartprojector.ui.AgoraListenerDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtm.*
+import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
 import javax.inject.Inject
 
@@ -32,6 +34,7 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
         }
     }
 
+    lateinit var binding: ActivityCallingBinding
     @Inject
     lateinit var agoraCallManager: AgoraCallManager
 
@@ -43,13 +46,14 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calling)
+        binding = ActivityCallingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.CALLING)
 
         peerId = intent.getStringExtra(EXTRA_PEER_ID)
         isCallee = intent.getBooleanExtra(EXTRA_IS_CALLEE, false)
-
+        Timber.d("isCallee: ${isCallee}")
         if (isCallee) {
             // 被呼叫
 
@@ -57,9 +61,28 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
             // 主动呼叫
             inviteCall()
         }
+
+        binding.btnHungUp.setOnClickListener {
+            if (isCallee) {
+                // 拒绝远端呼叫
+//                agoraCallManager.rtmCallManager.refuseRemoteInvitation(agoraCallManager.remoteInvitation, this)
+                refuseRemote()
+            } else {
+                // 取消本地呼叫
+//                agoraCallManager.rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
+                cancelLocal()
+            }
+            finish()
+        }
     }
 
     override fun onDestroy() {
+        Timber.d("onDestroy")
+        if (isCallee && agoraCallManager.remoteInvitation != null) {
+            refuseRemote()
+        } else {
+            cancelLocal()
+        }
         agoraListenerDelegate.destroy()
         super.onDestroy()
     }
@@ -74,15 +97,22 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
         agoraCallManager.localInvitation = invitation
     }
 
+    private fun cancelLocal() {
+        agoraCallManager.rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
+    }
+
+    private fun refuseRemote() {
+        agoraCallManager.rtmCallManager.refuseRemoteInvitation(agoraCallManager.remoteInvitation, this)
+    }
+
     private fun startRinging() {
         startRinging(if (isCallee) R.raw.basic_tones else R.raw.basic_ring)
     }
 
-    private fun startRinging(resource: Int): MediaPlayer? {
+    private fun startRinging(resource: Int) {
         val player = MediaPlayer.create(this, resource)
         player.isLooping = true
         player.start()
-        return player
     }
 
     private fun answerCall(invitation: RemoteInvitation) {

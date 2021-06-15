@@ -57,7 +57,7 @@ class AgoraCallManager(
     fun login(rtmToken: String?, userId: String) {
         rtmClient.login(rtmToken, userId, object : ResultCallback<Void?> {
             override fun onSuccess(aVoid: Void?) {
-                Log.i(TAG, "rtm client login success")
+                Log.i(TAG, "rtm client login success: ${userId}")
             }
 
             override fun onFailure(errorInfo: ErrorInfo) {

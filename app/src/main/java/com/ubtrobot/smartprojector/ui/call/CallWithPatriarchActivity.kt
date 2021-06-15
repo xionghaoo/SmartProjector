@@ -2,6 +2,7 @@ package com.ubtrobot.smartprojector.ui.call
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.R
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtm.ErrorInfo
@@ -12,7 +13,7 @@ import java.util.*
 import javax.inject.Inject
 
 /**
- * 和家长通话页面
+ *
  */
 @AndroidEntryPoint
 class CallWithPatriarchActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class CallWithPatriarchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_call_with_patriarch)
 
         // 填写蝌蚪助手用户ID
-        callPeer("1234")
+        callPeer(Configs.agoraPeerUserId)
     }
 
     private fun callPeer(number: String) {
