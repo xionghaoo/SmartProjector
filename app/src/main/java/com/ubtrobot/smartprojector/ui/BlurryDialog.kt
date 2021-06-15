@@ -77,8 +77,8 @@ class HomeMenuDialog(
 
         // 显示内容
         val content: LinearLayout = layoutInflater.inflate(R.layout.dialog_main_menu, null) as LinearLayout
-        content.scaleX = 0.5f
-        content.scaleY = 0.5f
+        content.scaleX = 0.6f
+        content.scaleY = 0.6f
         content.alpha = 0f
         bg.addView(content)
         content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
@@ -87,22 +87,30 @@ class HomeMenuDialog(
             Align.LEFT_TOP -> {
                 content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
+                content.pivotX = content.x + content.width
+                content.pivotY = 0f
             }
             Align.LEFT_BOTTOM -> {
                 content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
                     listData.size * resources.getDimension(R.dimen._78dp).toInt() -
                     content.paddingTop - content.paddingBottom
+                content.pivotX = content.x + content.width
+                content.pivotY = content.y + content.height
             }
             Align.RIGHT_TOP -> {
                 content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
+                content.pivotX = 0f
+                content.pivotY = 0f
             }
             Align.RIGHT_BOTTOM -> {
                 content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
                     listData.size * resources.getDimension(R.dimen._78dp).toInt() -
                     content.paddingTop - content.paddingBottom
+                content.pivotX = 0f
+                content.pivotY = content.y + content.height
             }
         }
         content.animate()
