@@ -286,6 +286,7 @@ class MainFragment : Fragment() {
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "记单词") {
                 },
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "背课文") {
+                    jxwAppManager.startSyncAssistPage(requireContext(), "英语")
                 }
             ))
         }
@@ -295,6 +296,7 @@ class MainFragment : Fragment() {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.ORAL_ENGLISH_TEST)
                 },
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步测试") {
+//                    jxwAppManager.startSyncAssistPage(requireContext(), "英语")
                 },
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
                 },
@@ -313,6 +315,18 @@ class MainFragment : Fragment() {
         }
         OnceClickStrategy.onceClick(bindingPageThree.btnEnglishGrammar) {
             jxwAppManager.startFixDataPage(requireContext(), "小学英语语法")
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolTranslate) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.TRANSLATE)
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolOralTest) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.ORAL_ENGLISH_TEST)
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolAfterSchool) {
+
+        }
+        OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolErrorBook) {
+
         }
     }
 
@@ -348,6 +362,7 @@ class MainFragment : Fragment() {
         OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsAfterSchool) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "例题解析") {
+                    jxwAppManager.startSyncAssistPage(requireContext(), "数学")
                 },
                 HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
                 },

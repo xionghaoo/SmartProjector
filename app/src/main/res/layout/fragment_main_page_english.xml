@@ -238,7 +238,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView41" >
 
         <ImageView
-            android:id="@+id/textView46"
+            android:id="@+id/btn_english_tool_translate"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginTop="@dimen/_28dp"
@@ -260,7 +260,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/textView47"
+            android:id="@+id/btn_english_tool_oral_test"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginTop="@dimen/_158dp"
@@ -279,10 +279,10 @@
             android:layout_marginTop="@dimen/_13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView47" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_english_tool_oral_test" />
 
         <ImageView
-            android:id="@+id/textView49"
+            android:id="@+id/btn_english_tool_after_school"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginBottom="@dimen/_185dp"
@@ -301,10 +301,10 @@
             android:textSize="@dimen/_24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView49" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_english_tool_after_school" />
 
         <ImageView
-            android:id="@+id/textView54"
+            android:id="@+id/btn_english_tool_error_book"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginBottom="@dimen/_56dp"
@@ -323,7 +323,7 @@
             android:layout_marginTop="@dimen/_13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_english_tool_error_book" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
