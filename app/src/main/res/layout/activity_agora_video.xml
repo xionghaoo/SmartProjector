@@ -26,8 +26,7 @@
             android:layout_height="@dimen/_82dp"
             android:layout_centerInParent="true"
             android:src="@drawable/btn_endcall"
-            android:scaleType="centerCrop"
-            android:onClick="onButtonClicked"/>
+            android:scaleType="centerCrop"/>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_mute"
             android:layout_width="@dimen/_58dp"
@@ -35,8 +34,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:src="@drawable/btn_audio"
-            android:scaleType="centerCrop"
-            android:onClick="onButtonClicked"/>
+            android:scaleType="centerCrop"/>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_switch_camera"
             android:layout_width="@dimen/_58dp"
@@ -44,7 +42,6 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:src="@drawable/btn_switch_camera"
-            android:scaleType="centerCrop"
-            android:onClick="onButtonClicked"/>
+            android:scaleType="centerCrop"/>
     </RelativeLayout>
 </RelativeLayout>

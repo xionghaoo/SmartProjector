@@ -4,13 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.SurfaceView
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityAgoraVideoBinding
+import com.ubtrobot.smartprojector.ui.AgoraListenerDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
+import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
 import javax.inject.Inject
 
@@ -21,7 +25,7 @@ class AgoraVideoActivity : AppCompatActivity() {
         private const val EXTRA_CHANNEL_ID = "EXTRA_CHANNEL_ID"
         private const val EXTRA_PEER_UID = "EXTRA_PEER_UID"
 
-        fun start(context: Context?, channelId: String, peerId: String) {
+        fun start(context: Context?, channelId: String?, peerId: String?) {
             val i = Intent(context, AgoraVideoActivity::class.java)
             i.putExtra(EXTRA_CHANNEL_ID, channelId)
             i.putExtra(EXTRA_PEER_UID, peerId)
@@ -32,17 +36,36 @@ class AgoraVideoActivity : AppCompatActivity() {
     @Inject
     lateinit var agoraCallManager: AgoraCallManager
     private val viewModel: AgoraCallViewModel by viewModels()
+    lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
     private lateinit var binding: ActivityAgoraVideoBinding
 
     private var channelId: String? = null
-    private var peerId: String? = null
+    private var peerId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAgoraVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        channelId = intent.getStringExtra(EXTRA_CHANNEL_ID)
+        peerId = intent.getStringExtra(EXTRA_PEER_UID)?.toInt()
+
+        agoraListenerDelegate = AgoraListenerDelegate(
+            activity = this,
+            agoraCallManager = agoraCallManager,
+            type = AgoraListenerDelegate.Type.VIDEO,
+            onUserJoined = { uid, elapsed ->
+                if (uid == peerId) {
+                    runOnUiThread {
+                        binding.remotePreviewLayout.addView(setupVideo(uid, false))
+                    }
+                }
+            },
+            onUserOffline = { uid, reason ->
+                if (uid == peerId) finish()
+            }
+        )
         binding.btnMute.isActivated = true
 
         agoraCallManager.rtcEngine.setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER)
@@ -56,6 +79,29 @@ class AgoraVideoActivity : AppCompatActivity() {
         )
 
         setupLocalPreview()
+
+        val userId = viewModel.prefs().userID?.toInt()
+        if (channelId != null && userId != null) {
+            joinChannel("test", userId)
+        } else {
+            throw IllegalArgumentException("channel id and user id cannot be null")
+        }
+
+        binding.btnEndcall.setOnClickListener {
+            finish()
+        }
+        binding.btnMute.setOnClickListener {
+            agoraCallManager.rtcEngine.muteLocalAudioStream(binding.btnMute.isActivated)
+        }
+        binding.btnSwitchCamera.setOnClickListener {
+            agoraCallManager.rtcEngine.switchCamera()
+        }
+    }
+
+    override fun onDestroy() {
+        agoraCallManager.rtcEngine.leaveChannel()
+        agoraListenerDelegate.destroy()
+        super.onDestroy()
     }
 
     private fun setupLocalPreview() {
@@ -83,4 +129,11 @@ class AgoraVideoActivity : AppCompatActivity() {
         }
         return surfaceView
     }
+
+    private fun joinChannel(channel: String, uid: Int) {
+        Timber.d("channel: $channel, uid: $uid, token: ${viewModel.prefs().rtcToken}")
+        agoraCallManager.rtcEngine.joinChannel(viewModel.prefs().rtcToken, channel, "", uid)
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package com.ubtrobot.smartprojector.ui
 
 import android.app.Activity
+import com.ubtrobot.smartprojector.ui.call.AgoraVideoActivity
+import com.ubtrobot.smartprojector.ui.call.CallingActivity
 import io.agora.rtm.LocalInvitation
 import io.agora.rtm.RemoteInvitation
 import timber.log.Timber
@@ -10,11 +12,13 @@ import xh.zero.agora_call.agora.IEventListener
 class AgoraListenerDelegate(
     private val activity: Activity,
     private val agoraCallManager: AgoraCallManager,
-    private val type: Type
+    private val type: Type,
+    private val onUserJoined: ((uid: Int, elapsed: Int) -> Unit)? = null,
+    private val onUserOffline: ((uid: Int, reason: Int) -> Unit)? = null
 ) : IEventListener {
 
     enum class Type {
-        MAIN, CALLING
+        MAIN, CALLING, VIDEO
     }
 
     init {
@@ -32,11 +36,13 @@ class AgoraListenerDelegate(
 
     override fun onUserJoined(uid: Int, elapsed: Int) {
         Timber.d("onUserJoined")
+        onUserJoined?.invoke(uid, elapsed)
 
     }
 
     override fun onUserOffline(uid: Int, reason: Int) {
         Timber.d("onUserOffline")
+        onUserOffline?.invoke(uid, reason)
 
     }
 
@@ -56,6 +62,10 @@ class AgoraListenerDelegate(
     override fun onLocalInvitationAccepted(localInvitation: LocalInvitation?, response: String?) {
         // 本地呼叫邀请被接受
         Timber.d("onLocalInvitationAccepted: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
+        if (type == Type.CALLING) {
+            activity.finish()
+            AgoraVideoActivity.start(activity, localInvitation?.content, localInvitation?.calleeId)
+        }
     }
 
     override fun onLocalInvitationRefused(localInvitation: LocalInvitation?, response: String?) {
@@ -72,14 +82,19 @@ class AgoraListenerDelegate(
 
     override fun onRemoteInvitationReceived(remoteInvitation: RemoteInvitation?) {
         agoraCallManager.remoteInvitation = remoteInvitation
+        CallingActivity.start(activity, remoteInvitation?.callerId, true)
         // 有新的远程呼叫
-        Timber.d("onRemoteInvitationAccepted: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+        Timber.d("onRemoteInvitationReceived: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
 
     }
 
     override fun onRemoteInvitationAccepted(remoteInvitation: RemoteInvitation?) {
         // 接受远程呼叫
         Timber.d("onRemoteInvitationAccepted: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+        if (type == Type.CALLING) {
+            activity.finish()
+            AgoraVideoActivity.start(activity, remoteInvitation?.content, remoteInvitation?.callerId)
+        }
     }
 
     override fun onRemoteInvitationRefused(remoteInvitation: RemoteInvitation?) {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.R
@@ -26,7 +27,7 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
         private const val EXTRA_PEER_ID = "${Configs.PACKAGE_NAME}.CallingActivity.EXTRA_PEER_ID"
         private const val EXTRA_IS_CALLEE = "${Configs.PACKAGE_NAME}.CallingActivity.EXTRA_IS_CALLEE"
 
-        fun start(context: Context, peerId: String, isCallee: Boolean) {
+        fun start(context: Context, peerId: String?, isCallee: Boolean) {
             val i = Intent(context, CallingActivity::class.java)
             i.putExtra(EXTRA_PEER_ID, peerId)
             i.putExtra(EXTRA_IS_CALLEE, isCallee)
@@ -56,8 +57,13 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
         Timber.d("isCallee: ${isCallee}")
         if (isCallee) {
             // 被呼叫
-
+            binding.tvCalling.text = "有新的呼叫邀请。。。"
+            binding.btnAccept.visibility = View.VISIBLE
+            binding.btnAccept.setOnClickListener {
+                answerCall()
+            }
         } else {
+            binding.tvCalling.text = "正在呼叫。。。"
             // 主动呼叫
             inviteCall()
         }
@@ -115,17 +121,8 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
         player.start()
     }
 
-    private fun answerCall(invitation: RemoteInvitation) {
-        agoraCallManager.rtmCallManager.acceptRemoteInvitation(invitation, this)
-    }
-
-    private fun cancelLocalInvitation() {
-        val rtmCallManager = agoraCallManager.rtmCallManager
-        rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
-    }
-
-    private fun refuseRemoteInvitation(invitation: RemoteInvitation) {
-        agoraCallManager.rtmCallManager.refuseRemoteInvitation(invitation, this)
+    private fun answerCall() {
+        agoraCallManager.rtmCallManager.acceptRemoteInvitation(agoraCallManager.remoteInvitation, this)
     }
 
     override fun onSuccess(p0: Void?) {

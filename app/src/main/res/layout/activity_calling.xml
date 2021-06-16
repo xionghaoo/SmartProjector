@@ -9,7 +9,7 @@
     tools:context=".ui.call.CallingActivity">
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_calling"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="正在呼叫..."
@@ -24,4 +24,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="361dp" />
+
+    <Button
+        android:id="@+id/btn_accept"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="接听" />
 </LinearLayout>
