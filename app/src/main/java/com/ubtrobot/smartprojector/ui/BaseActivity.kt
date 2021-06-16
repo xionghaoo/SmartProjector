@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.ui.call.BaseCallActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 

@@ -35,6 +35,8 @@ import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
+import com.ubtrobot.smartprojector.ui.call.BaseCallActivity
+import com.ubtrobot.smartprojector.ui.call.CallingActivity
 import com.ubtrobot.smartprojector.ui.profile.ProfileActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
@@ -43,6 +45,7 @@ import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import io.agora.rtm.RemoteInvitation
 import jp.wasabeef.blurry.Blurry
 import kotlinx.coroutines.*
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -56,7 +59,7 @@ import kotlin.math.roundToInt
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener {
+class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
 
     companion object {
 
@@ -91,7 +94,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
     private lateinit var settingsFragment: SettingsFragment
 
     private lateinit var screenAdapter: ScreenAdapter
-    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
+//    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
     // app 安装卸载监听
     private val receiver = object : BroadcastReceiver() {
@@ -130,7 +133,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 //            requestPermissionsTask()
 //        }
 
-        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.MAIN)
+//        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.MAIN)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -303,7 +306,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
         setLauncher(null)
         connectionStateMonitor.disable()
         agoraCallManager.destroy()
-        agoraListenerDelegate.destroy()
+//        agoraListenerDelegate.destroy()
         super.onDestroy()
     }
 
@@ -339,6 +342,8 @@ class MainActivity : AppCompatActivity(), MainFragment.OnFragmentActionListener 
 //    fun hasPermissions() : Boolean {
 //        return EasyPermissions.hasPermissions(this, Manifest.permission.REQUEST_DELETE_PACKAGES)
 //    }
+
+    override fun getAgoraManager(): AgoraCallManager = agoraCallManager
 
     /**
      * 获取声网token

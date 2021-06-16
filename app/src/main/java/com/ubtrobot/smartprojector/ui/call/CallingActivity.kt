@@ -5,11 +5,9 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityCallingBinding
-import com.ubtrobot.smartprojector.ui.AgoraListenerDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtm.*
 import timber.log.Timber
@@ -20,7 +18,7 @@ import javax.inject.Inject
  * 呼叫
  */
 @AndroidEntryPoint
-class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
+class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
 
     companion object {
 
@@ -43,14 +41,14 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
     private var peerId: String? = null
     private var isCallee: Boolean = false
 
-    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
+//    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCallingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.CALLING)
+//        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.CALLING)
 
         peerId = intent.getStringExtra(EXTRA_PEER_ID)
         isCallee = intent.getBooleanExtra(EXTRA_IS_CALLEE, false)
@@ -67,6 +65,8 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
             // 主动呼叫
             inviteCall()
         }
+
+        startRinging()
 
         binding.btnHungUp.setOnClickListener {
             if (isCallee) {
@@ -89,8 +89,66 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
         } else {
             cancelLocal()
         }
-        agoraListenerDelegate.destroy()
+        stopRinging()
+//        agoraListenerDelegate.destroy()
         super.onDestroy()
+    }
+
+    override fun getAgoraManager(): AgoraCallManager = agoraCallManager
+
+    override fun onLocalInvitationAccepted(localInvitation: LocalInvitation?, response: String?) {
+        Timber.d("onLocalInvitationAccepted: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
+
+        stopRinging()
+        AgoraVideoActivity.start(this, localInvitation?.content, localInvitation?.calleeId)
+        finish()
+    }
+
+    override fun onLocalInvitationCanceled(localInvitation: LocalInvitation?) {
+        Timber.d("onLocalInvitationCanceled: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
+
+        finish()
+    }
+
+    override fun onLocalInvitationRefused(localInvitation: LocalInvitation?, response: String?) {
+        Timber.d("onLocalInvitationRefused: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
+
+        finish()
+    }
+
+    override fun onLocalInvitationFailure(localInvitation: LocalInvitation?, errorCode: Int) {
+        Timber.d("onLocalInvitationFailure: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
+
+        finish()
+    }
+
+    override fun onRemoteInvitationReceived(remoteInvitation: RemoteInvitation?) {
+        // ignore other call
+        Timber.d("onRemoteInvitationReceived: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+
+    }
+
+    override fun onRemoteInvitationRefused(remoteInvitation: RemoteInvitation?) {
+        Timber.d("onRemoteInvitationRefused: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+
+        finish()
+    }
+
+    override fun onRemoteInvitationCanceled(remoteInvitation: RemoteInvitation?) {
+        Timber.d("onRemoteInvitationCanceled: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+
+        finish()
+    }
+
+    override fun onRemoteInvitationFailure(remoteInvitation: RemoteInvitation?, errorCode: Int) {
+        Timber.d("onRemoteInvitationFailure: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+
+        stopRinging()
+    }
+
+    override fun onRemoteInvitationAccepted(remoteInvitation: RemoteInvitation?) {
+        AgoraVideoActivity.start(this, remoteInvitation?.content, remoteInvitation?.callerId)
+        finish()
     }
 
     private fun inviteCall() {
@@ -116,9 +174,17 @@ class CallingActivity : AppCompatActivity(), ResultCallback<Void> {
     }
 
     private fun startRinging(resource: Int) {
-        val player = MediaPlayer.create(this, resource)
-        player.isLooping = true
-        player.start()
+        player = MediaPlayer.create(this, resource)
+        player?.isLooping = true
+        player?.start()
+    }
+
+    private fun stopRinging() {
+        if (player != null && player!!.isPlaying) {
+            player?.stop()
+            player?.release()
+            player = null
+        }
     }
 
     private fun answerCall() {
