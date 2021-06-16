@@ -84,17 +84,27 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
 
     override fun onDestroy() {
         Timber.d("onDestroy")
+//        agoraListenerDelegate.destroy()
+        super.onDestroy()
+    }
+
+    override fun finish() {
+        Timber.d("finish")
+
+        stopRinging()
         if (isCallee && agoraCallManager.remoteInvitation != null) {
             refuseRemote()
         } else {
             cancelLocal()
         }
-        stopRinging()
-//        agoraListenerDelegate.destroy()
-        super.onDestroy()
+        super.finish()
     }
 
     override fun getAgoraManager(): AgoraCallManager = agoraCallManager
+
+    override fun onLocalInvitationReceived(localInvitation: LocalInvitation?) {
+
+    }
 
     override fun onLocalInvitationAccepted(localInvitation: LocalInvitation?, response: String?) {
         Timber.d("onLocalInvitationAccepted: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
@@ -162,6 +172,7 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
     }
 
     private fun cancelLocal() {
+        Timber.d("cancelLocal: ${agoraCallManager.localInvitation}")
         agoraCallManager.rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
     }
 

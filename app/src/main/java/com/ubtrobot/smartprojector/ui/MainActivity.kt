@@ -72,7 +72,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         }
 
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
-//        private const val RC_PREMISSIONS = 4
+        private const val RC_PERMISSIONS = 4
 
         fun startWithNewTask(context: Context?) {
             val i = Intent(context, MainActivity::class.java)
@@ -129,17 +129,13 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         super.onCreate(savedInstanceState)
         setLauncher(this)
         SystemUtil.statusBarTransparent(window)
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            requestPermissionsTask()
-//        }
-
-//        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.MAIN)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
+
+        requestPermissionsTask()
 
         initialStatusBar()
 
@@ -323,25 +319,25 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         }
     }
 
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    @AfterPermissionGranted(RC_PREMISSIONS)
-//    fun requestPermissionsTask() {
-//        if (hasPermissions()) {
-//
-//        } else {
-//            EasyPermissions.requestPermissions(
-//                this,
-//                "App需要申请权限，请授予",
-//                RC_PREMISSIONS,
-//                Manifest.permission.REQUEST_DELETE_PACKAGES
-//            )
-//        }
-//    }
-//
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    fun hasPermissions() : Boolean {
-//        return EasyPermissions.hasPermissions(this, Manifest.permission.REQUEST_DELETE_PACKAGES)
-//    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    @AfterPermissionGranted(RC_PERMISSIONS)
+    fun requestPermissionsTask() {
+        if (hasPermissions()) {
+
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                "App需要申请权限，请授予",
+                RC_PERMISSIONS,
+                Manifest.permission.CAMERA
+            )
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun hasPermissions() : Boolean {
+        return EasyPermissions.hasPermissions(this, Manifest.permission.CAMERA)
+    }
 
     override fun getAgoraManager(): AgoraCallManager = agoraCallManager
 

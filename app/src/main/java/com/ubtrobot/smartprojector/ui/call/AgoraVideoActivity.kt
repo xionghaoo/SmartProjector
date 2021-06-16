@@ -71,7 +71,7 @@ class AgoraVideoActivity : BaseCallActivity() {
                 VideoEncoderConfiguration.VD_640x480,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
-                VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT
+                VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE
             )
         )
 
@@ -95,10 +95,10 @@ class AgoraVideoActivity : BaseCallActivity() {
         }
     }
 
-    override fun onDestroy() {
+
+    override fun finish() {
+        super.finish()
         agoraCallManager.rtcEngine.leaveChannel()
-//        agoraListenerDelegate.destroy()
-        super.onDestroy()
     }
 
     override fun getAgoraManager(): AgoraCallManager = agoraCallManager
