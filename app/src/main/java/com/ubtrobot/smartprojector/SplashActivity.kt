@@ -54,22 +54,29 @@ class SplashActivity : AppCompatActivity() {
     @AfterPermissionGranted(RC_READ_PHONE_STATE_PERMISSION)
     fun getSerialNumberTask() {
         if (hasReadPhoneStatePermission()) {
+            var userId: String? = null
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 Timber.d("本机序列号：${Build.getSerial()}")
                 // TODO 加个0为了测试，后端序列号要求8位以上, Android 10 以上拿不到序列号
                 perfs.serialNumber = Build.getSerial() + "a"
-                val userId = perfs.userID
-                handler.postDelayed({
-                    if (userId != null) {
-                        startPlainActivity(MainActivity::class.java)
-                    } else {
-                        startPlainActivity(LoginActivity::class.java)
-                    }
-                    finish()
-                }, 200)
+                userId = perfs.userID
+
             } else {
                 ToastUtil.showToast(this, "获取序列号失败")
             }
+            // TODO 测试
+            if (BuildConfig.DEBUG) {
+                perfs.serialNumber = "00110011a"
+                userId = perfs.userID
+            }
+            handler.postDelayed({
+                if (userId != null) {
+                    startPlainActivity(MainActivity::class.java)
+                } else {
+                    startPlainActivity(LoginActivity::class.java)
+                }
+                finish()
+            }, 200)
         } else {
             EasyPermissions.requestPermissions(
                 this,

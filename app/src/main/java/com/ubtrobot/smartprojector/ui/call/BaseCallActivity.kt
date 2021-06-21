@@ -3,6 +3,7 @@ package com.ubtrobot.smartprojector.ui.call
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ubtrobot.smartprojector.SmartProjectorApp
 import io.agora.rtm.LocalInvitation
 import io.agora.rtm.RemoteInvitation
 import timber.log.Timber
@@ -72,5 +73,17 @@ abstract class BaseCallActivity : AppCompatActivity(), IEventListener {
     }
 
     override fun onRemoteInvitationFailure(remoteInvitation: RemoteInvitation?, errorCode: Int) {
+    }
+
+    override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
+        // 加入通道后才有的回调
+        // 语音通话
+        Timber.d("onRemoteAudioStateChanged: $uid, $state")
+    }
+
+    override fun onRemoteVideoStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
+//        SmartProjectorApp.isVideo = true
+        // 视频通话
+        Timber.d("onRemoteVideoStateChanged: $uid, $state")
     }
 }

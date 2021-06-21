@@ -5,8 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.SurfaceView
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import com.tuya.smart.utils.ToastUtil
+import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityAgoraVideoBinding
 import dagger.hilt.android.AndroidEntryPoint
+import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
@@ -79,7 +83,7 @@ class AgoraVideoActivity : BaseCallActivity() {
 
         val userId = viewModel.prefs().userID?.toInt()
         if (channelId != null && userId != null) {
-            joinChannel("test", userId)
+            joinChannel(channelId!!, userId)
         } else {
             throw IllegalArgumentException("channel id and user id cannot be null")
         }
@@ -146,8 +150,15 @@ class AgoraVideoActivity : BaseCallActivity() {
     }
 
     private fun joinChannel(channel: String, uid: Int) {
-        Timber.d("channel: $channel, uid: $uid, token: ${viewModel.prefs().rtcToken}")
-        agoraCallManager.rtcEngine.joinChannel(viewModel.prefs().rtcToken, channel, "", uid)
+        viewModel.getRTCToken(channel, viewModel.prefs().userID!!).observe(this, Observer { r ->
+            if (r.status == Status.SUCCESS) {
+                val token = r.data?.data as? String
+                agoraCallManager.rtcEngine.joinChannel(token, channel, "", uid)
+                Timber.d("channel: $channel, uid: $uid, token: ${token}")
+            } else if (r.status == Status.ERROR) {
+                ToastUtil.showToast(this, "RTM token获取错误")
+            }
+        })
     }
 
 

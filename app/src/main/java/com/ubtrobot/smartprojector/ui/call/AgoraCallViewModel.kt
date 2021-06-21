@@ -8,4 +8,7 @@ class AgoraCallViewModel @ViewModelInject internal constructor(
     private val repo: Repository
 ) : ViewModel() {
     fun prefs() = repo.prefs
+
+    fun getRTCToken(roomId: String, uid: String) = repo.getRTCToken(roomId, uid)
+
 }

@@ -12,10 +12,7 @@ import xh.zero.agora_call.utils.FileUtil
 class AgoraCallManager(
     private val context: Context,
     private val isDebug: Boolean,
-    private val appId: String,
-//    private val userId: String,
-//    private val rtcToken: String,
-//    private val rtmToken: String
+    private val appId: String
 ) {
 
     companion object {
@@ -73,37 +70,6 @@ class AgoraCallManager(
     fun removeEventListener(listener: IEventListener?) {
         eventListener?.removeEventListener(listener)
     }
-
-//    fun initial(context: Context, isDebug: Boolean, appId: String, userId: String, rtcToken: String, rtmToken: String) {
-//        mEventListener = EngineEventListener()
-//
-//        mRtcEngine = RtcEngine.create(context, appId, mEventListener)
-//        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
-//        mRtcEngine.enableDualStreamMode(true)
-//        mRtcEngine.enableVideo()
-//        mRtcEngine.setLogFile(FileUtil.rtmLogFile(context))
-//
-//        mRtmClient = RtmClient.createInstance(context, appId, mEventListener)
-//        mRtmClient.setLogFile(FileUtil.rtmLogFile(context))
-//
-//        if (isDebug) {
-//            mRtcEngine.setParameters("{\"rtc.log_filter\":65535}")
-//            mRtmClient.setParameters("{\"rtm.log_filter\":65535}")
-//        }
-//
-//        rtmCallManager = mRtmClient.rtmCallManager
-//        rtmCallManager.setEventListener(mEventListener)
-//
-//        mRtmClient.login(rtmToken, userId, object : ResultCallback<Void?> {
-//            override fun onSuccess(aVoid: Void?) {
-//                Log.i(TAG, "rtm client login success")
-//            }
-//
-//            override fun onFailure(errorInfo: ErrorInfo) {
-//                Log.i(TAG, "rtm client login failed:" + errorInfo.errorDescription)
-//            }
-//        })
-//    }
 
     fun destroy() {
         RtcEngine.destroy()

@@ -35,4 +35,8 @@ public interface IEventListener {
     void onRemoteInvitationCanceled(RemoteInvitation remoteInvitation);
     
     void onRemoteInvitationFailure(RemoteInvitation remoteInvitation, int errorCode);
+
+    void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed);
+
+    void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed);
 }

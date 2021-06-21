@@ -5,6 +5,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityCallingBinding
@@ -36,6 +37,7 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
     lateinit var binding: ActivityCallingBinding
     @Inject
     lateinit var agoraCallManager: AgoraCallManager
+    private val viewModel: AgoraCallViewModel by viewModels()
 
     private var player: MediaPlayer? = null
     private var peerId: String? = null
@@ -152,11 +154,11 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
 
     override fun onRemoteInvitationFailure(remoteInvitation: RemoteInvitation?, errorCode: Int) {
         Timber.d("onRemoteInvitationFailure: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
-
         stopRinging()
     }
 
     override fun onRemoteInvitationAccepted(remoteInvitation: RemoteInvitation?) {
+        Timber.d("onRemoteInvitationAccepted: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}, state: ${remoteInvitation?.state}")
         AgoraVideoActivity.start(this, remoteInvitation?.content, remoteInvitation?.callerId)
         finish()
     }
@@ -165,7 +167,7 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         val rtmCallManager = agoraCallManager.rtmCallManager
         val invitation = rtmCallManager.createLocalInvitation(peerId)
         // 设置通道Channel
-        invitation.content = Configs.agoraChannel
+        invitation.content = "${peerId}${viewModel.prefs().userID}"
         rtmCallManager.sendLocalInvitation(invitation, this)
         // 保存本地邀请
         agoraCallManager.localInvitation = invitation

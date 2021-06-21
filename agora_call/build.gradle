@@ -43,6 +43,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // 声网音视频通话
-    api 'io.agora.rtc:full-sdk:3.1.0'
-    api 'io.agora.rtm:rtm-sdk:1.2.2'
+    api 'com.github.agorabuilder:native-full-sdk:3.4.3'
+    api 'com.github.agorabuilder:rtm-sdk:1.4.6'
 }

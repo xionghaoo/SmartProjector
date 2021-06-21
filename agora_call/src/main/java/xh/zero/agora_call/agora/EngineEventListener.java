@@ -11,6 +11,9 @@ import io.agora.rtm.LocalInvitation;
 import io.agora.rtm.RemoteInvitation;
 import io.agora.rtm.RtmCallEventListener;
 import io.agora.rtm.RtmClientListener;
+import io.agora.rtm.RtmFileMessage;
+import io.agora.rtm.RtmImageMessage;
+import io.agora.rtm.RtmMediaOperationProgress;
 import io.agora.rtm.RtmMessage;
 
 public class EngineEventListener extends IRtcEngineEventHandler
@@ -65,8 +68,46 @@ public class EngineEventListener extends IRtcEngineEventHandler
     }
 
     @Override
+    public void onImageMessageReceivedFromPeer(RtmImageMessage rtmImageMessage, String s) {
+
+    }
+
+    @Override
+    public void onFileMessageReceivedFromPeer(RtmFileMessage rtmFileMessage, String s) {
+
+    }
+
+    @Override
+    public void onMediaUploadingProgress(RtmMediaOperationProgress rtmMediaOperationProgress, long l) {
+
+    }
+
+    @Override
+    public void onMediaDownloadingProgress(RtmMediaOperationProgress rtmMediaOperationProgress, long l) {
+
+    }
+
+    @Override
     public void onTokenExpired() {
 
+    }
+
+    @Override
+    public void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed) {
+        // 音频通话
+        int size = mListeners.size();
+        if (size > 0) {
+            mListeners.get(size - 1).onRemoteAudioStateChanged(uid, state, reason, elapsed);
+        }
+    }
+
+    @Override
+    public void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed) {
+        // 视频通话
+        int size = mListeners.size();
+        if (size > 0) {
+            mListeners.get(size - 1).onRemoteVideoStateChanged(uid, state, reason, elapsed);
+        }
     }
 
     @Override

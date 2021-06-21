@@ -322,8 +322,22 @@ class MainFragment : Fragment() {
         OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolOralTest) {
             jxwAppManager.startOtherPage(requireContext(), JxwAppType.ORAL_ENGLISH_TEST)
         }
+        // 课外英语
         OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolAfterSchool) {
-
+            listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "口语交际") {
+                    jxwAppManager.startFixDataPage(requireContext(), "小学口语交际")
+                },
+//                HomeMenuData(R.mipmap.ic_chinese_pinyin, "听力训练") {
+//                    ToastUtil.showToast(requireContext(), "中学听力训练")
+//                },
+                HomeMenuData(R.mipmap.ic_chinese_pinyin, "英语词汇") {
+                    jxwAppManager.startFixDataPage(requireContext(), "小学英语词汇")
+                },
+//                HomeMenuData(R.mipmap.ic_chinese_pinyin, "基础语音") {
+//                    ToastUtil.showToast(requireContext(), "中学基础语音")
+//                }
+            ))
         }
         OnceClickStrategy.onceClick(bindingPageThree.btnEnglishToolErrorBook) {
 

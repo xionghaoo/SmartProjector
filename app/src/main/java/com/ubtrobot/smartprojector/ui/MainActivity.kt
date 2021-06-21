@@ -144,7 +144,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         // 缓存3页
         binding.viewPager.offscreenPageLimit = 3
         binding.pagerIndicator.setViewPager(binding.viewPager)
-
+        binding.tvPageTitle.text = pageTitles[0]
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                     position: Int,
@@ -319,24 +319,23 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @AfterPermissionGranted(RC_PERMISSIONS)
-    fun requestPermissionsTask() {
+    private fun requestPermissionsTask() {
         if (hasPermissions()) {
 
         } else {
             EasyPermissions.requestPermissions(
                 this,
-                "App需要申请权限，请授予",
+                "App需要申请相机和麦克风权限，请授予",
                 RC_PERMISSIONS,
-                Manifest.permission.CAMERA
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO
             )
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun hasPermissions() : Boolean {
-        return EasyPermissions.hasPermissions(this, Manifest.permission.CAMERA)
+    private fun hasPermissions() : Boolean {
+        return EasyPermissions.hasPermissions(this, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
     }
 
     override fun getAgoraManager(): AgoraCallManager = agoraCallManager
@@ -346,12 +345,12 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
      */
     private fun initialAgoraToken() {
         val userId = viewModel.prefs().userID ?: return
-        viewModel.getRTCToken(Configs.agoraChannel, userId).observe(this, { r ->
-            if (r.status == Status.SUCCESS) {
-                val token = r.data?.data as? String
-                viewModel.prefs().rtcToken = token
-            }
-        })
+//        viewModel.getRTCToken(Configs.agoraChannel, userId).observe(this, { r ->
+//            if (r.status == Status.SUCCESS) {
+//                val token = r.data?.data as? String
+//                viewModel.prefs().rtcToken = token
+//            }
+//        })
 
         viewModel.getRTMToken(userId).observe(this, { r ->
             if (r.status == Status.SUCCESS) {
@@ -426,12 +425,6 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
 
     // -------------------------- OnFragmentActionListener Method Start -------------------------------
     override fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>) {
-//        Blurry.with(this)
-//            .radius(25)
-//            .sampling(2)
-//            .animate(100)
-//            .onto(binding.root)
-//        showSelectDialog(v)
         HomeMenuDialog(
             context = this,
             rootView = binding.root,
@@ -440,88 +433,6 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
             listData = data
         ).show()
     }
-
-//    /**
-//     * 毛玻璃弹窗，需要指定对齐方式
-//     */
-//    private fun showSelectDialog(target: View) {
-//        val bg = FrameLayout(this)
-//        bg.setOnClickListener {
-//            binding.root.removeView(bg)
-//            Blurry.delete(binding.root)
-//        }
-//        binding.root.addView(bg)
-//        bg.layoutParams.width = FrameLayout.LayoutParams.MATCH_PARENT
-//        bg.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
-//        val iv = ImageView(this)
-//        iv.isFocusable = true
-//        iv.isClickable = true
-//        bg.addView(iv)
-//        iv.layoutParams.width = target.width
-//        iv.layoutParams.height = target.height
-//        iv.setImageBitmap(loadBitmapFromView(target))
-//        val arr = IntArray(2)
-//        target.getLocationInWindow(arr)
-//        iv.x = arr[0].toFloat()
-//        iv.y = arr[1].toFloat()
-//
-//        // 显示内容
-//        val content: LinearLayout = layoutInflater.inflate(R.layout.dialog_main_menu, null) as LinearLayout
-//        content.scaleX = 0.5f
-//        content.scaleY = 0.5f
-//        content.alpha = 0f
-//        bg.addView(content)
-//        content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
-//        content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
-//        content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
-//        content.y = iv.y
-//        content.animate()
-//            .scaleX(1f)
-//            .scaleY(1f)
-//            .alpha(1f)
-//            .setDuration(100)
-//            .start()
-//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
-//        addDivider(content)
-//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
-//        addDivider(content)
-//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
-//        addDivider(content)
-//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
-//        addDivider(content)
-//        addItemView(content, R.mipmap.ic_chinese_pinyin, "拼音学习")
-//    }
-//
-//    private fun addItemView(container: LinearLayout, icon: Int, title: String?) {
-//        val itemView = layoutInflater.inflate(R.layout.item_dialog_main_menu, null)
-//        container.addView(itemView)
-//        itemView.layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT
-//        itemView.layoutParams.height = resources.getDimension(R.dimen._78dp).toInt()
-//        itemView.findViewById<ImageView>(R.id.iv_dialog_menu_icon).setImageResource(icon)
-//        itemView.findViewById<TextView>(R.id.tv_dialog_menu_title).text = title
-//    }
-//
-//    private fun addDivider(container: LinearLayout) {
-//        val divider = View(this)
-//        container.addView(divider)
-//        divider.setBackgroundColor(resources.getColor(R.color.color_DDDDDD))
-//        val lp = divider.layoutParams as LinearLayout.LayoutParams
-//        lp.width = LinearLayout.LayoutParams.MATCH_PARENT
-//        lp.height = resources.getDimension(R.dimen._1dp).roundToInt()
-//        lp.leftMargin = resources.getDimension(R.dimen._64dp).roundToInt()
-//    }
-//
-//    private fun loadBitmapFromView(v: View): Bitmap? {
-//        val b = Bitmap.createBitmap(
-//            v.width,
-//            v.height,
-//            Bitmap.Config.ARGB_8888
-//        )
-//        val c = Canvas(b)
-//        v.layout(v.left, v.top, v.right, v.bottom)
-//        v.draw(c)
-//        return b
-//    }
     // -------------------------- OnFragmentActionListener Method End -------------------------------
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(

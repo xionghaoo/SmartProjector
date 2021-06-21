@@ -87,30 +87,30 @@ class HomeMenuDialog(
             Align.LEFT_TOP -> {
                 content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
-                content.pivotX = content.x + content.width
-                content.pivotY = 0f
+//                content.pivotX = content.x + content.width
+//                content.pivotY = 0f
             }
             Align.LEFT_BOTTOM -> {
                 content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
                     listData.size * resources.getDimension(R.dimen._78dp).toInt() -
                     content.paddingTop - content.paddingBottom
-                content.pivotX = content.x + content.width
-                content.pivotY = content.y + content.height
+//                content.pivotX = content.x + content.width
+//                content.pivotY = content.y + content.height
             }
             Align.RIGHT_TOP -> {
                 content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
-                content.pivotX = 0f
-                content.pivotY = 0f
+//                content.pivotX = 0f
+//                content.pivotY = 0f
             }
             Align.RIGHT_BOTTOM -> {
                 content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
                     listData.size * resources.getDimension(R.dimen._78dp).toInt() -
                     content.paddingTop - content.paddingBottom
-                content.pivotX = 0f
-                content.pivotY = content.y + content.height
+//                content.pivotX = 0f
+//                content.pivotY = content.y + content.height
             }
         }
         content.animate()

@@ -2,11 +2,8 @@ package com.ubtrobot.smartprojector.ui.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.ubtrobot.smartprojector.Configs
-import com.ubtrobot.smartprojector.GlideApp
-import com.ubtrobot.smartprojector.R
+import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
-import com.ubtrobot.smartprojector.startPlainActivity
 import com.ubtrobot.smartprojector.ui.call.CallWithPatriarchActivity
 import com.ubtrobot.smartprojector.ui.call.CallingActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
@@ -52,7 +49,8 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.btnVoiceCall.setOnClickListener {
-            ToastUtil.showToast(this, "音频通话")
+//            SmartProjectorApp.isVideo = false
+//            callPeer(Configs.agoraPeerUserId)
         }
     }
 
