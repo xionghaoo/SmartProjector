@@ -424,14 +424,14 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
     }
 
     // -------------------------- OnFragmentActionListener Method Start -------------------------------
-    override fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>) {
+    override fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>, type: HomeMenuDialog.Type) {
         HomeMenuDialog(
             context = this,
             rootView = binding.root,
             target = v,
             align = align,
             listData = data
-        ).show()
+        ).show(type)
     }
     // -------------------------- OnFragmentActionListener Method End -------------------------------
 

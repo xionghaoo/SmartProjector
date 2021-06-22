@@ -128,25 +128,48 @@ class MainFragment : Fragment() {
      * ai智能辅助
      */
     private fun bindPageOneView() {
-        bindingPageOne.btnAssistantChinese.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageOne.btnAssistantChinese) {
             jxwAppManager.startBookFingerRead(requireContext(), "语文")
         }
-        bindingPageOne.btnAssistantEnglish.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageOne.btnAssistantEnglish) {
             jxwAppManager.startBookFingerRead(requireContext(), "英语")
         }
-        bindingPageOne.btnAssistantMath.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageOne.btnAssistantMath) {
             jxwAppManager.startBookFingerRead(requireContext(), "数学")
         }
-        bindingPageOne.btnAssistantMorals.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageOne.btnAssistantMorals) {
             jxwAppManager.startBookFingerRead(requireContext(), "科学")
         }
 
-        bindingPageOne.cardAssistantFamousTeacherClassroom.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageOne.cardAssistantFamousTeacherClassroom) {
             jxwAppManager.startFamousTeacherClassroom(requireContext(), "语文")
         }
 
-        bindingPageOne.cardAssistantFingerRead.setOnClickListener {
+        OnceClickStrategy.onceClick(bindingPageOne.cardAssistantFingerRead) {
             jxwAppManager.startFingerRead(requireContext(), "keben")
+        }
+
+        OnceClickStrategy.onceClick(bindingPageOne.btnAssistantAdvanceStudy) {
+            // App推荐，推荐的App需要考虑有没有安装，如果没有安装那么需要跳转到应用市场详情页
+            listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                   ToastUtil.showToast(requireContext(), "应用未安装")
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+                HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
+                },
+            ), HomeMenuDialog.Type.APPS)
         }
 
     }
@@ -427,6 +450,7 @@ class MainFragment : Fragment() {
      * AI编程
      */
     private fun bindPageFiveView() {
+        // 教学视频
         OnceClickStrategy.onceClick(bindingPageFive.cardProgramTeachingVideo) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
                 HomeMenuData(R.mipmap.ic_program_teaching_class, "编程精品课") {
@@ -443,6 +467,7 @@ class MainFragment : Fragment() {
                 }
             ))
         }
+        // 我的作品
         OnceClickStrategy.onceClick(bindingPageFive.cardProgramMyWorks) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_program_my_works_collect, "作品收藏") {
@@ -460,7 +485,7 @@ class MainFragment : Fragment() {
     }
 
     interface OnFragmentActionListener {
-        fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>)
+        fun onItemSelected(v: View, align: HomeMenuDialog.Align, data: ArrayList<HomeMenuData>, type: HomeMenuDialog.Type = HomeMenuDialog.Type.MENU)
     }
 
     companion object {

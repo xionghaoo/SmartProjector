@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.google.android.flexbox.FlexboxLayout
 import com.ubtrobot.smartprojector.R
 import jp.wasabeef.blurry.Blurry
 import kotlin.math.roundToInt
@@ -34,6 +35,10 @@ class HomeMenuDialog(
         LEFT_TOP, LEFT_BOTTOM, RIGHT_TOP, RIGHT_BOTTOM
     }
 
+    enum class Type {
+        MENU, APPS
+    }
+
     private val layoutInflater = LayoutInflater.from(context)
     private val resources = context.resources
     private val bg: FrameLayout
@@ -56,7 +61,7 @@ class HomeMenuDialog(
         bg.layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT
     }
 
-    fun show() {
+    fun show(type: Type = Type.MENU) {
         // 提取目图片
         val iv = ImageView(context)
         iv.isFocusable = true
@@ -76,41 +81,32 @@ class HomeMenuDialog(
             .start()
 
         // 显示内容
-        val content: LinearLayout = layoutInflater.inflate(R.layout.dialog_main_menu, null) as LinearLayout
+//        val content: LinearLayout = layoutInflater.inflate(R.layout.dialog_main_menu, null) as LinearLayout
+//        bg.addView(content)
+//        content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
+//        content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
+        val content = contentView(type)
         content.scaleX = 0.6f
         content.scaleY = 0.6f
         content.alpha = 0f
-        bg.addView(content)
-        content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
-        content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
         when (align) {
             Align.LEFT_TOP -> {
                 content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
-//                content.pivotX = content.x + content.width
-//                content.pivotY = 0f
             }
             Align.LEFT_BOTTOM -> {
                 content.x = iv.x - content.layoutParams.width - resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
-                    listData.size * resources.getDimension(R.dimen._78dp).toInt() -
-                    content.paddingTop - content.paddingBottom
-//                content.pivotX = content.x + content.width
-//                content.pivotY = content.y + content.height
+                    itemHeight(type) - content.paddingTop - content.paddingBottom
             }
             Align.RIGHT_TOP -> {
                 content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y
-//                content.pivotX = 0f
-//                content.pivotY = 0f
             }
             Align.RIGHT_BOTTOM -> {
                 content.x = iv.x + iv.layoutParams.width + resources.getDimension(R.dimen._24dp)
                 content.y = iv.y + iv.layoutParams.height -
-                    listData.size * resources.getDimension(R.dimen._78dp).toInt() -
-                    content.paddingTop - content.paddingBottom
-//                content.pivotX = 0f
-//                content.pivotY = content.y + content.height
+                    itemHeight(type) - content.paddingTop - content.paddingBottom
             }
         }
         content.animate()
@@ -122,14 +118,60 @@ class HomeMenuDialog(
 
         // 添加选择项
         listData.forEachIndexed { index, data ->
-            addItemView(content, data.icon, data.title, data.action)
-            if (index < listData.size - 1) {
-                addDivider(content)
+            when (type) {
+                Type.MENU -> {
+                    addMenuItemView(content, data.icon, data.title, data.action)
+                    if (index < listData.size - 1) {
+                        addDivider(content)
+                    }
+                }
+                Type.APPS -> {
+                    addAppItemView(content, data.icon, data.title, data.action)
+                }
             }
         }
     }
 
-    private fun addItemView(container: LinearLayout, icon: Int, title: String?, action: HomeMenuAction) {
+    private fun contentView(type: Type) : ViewGroup {
+        return when (type) {
+            Type.MENU -> {
+                val content: ViewGroup = layoutInflater.inflate(R.layout.dialog_main_menu, null) as ViewGroup
+                bg.addView(content)
+                content.layoutParams.width = resources.getDimension(R.dimen._232dp).toInt()
+                content.layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT
+                content
+            }
+            Type.APPS -> {
+                val content: ViewGroup = layoutInflater.inflate(R.layout.dialog_main_app_colletion, null) as ViewGroup
+                bg.addView(content)
+                content.layoutParams.width = resources.getDimension(R.dimen._764dp).toInt()
+                content.layoutParams.height = appsRowNum() * resources.getDimension(R.dimen._150dp).toInt() +
+                    resources.getDimension(R.dimen._28dp).toInt() * 2
+                content
+            }
+        }
+    }
+
+    private fun itemHeight(type: Type) : Int {
+        return when (type) {
+            Type.MENU -> listData.size * resources.getDimension(R.dimen._78dp).toInt()
+            Type.APPS -> appsRowNum() * resources.getDimension(R.dimen._150dp).toInt()
+        }
+    }
+
+    private fun appsRowNum() : Int = if (listData.size % 4 == 0) listData.size / 4 else listData.size / 4 + 1
+
+    private fun addAppItemView(container: ViewGroup, icon: Int, title: String?, action: HomeMenuAction) {
+        val itemView = layoutInflater.inflate(R.layout.item_dialog_main_app, null)
+        container.addView(itemView)
+        itemView.layoutParams.width = resources.getDimension(R.dimen._174dp).toInt()
+        itemView.layoutParams.height = resources.getDimension(R.dimen._150dp).toInt()
+        itemView.findViewById<ImageView>(R.id.iv_dialog_menu_icon).setImageResource(icon)
+        itemView.findViewById<TextView>(R.id.tv_dialog_menu_title).text = title
+        itemView.setOnClickListener { action.invoke() }
+    }
+
+    private fun addMenuItemView(container: ViewGroup, icon: Int, title: String?, action: HomeMenuAction) {
         val itemView = layoutInflater.inflate(R.layout.item_dialog_main_menu, null)
         container.addView(itemView)
         itemView.layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT
@@ -139,7 +181,7 @@ class HomeMenuDialog(
         itemView.setOnClickListener { action.invoke() }
     }
 
-    private fun addDivider(container: LinearLayout) {
+    private fun addDivider(container: ViewGroup) {
         val divider = View(context)
         container.addView(divider)
         divider.setBackgroundColor(resources.getColor(R.color.color_DDDDDD))

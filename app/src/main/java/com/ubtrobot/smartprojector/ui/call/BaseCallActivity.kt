@@ -10,6 +10,9 @@ import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
 import xh.zero.agora_call.agora.IEventListener
 
+/**
+ * 远端呼叫事件监听
+ */
 abstract class BaseCallActivity : AppCompatActivity(), IEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +85,6 @@ abstract class BaseCallActivity : AppCompatActivity(), IEventListener {
     }
 
     override fun onRemoteVideoStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
-//        SmartProjectorApp.isVideo = true
         // 视频通话
         Timber.d("onRemoteVideoStateChanged: $uid, $state")
     }

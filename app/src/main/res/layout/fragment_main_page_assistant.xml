@@ -298,28 +298,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
-        <ImageView
-            android:id="@+id/textView49"
-            android:layout_width="@dimen/_74dp"
-            android:layout_height="@dimen/_74dp"
-            android:layout_marginBottom="@dimen/_77dp"
-            android:src="@mipmap/ic_assistant_tools_advance"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView53"
+        <LinearLayout
+            android:id="@+id/btn_assistant_advance_study"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_33dp"
-            android:text="进阶学习"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_24sp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView49" />
+            app:layout_constraintStart_toStartOf="parent" >
+            <ImageView
+                android:layout_width="@dimen/_74dp"
+                android:layout_height="@dimen/_74dp"
+                android:src="@mipmap/ic_assistant_tools_advance"/>
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_33dp"
+                android:text="进阶学习"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_24sp" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

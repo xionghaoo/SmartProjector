@@ -16,7 +16,7 @@ import xh.zero.agora_call.AgoraCallManager
 import javax.inject.Inject
 
 /**
- * 呼叫
+ * 呼叫中页面
  */
 @AndroidEntryPoint
 class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
@@ -46,14 +46,10 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
     private var isCallee: Boolean = false
     private var content: String? = null
 
-//    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCallingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        agoraListenerDelegate = AgoraListenerDelegate(this, agoraCallManager, AgoraListenerDelegate.Type.CALLING)
 
         peerId = intent.getStringExtra(EXTRA_PEER_ID)
         isCallee = intent.getBooleanExtra(EXTRA_IS_CALLEE, false)
@@ -77,26 +73,16 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         binding.btnHungUp.setOnClickListener {
             if (isCallee) {
                 // 拒绝远端呼叫
-//                agoraCallManager.rtmCallManager.refuseRemoteInvitation(agoraCallManager.remoteInvitation, this)
                 refuseRemote()
             } else {
                 // 取消本地呼叫
-//                agoraCallManager.rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
                 cancelLocal()
             }
             finish()
         }
     }
 
-    override fun onDestroy() {
-        Timber.d("onDestroy")
-//        agoraListenerDelegate.destroy()
-        super.onDestroy()
-    }
-
     override fun finish() {
-        Timber.d("finish")
-
         stopRinging()
         if (isCallee && agoraCallManager.remoteInvitation != null) {
             refuseRemote()
@@ -104,6 +90,56 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
             cancelLocal()
         }
         super.finish()
+    }
+
+    private fun inviteCall() {
+        val rtmCallManager = agoraCallManager.rtmCallManager
+        val invitation = rtmCallManager.createLocalInvitation(peerId)
+        // 设置通道Channel
+        invitation.channelId = "${peerId}${viewModel.prefs().userID}"
+        invitation.content = content
+        rtmCallManager.sendLocalInvitation(invitation, this)
+        // 保存本地邀请
+        agoraCallManager.localInvitation = invitation
+    }
+
+    private fun cancelLocal() {
+        Timber.d("cancelLocal: ${agoraCallManager.localInvitation}")
+        agoraCallManager.rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
+    }
+
+    private fun refuseRemote() {
+        agoraCallManager.rtmCallManager.refuseRemoteInvitation(agoraCallManager.remoteInvitation, this)
+    }
+
+    private fun startRinging() {
+        startRinging(if (isCallee) R.raw.basic_tones else R.raw.basic_ring)
+    }
+
+    private fun startRinging(resource: Int) {
+        player = MediaPlayer.create(this, resource)
+        player?.isLooping = true
+        player?.start()
+    }
+
+    private fun stopRinging() {
+        if (player != null && player!!.isPlaying) {
+            player?.stop()
+            player?.release()
+            player = null
+        }
+    }
+
+    private fun answerCall() {
+        agoraCallManager.rtmCallManager.acceptRemoteInvitation(agoraCallManager.remoteInvitation, this)
+    }
+
+    override fun onSuccess(p0: Void?) {
+
+    }
+
+    override fun onFailure(p0: ErrorInfo?) {
+
     }
 
     override fun getAgoraManager(): AgoraCallManager = agoraCallManager
@@ -175,56 +211,6 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
             AgoraVoiceCallActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
         }
         finish()
-    }
-
-    private fun inviteCall() {
-        val rtmCallManager = agoraCallManager.rtmCallManager
-        val invitation = rtmCallManager.createLocalInvitation(peerId)
-        // 设置通道Channel
-        invitation.channelId = "${peerId}${viewModel.prefs().userID}"
-        invitation.content = content
-        rtmCallManager.sendLocalInvitation(invitation, this)
-        // 保存本地邀请
-        agoraCallManager.localInvitation = invitation
-    }
-
-    private fun cancelLocal() {
-        Timber.d("cancelLocal: ${agoraCallManager.localInvitation}")
-        agoraCallManager.rtmCallManager.cancelLocalInvitation(agoraCallManager.localInvitation, this)
-    }
-
-    private fun refuseRemote() {
-        agoraCallManager.rtmCallManager.refuseRemoteInvitation(agoraCallManager.remoteInvitation, this)
-    }
-
-    private fun startRinging() {
-        startRinging(if (isCallee) R.raw.basic_tones else R.raw.basic_ring)
-    }
-
-    private fun startRinging(resource: Int) {
-        player = MediaPlayer.create(this, resource)
-        player?.isLooping = true
-        player?.start()
-    }
-
-    private fun stopRinging() {
-        if (player != null && player!!.isPlaying) {
-            player?.stop()
-            player?.release()
-            player = null
-        }
-    }
-
-    private fun answerCall() {
-        agoraCallManager.rtmCallManager.acceptRemoteInvitation(agoraCallManager.remoteInvitation, this)
-    }
-
-    override fun onSuccess(p0: Void?) {
-
-    }
-
-    override fun onFailure(p0: ErrorInfo?) {
-
     }
 
 
