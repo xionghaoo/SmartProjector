@@ -57,9 +57,9 @@ abstract class BaseCallActivity : AppCompatActivity(), IEventListener {
     }
 
     override fun onRemoteInvitationReceived(remoteInvitation: RemoteInvitation?) {
-        Timber.d("onRemoteInvitationReceived: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}")
+        Timber.d("onRemoteInvitationReceived: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}, content: ${remoteInvitation?.content}")
         getAgoraManager().remoteInvitation = remoteInvitation
-        CallingActivity.start(this, remoteInvitation?.callerId, true)
+        CallingActivity.start(this, remoteInvitation?.callerId, true, remoteInvitation?.content)
     }
 
     override fun onRemoteInvitationAccepted(remoteInvitation: RemoteInvitation?) {

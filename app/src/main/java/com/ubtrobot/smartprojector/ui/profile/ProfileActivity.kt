@@ -45,16 +45,15 @@ class ProfileActivity : AppCompatActivity() {
             .into(binding.ivProfileBg)
 
         binding.btnVideoCall.setOnClickListener {
-            callPeer(Configs.agoraPeerUserId)
+            callPeer(Configs.agoraPeerUserId, "video")
         }
 
         binding.btnVoiceCall.setOnClickListener {
-//            SmartProjectorApp.isVideo = false
-//            callPeer(Configs.agoraPeerUserId)
+            callPeer(Configs.agoraPeerUserId, "audio")
         }
     }
 
-    private fun callPeer(number: String) {
+    private fun callPeer(number: String, content: String?) {
         val peer: String = number
         val peerSet: MutableSet<String> = HashSet()
         peerSet.add(peer)
@@ -62,10 +61,11 @@ class ProfileActivity : AppCompatActivity() {
         agoraCallManager.rtmClient.queryPeersOnlineStatus(peerSet, object :
             ResultCallback<Map<String, Boolean>> {
             override fun onSuccess(p0: Map<String, Boolean>?) {
-                CallingActivity.start(this@ProfileActivity, peer, false)
+                CallingActivity.start(this@ProfileActivity, peer, false, content)
             }
 
             override fun onFailure(p0: ErrorInfo?) {
+                ToastUtil.showToast(this@ProfileActivity, "您呼叫的号码不在线")
                 Timber.e(p0?.errorDescription)
             }
         })

@@ -36,7 +36,7 @@ class CallWithPatriarchActivity : AppCompatActivity() {
         peerSet.add(peer)
         agoraCallManager.rtmClient.queryPeersOnlineStatus(peerSet, object : ResultCallback<Map<String, Boolean>> {
             override fun onSuccess(p0: Map<String, Boolean>?) {
-                CallingActivity.start(this@CallWithPatriarchActivity, peer, false)
+                CallingActivity.start(this@CallWithPatriarchActivity, peer, false, "")
             }
 
             override fun onFailure(p0: ErrorInfo?) {

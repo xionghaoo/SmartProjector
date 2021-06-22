@@ -25,11 +25,13 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
 
         private const val EXTRA_PEER_ID = "${Configs.PACKAGE_NAME}.CallingActivity.EXTRA_PEER_ID"
         private const val EXTRA_IS_CALLEE = "${Configs.PACKAGE_NAME}.CallingActivity.EXTRA_IS_CALLEE"
+        private const val EXTRA_CONTENT = "${Configs.PACKAGE_NAME}.CallingActivity.EXTRA_CONTENT"
 
-        fun start(context: Context, peerId: String?, isCallee: Boolean) {
+        fun start(context: Context, peerId: String?, isCallee: Boolean, content: String?) {
             val i = Intent(context, CallingActivity::class.java)
             i.putExtra(EXTRA_PEER_ID, peerId)
             i.putExtra(EXTRA_IS_CALLEE, isCallee)
+            i.putExtra(EXTRA_CONTENT, content)
             context.startActivity(i)
         }
     }
@@ -42,6 +44,7 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
     private var player: MediaPlayer? = null
     private var peerId: String? = null
     private var isCallee: Boolean = false
+    private var content: String? = null
 
 //    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
@@ -54,6 +57,7 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
 
         peerId = intent.getStringExtra(EXTRA_PEER_ID)
         isCallee = intent.getBooleanExtra(EXTRA_IS_CALLEE, false)
+        content = intent.getStringExtra(EXTRA_CONTENT)
         Timber.d("isCallee: ${isCallee}")
         if (isCallee) {
             // 被呼叫
@@ -109,10 +113,15 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
     }
 
     override fun onLocalInvitationAccepted(localInvitation: LocalInvitation?, response: String?) {
-        Timber.d("onLocalInvitationAccepted: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}")
+        Timber.d("onLocalInvitationAccepted: channel id = ${localInvitation?.channelId}, callee id = ${localInvitation?.calleeId}, content: ${localInvitation?.content}")
 
         stopRinging()
-        AgoraVideoActivity.start(this, localInvitation?.content, localInvitation?.calleeId)
+        val content = localInvitation?.content
+        if (content == "video") {
+            AgoraVideoActivity.start(this, localInvitation?.channelId, localInvitation?.calleeId)
+        } else {
+            AgoraVoiceCallActivity.start(this, localInvitation?.channelId, localInvitation?.calleeId)
+        }
         finish()
     }
 
@@ -159,7 +168,12 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
 
     override fun onRemoteInvitationAccepted(remoteInvitation: RemoteInvitation?) {
         Timber.d("onRemoteInvitationAccepted: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}, state: ${remoteInvitation?.state}")
-        AgoraVideoActivity.start(this, remoteInvitation?.content, remoteInvitation?.callerId)
+        val content = remoteInvitation?.content
+        if (content == "video") {
+            AgoraVideoActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
+        } else {
+            AgoraVoiceCallActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
+        }
         finish()
     }
 
@@ -167,7 +181,8 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         val rtmCallManager = agoraCallManager.rtmCallManager
         val invitation = rtmCallManager.createLocalInvitation(peerId)
         // 设置通道Channel
-        invitation.content = "${peerId}${viewModel.prefs().userID}"
+        invitation.channelId = "${peerId}${viewModel.prefs().userID}"
+        invitation.content = content
         rtmCallManager.sendLocalInvitation(invitation, this)
         // 保存本地邀请
         agoraCallManager.localInvitation = invitation
