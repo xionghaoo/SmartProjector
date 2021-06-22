@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_8dp"
-        android:background="@mipmap/ic_chinese_after_school"
+        android:background="@mipmap/ic_program_my_works"
         app:layout_constraintBottom_toBottomOf="@+id/card_program_do_work"
         app:layout_constraintEnd_toEndOf="@+id/card_program_teaching_video"
         app:layout_constraintStart_toEndOf="@+id/card_program_do_work"

@@ -1,3 +1,1 @@
-kd／2icon／编程／收藏.png;ic_program_my_works_collect.png
-kd／2icon／编程／分享.png;ic_program_my_works_share.png
-kd／2icon／编程／优秀作品.png;ic_program_my_works_excellent.png
+kd／2icon／编程-直播答疑.png;ic_program_my_works.png
