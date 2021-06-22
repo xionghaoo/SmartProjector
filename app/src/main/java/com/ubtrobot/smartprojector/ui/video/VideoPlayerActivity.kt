@@ -72,6 +72,11 @@ class VideoPlayerActivity : AppCompatActivity() {
         videoPlayerTask()
     }
 
+    override fun onDestroy() {
+        player?.release()
+        super.onDestroy()
+    }
+
     @AfterPermissionGranted(RC_STORAGE_PERMISSION)
     fun videoPlayerTask() {
         if (hasStoragePermission()) {

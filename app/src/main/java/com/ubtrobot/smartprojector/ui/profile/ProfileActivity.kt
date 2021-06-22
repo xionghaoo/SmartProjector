@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
-import com.ubtrobot.smartprojector.ui.call.CallWithPatriarchActivity
 import com.ubtrobot.smartprojector.ui.call.CallingActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.utils.SystemUtil

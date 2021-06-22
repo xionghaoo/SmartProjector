@@ -266,41 +266,41 @@ class MainFragment : Fragment() {
     private fun bindPageThreeView() {
         OnceClickStrategy.onceClick(bindingPageThree.cardEnglishPrepareRead) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_classroom, "名师课堂") {
                     jxwAppManager.startFamousTeacherClassroom(requireContext(), "英语")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本点读") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_book_read, "课本点读") {
                     jxwAppManager.startBookFingerRead(requireActivity(), "英语");
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "指尖阅读") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_finger_read, "指尖阅读") {
                     jxwAppManager.startFingerRead(requireContext(), "keben")
                 }
             ))
         }
         OnceClickStrategy.onceClick(bindingPageThree.cardEnglishClassic) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点视频") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_book_explain, "知识点视频") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点归纳") {
+                HomeMenuData(R.mipmap.ic_english_classic_knowledge_points, "知识点归纳") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "记单词") {
+                HomeMenuData(R.mipmap.ic_english_classic_remember_words, "记单词") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "背课文") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_recite_text, "背课文") {
                     jxwAppManager.startSyncAssistPage(requireContext(), "英语")
                 }
             ))
         }
         OnceClickStrategy.onceClick(bindingPageThree.cardEnglishAfterSchool) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "口语测评") {
+                HomeMenuData(R.mipmap.ic_english_after_school_oral_english, "口语测评") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.ORAL_ENGLISH_TEST)
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步测试") {
+                HomeMenuData(R.mipmap.ic_chinese_after_school_exam, "同步测试") {
 //                    jxwAppManager.startSyncAssistPage(requireContext(), "英语")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
+                HomeMenuData(R.mipmap.ic_english_tool_error_book, "错题本") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "自我评测") {
+                HomeMenuData(R.mipmap.ic_english_after_school_self_test, "自我评测") {
                 }
             ))
         }
@@ -350,37 +350,37 @@ class MainFragment : Fragment() {
     private fun bindPageFourView() {
         OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsPrepareRead) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "名师课堂") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_classroom, "名师课堂") {
                     jxwAppManager.startFamousTeacherClassroom(requireContext(), "数学")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "课本点读") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_book_read, "课本点读") {
                     jxwAppManager.startBookFingerRead(requireActivity(), "数学");
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "指尖阅读") {
+                HomeMenuData(R.mipmap.ic_chinese_prepare_finger_read, "指尖阅读") {
                     jxwAppManager.startFingerRead(requireContext(), "keben")
                 }
             ))
         }
         OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsClassic) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "知识点精讲") {
+                HomeMenuData(R.mipmap.ic_chinese_classic_book_explain, "知识点精讲") {
                 },
-                HomeMenuData(R.mipmap.ic_math_fundament_graph, "数学图形") {
+                HomeMenuData(R.mipmap.ic_math_classic_graph, "数学图形") {
                     jxwAppManager.startFixDataPage(requireContext(), "小学数学图形")
                 },
-                HomeMenuData(R.mipmap.ic_math_fundament_formula, "数学公式") {
+                HomeMenuData(R.mipmap.ic_math_classic_formula, "数学公式") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_FORMULA)
                 }
             ))
         }
         OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsAfterSchool) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "例题解析") {
+                HomeMenuData(R.mipmap.ic_math_after_school_example, "例题解析") {
                     jxwAppManager.startSyncAssistPage(requireContext(), "数学")
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "错题本") {
+                HomeMenuData(R.mipmap.ic_english_tool_error_book, "错题本") {
                 },
-                HomeMenuData(R.mipmap.ic_chinese_pinyin, "同步测试") {
+                HomeMenuData(R.mipmap.ic_chinese_after_school_exam, "同步测试") {
                 }
             ))
         }
@@ -392,10 +392,10 @@ class MainFragment : Fragment() {
                 HomeMenuData(R.mipmap.ic_math_fundament_arithmetic, "算术口诀") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_ARITHMETIC)
                 },
-                HomeMenuData(R.mipmap.ic_math_fundament_formula, "数学公式") {
+                HomeMenuData(R.mipmap.ic_math_classic_formula, "数学公式") {
                     jxwAppManager.startOtherPage(requireContext(), JxwAppType.MATH_FORMULA)
                 },
-                HomeMenuData(R.mipmap.ic_math_fundament_graph, "数学图形") {
+                HomeMenuData(R.mipmap.ic_math_classic_graph, "数学图形") {
                     jxwAppManager.startFixDataPage(requireContext(), "小学数学图形")
                 }
             ))
@@ -427,13 +427,31 @@ class MainFragment : Fragment() {
      * AI编程
      */
     private fun bindPageFiveView() {
-        OnceClickStrategy.onceClick(bindingPageFive.tvProgramTeachingVideo) {
-            val items = ArrayList<VideoItem>()
-            items.add(VideoItem("视频1", MockData.video1))
-            items.add(VideoItem("视频2", MockData.video2))
-            items.add(VideoItem("视频3", MockData.video3))
-            items.add(VideoItem("视频4", MockData.video4))
-            VideoPlayerActivity.start(requireContext(), items)
+        OnceClickStrategy.onceClick(bindingPageFive.cardProgramTeachingVideo) {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_TOP, arrayListOf(
+                HomeMenuData(R.mipmap.ic_program_teaching_class, "编程精品课") {
+                    val items = ArrayList<VideoItem>()
+                    items.add(VideoItem("视频1", MockData.video1))
+                    items.add(VideoItem("视频2", MockData.video2))
+                    items.add(VideoItem("视频3", MockData.video3))
+                    items.add(VideoItem("视频4", MockData.video4))
+                    VideoPlayerActivity.start(requireContext(), items)
+                },
+                HomeMenuData(R.mipmap.ic_program_teaching_practise, "边学边练") {
+                },
+                HomeMenuData(R.mipmap.ic_program_teaching_document, "配套文档") {
+                }
+            ))
+        }
+        OnceClickStrategy.onceClick(bindingPageFive.cardProgramMyWorks) {
+            listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
+                HomeMenuData(R.mipmap.ic_program_my_works_collect, "作品收藏") {
+                },
+                HomeMenuData(R.mipmap.ic_program_my_works_share, "作品分享") {
+                },
+                HomeMenuData(R.mipmap.ic_program_my_works_excellent, "优秀作品") {
+                }
+            ))
         }
         // 少儿编程思维
         OnceClickStrategy.onceClick(bindingPageFive.btnProgramThinking) {

@@ -8,15 +8,15 @@
     tools:context=".ui.MainFragment">
 
     <FrameLayout
-        android:id="@+id/textView23"
+        android:id="@+id/card_program_my_works"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_8dp"
         android:background="@mipmap/ic_chinese_after_school"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="@+id/tv_program_teaching_video"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19">
+        app:layout_constraintBottom_toBottomOf="@+id/card_program_do_work"
+        app:layout_constraintEnd_toEndOf="@+id/card_program_teaching_video"
+        app:layout_constraintStart_toEndOf="@+id/card_program_do_work"
+        app:layout_constraintTop_toTopOf="@+id/card_program_do_work">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,8 +35,8 @@
         android:layout_height="0dp"
         android:background="@drawable/shape_connect_line_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="@+id/card_program_my_works"
+        app:layout_constraintStart_toStartOf="@+id/card_program_my_works"
         app:layout_constraintTop_toTopOf="@+id/textView20" />
 
     <TextView
@@ -45,18 +45,18 @@
         android:layout_height="@dimen/_20dp"
         android:layout_marginStart="@dimen/_254dp"
         android:background="@drawable/shape_connect_line_right"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
+        app:layout_constraintBottom_toBottomOf="@+id/card_program_do_work"
+        app:layout_constraintStart_toStartOf="@+id/card_program_do_work"
+        app:layout_constraintTop_toTopOf="@+id/card_program_do_work" />
 
     <FrameLayout
-        android:id="@+id/textView19"
+        android:id="@+id/card_program_do_work"
         android:layout_width="@dimen/_265dp"
         android:layout_height="@dimen/_250dp"
         android:layout_marginTop="@dimen/_15dp"
         android:background="@mipmap/ic_program_practise"
-        app:layout_constraintStart_toStartOf="@+id/tv_program_teaching_video"
-        app:layout_constraintTop_toBottomOf="@+id/tv_program_teaching_video">
+        app:layout_constraintStart_toStartOf="@+id/card_program_teaching_video"
+        app:layout_constraintTop_toBottomOf="@+id/card_program_teaching_video">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,12 +75,12 @@
         android:layout_height="@dimen/_36dp"
         android:layout_marginBottom="@dimen/_246dp"
         android:background="@drawable/shape_connect_line_bottom"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="@+id/textView19" />
+        app:layout_constraintBottom_toBottomOf="@+id/card_program_do_work"
+        app:layout_constraintEnd_toEndOf="@+id/card_program_do_work"
+        app:layout_constraintStart_toStartOf="@+id/card_program_do_work" />
 
     <FrameLayout
-        android:id="@+id/tv_program_teaching_video"
+        android:id="@+id/card_program_teaching_video"
         android:layout_width="@dimen/_538dp"
         android:layout_height="@dimen/_249dp"
         android:layout_marginStart="@dimen/_75dp"
@@ -109,7 +109,7 @@
         android:orientation="vertical"
         android:paddingStart="@dimen/_18dp"
         android:paddingEnd="@dimen/_32dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_program_teaching_video"
+        app:layout_constraintStart_toEndOf="@+id/card_program_teaching_video"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
