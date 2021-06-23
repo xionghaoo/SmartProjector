@@ -152,7 +152,8 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
         try {
             val i = Intent()
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .setClassName("com.jxw.mskt.video", "com.jxw.mskt.filelist.activity.FileListActivity")
+//                .setClassName("com.jxw.mskt.video", "com.jxw.mskt.filelist.activity.FileListActivity")
+                .setClassName("com.jxw.mskt.video", "com.jxw.mskt.video.MainActivity")
                 .putExtra("StartArgs","d: ${prefs.grade}|e: $subject")
             context.startActivity(i)
         } catch (e: Exception) {

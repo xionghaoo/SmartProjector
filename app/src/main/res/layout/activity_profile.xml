@@ -54,4 +54,19 @@
         app:layout_constraintStart_toStartOf="@+id/btn_video_call"
         app:layout_constraintTop_toBottomOf="@+id/btn_video_call" />
 
+    <TextView
+        android:id="@+id/tv_test_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginEnd="@dimen/_100dp"
+        android:padding="@dimen/_20dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile_bg"
+        app:layout_constraintStart_toEndOf="@+id/btn_video_call"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:text="屏幕信息" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

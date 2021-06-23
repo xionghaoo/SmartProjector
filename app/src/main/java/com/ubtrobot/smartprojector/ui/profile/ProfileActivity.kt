@@ -50,6 +50,8 @@ class ProfileActivity : AppCompatActivity() {
         binding.btnVoiceCall.setOnClickListener {
             callPeer(Configs.agoraPeerUserId, "audio")
         }
+
+        binding.tvTestInfo.text = "屏幕信息：${SystemUtil.displayInfo(this)}"
     }
 
     private fun callPeer(number: String, content: String?) {

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.tuya.smart.utils.ToastUtil
 import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityAgoraVideoBinding
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -44,9 +45,11 @@ class AgoraVideoActivity : BaseCallActivity() {
     private var peerId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
         binding = ActivityAgoraVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        SystemUtil.statusBarTransparent(window)
 
         channelId = intent.getStringExtra(EXTRA_CHANNEL_ID)
         peerId = intent.getStringExtra(EXTRA_PEER_UID)?.toInt()
@@ -56,7 +59,7 @@ class AgoraVideoActivity : BaseCallActivity() {
         agoraCallManager.rtcEngine.setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER)
         agoraCallManager.rtcEngine.setVideoEncoderConfiguration(
             VideoEncoderConfiguration(
-                VideoEncoderConfiguration.VD_640x480,
+                VideoEncoderConfiguration.VD_1280x720,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE

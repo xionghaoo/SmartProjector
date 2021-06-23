@@ -60,13 +60,13 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         Timber.d("isCallee: ${isCallee}")
         if (isCallee) {
             // 被呼叫
-            binding.tvCalling.text = "想和你进行视频通话"
+            binding.tvCalling.text = "想和你进行${if (content == "video") "视频" else "语音"}通话"
             binding.btnAccept.visibility = View.VISIBLE
             binding.btnAccept.setOnClickListener {
                 answerCall()
             }
         } else {
-            binding.tvCalling.text = "正在等待宝贝接受视频通话。。。"
+            binding.tvCalling.text = "正在等待宝贝接受${if (content == "video") "视频" else "语音"}通话。。。"
             // 主动呼叫
             inviteCall()
         }
