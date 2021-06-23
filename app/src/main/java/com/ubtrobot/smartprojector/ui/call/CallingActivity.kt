@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.ubtrobot.smartprojector.Configs
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityCallingBinding
+import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtm.*
 import timber.log.Timber
@@ -50,6 +52,7 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         super.onCreate(savedInstanceState)
         binding = ActivityCallingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        SystemUtil.statusBarTransparent(window)
 
         peerId = intent.getStringExtra(EXTRA_PEER_ID)
         isCallee = intent.getBooleanExtra(EXTRA_IS_CALLEE, false)
@@ -57,13 +60,13 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         Timber.d("isCallee: ${isCallee}")
         if (isCallee) {
             // 被呼叫
-            binding.tvCalling.text = "有新的呼叫邀请。。。"
+            binding.tvCalling.text = "想和你进行视频通话"
             binding.btnAccept.visibility = View.VISIBLE
             binding.btnAccept.setOnClickListener {
                 answerCall()
             }
         } else {
-            binding.tvCalling.text = "正在呼叫。。。"
+            binding.tvCalling.text = "正在等待宝贝接受视频通话。。。"
             // 主动呼叫
             inviteCall()
         }
@@ -80,6 +83,11 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
             }
             finish()
         }
+
+        GlideApp.with(this)
+            .load(R.drawable.ic_cat)
+            .circleCrop()
+            .into(binding.ivCallingAvatar)
     }
 
     override fun finish() {

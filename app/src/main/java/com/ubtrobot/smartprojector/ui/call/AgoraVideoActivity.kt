@@ -37,7 +37,6 @@ class AgoraVideoActivity : BaseCallActivity() {
     @Inject
     lateinit var agoraCallManager: AgoraCallManager
     private val viewModel: AgoraCallViewModel by viewModels()
-//    lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
     private lateinit var binding: ActivityAgoraVideoBinding
 
@@ -52,21 +51,6 @@ class AgoraVideoActivity : BaseCallActivity() {
         channelId = intent.getStringExtra(EXTRA_CHANNEL_ID)
         peerId = intent.getStringExtra(EXTRA_PEER_UID)?.toInt()
 
-//        agoraListenerDelegate = AgoraListenerDelegate(
-//            activity = this,
-//            agoraCallManager = agoraCallManager,
-//            type = AgoraListenerDelegate.Type.VIDEO,
-//            onUserJoined = { uid, elapsed ->
-//                if (uid == peerId) {
-//                    runOnUiThread {
-//                        binding.remotePreviewLayout.addView(setupVideo(uid, false))
-//                    }
-//                }
-//            },
-//            onUserOffline = { uid, reason ->
-//                if (uid == peerId) finish()
-//            }
-//        )
         binding.btnMute.isActivated = true
 
         agoraCallManager.rtcEngine.setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER)
