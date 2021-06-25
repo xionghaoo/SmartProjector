@@ -9,12 +9,12 @@ import os
 # 默认dimens.xml文件的缩放因子和屏幕宽度（设计稿尺寸）
 UI_SCREEN_SCALE = 1
 UI_SCREEN_WIDTH = 720
-UI_SCREEN_HEIGHT = 1080
+UI_SCREEN_HEIGHT = 1280
 
 # 目标屏幕宽度(dp)
-sw_dp_list = [1080, 720, 411, 360, 552]
+sw_dp_list = [1080, 720, 411, 360, 552, 640]
 # 目标屏幕高度(dp)
-height_dp_list = [1920, 1280, 731, 640, 960]
+height_dp_list = [1920, 1280, 731, 640, 960, 1024]
 # 默认的dimens.xml文件目录
 res_path = '../app/src/main/res'
 # res_path = '.'

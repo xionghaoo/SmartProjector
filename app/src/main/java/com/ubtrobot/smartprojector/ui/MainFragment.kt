@@ -12,10 +12,7 @@ import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.*
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
-import com.ubtrobot.smartprojector.utils.JXWAppManager
-import com.ubtrobot.smartprojector.utils.JxwAppType
-import com.ubtrobot.smartprojector.utils.OnceClickStrategy
-import com.ubtrobot.smartprojector.utils.ToastUtil
+import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -466,6 +463,9 @@ class MainFragment : Fragment() {
                 HomeMenuData(R.mipmap.ic_program_teaching_document, "配套文档") {
                 }
             ))
+        }
+        OnceClickStrategy.onceClick(bindingPageFive.cardProgramDoWork) {
+            UcodeAppManager.start(requireContext())
         }
         // 我的作品
         OnceClickStrategy.onceClick(bindingPageFive.cardProgramMyWorks) {
