@@ -45,10 +45,10 @@
             android:name=".ui.profile.ProfileActivity"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".ui.call.AgoraVideoActivity"
+            android:name=".ui.call.AgoraVideoCallActivity"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".ui.call.AgoraVoiceCallActivity"
+            android:name=".ui.call.AgoraAudioCallActivity"
             android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.call.CallingActivity"

@@ -71,6 +71,8 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
             inviteCall()
         }
 
+        binding.btnAccept.setImageResource(if (content == "video") R.drawable.ic_call_video else R.drawable.ic_call_voice)
+
         startRinging()
 
         binding.btnHungUp.setOnClickListener {
@@ -162,9 +164,9 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         stopRinging()
         val content = localInvitation?.content
         if (content == "video") {
-            AgoraVideoActivity.start(this, localInvitation?.channelId, localInvitation?.calleeId)
+            AgoraVideoCallActivity.start(this, localInvitation?.channelId, localInvitation?.calleeId)
         } else {
-            AgoraVoiceCallActivity.start(this, localInvitation?.channelId, localInvitation?.calleeId)
+            AgoraAudioCallActivity.start(this, localInvitation?.channelId, localInvitation?.calleeId)
         }
         finish()
     }
@@ -214,9 +216,9 @@ class CallingActivity : BaseCallActivity(), ResultCallback<Void> {
         Timber.d("onRemoteInvitationAccepted: channel id = ${remoteInvitation?.channelId}, callee id = ${remoteInvitation?.callerId}, state: ${remoteInvitation?.state}")
         val content = remoteInvitation?.content
         if (content == "video") {
-            AgoraVideoActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
+            AgoraVideoCallActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
         } else {
-            AgoraVoiceCallActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
+            AgoraAudioCallActivity.start(this, remoteInvitation?.channelId, remoteInvitation?.callerId)
         }
         finish()
     }

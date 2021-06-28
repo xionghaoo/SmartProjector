@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.activity.viewModels
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.core.vo.Status
+import com.ubtrobot.smartprojector.databinding.ActivityAgoraAudioCallBinding
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.agora.rtc.Constants
@@ -20,18 +22,21 @@ import xh.zero.agora_call.AgoraCallManager
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * 语音通话页面
+ */
 @AndroidEntryPoint
-class AgoraVoiceCallActivity : BaseCallActivity() {
+class AgoraAudioCallActivity : BaseCallActivity() {
 
     companion object {
-        private val LOG_TAG = AgoraVoiceCallActivity::class.java.simpleName
+        private val LOG_TAG = AgoraAudioCallActivity::class.java.simpleName
         private const val PERMISSION_REQ_ID_RECORD_AUDIO = 22
 
         private const val EXTRA_CHANNEL_ID = "EXTRA_CHANNEL_ID"
         private const val EXTRA_PEER_UID = "EXTRA_PEER_UID"
 
         fun start(context: Context?, channelId: String?, peerId: String?) {
-            val i = Intent(context, AgoraVoiceCallActivity::class.java)
+            val i = Intent(context, AgoraAudioCallActivity::class.java)
             i.putExtra(EXTRA_CHANNEL_ID, channelId)
             i.putExtra(EXTRA_PEER_UID, peerId)
             context?.startActivity(i)
@@ -41,18 +46,24 @@ class AgoraVoiceCallActivity : BaseCallActivity() {
     @Inject
     lateinit var agoraCallManager: AgoraCallManager
     private val viewModel: AgoraCallViewModel by viewModels()
-
+    private lateinit var binding: ActivityAgoraAudioCallBinding
     private var channelId: String? = null
     private var peerId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_agora_voice_call)
+        binding = ActivityAgoraAudioCallBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         channelId = intent.getStringExtra(EXTRA_CHANNEL_ID)
         peerId = intent.getStringExtra(EXTRA_PEER_UID)?.toInt()
 
         audioCallTask()
+
+        GlideApp.with(this)
+            .load(R.drawable.ic_cat)
+            .circleCrop()
+            .into(binding.ivCallingAvatar)
     }
 
     @AfterPermissionGranted(PERMISSION_REQ_ID_RECORD_AUDIO)
@@ -106,7 +117,7 @@ class AgoraVoiceCallActivity : BaseCallActivity() {
 
     override fun onUserOffline(uid: Int, reason: Int) {
         if (uid == peerId) {
-            runOnUiThread { onRemoteUserLeft(uid, reason) }
+            finish()
         }
     }
 
@@ -153,12 +164,6 @@ class AgoraVoiceCallActivity : BaseCallActivity() {
                 ToastUtil.showToast(this, "RTM token获取错误")
             }
         })
-    }
-
-    private fun onRemoteUserLeft(uid: Int, reason: Int) {
-        ToastUtil.showToast(this, String.format(Locale.US, "user %d left %d", uid and 0xFFFFFFFFL.toInt(), reason))
-        val tipMsg = findViewById<View>(R.id.quick_tips_when_use_agora_sdk) // optional UI
-        tipMsg.visibility = View.VISIBLE
     }
 
 }

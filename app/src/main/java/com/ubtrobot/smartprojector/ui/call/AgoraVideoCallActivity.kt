@@ -8,10 +8,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.tuya.smart.utils.ToastUtil
 import com.ubtrobot.smartprojector.core.vo.Status
-import com.ubtrobot.smartprojector.databinding.ActivityAgoraVideoBinding
+import com.ubtrobot.smartprojector.databinding.ActivityAgoraVideoCallBinding
 import com.ubtrobot.smartprojector.utils.SystemUtil
 import dagger.hilt.android.AndroidEntryPoint
-import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
@@ -20,15 +19,18 @@ import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
 import javax.inject.Inject
 
+/**
+ * 视频通话页面
+ */
 @AndroidEntryPoint
-class AgoraVideoActivity : BaseCallActivity() {
+class AgoraVideoCallActivity : BaseCallActivity() {
 
     companion object {
         private const val EXTRA_CHANNEL_ID = "EXTRA_CHANNEL_ID"
         private const val EXTRA_PEER_UID = "EXTRA_PEER_UID"
 
         fun start(context: Context?, channelId: String?, peerId: String?) {
-            val i = Intent(context, AgoraVideoActivity::class.java)
+            val i = Intent(context, AgoraVideoCallActivity::class.java)
             i.putExtra(EXTRA_CHANNEL_ID, channelId)
             i.putExtra(EXTRA_PEER_UID, peerId)
             context?.startActivity(i)
@@ -39,7 +41,7 @@ class AgoraVideoActivity : BaseCallActivity() {
     lateinit var agoraCallManager: AgoraCallManager
     private val viewModel: AgoraCallViewModel by viewModels()
 
-    private lateinit var binding: ActivityAgoraVideoBinding
+    private lateinit var binding: ActivityAgoraVideoCallBinding
 
     private var channelId: String? = null
     private var peerId: Int? = null
@@ -47,7 +49,7 @@ class AgoraVideoActivity : BaseCallActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
-        binding = ActivityAgoraVideoBinding.inflate(layoutInflater)
+        binding = ActivityAgoraVideoCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
         SystemUtil.statusBarTransparent(window)
 
