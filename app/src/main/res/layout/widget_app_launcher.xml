@@ -6,22 +6,32 @@
     android:layout_width="@dimen/_120dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/container_app_icon"
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/container_app_icon"-->
+<!--        android:layout_width="@dimen/_80dp"-->
+<!--        android:layout_height="@dimen/_80dp"-->
+<!--        app:cardElevation="0dp"-->
+<!--        app:cardCornerRadius="@dimen/_20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_app_icon"-->
+<!--            android:layout_width="@dimen/_54dp"-->
+<!--            android:layout_height="@dimen/_54dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            tools:srcCompat="@tools:sample/avatars" />-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <ImageView
+        android:id="@+id/iv_app_icon"
         android:layout_width="@dimen/_80dp"
         android:layout_height="@dimen/_80dp"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="@dimen/_20dp"
+        tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <ImageView
-            android:id="@+id/iv_app_icon"
-            android:layout_width="@dimen/_54dp"
-            android:layout_height="@dimen/_54dp"
-            android:layout_gravity="center"
-            tools:srcCompat="@tools:sample/avatars" />
-    </androidx.cardview.widget.CardView>
+    </ImageView>
 
     <TextView
         android:id="@+id/tv_app_label"
@@ -38,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_app_icon"
+        app:layout_constraintTop_toBottomOf="@+id/iv_app_icon"
         tools:text="应用图标" />
 
     <ImageView

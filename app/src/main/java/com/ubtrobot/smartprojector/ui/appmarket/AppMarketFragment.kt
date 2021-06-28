@@ -87,39 +87,8 @@ class AppMarketFragment : Fragment() {
             }
         }
         binding.rcAppList.adapter = adapter
-//        Timber.d("onViewCreated")
         updateApps()
-        // 获取已安装的app列表
-//        val intent = Intent(Intent.ACTION_MAIN)
-//        intent.addCategory(Intent.CATEGORY_LAUNCHER)
-//        requireActivity().packageManager.apply {
-//            val packageList = queryIntentActivities(intent, 0)
-//            val items = ArrayList<ThirdApp>()
-//            packageList.forEach { info ->
-//                val appInfo: ApplicationInfo = getApplicationInfo(info.activityInfo.packageName, 0)
-//                val appName = getApplicationLabel(appInfo).toString()
-//                val icon = getApplicationIcon(appInfo)
-//                if (isGame) {
-//                    if (GAME_LIST.contains(appName)) {
-//                        val app = ThirdApp()
-//                        app.packageName = appInfo.packageName
-//                        app.name = appName
-//                        app.icon = icon
-//                        items.add(app)
-//                    }
-//                } else {
-//                    if (info.activityInfo.packageName != BuildConfig.APPLICATION_ID
-//                        && !GAME_LIST.contains(appName)) {
-//                        val app = ThirdApp()
-//                        app.packageName = appInfo.packageName
-//                        app.name = appName
-//                        app.icon = icon
-//                        items.add(app)
-//                    }
-//                }
-//            }
-//            adapter.updateData(items)
-//        }
+
     }
 
     fun updateApps() {
