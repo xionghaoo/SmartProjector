@@ -2,6 +2,7 @@ package com.ubtrobot.smartprojector.ui.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
 import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity
@@ -22,6 +23,8 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
 
+    private val viewModel: ProfileViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
@@ -41,6 +44,8 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.tvTestInfo.text = "屏幕信息：${SystemUtil.displayInfo(this)}"
+
+        binding.tvUserName.text = "用户名：台灯${viewModel.prefs().userID}"
     }
 
 }

@@ -41,6 +41,12 @@ class SplashActivity : AppCompatActivity() {
         getSerialNumberTask()
     }
 
+    override fun finish() {
+        super.finish()
+        // 淡出启动页
+        overridePendingTransition(0, R.anim.fade_out)
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
