@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
+import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity
 import com.ubtrobot.smartprojector.ui.call.CallingActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.utils.SystemUtil
@@ -21,9 +22,6 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
 
-    @Inject
-    lateinit var agoraCallManager: AgoraCallManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
@@ -38,37 +36,11 @@ class ProfileActivity : AppCompatActivity() {
             startPlainActivity(SettingsActivity::class.java)
         }
 
-        GlideApp.with(this)
-            .load(R.mipmap.ic_launcher_bg)
-            .centerCrop()
-            .into(binding.ivProfileBg)
-
-        binding.btnVideoCall.setOnClickListener {
-            callPeer(Configs.agoraPeerUserId, "video")
-        }
-
-        binding.btnVoiceCall.setOnClickListener {
-            callPeer(Configs.agoraPeerUserId, "audio")
+        binding.btnCallWithParent.setOnClickListener {
+            startPlainActivity(CallWithParentActivity::class.java)
         }
 
         binding.tvTestInfo.text = "屏幕信息：${SystemUtil.displayInfo(this)}"
     }
 
-    private fun callPeer(number: String, content: String?) {
-        val peer: String = number
-        val peerSet: MutableSet<String> = HashSet()
-        peerSet.add(peer)
-        // 查询呼叫号码是否在线
-        agoraCallManager.rtmClient.queryPeersOnlineStatus(peerSet, object :
-            ResultCallback<Map<String, Boolean>> {
-            override fun onSuccess(p0: Map<String, Boolean>?) {
-                CallingActivity.start(this@ProfileActivity, peer, false, content)
-            }
-
-            override fun onFailure(p0: ErrorInfo?) {
-                ToastUtil.showToast(this@ProfileActivity, "您呼叫的号码不在线")
-                Timber.e(p0?.errorDescription)
-            }
-        })
-    }
 }
