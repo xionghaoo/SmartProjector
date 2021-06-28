@@ -1,42 +1,24 @@
-package xh.zero.agora_call.agora;
+package xh.zero.agora_call.agora
 
-import java.util.Map;
+import io.agora.rtm.LocalInvitation
+import io.agora.rtm.RemoteInvitation
 
-import io.agora.rtm.LocalInvitation;
-import io.agora.rtm.RemoteInvitation;
-
-public interface IEventListener {
-    void onJoinChannelSuccess(String channel, int uid, int elapsed);
-
-    void onUserJoined(int uid, int elapsed);
-
-    void onUserOffline(int uid, int reason);
-
-    void onConnectionStateChanged(int status, int reason);
-
-    void onPeersOnlineStatusChanged(Map<String, Integer> map);
-    
-    void onLocalInvitationReceived(LocalInvitation localInvitation);
-    
-    void onLocalInvitationAccepted(LocalInvitation localInvitation, String response);
-    
-    void onLocalInvitationRefused(LocalInvitation localInvitation, String response);
-    
-    void onLocalInvitationCanceled(LocalInvitation localInvitation);
-    
-    void onLocalInvitationFailure(LocalInvitation localInvitation, int errorCode);
-    
-    void onRemoteInvitationReceived(RemoteInvitation remoteInvitation);
-    
-    void onRemoteInvitationAccepted(RemoteInvitation remoteInvitation);
-    
-    void onRemoteInvitationRefused(RemoteInvitation remoteInvitation) ;
-    
-    void onRemoteInvitationCanceled(RemoteInvitation remoteInvitation);
-    
-    void onRemoteInvitationFailure(RemoteInvitation remoteInvitation, int errorCode);
-
-    void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed);
-
-    void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed);
+interface IEventListener {
+    fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int)
+    fun onUserJoined(uid: Int, elapsed: Int)
+    fun onUserOffline(uid: Int, reason: Int)
+    fun onConnectionStateChanged(status: Int, reason: Int)
+    fun onPeersOnlineStatusChanged(map: Map<String, Int>?)
+    fun onLocalInvitationReceived(localInvitation: LocalInvitation?)
+    fun onLocalInvitationAccepted(localInvitation: LocalInvitation?, response: String?)
+    fun onLocalInvitationRefused(localInvitation: LocalInvitation?, response: String?)
+    fun onLocalInvitationCanceled(localInvitation: LocalInvitation?)
+    fun onLocalInvitationFailure(localInvitation: LocalInvitation?, errorCode: Int)
+    fun onRemoteInvitationReceived(remoteInvitation: RemoteInvitation?)
+    fun onRemoteInvitationAccepted(remoteInvitation: RemoteInvitation?)
+    fun onRemoteInvitationRefused(remoteInvitation: RemoteInvitation?)
+    fun onRemoteInvitationCanceled(remoteInvitation: RemoteInvitation?)
+    fun onRemoteInvitationFailure(remoteInvitation: RemoteInvitation?, errorCode: Int)
+    fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int)
+    fun onRemoteVideoStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int)
 }

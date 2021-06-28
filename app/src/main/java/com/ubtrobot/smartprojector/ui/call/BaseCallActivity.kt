@@ -41,7 +41,7 @@ abstract class BaseCallActivity : AppCompatActivity(), IEventListener {
     override fun onConnectionStateChanged(status: Int, reason: Int) {
     }
 
-    override fun onPeersOnlineStatusChanged(map: MutableMap<String, Int>?) {
+    override fun onPeersOnlineStatusChanged(map: Map<String, Int>?) {
     }
 
     override fun onLocalInvitationReceived(localInvitation: LocalInvitation?) {
