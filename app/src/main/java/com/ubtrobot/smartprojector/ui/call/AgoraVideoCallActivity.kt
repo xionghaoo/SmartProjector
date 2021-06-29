@@ -61,7 +61,7 @@ class AgoraVideoCallActivity : BaseCallActivity() {
         agoraCallManager.rtcEngine.setClientRole(io.agora.rtc.Constants.CLIENT_ROLE_BROADCASTER)
         agoraCallManager.rtcEngine.setVideoEncoderConfiguration(
             VideoEncoderConfiguration(
-                VideoEncoderConfiguration.VD_1280x720,
+                VideoEncoderConfiguration.VD_640x360,
                 VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
                 VideoEncoderConfiguration.STANDARD_BITRATE,
                 VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE
