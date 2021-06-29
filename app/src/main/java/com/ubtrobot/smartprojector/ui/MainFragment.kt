@@ -150,7 +150,7 @@ class MainFragment : Fragment() {
             // App推荐，推荐的App需要考虑有没有安装，如果没有安装那么需要跳转到应用市场详情页
             listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
-                   ToastUtil.showToast(requireContext(), "应用未安装")
+                   TadpoleMarketManager.start(requireContext())
                 },
                 HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
                 },
