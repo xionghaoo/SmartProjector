@@ -61,10 +61,10 @@ android {
     productFlavors {
         prod {
             // 生产版本
-//            ndk {
-//                // armeabi
-//                abiFilters 'armeabi-v7a', 'arm64-v8a'
-//            }
+            ndk {
+                // armeabi
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
             buildConfigField('String', 'DOMAIN_RELEASE', domain.prod)
 //            buildConfigField('String', 'TENCENT_DOMAIN', rootProject.tecentStorageHost)
         }
