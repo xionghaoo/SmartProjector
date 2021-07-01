@@ -1,12 +1,16 @@
 package xh.zero.voice
 
+import android.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import android.view.WindowManager
 import com.tencent.ai.tvs.api.TVSApi
 import com.tencent.ai.tvs.capability.userinterface.data.ASRTextMessageBody
 import com.tencent.ai.tvs.capability.userinterface.data.ASRTextMessageBody.AsrClassifierInfo
 import com.tencent.ai.tvs.gateway.data.GatewayRespHeader
 import com.tencent.ai.tvs.tvsinterface.*
+import com.tencent.ai.tvs.vdpsvoiceinput.IAudioPreprocessorInterface
 
 class TencentVoiceManager(
     private val context: Context,
@@ -21,9 +25,11 @@ class TencentVoiceManager(
     private var pluginProvider: DefaultPluginProvider = DefaultPluginProvider(context, DingdangMediaPlayer(
         TestMediaPlayer(context)
     ))
+    private var recognizeDialog: AlertDialog? = null
+    private lateinit var activityContext: Context
 
-    fun initial(dsn: String, appVersion: String) {
-
+    fun initial(dsn: String, appVersion: String, context: Context) {
+        activityContext = context
         val ret = TVSApi.getInstance().init(pluginProvider, context, appKey, accessToken, dsn, object : IAuthInfoListener {
             override fun onMissingClientId(p0: Boolean) {
                 // 本地没有clientId，需要传入ClientId，或访客授权
@@ -67,6 +73,8 @@ class TencentVoiceManager(
         dialogManager.setOuterAudioRecorder(VoiceRecord())
 //        dialogManager.setWakeupDialogOptions(DialogOptions().)
         dialogManager.enableVoiceCapture()
+        dialogManager.setScence(IAudioPreprocessorInterface.SCENCE_WAKEUP_SPEECH_AND_DATA)
+//        dialogManager.setKwsMode()
         if (ret == ResultCode.RESULT_OK) {
             // 注册语音事件回调
             dialogManager.addRecognizeListener(recognizeListener)
@@ -74,6 +82,20 @@ class TencentVoiceManager(
             dialogManager.addWakeupListener(wakeupListener)
         }
         return ret
+    }
+
+    private fun showRecognizeDialog() {
+        if (recognizeDialog == null) {
+            recognizeDialog = AlertDialog.Builder(activityContext)
+                .setMessage("正在识别。。。")
+                .create()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                recognizeDialog?.window?.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY)
+            } else {
+                recognizeDialog?.window?.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
+            }
+        }
+        recognizeDialog?.show()
     }
 
     /**
@@ -88,6 +110,7 @@ class TencentVoiceManager(
             val dialogOptions = DialogOptions()
             dialogOptions.tag = "tadpole_voice"
             // 如果要保存音频
+//            dialogManager.isWakeupOnly = true
             dialogManager.startRecognize(IRecognizeListener.RECO_TYPE_MANUAL, dialogOptions, null)
         }
     }
@@ -117,6 +140,9 @@ class TencentVoiceManager(
     }
 
     fun release() {
+        recognizeDialog?.dismiss()
+        recognizeDialog = null
+
         val tvsApi = TVSApi.getInstance()
 //        tvsApi.removeCommunicationListener(mPhoneCallCallback)
 //        tvsApi.removeCustomSkillHandler(mCustomSkillCallback)
@@ -134,6 +160,7 @@ class TencentVoiceManager(
      */
     private val recognizeListener: IRecognizeListener = object : IRecognizeListener {
         override fun onRecognizationStart(recoType: Int, dialogRequestId: String?, tag: String?) {
+            showRecognizeDialog()
             Log.i(TAG, "onRecognizationStart : $dialogRequestId, tag : $tag")
             //demo在启动语音识别的时候，停止正在响铃的闹钟，接入方可根据闹钟UI，自行调用停止闹钟。
 //            if (AlertControlManager.getInstance() != null
@@ -221,6 +248,8 @@ class TencentVoiceManager(
             tag: String?,
             dialogExtraData: DialogExtraData?
         ) {
+            recognizeDialog?.dismiss()
+            // 会话结束
             Log.i(TAG,
                 "onRecognizationFinished : " + dialogRequestId + ", sessionId : " + sessionId + " tag = " + tag
                     + " errorCode = " + errorCode

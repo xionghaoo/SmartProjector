@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.view.*
 import android.widget.FrameLayout
@@ -41,6 +42,7 @@ import com.ubtrobot.smartprojector.ui.profile.ProfileActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
+import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsFragment
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.*
@@ -73,6 +75,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         }
 
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
+        private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 5
         private const val RC_PERMISSIONS = 4
 
         fun startWithNewTask(context: Context?) {
@@ -320,7 +323,18 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
     private fun requestPermissionsTask() {
         if (hasPermissions()) {
             viewModel.prefs().serialNumber?.also {
-                voiceManager.initial(it, BuildConfig.VERSION_NAME)
+                if (Settings.canDrawOverlays(this)) {
+                    voiceManager.initial(it, BuildConfig.VERSION_NAME, this)
+                } else {
+                    try {
+                        startActivityForResult(
+                            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
+                            RC_SYSTEM_ALERT_WINDOW_PERMISSION
+                        )
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
             }
         } else {
             EasyPermissions.requestPermissions(
