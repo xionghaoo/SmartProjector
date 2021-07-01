@@ -52,6 +52,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
+import xh.zero.voice.TencentVoiceManager
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -85,16 +86,12 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
     lateinit var connectionStateMonitor: ConnectionStateMonitor
     @Inject
     lateinit var agoraCallManager: AgoraCallManager
-//    @Inject
-//    lateinit var repo: Repository
+    @Inject
+    lateinit var voiceManager: TencentVoiceManager
 
     private val viewModel: MainViewModel by viewModels()
 
-    private lateinit var appMarketFragment: AppMarketFragment
-    private lateinit var settingsFragment: SettingsFragment
-
     private lateinit var screenAdapter: ScreenAdapter
-//    private lateinit var agoraListenerDelegate: AgoraListenerDelegate
 
     // app 安装卸载监听
     private val receiver = object : BroadcastReceiver() {
@@ -302,7 +299,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         setLauncher(null)
         connectionStateMonitor.disable()
         agoraCallManager.destroy()
-//        agoraListenerDelegate.destroy()
+        voiceManager.release()
         super.onDestroy()
     }
 
@@ -322,14 +319,18 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
     @AfterPermissionGranted(RC_PERMISSIONS)
     private fun requestPermissionsTask() {
         if (hasPermissions()) {
-
+            viewModel.prefs().serialNumber?.also {
+                voiceManager.initial(it, BuildConfig.VERSION_NAME)
+            }
         } else {
             EasyPermissions.requestPermissions(
                 this,
                 "App需要申请相机和麦克风权限，请授予",
                 RC_PERMISSIONS,
                 Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
         }
     }
@@ -345,12 +346,6 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
      */
     private fun initialAgoraToken() {
         val userId = viewModel.prefs().userID ?: return
-//        viewModel.getRTCToken(Configs.agoraChannel, userId).observe(this, { r ->
-//            if (r.status == Status.SUCCESS) {
-//                val token = r.data?.data as? String
-//                viewModel.prefs().rtcToken = token
-//            }
-//        })
 
         viewModel.getRTMToken(userId).observe(this, { r ->
             if (r.status == Status.SUCCESS) {

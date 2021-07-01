@@ -15,6 +15,7 @@ import io.agora.rtm.ErrorInfo
 import io.agora.rtm.ResultCallback
 import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
+import xh.zero.voice.TencentVoiceManager
 import java.util.HashSet
 import javax.inject.Inject
 
@@ -24,6 +25,9 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
     private val viewModel: ProfileViewModel by viewModels()
+
+    @Inject
+    lateinit var voiceManager: TencentVoiceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
@@ -46,6 +50,10 @@ class ProfileActivity : AppCompatActivity() {
         binding.tvTestInfo.text = "屏幕信息：${SystemUtil.displayInfo(this)}"
 
         binding.tvUserName.text = "用户名：台灯${viewModel.prefs().userID}"
+
+        binding.btnVoiceTest.setOnClickListener {
+            voiceManager.startRecognize()
+        }
     }
 
 }

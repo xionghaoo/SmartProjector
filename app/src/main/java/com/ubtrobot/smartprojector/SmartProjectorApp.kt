@@ -1,8 +1,6 @@
 package com.ubtrobot.smartprojector
 
 import android.app.Application
-import android.os.Build
-import android.provider.Settings
 import android.util.Log
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.liulishuo.filedownloader.FileDownloader
@@ -14,7 +12,7 @@ import com.ubtrobot.smartprojector.ui.login.LoginActivity
 import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
-import xh.zero.voice.VoiceManager
+import xh.zero.voice.TencentVoiceManager
 
 
 @HiltAndroidApp

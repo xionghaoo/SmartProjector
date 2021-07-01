@@ -33,6 +33,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
+import xh.zero.voice.TencentVoiceManager
 import javax.inject.Named
 import javax.inject.Singleton
 import kotlin.random.Random
@@ -196,6 +197,15 @@ object AppModule {
             context = context,
             isDebug = BuildConfig.DEBUG,
             appId = Configs.agoraAppId
+        )
+    }
+
+    @Provides @Singleton
+    fun provideTencentVoiceManager(@ApplicationContext context: Context) : TencentVoiceManager {
+        return TencentVoiceManager(
+            context = context,
+            appKey = Configs.DINGDANG_APPKEY,
+            accessToken = Configs.DINGDANG_ACCESSTOKEN
         )
     }
 }

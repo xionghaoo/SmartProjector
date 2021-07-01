@@ -32,6 +32,10 @@ DisplayMetrics{density=2.0, width=1920, height=1104, scaledDensity=2.0, xdpi=284
 3. 课程资源，九学王
 4. 直播，暂定小鹅通
 
+### 腾讯小微接入
+
+1. [TVS SDK接入说明](https://dingdang.qq.com/doc/page/432)
+
 ## 其他
 
 wifi密码存储位置：

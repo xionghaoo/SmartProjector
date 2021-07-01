@@ -58,51 +58,67 @@
 
 # 涂鸦控制业务包
 # react-native
-  -keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
-  -keep,allowobfuscation @interface com.facebook.proguard.annotations.DoNotStrip
-  -keep,allowobfuscation @interface com.facebook.proguard.annotations.KeepGettersAndSetters
-  # Do not strip any method/class that is annotated with @DoNotStrip
-  -keep @com.facebook.proguard.annotations.DoNotStrip class *
-  -keep @com.facebook.common.internal.DoNotStrip class *
-  -keepclassmembers class * {
-      @com.facebook.proguard.annotations.DoNotStrip *;
-      @com.facebook.common.internal.DoNotStrip *;
-  }
-  -keepclassmembers @com.facebook.proguard.annotations.KeepGettersAndSetters class * {
-    void set*(***);
-    *** get*();
-  }
-  -keep class * extends com.facebook.react.bridge.JavaScriptModule { *; }
-  -keep class * extends com.facebook.react.bridge.NativeModule { *; }
-  -keepclassmembers,includedescriptorclasses class * { native <methods>; }
-  -keepclassmembers class *  { @com.facebook.react.uimanager.UIProp <fields>; }
-  -keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactProp <methods>; }
-  -keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactPropGroup <methods>; }
-  -dontwarn com.facebook.react.**
-  -keep,includedescriptorclasses class com.facebook.react.bridge.** { *; }
+-keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
+-keep,allowobfuscation @interface com.facebook.proguard.annotations.DoNotStrip
+-keep,allowobfuscation @interface com.facebook.proguard.annotations.KeepGettersAndSetters
+# Do not strip any method/class that is annotated with @DoNotStrip
+-keep @com.facebook.proguard.annotations.DoNotStrip class *
+-keep @com.facebook.common.internal.DoNotStrip class *
+-keepclassmembers class * {
+  @com.facebook.proguard.annotations.DoNotStrip *;
+  @com.facebook.common.internal.DoNotStrip *;
+}
+-keepclassmembers @com.facebook.proguard.annotations.KeepGettersAndSetters class * {
+void set*(***);
+*** get*();
+}
+-keep class * extends com.facebook.react.bridge.JavaScriptModule { *; }
+-keep class * extends com.facebook.react.bridge.NativeModule { *; }
+-keepclassmembers,includedescriptorclasses class * { native <methods>; }
+-keepclassmembers class *  { @com.facebook.react.uimanager.UIProp <fields>; }
+-keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactProp <methods>; }
+-keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactPropGroup <methods>; }
+-dontwarn com.facebook.react.**
+-keep,includedescriptorclasses class com.facebook.react.bridge.** { *; }
 
-  #高德地图
-  -dontwarn com.amap.**
-  -keep class com.amap.api.maps.** { *; }
-  -keep class com.autonavi.** { *; }
-  -keep class com.amap.api.trace.** { *; }
-  -keep class com.amap.api.navi.** { *; }
-  -keep class com.autonavi.** { *; }
-  -keep class com.amap.api.location.** { *; }
-  -keep class com.amap.api.fence.** { *; }
-  -keep class com.autonavi.aps.amapapi.model.** { *; }
-  -keep class com.amap.api.maps.model.** { *; }
-  -keep class com.amap.api.services.** { *; }
+#高德地图
+-dontwarn com.amap.**
+-keep class com.amap.api.maps.** { *; }
+-keep class com.autonavi.** { *; }
+-keep class com.amap.api.trace.** { *; }
+-keep class com.amap.api.navi.** { *; }
+-keep class com.autonavi.** { *; }
+-keep class com.amap.api.location.** { *; }
+-keep class com.amap.api.fence.** { *; }
+-keep class com.autonavi.aps.amapapi.model.** { *; }
+-keep class com.amap.api.maps.model.** { *; }
+-keep class com.amap.api.services.** { *; }
 
-  #Google Play Services
-  -keep class com.google.android.gms.common.** {*;}
-  -keep class com.google.android.gms.ads.identifier.** {*;}
-  -keepattributes Signature,*Annotation*,EnclosingMethod
-  -dontwarn com.google.android.gms.**
+#Google Play Services
+-keep class com.google.android.gms.common.** {*;}
+-keep class com.google.android.gms.ads.identifier.** {*;}
+-keepattributes Signature,*Annotation*,EnclosingMethod
+-dontwarn com.google.android.gms.**
 
-  #MPAndroidChart
-  -keep class com.github.mikephil.charting.** { *; }
-  -dontwarn com.github.mikephil.charting.**
+#MPAndroidChart
+-keep class com.github.mikephil.charting.** { *; }
+-dontwarn com.github.mikephil.charting.**
 
-  -keep class com.tuya.**.**{*;}
-  -dontwarn com.tuya.**.**
+-keep class com.tuya.**.**{*;}
+-dontwarn com.tuya.**.**
+
+# 腾讯小微 start
+-keep class qrom.component.log.*{
+  public static <fields>;
+  public <init>();
+}
+
+-keep class * implements java.io.Serializable {*;}
+
+-dontwarn sun.misc.**
+-keep class com.google.gson.**{*;}
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+-keep class * extends com.google.gson.TypeAdapter {*;}
+# 腾讯小微 end

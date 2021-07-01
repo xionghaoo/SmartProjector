@@ -41,8 +41,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // 当前最新版本为3.0.0
-    def tvsVer = '3.0.0'
-    // DM SDK核心库，包含账号登录、设备绑定等核心功能以及TSKM技能服务等业务接口
-    implementation "com.tencent.yunxiaowei.dmsdk:core:$tvsVer"
+//    // 当前最新版本为3.0.0
+//    def tvsVer = '3.0.0'
+//    // DM SDK核心库，包含账号登录、设备绑定等核心功能以及TSKM技能服务等业务接口
+//    implementation "com.tencent.yunxiaowei.dmsdk:core:$tvsVer"
+
+    implementation 'com.tencent.yunxiaowei.tvs:tvs_device_sdk:1.8.6'
 }

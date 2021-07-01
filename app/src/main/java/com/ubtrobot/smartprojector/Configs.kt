@@ -11,7 +11,8 @@ class Configs {
         // ucode网页版
         const val UCODE_URL = "http://ide.ubtrobot.com/"
 
-        const val TENCENT_DINGDANG_APPKEY = "93200b80b2f311eb9b89153abe2c55df"
+        const val DINGDANG_APPKEY = "93200b80b2f311eb9b89153abe2c55df"
+        const val DINGDANG_ACCESSTOKEN = "5801264bdffa446db7607998869f2b0c"
 
         const val ubtAppId = "940010010"
         const val ubtProduct = "90101"
