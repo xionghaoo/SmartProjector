@@ -32,6 +32,7 @@ ext {
     versions.asm = '9.1'
     versions.qrcode = '4.2.0'
     versions.blurry = '4.0.0'
+    versions.lottie = '3.7.0'
 
     dpes = [:]
     dpes.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
@@ -87,6 +88,7 @@ ext {
     dpes.qrcode = "com.journeyapps:zxing-android-embedded:$versions.qrcode"
     // 毛玻璃背景
     dpes.blurry = "jp.wasabeef:blurry:$versions.blurry"
+    dpes.lottie = "com.airbnb.android:lottie:$versions.lottie"
     // ----------- dependencies version end -------------
 
     // ----------- 项目环境配置 start -----------

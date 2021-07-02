@@ -3,6 +3,7 @@ package com.ubtrobot.smartprojector.ui.profile
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
 import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity

@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.WindowManager
+import androidx.annotation.LayoutRes
 import com.tencent.ai.tvs.api.TVSApi
 import com.tencent.ai.tvs.capability.userinterface.data.ASRTextMessageBody
 import com.tencent.ai.tvs.capability.userinterface.data.ASRTextMessageBody.AsrClassifierInfo
@@ -15,7 +17,9 @@ import com.tencent.ai.tvs.vdpsvoiceinput.IAudioPreprocessorInterface
 class TencentVoiceManager(
     private val context: Context,
     private val appKey: String,
-    private val accessToken: String
+    private val accessToken: String,
+    @LayoutRes
+    private val voiceAnimLayout: Int
 ) {
 
     companion object {
@@ -69,7 +73,7 @@ class TencentVoiceManager(
 
     private fun initDialogManager() : Int {
         val dialogManager = TVSApi.getInstance().dialogManager
-        val ret = dialogManager.init("/sdcard/tencent/aifile", true)
+        val ret = dialogManager.init(null, true)
         dialogManager.setOuterAudioRecorder(VoiceRecord())
 //        dialogManager.setWakeupDialogOptions(DialogOptions().)
         dialogManager.enableVoiceCapture()
@@ -80,6 +84,8 @@ class TencentVoiceManager(
             dialogManager.addRecognizeListener(recognizeListener)
             dialogManager.addTTSListener(ttsListener)
             dialogManager.addWakeupListener(wakeupListener)
+        } else {
+            Log.d(TAG, "dialogManager 初始化失败")
         }
         return ret
     }
@@ -87,8 +93,10 @@ class TencentVoiceManager(
     private fun showRecognizeDialog() {
         if (recognizeDialog == null) {
             recognizeDialog = AlertDialog.Builder(activityContext)
-                .setMessage("正在识别。。。")
+                .setView(LayoutInflater.from(activityContext).inflate(voiceAnimLayout, null))
                 .create()
+            recognizeDialog?.window?.setDimAmount(0f)
+            recognizeDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 recognizeDialog?.window?.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY)
             } else {
@@ -113,6 +121,22 @@ class TencentVoiceManager(
 //            dialogManager.isWakeupOnly = true
             dialogManager.startRecognize(IRecognizeListener.RECO_TYPE_MANUAL, dialogOptions, null)
         }
+    }
+
+    /**
+     * 请求合成一段TTS
+     *
+     * @param text 要合成的文字
+     *
+     * @return dialogRequestId 会话的id
+     */
+    fun requestTTS(text: String?): String? {
+        var dialogRequestId: String? = null
+        val dialogManager = TVSApi.getInstance().dialogManager
+        if (dialogManager != null) {
+            dialogRequestId = dialogManager.requestTTS(text)
+        }
+        return dialogRequestId
     }
 
     fun playPrev() {
@@ -209,6 +233,13 @@ class TencentVoiceManager(
             asrClassifierInfos: List<AsrClassifierInfo>?
         ) {
             Log.i(TAG, "onGetASRText : " + dialogRequestId + ", asrText : " + asrText + ", isFinal : " + isFinal + ", status : " + status)
+
+            if (isFinal) {
+                // 说话结束
+                if (asrText == null || asrText.isEmpty()) {
+                    requestTTS("你说的话我没听清，请再说一遍")
+                }
+            }
 //            if (mListener != null) {
 //                mListener.onGetASRText(
 //                    dialogRequestId,
@@ -295,14 +326,14 @@ class TencentVoiceManager(
      * TTS播报的回调
      */
     private val ttsListener: ITTSListener = object : ITTSListener {
-        override fun onGetTTSText(dialogRequestId: String, text: String, tag: String) {
+        override fun onGetTTSText(dialogRequestId: String?, text: String?, tag: String?) {
             Log.i(
                 TAG,
                 "onGetTTSText : $dialogRequestId tag = $tag, text = $text"
             )
         }
 
-        override fun onTTSStarted(dialogRequestId: String, tag: String) {
+        override fun onTTSStarted(dialogRequestId: String?, tag: String?) {
             Log.i(
                 TAG,
                 "onTTSStarted : $dialogRequestId tag = $tag"
@@ -312,7 +343,7 @@ class TencentVoiceManager(
 //            }
         }
 
-        override fun onTTSFinished(dialogRequestId: String, complete: Boolean, tag: String) {
+        override fun onTTSFinished(dialogRequestId: String?, complete: Boolean, tag: String?) {
             Log.i(
                 TAG,
                 "onTTSFinished : $dialogRequestId tag = $tag"

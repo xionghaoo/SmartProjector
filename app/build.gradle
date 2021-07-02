@@ -223,6 +223,8 @@ dependencies {
     implementation dpes.qrcode
     implementation dpes.blurry
 
+    implementation dpes.lottie
+
     testImplementation dpes.asm.core
     testImplementation dpes.asm.commons
 

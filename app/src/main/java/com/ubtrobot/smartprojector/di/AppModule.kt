@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken
 import com.ubtrobot.smartprojector.BuildConfig
 import com.ubtrobot.smartprojector.Configs
 import com.ubtrobot.smartprojector.MqttClient
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.repo.ApiService
 import com.ubtrobot.smartprojector.core.LiveDataCallAdapterFactory
 import com.ubtrobot.smartprojector.core.MockInterceptor
@@ -205,7 +206,8 @@ object AppModule {
         return TencentVoiceManager(
             context = context,
             appKey = Configs.DINGDANG_APPKEY,
-            accessToken = Configs.DINGDANG_ACCESSTOKEN
+            accessToken = Configs.DINGDANG_ACCESSTOKEN,
+            voiceAnimLayout = R.layout.dialog_voice_recognize
         )
     }
 }
