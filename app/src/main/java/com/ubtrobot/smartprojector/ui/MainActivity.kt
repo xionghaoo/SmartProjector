@@ -485,19 +485,21 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
             if (appNum % MAX_APP_NUM == 0) {
                 // 添加新的一页
                 appNum += 1
-                appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
+                appPageNum = appNum / MAX_APP_NUM
                 appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
                 binding.pagerIndicator.updateItems(count)
                 notifyDataSetChanged()
             } else {
+                appNum += 1
                 updateAppGrids()
             }
         }
 
         fun removeApp() {
-            if ((appNum - 1) % MAX_APP_NUM == 0) {
-                appNum -= 1
-                appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
+            appNum -= 1
+            if (appNum % MAX_APP_NUM == 0) {
+                // 减少一页
+                appPageNum = appNum / MAX_APP_NUM
                 if (appGridList.isNotEmpty()) {
                     appGridList.removeAt(appGridList.size - 1)
                 }
