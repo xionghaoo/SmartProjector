@@ -103,6 +103,9 @@ class TencentVoiceManager(
                 recognizeDialog?.window?.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
             }
         }
+        recognizeDialog?.setOnCancelListener {
+            stopRecognize()
+        }
         recognizeDialog?.show()
     }
 
@@ -113,14 +116,18 @@ class TencentVoiceManager(
      */
     fun startRecognize() {
         val dialogManager = TVSApi.getInstance().dialogManager
-        if (dialogManager != null) {
-            Log.d(TAG, "启动语音识别")
-            val dialogOptions = DialogOptions()
-            dialogOptions.tag = "tadpole_voice"
-            // 如果要保存音频
-//            dialogManager.isWakeupOnly = true
-            dialogManager.startRecognize(IRecognizeListener.RECO_TYPE_MANUAL, dialogOptions, null)
-        }
+        Log.d(TAG, "启动语音识别: $dialogManager")
+        val dialogOptions = DialogOptions()
+        dialogOptions.tag = "tadpole_voice"
+        dialogManager?.startRecognize(IRecognizeListener.RECO_TYPE_MANUAL, dialogOptions, null)
+    }
+
+    /**
+     * 停止语音识别
+     */
+    fun stopRecognize() {
+        val dialogManager = TVSApi.getInstance().dialogManager
+        dialogManager?.stopRecognize()
     }
 
     /**

@@ -71,7 +71,7 @@ class SplashActivity : AppCompatActivity() {
                 ToastUtil.showToast(this, "获取序列号失败")
             }
             // TODO 测试
-            if (BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG && perfs.serialNumber == null) {
                 perfs.serialNumber = "00110011a"
                 userId = perfs.userID
             }

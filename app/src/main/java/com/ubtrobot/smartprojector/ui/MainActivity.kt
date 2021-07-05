@@ -75,7 +75,6 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         }
 
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
-        private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 5
         private const val RC_PERMISSIONS = 4
 
         fun startWithNewTask(context: Context?) {
@@ -323,18 +322,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
     private fun requestPermissionsTask() {
         if (hasPermissions()) {
             viewModel.prefs().serialNumber?.also {
-                if (Settings.canDrawOverlays(this)) {
-                    voiceManager.initial(it, BuildConfig.VERSION_NAME, this)
-                } else {
-                    try {
-                        startActivityForResult(
-                            Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION),
-                            RC_SYSTEM_ALERT_WINDOW_PERMISSION
-                        )
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
+                voiceManager.initial(it, BuildConfig.VERSION_NAME, this)
             }
         } else {
             EasyPermissions.requestPermissions(

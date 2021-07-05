@@ -1,11 +1,14 @@
 package com.ubtrobot.smartprojector.ui.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.ubtrobot.smartprojector.*
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
+import com.ubtrobot.smartprojector.ui.MainActivity
 import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity
 import com.ubtrobot.smartprojector.ui.call.CallingActivity
 import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
@@ -22,6 +25,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileActivity : AppCompatActivity() {
+
+    companion object {
+        private const val RC_SYSTEM_ALERT_WINDOW_PERMISSION = 5
+    }
 
     private lateinit var binding: ActivityProfileBinding
 
@@ -53,7 +60,17 @@ class ProfileActivity : AppCompatActivity() {
         binding.tvUserName.text = "用户名：台灯${viewModel.prefs().userID}"
 
         binding.btnVoiceTest.setOnClickListener {
-            voiceManager.startRecognize()
+            if (Settings.canDrawOverlays(this)) {
+                voiceManager.startRecognize()
+            } else {
+                try {
+                    startActivityForResult(
+                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION
+                    )
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
     }
 

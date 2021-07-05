@@ -103,24 +103,25 @@ class LoginActivity : BaseActivity() {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
-    private fun tuyaUidLogin(uid: String?) {
-        if (uid == null) {
-            ToastUtil.showToast(this, "用户id不能为空")
+    private fun tuyaUidLogin(userId: String?) {
+        val tuyaAccount = viewModel.prefs().serialNumber
+        if (tuyaAccount == null) {
+            ToastUtil.showToast(this, "涂鸦账号注册失败，设备序列号为空")
             loadingDialog.dismiss()
             return
         }
+        // 用设备序列号注册账号
         TuyaHomeSdk.getUserInstance().loginOrRegisterWithUid(
             "86",
-            uid,
-            // 密码
-            viewModel.prefs().serialNumber,
+            tuyaAccount,
+            tuyaAccount,
             true,
             object : IUidLoginCallback {
                 override fun onSuccess(user: User?, homeId: Long) {
                     viewModel.prefs().tuyaHomeId = homeId
-                    viewModel.prefs().userID = uid
+                    viewModel.prefs().userID = userId
+
                     loadingDialog.dismiss()
-//                    viewModel.prefs().
                     MainActivity.startWithNewTask(this@LoginActivity)
                     ToastUtil.showToast(this@LoginActivity, "登录成功")
                 }
