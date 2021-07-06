@@ -12,7 +12,7 @@
         android:layout_width="@dimen/_20dp"
         android:layout_height="@dimen/_36dp"
         android:layout_marginStart="@dimen/_147dp"
-        android:layout_marginBottom="@dimen/_255dp"
+        android:layout_marginBottom="@dimen/_245dp"
         android:background="@drawable/shape_connect_line_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/card_assistant_learn_individuation"
         app:layout_constraintStart_toStartOf="@+id/card_assistant_learn_individuation" />
@@ -22,7 +22,7 @@
         android:layout_width="@dimen/_20dp"
         android:layout_height="@dimen/_36dp"
         android:layout_marginEnd="@dimen/_147dp"
-        android:layout_marginBottom="@dimen/_255dp"
+        android:layout_marginBottom="@dimen/_245dp"
         android:background="@drawable/shape_connect_line_bottom"
         app:layout_constraintBottom_toBottomOf="@+id/card_assistant_learn_individuation"
         app:layout_constraintEnd_toEndOf="@+id/card_assistant_famous_teacher_classroom" />
@@ -30,7 +30,7 @@
     <FrameLayout
         android:id="@+id/card_assistant_learn_individuation"
         android:layout_width="@dimen/_314dp"
-        android:layout_height="@dimen/_265dp"
+        android:layout_height="@dimen/_250dp"
         android:layout_marginTop="@dimen/_11dp"
         android:background="@mipmap/ic_assistant_learn_individuation"
         app:layout_constraintStart_toStartOf="@+id/card_assistant_famous_teacher_classroom"
