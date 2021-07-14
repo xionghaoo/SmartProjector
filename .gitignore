@@ -47,3 +47,4 @@ captures/
 release/
 uat/
 *.cxx/
+tmp/

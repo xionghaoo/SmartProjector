@@ -117,11 +117,10 @@
         android:id="@+id/btn_gw_unactive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="删除网关"
-        app:layout_constraintEnd_toEndOf="@+id/btn_device_select"
-        app:layout_constraintStart_toStartOf="@+id/btn_device_select"
-        app:layout_constraintTop_toBottomOf="@+id/btn_device_select" />
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_white_list"
+        app:layout_constraintTop_toTopOf="@+id/btn_white_list" />
 
     <Button
         android:id="@+id/btn_gw_active"

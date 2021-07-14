@@ -2,6 +2,7 @@ package com.ubtrobot.smartprojector.ui.call
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.ubtrobot.smartprojector.SmartProjectorApp
 import io.agora.rtm.LocalInvitation

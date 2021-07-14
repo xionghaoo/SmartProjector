@@ -20,6 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-keep class com.ubtrobot.**{*;}
+-keep class xh.zero.**{*;}
+
 # Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep class * extends com.bumptech.glide.module.AppGlideModule {
@@ -121,4 +124,35 @@ void set*(***);
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
 -keep class * extends com.google.gson.TypeAdapter {*;}
+
 # 腾讯小微 end
+
+# 声网
+-keep class io.agora.**{*;}
+
+# 阿里云推送
+-keepclasseswithmembernames class ** {
+    native <methods>;
+}
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+-keep class com.taobao.** {*;}
+-keep class com.alibaba.** {*;}
+-keep class com.alipay.** {*;}
+-keep class com.ut.** {*;}
+-keep class com.ta.** {*;}
+-keep class anet.**{*;}
+-keep class anetwork.**{*;}
+-keep class org.android.spdy.**{*;}
+-keep class org.android.agoo.**{*;}
+-keep class android.os.**{*;}
+-keep class org.json.**{*;}
+-dontwarn com.taobao.**
+-dontwarn com.alibaba.**
+-dontwarn com.alipay.**
+-dontwarn anet.**
+-dontwarn org.android.spdy.**
+-dontwarn org.android.agoo.**
+-dontwarn anetwork.**
+-dontwarn com.ut.**
+-dontwarn com.ta.**

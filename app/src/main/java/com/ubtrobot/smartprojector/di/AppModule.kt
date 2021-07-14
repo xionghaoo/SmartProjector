@@ -43,20 +43,23 @@ import kotlin.random.Random
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides @Singleton
-    fun provideMqttClient(@ApplicationContext context: Context) : MqttClient {
+    @Provides
+    @Singleton
+    fun provideMqttClient(@ApplicationContext context: Context): MqttClient {
         return MqttClient(context, Configs.MQTT_SERVER_URI, "app_client_1")
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideOkHttpClient(
-            @ApplicationContext context: Context,
-            prefs: PreferenceStorage,
-            @Named("MockInterceptor") mockInterceptor: MockInterceptor
-    ) : OkHttpClient {
-        val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+        @ApplicationContext context: Context,
+        prefs: PreferenceStorage,
+        @Named("MockInterceptor") mockInterceptor: MockInterceptor
+    ): OkHttpClient {
+        val logInterceptor =
+            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         val client = OkHttpClient.Builder()
-                .addInterceptor(logInterceptor)
+            .addInterceptor(logInterceptor)
         if (BuildConfig.DEBUG) {
             client.addInterceptor(mockInterceptor)
         }
@@ -67,7 +70,7 @@ object AppModule {
                 .addHeader("Content-Type", "application/json")
                 .addHeader("X-UBT-AppId", Configs.ubtAppId)
                 .addHeader("product", Configs.ubtProduct)
-                    // 登录接口占位符：invalid，其他接口会有具体的值
+            // 登录接口占位符：invalid，其他接口会有具体的值
 //                    ?.addHeader(
 //                            preferenceStorage.tokenKey ?: "invalid",
 //                            preferenceStorage.accessToken ?: "invalid"
@@ -75,9 +78,9 @@ object AppModule {
 //                    ?.addHeader("Api-Key", "admin")
 //                    ?.addHeader("Api-Secret", "SGeV1dFmCADUp8XWVpWObO62rIfbpf7Y")
             // 如果device id为空，那么随机生成一个8位的id
-            val deviceId = prefs.serialNumber ?: (Random(1).nextInt(90000000) + 10000000).toString()
-            prefs.serialNumber = deviceId
-            refreshSign(newRequestBuilder, deviceId)
+//            val deviceId = prefs.serialNumber ?: (Random(1).nextInt(90000000) + 10000000).toString()
+//            prefs.serialNumber = deviceId
+            refreshSign(newRequestBuilder, prefs.serialNumber)
             val newRequest = newRequestBuilder.build()
             val response = chain.proceed(newRequest)
 
@@ -140,24 +143,29 @@ object AppModule {
     }
 
     // 生成随机签名
-    private fun refreshSign(builder: Request.Builder, deviceId: String) {
-        Timber.d("device id = $deviceId")
-        val randStr = "${Random(System.currentTimeMillis()).nextInt(10)}${Random(System.currentTimeMillis()).nextLong(900000000) + 100000000}"
+    private fun refreshSign(builder: Request.Builder, deviceId: String?) {
+        Timber.d("设备序列号 = $deviceId")
+        if (deviceId == null) return
+        val randStr = "${Random(System.currentTimeMillis()).nextInt(10)}${
+            Random(System.currentTimeMillis()).nextLong(900000000) + 100000000
+        }"
         val now = System.currentTimeMillis() / 1000
         val md5Str = CryptoUtil.encryptToMD5("$now${Configs.ubtAppKey}$randStr$deviceId")
         builder.addHeader("X-UBT-Sign", "$md5Str $now $randStr v2")
         builder.addHeader("X-UBT-DeviceId", deviceId)
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     @Named("MockInterceptor")
-    fun provideMockInterceptor(@ApplicationContext context: Context) : MockInterceptor {
+    fun provideMockInterceptor(@ApplicationContext context: Context): MockInterceptor {
         val json = FileUtil.readAssetsJson("api_mock.json", context)
         return MockInterceptor(BuildConfig.DEBUG, json)
     }
 
-    @Provides @Singleton
-    fun provideApiService(client: OkHttpClient) : ApiService =
+    @Provides
+    @Singleton
+    fun provideApiService(client: OkHttpClient): ApiService =
         Retrofit.Builder()
             .baseUrl(Configs.HOST)
             .client(client)
@@ -166,14 +174,17 @@ object AppModule {
             .build()
             .create(ApiService::class.java)
 
-    @Provides @Singleton
-    fun provideSharedPreferences(application: Application) : PreferenceStorage =
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(application: Application): PreferenceStorage =
         SharedPreferenceStorage(application)
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideConnectionStateMonitor() = ConnectionStateMonitor()
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideCacheDb(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, CacheDb::class.java, "smart-projector-cache.db")
             .fallbackToDestructiveMigration()
@@ -183,17 +194,20 @@ object AppModule {
 //    @Provides @Singleton
 //    fun provideGetLearnManager(prefs: PreferenceStorage) = GetLearnAppManager(prefs)
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     fun provideJXWManager(prefs: PreferenceStorage) = JXWAppManager(prefs)
 
-    @Provides @Singleton
-    fun provideTuyaDeviceCategories(@ApplicationContext context: Context) : List<DeviceCategory> {
+    @Provides
+    @Singleton
+    fun provideTuyaDeviceCategories(@ApplicationContext context: Context): List<DeviceCategory> {
         val json = FileUtil.readAssetsJson("tuya_devices.json", context)
-        return Gson().fromJson(json, object : TypeToken<List<DeviceCategory>>(){}.type)
+        return Gson().fromJson(json, object : TypeToken<List<DeviceCategory>>() {}.type)
     }
 
-    @Provides @Singleton
-    fun provideAgoraCallManager(@ApplicationContext context: Context) : AgoraCallManager {
+    @Provides
+    @Singleton
+    fun provideAgoraCallManager(@ApplicationContext context: Context): AgoraCallManager {
         return AgoraCallManager(
             context = context,
             isDebug = BuildConfig.DEBUG,
@@ -201,8 +215,9 @@ object AppModule {
         )
     }
 
-    @Provides @Singleton
-    fun provideTencentVoiceManager(@ApplicationContext context: Context) : TencentVoiceManager {
+    @Provides
+    @Singleton
+    fun provideTencentVoiceManager(@ApplicationContext context: Context): TencentVoiceManager {
         return TencentVoiceManager(
             context = context,
             appKey = Configs.DINGDANG_APPKEY,

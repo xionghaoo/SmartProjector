@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -130,6 +131,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         SystemUtil.statusBarTransparent(window)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
@@ -207,14 +209,14 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         }
 
         // TODO 测试
-        binding.tvPageTitle.setOnClickListener {
-            val items = ArrayList<VideoItem>()
-            items.add(VideoItem("视频1", MockData.video1))
-            items.add(VideoItem("视频2", MockData.video2))
-            items.add(VideoItem("视频3", MockData.video3))
-            items.add(VideoItem("视频4", MockData.video4))
-            VideoPlayerActivity.start(this, items)
-        }
+//        binding.tvPageTitle.setOnClickListener {
+//            val items = ArrayList<VideoItem>()
+//            items.add(VideoItem("视频1", MockData.video1))
+//            items.add(VideoItem("视频2", MockData.video2))
+//            items.add(VideoItem("视频3", MockData.video3))
+//            items.add(VideoItem("视频4", MockData.video4))
+//            VideoPlayerActivity.start(this, items)
+//        }
 
 //        RootExecutor.exec(
 //                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
