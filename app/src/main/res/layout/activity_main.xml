@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,15 +8,15 @@
     android:background="@color/color_main_page"
     tools:context=".ui.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_main_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_main_background"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:scaleType="center"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
     <LinearLayout
         android:id="@+id/textView7"
@@ -70,18 +70,14 @@
 
     <com.ubtrobot.smartprojector.launcher.ItemOptionView
         android:id="@+id/item_option_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/pager_indicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/main_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </androidx.viewpager.widget.ViewPager>
+        </FrameLayout>
     </com.ubtrobot.smartprojector.launcher.ItemOptionView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,16 +153,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.ubtrobot.smartprojector.widgets.PagerIndicator
-        android:id="@+id/pager_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_16dp"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/_6dp"
-        android:paddingEnd="@dimen/_6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <com.ubtrobot.smartprojector.widgets.PagerIndicator-->
+<!--        android:id="@+id/pager_indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="@dimen/_16dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingStart="@dimen/_6dp"-->
+<!--        android:paddingEnd="@dimen/_6dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -1,4 +1,4 @@
-package com.ubtrobot.smartprojector.ui
+package com.ubtrobot.smartprojector.ui.elementary
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,9 @@ import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.*
+import com.ubtrobot.smartprojector.ui.HomeMenuData
+import com.ubtrobot.smartprojector.ui.HomeMenuDialog
+import com.ubtrobot.smartprojector.ui.MainViewModel
 import com.ubtrobot.smartprojector.ui.video.VideoItem
 import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.*
@@ -20,7 +23,7 @@ import javax.inject.Inject
  * 桌面 - 一级页面
  */
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class ElementayMainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private var page: Int? = null
@@ -166,7 +169,8 @@ class MainFragment : Fragment() {
                 },
                 HomeMenuData(R.mipmap.ic_chinese_tools_wrong_book, "测试") {
                 },
-            ), HomeMenuDialog.Type.APPS)
+            ), HomeMenuDialog.Type.APPS
+            )
         }
 
     }
@@ -491,7 +495,7 @@ class MainFragment : Fragment() {
     companion object {
         private const val ARG_PAGE = "ARG_PAGE"
 
-        fun newInstance(page: Int) = MainFragment().apply {
+        fun newInstance(page: Int) = ElementayMainFragment().apply {
             arguments = Bundle().apply {
                 putInt(ARG_PAGE, page)
             }

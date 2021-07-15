@@ -72,6 +72,13 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.btnElementarySystem.setOnClickListener {
+            MainActivity.startWithSingleTop(this, MainActivity.SYSTEM_ELEMENTARY)
+        }
+        binding.btnInfantSystem.setOnClickListener {
+            MainActivity.startWithSingleTop(this, MainActivity.SYSTEM_INFANT)
+        }
     }
 
 }

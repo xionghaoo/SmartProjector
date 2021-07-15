@@ -81,4 +81,22 @@
         app:layout_constraintStart_toStartOf="@+id/btn_call_with_parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_call_with_parent" />
 
+    <Button
+        android:id="@+id/btn_elementary_system"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小学系统"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/btn_voice_test"
+        app:layout_constraintTop_toBottomOf="@+id/btn_voice_test" />
+
+    <Button
+        android:id="@+id/btn_infant_system"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="幼儿系统"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/btn_elementary_system"
+        app:layout_constraintTop_toBottomOf="@+id/btn_elementary_system" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

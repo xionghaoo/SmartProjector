@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.ubtrobot.smartprojector.ui.MainFragment"
+        android:name="com.ubtrobot.smartprojector.ui.elementary.ElementayMainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main_page_chinese">
         <action

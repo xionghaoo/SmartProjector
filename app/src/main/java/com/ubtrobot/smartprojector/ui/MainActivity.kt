@@ -5,27 +5,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.telephony.TelephonyManager
-import android.util.Log
 import android.view.*
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginStart
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
 import com.tuya.smart.api.service.MicroServiceManager
 import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
@@ -36,34 +21,26 @@ import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
-import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import com.ubtrobot.smartprojector.ui.call.BaseCallActivity
-import com.ubtrobot.smartprojector.ui.call.CallingActivity
+import com.ubtrobot.smartprojector.ui.elementary.ElementarySystemFragment
+import com.ubtrobot.smartprojector.ui.elementary.ElementayMainFragment
+import com.ubtrobot.smartprojector.ui.infant.InfantSystemFragment
+import com.ubtrobot.smartprojector.ui.secondary.SecondarySystemFragment
 import com.ubtrobot.smartprojector.ui.profile.ProfileActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
-import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
-import com.ubtrobot.smartprojector.ui.settings.SettingsFragment
-import com.ubtrobot.smartprojector.ui.settings.eyesprotect.EyesProtectSettingsFragment
-import com.ubtrobot.smartprojector.ui.video.VideoItem
-import com.ubtrobot.smartprojector.ui.video.VideoPlayerActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import io.agora.rtm.RemoteInvitation
-import jp.wasabeef.blurry.Blurry
-import kotlinx.coroutines.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import xh.zero.agora_call.AgoraCallManager
 import xh.zero.voice.TencentVoiceManager
-import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
-import kotlin.math.roundToInt
 
 
 @AndroidEntryPoint
-class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
+class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActionListener, ElementayMainFragment.OnFragmentActionListener {
 
     companion object {
 
@@ -75,12 +52,25 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
             instance = launcher
         }
 
+        const val SYSTEM_INFANT = 0
+        const val SYSTEM_ELEMENTARY = 1
+        const val SYSTEM_SECONDARY = 2
+
         private const val RC_READ_PHONE_STATE_PERMISSION = 3
         private const val RC_PERMISSIONS = 4
+
+        private const val EXTRA_DATA_SYSTEM = "${Configs.PACKAGE_NAME}.MainActivity.EXTRA_DATA_SYSTEM"
 
         fun startWithNewTask(context: Context?) {
             val i = Intent(context, MainActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            context?.startActivity(i)
+        }
+
+        fun startWithSingleTop(context: Context?, system: Int) {
+            val i = Intent(context, MainActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            i.putExtra(EXTRA_DATA_SYSTEM, system)
             context?.startActivity(i)
         }
     }
@@ -94,7 +84,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private lateinit var screenAdapter: ScreenAdapter
+//    private lateinit var screenAdapter: ScreenAdapter
 
     // app 安装卸载监听
     private val receiver = object : BroadcastReceiver() {
@@ -106,15 +96,15 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
                 }
                 Intent.ACTION_PACKAGE_ADDED -> {
                     // 应用安装
-                    screenAdapter.addApp()
+                    elementarySystemFragment.addApp()
                 }
                 Intent.ACTION_PACKAGE_REMOVED -> {
                     // 应用卸载
-                    screenAdapter.removeApp()
+                    elementarySystemFragment.removeApp()
                 }
                 Intent.ACTION_PACKAGE_CHANGED -> {
                     // 应用更新
-                    screenAdapter.updateAppGrids()
+                    elementarySystemFragment.updateAppGrids()
                 }
             }
         }
@@ -124,6 +114,9 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
 
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var elementarySystemFragment: ElementarySystemFragment
+    private var systemType: Int = SYSTEM_ELEMENTARY
+
     override fun onCreate(savedInstanceState: Bundle?) {
         SystemUtil.toFullScreenMode(this)
         super.onCreate(savedInstanceState)
@@ -132,69 +125,76 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Timber.d("onCreate")
+
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
 
+        systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, SYSTEM_ELEMENTARY)
+        loadSystem()
+
         requestPermissionsTask()
 
+        elementarySystemFragment = ElementarySystemFragment.newInstance()
+        replaceFragment(elementarySystemFragment, R.id.main_fragment_container)
         initialStatusBar()
-
-        screenAdapter = ScreenAdapter()
-        binding.viewPager.adapter = screenAdapter
-        // 缓存3页
-        binding.viewPager.offscreenPageLimit = 3
-        binding.pagerIndicator.setViewPager(binding.viewPager)
+//
+//        screenAdapter = ScreenAdapter()
+//        binding.viewPager.adapter = screenAdapter
+//        // 缓存3页
+//        binding.viewPager.offscreenPageLimit = 3
+//        binding.pagerIndicator.setViewPager(binding.viewPager)
         binding.tvPageTitle.text = pageTitles[0]
-        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-            ) {
-                if (position == pageTitles.size - 1) {
-                    // 缩放动画
-//                    val offsetConvertValue = if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-//                    binding.containerMainHeader.alpha = offsetConvertValue
-//                    binding.containerMainHeader.scaleX = offsetConvertValue
-//                    binding.containerMainHeader.scaleY = offsetConvertValue
-                    // 平移动画
-                    binding.containerMainHeader.translationX = -positionOffsetPixels.toFloat()
-                }
-            }
-
-            override fun onPageSelected(position: Int) {
-                if (position == pageTitles.size - 1) {
-                    val tranX = binding.containerMainHeader.translationX
-                    if (tranX != 0f) {
-                        binding.containerMainHeader.animate().cancel()
-                        binding.containerMainHeader.animate()
-                                .translationX(0f)
-                                .start()
-                    }
-                }
-                if (position < pageTitles.size) {
-                    binding.tvPageTitle.text = pageTitles[position]
-                }
-
-//                val bg = when (position) {
-//                    0 -> R.raw.ic_assistant_bg
-//                    1 -> R.raw.ic_chinese_bg
-//                    2 -> R.raw.ic_english_bg
-//                    3 -> R.raw.ic_mathematics_bg
-//                    4 -> R.raw.ic_program_bg
-//                    else -> R.raw.background
+//        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//            override fun onPageScrolled(
+//                    position: Int,
+//                    positionOffset: Float,
+//                    positionOffsetPixels: Int
+//            ) {
+//                if (position == pageTitles.size - 1) {
+//                    // 缩放动画
+////                    val offsetConvertValue = if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+////                    binding.containerMainHeader.alpha = offsetConvertValue
+////                    binding.containerMainHeader.scaleX = offsetConvertValue
+////                    binding.containerMainHeader.scaleY = offsetConvertValue
+//                    // 平移动画
+//                    binding.containerMainHeader.translationX = -positionOffsetPixels.toFloat()
 //                }
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-        })
-
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//                if (position == pageTitles.size - 1) {
+//                    val tranX = binding.containerMainHeader.translationX
+//                    if (tranX != 0f) {
+//                        binding.containerMainHeader.animate().cancel()
+//                        binding.containerMainHeader.animate()
+//                                .translationX(0f)
+//                                .start()
+//                    }
+//                }
+//                if (position < pageTitles.size) {
+//                    binding.tvPageTitle.text = pageTitles[position]
+//                }
+//
+////                val bg = when (position) {
+////                    0 -> R.raw.ic_assistant_bg
+////                    1 -> R.raw.ic_chinese_bg
+////                    2 -> R.raw.ic_english_bg
+////                    3 -> R.raw.ic_mathematics_bg
+////                    4 -> R.raw.ic_program_bg
+////                    else -> R.raw.background
+////                }
+//            }
+//
+//            override fun onPageScrollStateChanged(state: Int) {
+//
+//            }
+//        })
+//
         AppManager.getInstance(this).getAllApps()
         AppManager.getInstance(this).addUpdateListener { apps ->
-            screenAdapter.setAppNum(apps.size)
+            elementarySystemFragment.setAppNum(apps.size)
             true
         }
 
@@ -240,10 +240,10 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         intentFilter.addDataScheme("package")
         registerReceiver(receiver, intentFilter)
 
-        Glide.with(this@MainActivity)
-            .load(R.mipmap.ic_launcher_bg)
-            .centerCrop()
-            .into(binding.ivMainBackground)
+//        Glide.with(this@MainActivity)
+//            .load(R.mipmap.ic_launcher_bg)
+//            .centerCrop()
+//            .into(binding.ivMainBackground)
 
 //        if (Build.VERSION.SDK_INT >= 26) {
 //            test()
@@ -251,6 +251,21 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
         // TODO 模拟序列号
 //        viewModel.prefs().serialNumber = "12345678"
         initialAgoraToken()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        Timber.d("onNewIntent")
+        systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, SYSTEM_ELEMENTARY)
+        loadSystem()
+    }
+
+    private fun loadSystem() {
+        when(systemType) {
+            SYSTEM_INFANT -> replaceFragment(InfantSystemFragment.newInstance(), R.id.main_fragment_container)
+            SYSTEM_ELEMENTARY -> replaceFragment(ElementarySystemFragment.newInstance(), R.id.main_fragment_container)
+            SYSTEM_SECONDARY -> replaceFragment(SecondarySystemFragment.newInstance(), R.id.main_fragment_container)
+        }
     }
 
     // ---------------------- 读取SN 测试------------------------
@@ -299,6 +314,7 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
     }
 
     override fun onDestroy() {
+        Timber.d("onDestroy")
         unregisterReceiver(receiver)
         setLauncher(null)
         connectionStateMonitor.disable()
@@ -432,86 +448,115 @@ class MainActivity : BaseCallActivity(), MainFragment.OnFragmentActionListener {
             listData = data
         ).show(type)
     }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        if (position == pageTitles.size - 1) {
+            // 缩放动画
+//                    val offsetConvertValue = if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
+//                    binding.containerMainHeader.alpha = offsetConvertValue
+//                    binding.containerMainHeader.scaleX = offsetConvertValue
+//                    binding.containerMainHeader.scaleY = offsetConvertValue
+            // 平移动画
+            binding.containerMainHeader.translationX = -positionOffsetPixels.toFloat()
+
+        }
+    }
+
+    override fun onPageSelected(position: Int) {
+        if (position == pageTitles.size - 1) {
+            val tranX = binding.containerMainHeader.translationX
+            if (tranX != 0f) {
+                binding.containerMainHeader.animate().cancel()
+                binding.containerMainHeader.animate()
+                    .translationX(0f)
+                    .start()
+            }
+        }
+        if (position < pageTitles.size) {
+            binding.tvPageTitle.text = pageTitles[position]
+        }
+    }
+
     // -------------------------- OnFragmentActionListener Method End -------------------------------
 
-    private inner class ScreenAdapter : FragmentStatePagerAdapter(
-            supportFragmentManager,
-            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-    ) {
-
-        private val MAX_APP_NUM = 18
-
-        private var appNum: Int = 0
-        private var appPageNum: Int = 0
-
-        private val appGridList = ArrayList<AppMarketFragment>()
-
-        override fun getCount(): Int = pageTitles.size + appGridList.size
-
-        override fun getItem(position: Int): Fragment {
-            if (position < pageTitles.size) {
-                return MainFragment.newInstance(position)
-            } else {
-                val gridPosition = position - pageTitles.size
-                val frag = appGridList[gridPosition]
-                frag.setPosition(gridPosition)
-                return frag
-            }
-        }
-
-        // 删除页需要用到
-        override fun getItemPosition(obj: Any): Int {
-            return PagerAdapter.POSITION_NONE
-        }
-
-        fun setAppNum(num: Int) {
-            appNum = num
-            appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
-            appGridList.clear()
-            for (i in 0.until(appPageNum)) {
-                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
-            }
-            binding.pagerIndicator.updateItems(count)
-            notifyDataSetChanged()
-        }
-
-        fun updateAppGrids() {
-            appGridList.forEach { gridFrag ->
-                if (gridFrag.isAdded) {
-                    gridFrag.updateApps()
-                }
-            }
-        }
-
-        fun addApp() {
-            if (appNum % MAX_APP_NUM == 0) {
-                // 添加新的一页
-                appNum += 1
-                appPageNum = appNum / MAX_APP_NUM
-                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
-                binding.pagerIndicator.updateItems(count)
-                notifyDataSetChanged()
-            } else {
-                appNum += 1
-                updateAppGrids()
-            }
-        }
-
-        fun removeApp() {
-            appNum -= 1
-            if (appNum % MAX_APP_NUM == 0) {
-                // 减少一页
-                appPageNum = appNum / MAX_APP_NUM
-                if (appGridList.isNotEmpty()) {
-                    appGridList.removeAt(appGridList.size - 1)
-                }
-                binding.pagerIndicator.updateItems(count)
-                notifyDataSetChanged()
-            } else {
-                updateAppGrids()
-            }
-        }
-
-    }
+//    private inner class ScreenAdapter : FragmentStatePagerAdapter(
+//            supportFragmentManager,
+//            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+//    ) {
+//
+//        private val MAX_APP_NUM = 18
+//
+//        private var appNum: Int = 0
+//        private var appPageNum: Int = 0
+//
+//        private val appGridList = ArrayList<AppMarketFragment>()
+//
+//        override fun getCount(): Int = pageTitles.size + appGridList.size
+//
+//        override fun getItem(position: Int): Fragment {
+//            if (position < pageTitles.size) {
+//                return MainFragment.newInstance(position)
+//            } else {
+//                val gridPosition = position - pageTitles.size
+//                val frag = appGridList[gridPosition]
+//                frag.setPosition(gridPosition)
+//                return frag
+//            }
+//        }
+//
+//        // 删除页需要用到
+//        override fun getItemPosition(obj: Any): Int {
+//            return PagerAdapter.POSITION_NONE
+//        }
+//
+//        fun setAppNum(num: Int) {
+//            appNum = num
+//            appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
+//            appGridList.clear()
+//            for (i in 0.until(appPageNum)) {
+//                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
+//            }
+//            binding.pagerIndicator.updateItems(count)
+//            notifyDataSetChanged()
+//        }
+//
+//        fun updateAppGrids() {
+//            appGridList.forEach { gridFrag ->
+//                if (gridFrag.isAdded) {
+//                    gridFrag.updateApps()
+//                }
+//            }
+//        }
+//
+//        fun addApp() {
+//            if (appNum % MAX_APP_NUM == 0) {
+//                // 添加新的一页
+//                appNum += 1
+//                appPageNum = appNum / MAX_APP_NUM
+//                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
+//                binding.pagerIndicator.updateItems(count)
+//                notifyDataSetChanged()
+//            } else {
+//                appNum += 1
+//                updateAppGrids()
+//            }
+//        }
+//
+//        fun removeApp() {
+//            appNum -= 1
+//            if (appNum % MAX_APP_NUM == 0) {
+//                // 减少一页
+//                appPageNum = appNum / MAX_APP_NUM
+//                if (appGridList.isNotEmpty()) {
+//                    appGridList.removeAt(appGridList.size - 1)
+//                }
+//                binding.pagerIndicator.updateItems(count)
+//                notifyDataSetChanged()
+//            } else {
+//                updateAppGrids()
+//            }
+//        }
+//
+//    }
 
 }

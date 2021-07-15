@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/_140dp"
-    tools:context=".ui.MainFragment">
+    tools:context=".ui.elementary.ElementayMainFragment">
 
     <FrameLayout
         android:id="@+id/card_mathematics_after_school"

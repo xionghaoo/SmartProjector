@@ -27,14 +27,12 @@ DisplayMetrics{density=2.0, width=1920, height=1104, scaledDensity=2.0, xdpi=284
 
 ## 相关资源
 
-1. Ucode Android版本，第一版没有舞台，但是会在后续的版本增加
-2. 语音，腾讯叮当
-3. 课程资源，九学王
-4. 直播，暂定小鹅通
-
 ### 腾讯小微接入
 
 1. [TVS SDK接入说明](https://dingdang.qq.com/doc/page/432)
+
+### 消息推送
+2. [阿里云辅助通道](https://help.aliyun.com/document_detail/30067.html?spm=a2c4g.11186623.6.586.57a82e97w5yHgn)
 
 ## 其他
 

@@ -12,5 +12,7 @@ public class ATestActivity extends TYRCTSmartPanelActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
+
+
     }
 }
