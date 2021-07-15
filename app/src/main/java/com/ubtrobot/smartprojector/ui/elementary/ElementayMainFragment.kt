@@ -25,7 +25,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ElementayMainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
     private var page: Int? = null
 //    @Inject
 //    lateinit var getLearnAppManager: GetLearnAppManager

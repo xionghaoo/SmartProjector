@@ -125,8 +125,6 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Timber.d("onCreate")
-
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
@@ -139,59 +137,9 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         elementarySystemFragment = ElementarySystemFragment.newInstance()
         replaceFragment(elementarySystemFragment, R.id.main_fragment_container)
         initialStatusBar()
-//
-//        screenAdapter = ScreenAdapter()
-//        binding.viewPager.adapter = screenAdapter
-//        // 缓存3页
-//        binding.viewPager.offscreenPageLimit = 3
-//        binding.pagerIndicator.setViewPager(binding.viewPager)
+
         binding.tvPageTitle.text = pageTitles[0]
-//        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-//            override fun onPageScrolled(
-//                    position: Int,
-//                    positionOffset: Float,
-//                    positionOffsetPixels: Int
-//            ) {
-//                if (position == pageTitles.size - 1) {
-//                    // 缩放动画
-////                    val offsetConvertValue = if (positionOffset < 0.5) 1 - 2 * positionOffset else 0f
-////                    binding.containerMainHeader.alpha = offsetConvertValue
-////                    binding.containerMainHeader.scaleX = offsetConvertValue
-////                    binding.containerMainHeader.scaleY = offsetConvertValue
-//                    // 平移动画
-//                    binding.containerMainHeader.translationX = -positionOffsetPixels.toFloat()
-//                }
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//                if (position == pageTitles.size - 1) {
-//                    val tranX = binding.containerMainHeader.translationX
-//                    if (tranX != 0f) {
-//                        binding.containerMainHeader.animate().cancel()
-//                        binding.containerMainHeader.animate()
-//                                .translationX(0f)
-//                                .start()
-//                    }
-//                }
-//                if (position < pageTitles.size) {
-//                    binding.tvPageTitle.text = pageTitles[position]
-//                }
-//
-////                val bg = when (position) {
-////                    0 -> R.raw.ic_assistant_bg
-////                    1 -> R.raw.ic_chinese_bg
-////                    2 -> R.raw.ic_english_bg
-////                    3 -> R.raw.ic_mathematics_bg
-////                    4 -> R.raw.ic_program_bg
-////                    else -> R.raw.background
-////                }
-//            }
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//
-//            }
-//        })
-//
+
         AppManager.getInstance(this).getAllApps()
         AppManager.getInstance(this).addUpdateListener { apps ->
             elementarySystemFragment.setAppNum(apps.size)
@@ -208,29 +156,6 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
             startPlainActivity(ProfileActivity::class.java)
         }
 
-        // TODO 测试
-//        binding.tvPageTitle.setOnClickListener {
-//            val items = ArrayList<VideoItem>()
-//            items.add(VideoItem("视频1", MockData.video1))
-//            items.add(VideoItem("视频2", MockData.video2))
-//            items.add(VideoItem("视频3", MockData.video3))
-//            items.add(VideoItem("视频4", MockData.video4))
-//            VideoPlayerActivity.start(this, items)
-//        }
-
-//        RootExecutor.exec(
-//                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.SYSTEM_ALERT_WINDOW}",
-//                success = {
-//                    eyeProtectionMode()
-//                },
-//                failure = {
-//                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
-//                }
-//        )
-
-        // 拓展网关初始化
-//        TuyaGatewayManager.instance().initial()
-
         initialTuyaHome()
 
         val intentFilter = IntentFilter()
@@ -240,22 +165,11 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         intentFilter.addDataScheme("package")
         registerReceiver(receiver, intentFilter)
 
-//        Glide.with(this@MainActivity)
-//            .load(R.mipmap.ic_launcher_bg)
-//            .centerCrop()
-//            .into(binding.ivMainBackground)
-
-//        if (Build.VERSION.SDK_INT >= 26) {
-//            test()
-//        }
-        // TODO 模拟序列号
-//        viewModel.prefs().serialNumber = "12345678"
         initialAgoraToken()
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        Timber.d("onNewIntent")
         systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, SYSTEM_ELEMENTARY)
         loadSystem()
     }
@@ -284,19 +198,6 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
                 Manifest.permission.READ_PHONE_STATE
             )
         }
-
-//        RootExecutor.exec(
-//                cmd = "pm grant ${BuildConfig.APPLICATION_ID} ${Manifest.permission.READ_PHONE_STATE}",
-//                success = {
-//                    val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
-//                    val imei: String? = telephonyManager.imei
-//                    Timber.d("设备SN号： ${Build.getSerial()}, imei: $imei")
-//                },
-//                failure = {
-//                    Timber.e("SYSTEM_ALERT_WINDOW 权限申请失败")
-//                }
-//        )
-
     }
 
     private fun hasReadPhoneStatePermission() : Boolean {
@@ -314,7 +215,6 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
     }
 
     override fun onDestroy() {
-        Timber.d("onDestroy")
         unregisterReceiver(receiver)
         setLauncher(null)
         connectionStateMonitor.disable()
@@ -376,6 +276,9 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         })
     }
 
+    /**
+     * 初始化状态栏
+     */
     private fun initialStatusBar() {
         connectionStateMonitor.enable(this)
         connectionStateMonitor.setConnectStateListener { isConnected ->
@@ -478,85 +381,5 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
     }
 
     // -------------------------- OnFragmentActionListener Method End -------------------------------
-
-//    private inner class ScreenAdapter : FragmentStatePagerAdapter(
-//            supportFragmentManager,
-//            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-//    ) {
-//
-//        private val MAX_APP_NUM = 18
-//
-//        private var appNum: Int = 0
-//        private var appPageNum: Int = 0
-//
-//        private val appGridList = ArrayList<AppMarketFragment>()
-//
-//        override fun getCount(): Int = pageTitles.size + appGridList.size
-//
-//        override fun getItem(position: Int): Fragment {
-//            if (position < pageTitles.size) {
-//                return MainFragment.newInstance(position)
-//            } else {
-//                val gridPosition = position - pageTitles.size
-//                val frag = appGridList[gridPosition]
-//                frag.setPosition(gridPosition)
-//                return frag
-//            }
-//        }
-//
-//        // 删除页需要用到
-//        override fun getItemPosition(obj: Any): Int {
-//            return PagerAdapter.POSITION_NONE
-//        }
-//
-//        fun setAppNum(num: Int) {
-//            appNum = num
-//            appPageNum = if (appNum % MAX_APP_NUM == 0) appNum / MAX_APP_NUM else appNum / MAX_APP_NUM + 1
-//            appGridList.clear()
-//            for (i in 0.until(appPageNum)) {
-//                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
-//            }
-//            binding.pagerIndicator.updateItems(count)
-//            notifyDataSetChanged()
-//        }
-//
-//        fun updateAppGrids() {
-//            appGridList.forEach { gridFrag ->
-//                if (gridFrag.isAdded) {
-//                    gridFrag.updateApps()
-//                }
-//            }
-//        }
-//
-//        fun addApp() {
-//            if (appNum % MAX_APP_NUM == 0) {
-//                // 添加新的一页
-//                appNum += 1
-//                appPageNum = appNum / MAX_APP_NUM
-//                appGridList.add(AppMarketFragment.newInstance(MAX_APP_NUM, appPageNum))
-//                binding.pagerIndicator.updateItems(count)
-//                notifyDataSetChanged()
-//            } else {
-//                appNum += 1
-//                updateAppGrids()
-//            }
-//        }
-//
-//        fun removeApp() {
-//            appNum -= 1
-//            if (appNum % MAX_APP_NUM == 0) {
-//                // 减少一页
-//                appPageNum = appNum / MAX_APP_NUM
-//                if (appGridList.isNotEmpty()) {
-//                    appGridList.removeAt(appGridList.size - 1)
-//                }
-//                binding.pagerIndicator.updateItems(count)
-//                notifyDataSetChanged()
-//            } else {
-//                updateAppGrids()
-//            }
-//        }
-//
-//    }
 
 }

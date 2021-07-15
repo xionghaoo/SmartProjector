@@ -15,6 +15,7 @@ import com.ubtrobot.smartprojector.databinding.FragmentElementarySystemBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.ui.appmarket.AppMarketFragment
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
  * 小学系统
@@ -24,10 +25,8 @@ class ElementarySystemFragment : Fragment() {
 
     private var pageTitles = arrayOf("智能学习", "语文", "英语", "数学", "编程", "直播")
 
-    private var _binding: FragmentElementarySystemBinding? = null
-    private val binding get() = _binding!!
-//    @Inject
-//    lateinit var connectionStateMonitor: ConnectionStateMonitor
+    private lateinit var binding: FragmentElementarySystemBinding
+
     private lateinit var screenAdapter: ScreenAdapter
 
     private var listener: OnFragmentActionListener? = null
@@ -42,7 +41,6 @@ class ElementarySystemFragment : Fragment() {
     }
 
     override fun onDetach() {
-//        connectionStateMonitor.disable()
         listener = null
         super.onDetach()
     }
@@ -55,13 +53,8 @@ class ElementarySystemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentElementarySystemBinding.inflate(inflater, container, false)
+        binding = FragmentElementarySystemBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
