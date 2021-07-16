@@ -34,7 +34,7 @@ android {
 
         buildConfigField('int', 'cache_db_version', rootProject.cache_db_version)
 
-        ndk { abiFilters "armeabi-v7a", "arm64-v8a", "x86_64" }
+        ndk { abiFilters /*"armeabi-v7a",*/ "arm64-v8a", "x86_64" }
 
         externalNativeBuild {
             cmake {

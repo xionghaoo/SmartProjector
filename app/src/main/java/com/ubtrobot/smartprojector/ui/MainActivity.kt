@@ -11,6 +11,7 @@ import android.telephony.TelephonyManager
 import android.view.*
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.tuya.smart.api.service.MicroServiceManager
 import com.tuya.smart.commonbiz.bizbundle.family.api.AbsBizBundleFamilyService
 import com.tuya.smart.home.sdk.TuyaHomeSdk
@@ -166,6 +167,11 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         registerReceiver(receiver, intentFilter)
 
         initialAgoraToken()
+
+        Glide.with(this)
+            .load(R.mipmap.ic_launcher_bg)
+            .centerCrop()
+            .into(binding.ivMainBackground)
     }
 
     override fun onNewIntent(intent: Intent) {

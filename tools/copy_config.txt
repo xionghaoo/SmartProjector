@@ -1,1 +1,10 @@
-kd／2icon／编程-直播答疑.png;ic_program_my_works.png
+kd／2icon／头像备份.png;ic_infant_avatar.png
+kd／2icon／应用商城.png;ic_infant_app_market.png
+kd／2icon／我的学习备份 2.png;ic_infant_settings.png
+kd／2icon／我的学习备份.png;ic_infant_video_call.png
+kd／2icon／经典巩固.png;ic_infant_interest_left_2.png
+kd／2icon／测试练习.png;ic_infant_interest_left_3.png
+kd／2icon／课前预习.png;ic_infant_interest_left_1.png
+编组 4.png;ic_infant_interest_right_1.png
+编组 6.png;ic_infant_interest_right_2.png
+kd／3bg／背景2备份 4.png;ic_infant_bg_1.png

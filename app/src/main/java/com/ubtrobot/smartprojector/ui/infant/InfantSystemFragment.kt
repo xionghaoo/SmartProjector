@@ -34,10 +34,10 @@ class InfantSystemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Glide.with(requireContext())
-            .load(R.mipmap.ic_launcher_bg)
-            .centerCrop()
-            .into(binding.ivMainBackground)
+//        Glide.with(requireContext())
+//            .load(R.mipmap.ic_launcher_bg)
+//            .centerCrop()
+//            .into(binding.ivMainBackground)
 
         binding.viewPager.adapter = MainAdapter()
 

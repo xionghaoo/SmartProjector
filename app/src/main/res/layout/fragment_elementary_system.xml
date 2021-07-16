@@ -5,18 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_main_page"
     tools:context=".ui.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_main_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_main_background"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:scaleType="center"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
 <!--    <LinearLayout-->
 <!--        android:id="@+id/textView7"-->
@@ -72,6 +71,7 @@
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingTop="@dimen/_48dp"
         app:layout_constraintBottom_toTopOf="@+id/pager_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
