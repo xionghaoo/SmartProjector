@@ -7,15 +7,28 @@
     android:paddingTop="@dimen/_140dp"
     tools:context=".ui.infant.InfantMainFragment">
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/textView28"
         android:layout_width="@dimen/_538dp"
         android:layout_height="@dimen/_250dp"
         android:layout_marginTop="@dimen/_24dp"
         android:layout_marginStart="@dimen/_51dp"
-        android:src="@mipmap/ic_infant_interest_left_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_infant_interest_left_1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="儿歌"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/_26dp"
+            android:layout_marginStart="@dimen/_64dp"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView32"
@@ -33,46 +46,94 @@
         app:layout_constraintEnd_toEndOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/textView59"
         android:layout_width="@dimen/_266dp"
         android:layout_height="@dimen/_250dp"
         android:layout_marginTop="@dimen/_14dp"
-        android:src="@mipmap/ic_infant_interest_left_2"
         app:layout_constraintStart_toStartOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/textView28" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_infant_interest_left_2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="故事"/>
+    </FrameLayout>
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/textView60"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_8dp"
-        android:src="@mipmap/ic_infant_interest_left_3"
         app:layout_constraintBottom_toBottomOf="@+id/textView59"
         app:layout_constraintEnd_toEndOf="@+id/textView28"
         app:layout_constraintStart_toEndOf="@+id/textView59"
-        app:layout_constraintTop_toTopOf="@+id/textView59" />
+        app:layout_constraintTop_toTopOf="@+id/textView59" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_infant_interest_left_3"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_18dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="电影"/>
+    </FrameLayout>
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/textView67"
         android:layout_width="@dimen/_300dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_20dp"
-        android:src="@mipmap/ic_infant_entertainment_right_1"
         app:layout_constraintBottom_toBottomOf="@+id/textView60"
         app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toTopOf="@+id/textView28" />
+        app:layout_constraintTop_toTopOf="@+id/textView28" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_infant_entertainment_right_1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_30dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="绘本"/>
+    </FrameLayout>
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/textView69"
         android:layout_width="@dimen/_300dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_20dp"
         android:layout_marginEnd="@dimen/_51dp"
-        android:src="@mipmap/ic_infant_interest_right_2"
         app:layout_constraintBottom_toBottomOf="@+id/textView67"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView67"
-        app:layout_constraintTop_toTopOf="@+id/textView67" />
+        app:layout_constraintTop_toTopOf="@+id/textView67" >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_infant_interest_right_2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_26sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_30dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="十万个为什么"/>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

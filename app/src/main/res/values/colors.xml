@@ -43,6 +43,10 @@
 
     <color name="color_system_card_overlay">#4D216EEF</color>
     <color name="color_system_card_selected">#2C790A</color>
+    <color name="color_infant_system_0">#EA717B</color>
+    <color name="color_infant_system_1">#7BD071</color>
+    <color name="color_infant_system_2">#3A90F7</color>
+    <color name="color_infant_system_3">#9B71F7</color>
 
 
 </resources>

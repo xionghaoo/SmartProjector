@@ -18,6 +18,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <View
+        android:id="@+id/v_infant_bg_shape"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_13dp"
+        android:layout_marginStart="@dimen/_25dp"
+        android:layout_marginEnd="@dimen/_25dp"
+        android:layout_marginBottom="@dimen/_33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_main_header" />
+
     <LinearLayout
         android:id="@+id/textView7"
         android:layout_width="0dp"

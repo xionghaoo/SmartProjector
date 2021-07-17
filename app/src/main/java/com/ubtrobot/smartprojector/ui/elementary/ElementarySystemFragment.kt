@@ -94,21 +94,6 @@ class ElementarySystemFragment : Fragment() {
         listener?.loadElementarySystemBackground()
     }
 
-//    private fun initialStatusBar() {
-//        connectionStateMonitor.enable(requireContext())
-//        connectionStateMonitor.setConnectStateListener { isConnected ->
-//            activity?.runOnUiThread {
-//                binding.ivWifiStatus.setImageResource(
-//                    if (isConnected) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off
-//                )
-//            }
-//        }
-//
-//        binding.ivWifiStatus.setImageResource(
-//            if (SystemUtil.isNetworkConnected(requireContext())) R.drawable.ic_wifi_on else R.drawable.ic_wifi_off
-//        )
-//    }
-
     fun addApp() {
         screenAdapter.addApp()
     }

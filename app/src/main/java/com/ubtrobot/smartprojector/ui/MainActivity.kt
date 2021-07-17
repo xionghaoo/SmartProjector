@@ -133,6 +133,8 @@ class MainActivity : BaseCallActivity(),
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Timber.d("onCreate")
+
         Timber.d("display info: ${SystemUtil.displayInfo(this)}")
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
@@ -142,15 +144,15 @@ class MainActivity : BaseCallActivity(),
 
         requestPermissionsTask()
 
-        elementarySystemFragment = ElementarySystemFragment.newInstance()
-        replaceFragment(elementarySystemFragment, R.id.main_fragment_container)
         initialStatusBar()
         initialHeader()
 
-        AppManager.getInstance(this).getAllApps()
-        AppManager.getInstance(this).addUpdateListener { apps ->
-            elementarySystemFragment.setAppNum(apps.size)
-            true
+        if (systemType == SYSTEM_ELEMENTARY) {
+            AppManager.getInstance(this).getAllApps()
+            AppManager.getInstance(this).addUpdateListener { apps ->
+                elementarySystemFragment.setAppNum(apps.size)
+                true
+            }
         }
 
         // 检查锁屏状态
@@ -165,18 +167,13 @@ class MainActivity : BaseCallActivity(),
 
         initialTuyaHome()
 
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
-        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
-        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
-        intentFilter.addDataScheme("package")
-        registerReceiver(receiver, intentFilter)
-
         initialAgoraToken()
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        Timber.d("onNewIntent")
+
         systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, SYSTEM_ELEMENTARY)
         loadSystem()
     }
@@ -195,26 +192,55 @@ class MainActivity : BaseCallActivity(),
 
     private fun loadSystem() {
         when(systemType) {
-            SYSTEM_INFANT -> replaceFragment(InfantSystemFragment.newInstance(), R.id.main_fragment_container)
-            SYSTEM_ELEMENTARY -> replaceFragment(ElementarySystemFragment.newInstance(), R.id.main_fragment_container)
+            SYSTEM_INFANT -> {
+                replaceFragment(InfantSystemFragment.newInstance(), R.id.main_fragment_container)
+            }
+            SYSTEM_ELEMENTARY -> {
+                elementarySystemFragment = ElementarySystemFragment.newInstance()
+                replaceFragment(
+                    elementarySystemFragment,
+                    R.id.main_fragment_container
+                )
+            }
             SYSTEM_SECONDARY -> replaceFragment(SecondarySystemFragment.newInstance(), R.id.main_fragment_container)
         }
     }
 
     private fun loadBackground(page: Int? = null) {
+        binding.vInfantBgShape.visibility = View.GONE
         when (systemType) {
             SYSTEM_INFANT -> {
-                val bg: Int = when (page) {
-                    0 -> R.mipmap.ic_infant_bg_1
-                    1 -> R.mipmap.ic_infant_bg_2
-                    else -> R.mipmap.ic_launcher_bg
+                binding.vInfantBgShape.visibility = View.VISIBLE
+                when (page) {
+                    0 -> {
+                        binding.ivMainBackground.visibility = View.GONE
+                        binding.root.setBackgroundColor(resources.getColor(R.color.color_infant_system_0))
+                        binding.vInfantBgShape.background = resources.getDrawable(R.drawable.shape_infant_main_bg_0)
+                    }
+                    1 -> {
+                        binding.ivMainBackground.visibility = View.GONE
+                        binding.root.setBackgroundColor(resources.getColor(R.color.color_infant_system_1))
+                        binding.vInfantBgShape.background = resources.getDrawable(R.drawable.shape_infant_main_bg_1)
+                    }
+                    2 -> {
+                        binding.ivMainBackground.visibility = View.GONE
+                        binding.root.setBackgroundColor(resources.getColor(R.color.color_infant_system_2))
+                        binding.vInfantBgShape.background = resources.getDrawable(R.drawable.shape_infant_main_bg_2)
+                    }
+                    3 -> {
+                        binding.ivMainBackground.visibility = View.GONE
+                        binding.root.setBackgroundColor(resources.getColor(R.color.color_infant_system_3))
+                        binding.vInfantBgShape.background = resources.getDrawable(R.drawable.shape_infant_main_bg_3)
+                    }
+                    else -> {
+                        binding.ivMainBackground.visibility = View.VISIBLE
+                        binding.vInfantBgShape.visibility = View.GONE
+                    }
                 }
-                Glide.with(this)
-                    .load(bg)
-                    .centerCrop()
-                    .into(binding.ivMainBackground)
+
             }
             SYSTEM_ELEMENTARY -> {
+                binding.ivMainBackground.visibility = View.VISIBLE
                 Glide.with(this)
                     .load(R.mipmap.ic_launcher_bg)
                     .centerCrop()
@@ -257,7 +283,10 @@ class MainActivity : BaseCallActivity(),
     }
 
     override fun onDestroy() {
-        unregisterReceiver(receiver)
+        Timber.d("onDestroy")
+        if (systemType == SYSTEM_ELEMENTARY) {
+            unregisterReceiver(receiver)
+        }
         setLauncher(null)
         connectionStateMonitor.disable()
         agoraCallManager.destroy()
@@ -428,6 +457,13 @@ class MainActivity : BaseCallActivity(),
     }
 
     override fun loadElementarySystemBackground() {
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
+        intentFilter.addDataScheme("package")
+        registerReceiver(receiver, intentFilter)
+
         binding.containerAvatar.setImageResource(R.mipmap.ic_assistant_avatar)
         loadBackground()
     }

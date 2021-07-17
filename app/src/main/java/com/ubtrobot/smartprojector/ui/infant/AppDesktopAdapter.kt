@@ -8,7 +8,7 @@ import com.ubtrobot.smartprojector.ui.elementary.ElementayMainFragment
 import timber.log.Timber
 
 class AppDesktopAdapter(frag: Fragment) : FragmentStateAdapter(frag) {
-    private val MAX_APP_NUM = 8
+    private val MAX_APP_NUM = 18
 
     private var appNum: Int = 0
     private var appPageNum: Int = 0
