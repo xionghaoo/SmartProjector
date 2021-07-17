@@ -132,7 +132,7 @@
                 android:layout_marginTop="@dimen/_7dp"
                 android:layout_weight="1"
                 android:includeFontPadding="false"
-                android:text="Eva"
+                android:text="古力娜扎"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_26sp"
                 android:textStyle="bold" />
@@ -144,7 +144,7 @@
                 android:layout_marginTop="@dimen/_4dp"
                 android:layout_marginBottom="@dimen/_2dp"
                 android:includeFontPadding="false"
-                android:text="等级2"
+                android:text="一年级"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_20sp" />
         </LinearLayout>

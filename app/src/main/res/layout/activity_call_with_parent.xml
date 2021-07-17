@@ -1,90 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.call.CallWithParentActivity">
-    <com.ubtrobot.smartprojector.widgets.LauncherToolbar
-        android:id="@+id/toolbar"
+    <ImageView
+        android:id="@+id/iv_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.ubtrobot.smartprojector.widgets.LauncherToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="@dimen/divider_width"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/color_EEEEEE"
-            android:layout_marginTop="@dimen/_150dp"
-            android:layout_marginBottom="@dimen/_150dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_weight="1">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="@dimen/divider_width"
+                android:layout_height="0dp"
+                android:background="@color/color_EEEEEE"
+                android:layout_marginTop="@dimen/_150dp"
+                android:layout_marginBottom="@dimen/_150dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/btn_video_call"
-            android:layout_width="@dimen/_120dp"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginTop="@dimen/_180dp"
-            android:layout_marginStart="@dimen/_180dp"
-            android:background="@drawable/shape_circle"
-            android:gravity="center"
-            android:text="视频"
-            android:textSize="@dimen/_20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/btn_audio_call"
-            android:layout_width="@dimen/_120dp"
-            android:layout_height="@dimen/_120dp"
-            android:layout_marginBottom="@dimen/_180dp"
-            android:layout_marginEnd="@dimen/_180dp"
-            android:background="@drawable/shape_circle"
-            android:gravity="center"
-            android:text="语音"
-            android:textSize="@dimen/_20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView26" />
+            <TextView
+                android:id="@+id/btn_video_call"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_120dp"
+                android:layout_marginTop="@dimen/_180dp"
+                android:layout_marginStart="@dimen/_180dp"
+                android:background="@drawable/shape_circle"
+                android:gravity="center"
+                android:text="视频"
+                android:textSize="@dimen/_20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView54"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20dp"
-            android:text="通话记录"
-            android:layout_marginStart="@dimen/_30dp"
-            android:layout_marginEnd="@dimen/_30dp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView26"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/btn_audio_call"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_120dp"
+                android:layout_marginBottom="@dimen/_180dp"
+                android:layout_marginEnd="@dimen/_180dp"
+                android:background="@drawable/shape_circle"
+                android:gravity="center"
+                android:text="语音"
+                android:textSize="@dimen/_20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView26" />
 
-        <TextView
-            android:id="@+id/textView58"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_10dp"
-            android:layout_marginBottom="@dimen/_20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView26"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+            <TextView
+                android:id="@+id/textView54"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20dp"
+                android:text="通话记录"
+                android:layout_marginStart="@dimen/_30dp"
+                android:layout_marginEnd="@dimen/_30dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView26"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+            <TextView
+                android:id="@+id/textView58"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_marginBottom="@dimen/_20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView26"
+                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</FrameLayout>

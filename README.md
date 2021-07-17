@@ -51,12 +51,17 @@ $ cd /data/misc/wifi/
 
 ## 命令
 
-获取应用包名
-```shell
+1. 获取应用包名
+```shell script
 aapt dump badging <path-to-apk> | grep package:\ name
 ```
 
-获取应用启动页
-```shell
+2. 获取应用启动页
+```shell script
 aapt d badging jxwgb_kypc.apk | grep launchable-activity
+```
+
+3. 列出系统安装的apk包名
+```shell script
+pm list packages -f
 ```

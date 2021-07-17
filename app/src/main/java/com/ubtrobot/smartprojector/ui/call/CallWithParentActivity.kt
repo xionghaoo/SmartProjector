@@ -2,7 +2,9 @@ package com.ubtrobot.smartprojector.ui.call
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.ubtrobot.smartprojector.Configs
+import com.ubtrobot.smartprojector.GlideApp
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityCallWithParentBinding
 import com.ubtrobot.smartprojector.utils.SystemUtil
@@ -38,6 +40,11 @@ class CallWithParentActivity : AppCompatActivity() {
         binding.btnAudioCall.setOnClickListener {
             callPeer(Configs.agoraPeerUserId, "audio")
         }
+
+        GlideApp.with(this)
+            .load(R.mipmap.img_profile_bg)
+            .centerCrop()
+            .into(binding.ivBackground)
     }
 
     private fun callPeer(number: String, content: String?) {

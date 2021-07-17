@@ -24,6 +24,7 @@ class AppSettingsActivity : AppCompatActivity() {
 
     private val tabTitles = listOf("系统切换", "蝌蚪助手", "版本升级", "关于蝌蚪")
     private var currentSelectedTab = 0
+    private var isSwitchSystem = false
 
     private val viewModel: SettingsViewModel by viewModels()
 
@@ -71,8 +72,17 @@ class AppSettingsActivity : AppCompatActivity() {
         }
 
         binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.adapter = AppSettingsContentAdapter(this, viewModel, tabTitles)
+        binding.viewPager.adapter = AppSettingsContentAdapter(this, viewModel, tabTitles) {
+            isSwitchSystem = true
+        }
 
+    }
+
+    override fun finish() {
+        super.finish()
+        if (isSwitchSystem) {
+            overridePendingTransition(0, R.anim.fade_out)
+        }
     }
 
 

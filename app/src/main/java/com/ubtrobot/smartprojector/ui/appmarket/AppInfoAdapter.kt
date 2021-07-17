@@ -27,10 +27,14 @@ class AppInfoAdapter(
         // com.android.music
         // com.android.dialer
         // com.android.settings
+        // com.android.deskclock
+        // com.android.documentsui
         // app图标替换
         when (item.packageName) {
             "com.android.calendar" -> itemView.setIcon(v.context.getDrawable(R.mipmap.ic_app_calendar))
             "com.android.music" -> itemView.setIcon(v.context.getDrawable(R.mipmap.ic_app_music))
+            "com.android.deskclock" -> itemView.setIcon(v.context.getDrawable(R.mipmap.ic_app_clock))
+            "com.android.documentsui" -> itemView.setIcon(v.context.getDrawable(R.mipmap.ic_app_file_manager))
         }
         itemView.setLabel(item.label)
 

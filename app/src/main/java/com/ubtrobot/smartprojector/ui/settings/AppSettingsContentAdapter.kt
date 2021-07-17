@@ -1,18 +1,21 @@
 package com.ubtrobot.smartprojector.ui.settings
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.tuya.smart.utils.ToastUtil
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.ui.MainActivity
 import com.ubtrobot.smartprojector.widgets.SystemCardView
 
 class AppSettingsContentAdapter(
-    private val context: Context,
+    private val context: Activity,
     private val viewModel: SettingsViewModel,
-    private val titles: List<String>
+    private val titles: List<String>,
+    private val onSystemChange: () -> Unit
 ) : RecyclerView.Adapter<AppSettingsContentAdapter.ItemViewHolder>() {
 
     private var selectedSystemIndex = 0
@@ -51,6 +54,8 @@ class AppSettingsContentAdapter(
                     viewModel.prefs().systemType = 0
 
                     MainActivity.startWithSingleTop(context, MainActivity.SYSTEM_INFANT)
+                    onSystemChange()
+                    context.finish()
                 }
                 cardSystemElementary.setOnClickListener {
                     selectedSystemIndex = 1
@@ -61,6 +66,8 @@ class AppSettingsContentAdapter(
                     viewModel.prefs().systemType = 1
 
                     MainActivity.startWithSingleTop(context, MainActivity.SYSTEM_ELEMENTARY)
+                    onSystemChange()
+                    context.finish()
                 }
                 cardSystemSecondary.setOnClickListener {
                     selectedSystemIndex = 2
@@ -69,6 +76,8 @@ class AppSettingsContentAdapter(
                     cardSystemSecondary.enableSystem(true)
 
                     viewModel.prefs().systemType = 2
+
+                    ToastUtil.showToast(context, "开发中")
                 }
             }
             1 -> {
