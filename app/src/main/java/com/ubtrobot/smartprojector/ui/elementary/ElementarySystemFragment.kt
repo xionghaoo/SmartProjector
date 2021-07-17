@@ -1,6 +1,9 @@
 package com.ubtrobot.smartprojector.ui.elementary
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +34,29 @@ class ElementarySystemFragment : Fragment() {
 
     private var listener: OnFragmentActionListener? = null
 
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Timber.d("on receiver: ${intent?.action}")
+            when(intent?.action) {
+                Intent.ACTION_PACKAGE_INSTALL -> {
+
+                }
+                Intent.ACTION_PACKAGE_ADDED -> {
+                    // 应用安装
+                    screenAdapter.addApp()
+                }
+                Intent.ACTION_PACKAGE_REMOVED -> {
+                    // 应用卸载
+                    screenAdapter.removeApp()
+                }
+                Intent.ACTION_PACKAGE_CHANGED -> {
+                    // 应用更新
+                    screenAdapter.updateAppGrids()
+                }
+            }
+        }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentActionListener) {
@@ -42,6 +68,7 @@ class ElementarySystemFragment : Fragment() {
 
     override fun onDetach() {
         listener = null
+        activity?.unregisterReceiver(receiver)
         super.onDetach()
     }
 
@@ -61,6 +88,13 @@ class ElementarySystemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         listener?.setPageTitles(pageTitles)
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
+        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
+        intentFilter.addDataScheme("package")
+        activity?.registerReceiver(receiver, intentFilter)
 
         AppManager.getInstance(requireContext()).getAllApps()
         AppManager.getInstance(requireContext()).addUpdateListener { apps ->
@@ -94,21 +128,21 @@ class ElementarySystemFragment : Fragment() {
         listener?.loadElementarySystemBackground()
     }
 
-    fun addApp() {
-        screenAdapter.addApp()
-    }
-
-    fun removeApp() {
-        screenAdapter.removeApp()
-    }
-
-    fun updateAppGrids() {
-        screenAdapter.updateAppGrids()
-    }
-
-    fun setAppNum(num: Int) {
-        screenAdapter.setAppNum(num)
-    }
+//    fun addApp() {
+//        screenAdapter.addApp()
+//    }
+//
+//    fun removeApp() {
+//        screenAdapter.removeApp()
+//    }
+//
+//    fun updateAppGrids() {
+//        screenAdapter.updateAppGrids()
+//    }
+//
+//    fun setAppNum(num: Int) {
+//        screenAdapter.setAppNum(num)
+//    }
 
     private inner class ScreenAdapter : FragmentStatePagerAdapter(
         childFragmentManager,

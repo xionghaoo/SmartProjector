@@ -1,1 +1,7 @@
-kd／3容器／专项学习背景-语文备份.png;ic_infant_thinking_right_1.png
+图层 3.png;ic_app_weather.png
+图层 2.png;ic_app_calendar.png
+图层 6.png;ic_app_clock.png
+位图.png;ic_app_music.png
+图层 7.png;ic_app_player.png
+图层 5.png;ic_app_file_manager.png
+位图(1).png;ic_app_audio_record.png

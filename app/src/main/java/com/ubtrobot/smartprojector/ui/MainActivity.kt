@@ -95,28 +95,28 @@ class MainActivity : BaseCallActivity(),
 //    private lateinit var screenAdapter: ScreenAdapter
 
     // app 安装卸载监听
-    private val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            Timber.d("on receiver: ${intent?.action}")
-            when(intent?.action) {
-                Intent.ACTION_PACKAGE_INSTALL -> {
-
-                }
-                Intent.ACTION_PACKAGE_ADDED -> {
-                    // 应用安装
-                    elementarySystemFragment.addApp()
-                }
-                Intent.ACTION_PACKAGE_REMOVED -> {
-                    // 应用卸载
-                    elementarySystemFragment.removeApp()
-                }
-                Intent.ACTION_PACKAGE_CHANGED -> {
-                    // 应用更新
-                    elementarySystemFragment.updateAppGrids()
-                }
-            }
-        }
-    }
+//    private val receiver = object : BroadcastReceiver() {
+//        override fun onReceive(context: Context?, intent: Intent?) {
+//            Timber.d("on receiver: ${intent?.action}")
+//            when(intent?.action) {
+//                Intent.ACTION_PACKAGE_INSTALL -> {
+//
+//                }
+//                Intent.ACTION_PACKAGE_ADDED -> {
+//                    // 应用安装
+//                    elementarySystemFragment.addApp()
+//                }
+//                Intent.ACTION_PACKAGE_REMOVED -> {
+//                    // 应用卸载
+//                    elementarySystemFragment.removeApp()
+//                }
+//                Intent.ACTION_PACKAGE_CHANGED -> {
+//                    // 应用更新
+//                    elementarySystemFragment.updateAppGrids()
+//                }
+//            }
+//        }
+//    }
 
     private var pageTitles: List<String> = emptyList()
 
@@ -139,21 +139,20 @@ class MainActivity : BaseCallActivity(),
         Timber.d("navigation bar height: ${SystemUtil.getNavigationBarHeight(this)}")
         Timber.d("status bar height: ${SystemUtil.getStatusBarHeight(resources)}")
 
-        systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, SYSTEM_ELEMENTARY)
-        loadSystem()
+        systemType = viewModel.prefs().systemType
 
         requestPermissionsTask()
 
         initialStatusBar()
         initialHeader()
 
-        if (systemType == SYSTEM_ELEMENTARY) {
-            AppManager.getInstance(this).getAllApps()
-            AppManager.getInstance(this).addUpdateListener { apps ->
-                elementarySystemFragment.setAppNum(apps.size)
-                true
-            }
-        }
+//        if (systemType == SYSTEM_ELEMENTARY) {
+//            AppManager.getInstance(this).getAllApps()
+//            AppManager.getInstance(this).addUpdateListener { apps ->
+//                elementarySystemFragment.setAppNum(apps.size)
+//                true
+//            }
+//        }
 
         // 检查锁屏状态
         if (viewModel.prefs().isScreenLocked) {
@@ -168,6 +167,8 @@ class MainActivity : BaseCallActivity(),
         initialTuyaHome()
 
         initialAgoraToken()
+
+        loadSystem()
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -235,6 +236,11 @@ class MainActivity : BaseCallActivity(),
                     else -> {
                         binding.ivMainBackground.visibility = View.VISIBLE
                         binding.vInfantBgShape.visibility = View.GONE
+
+                        Glide.with(this)
+                            .load(R.mipmap.ic_launcher_bg)
+                            .centerCrop()
+                            .into(binding.ivMainBackground)
                     }
                 }
 
@@ -284,9 +290,9 @@ class MainActivity : BaseCallActivity(),
 
     override fun onDestroy() {
         Timber.d("onDestroy")
-        if (systemType == SYSTEM_ELEMENTARY) {
-            unregisterReceiver(receiver)
-        }
+//        if (systemType == SYSTEM_ELEMENTARY) {
+//            unregisterReceiver(receiver)
+//        }
         setLauncher(null)
         connectionStateMonitor.disable()
         agoraCallManager.destroy()
@@ -457,12 +463,12 @@ class MainActivity : BaseCallActivity(),
     }
 
     override fun loadElementarySystemBackground() {
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
-        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
-        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
-        intentFilter.addDataScheme("package")
-        registerReceiver(receiver, intentFilter)
+//        val intentFilter = IntentFilter()
+//        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
+//        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
+//        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
+//        intentFilter.addDataScheme("package")
+//        registerReceiver(receiver, intentFilter)
 
         binding.containerAvatar.setImageResource(R.mipmap.ic_assistant_avatar)
         loadBackground()

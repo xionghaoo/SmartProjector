@@ -20,6 +20,18 @@ class AppInfoAdapter(
     override fun bindView(v: View, item: App, position: Int) {
         val itemView = v.findViewById<AppLauncherView>(R.id.v_app_launcher)
         itemView.setIcon(item.icon)
+        // com.android.calendar
+        // com.android.calculator2
+        // com.android.camera2
+        // com.android.contacts
+        // com.android.music
+        // com.android.dialer
+        // com.android.settings
+        // app图标替换
+        when (item.packageName) {
+            "com.android.calendar" -> itemView.setIcon(v.context.getDrawable(R.mipmap.ic_app_calendar))
+            "com.android.music" -> itemView.setIcon(v.context.getDrawable(R.mipmap.ic_app_music))
+        }
         itemView.setLabel(item.label)
 
 //        item._isLimited = position % 5 == 0

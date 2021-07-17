@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/_65dp"
         android:layout_marginEnd="@dimen/_65dp"
         android:layout_marginBottom="@dimen/_36dp"
-        android:layout_marginTop="@dimen/_105dp"/>
+        android:layout_marginTop="@dimen/_55dp"/>
 
 <!--    <TextView-->
 <!--        android:id="@+id/textView18"-->
