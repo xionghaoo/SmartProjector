@@ -21,4 +21,12 @@
     <declare-styleable name="SettingsMenuItemView">
         <attr name="smiv_title" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="SystemCardView">
+        <attr name="scv_systemType" format="enum">
+            <enum name="infant" value="0"/>
+            <enum name="elementary" value="1"/>
+            <enum name="secondary" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>

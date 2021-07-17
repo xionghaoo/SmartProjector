@@ -17,17 +17,15 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 系统弹窗 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
-
-    <!-- 阿里云推送相关权限 -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" /> <!-- 阿里云推送相关权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.REORDER_TASKS"/>
-    <!-- 接收推送主要权限 -->
-
-    <!-- If your app targets Android 9 or lower, you can declare ACCESS_COARSE_LOCATION instead.-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" /> <!-- 接收推送主要权限 -->
+    <!-- If your app targets Android 9 or lower, you can declare ACCESS_COARSE_LOCATION instead. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".SmartProjectorApp"
@@ -40,12 +38,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
+        <activity android:name=".ui.settings.AppSettingsActivity"></activity>
 
-        <meta-data android:name="com.alibaba.app.appkey" android:value="333480138"/> <!-- 请填写你自己的- appKey -->
-        <meta-data android:name="com.alibaba.app.appsecret" android:value="a926c7989d4d4e3c84d3a888c37f4b7a"/> <!-- 请填写你自己的appSecret -->
-
-        <activity android:name=".ui.call.CallWithParentActivity"
-            android:screenOrientation="userLandscape"/>
+        <meta-data
+            android:name="com.alibaba.app.appkey"
+            android:value="333480138" /> <!-- 请填写你自己的- appKey -->
+        <meta-data
+            android:name="com.alibaba.app.appsecret"
+            android:value="a926c7989d4d4e3c84d3a888c37f4b7a" /> <!-- 请填写你自己的appSecret -->
+        <activity
+            android:name=".ui.call.CallWithParentActivity"
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:screenOrientation="userLandscape" />
@@ -99,24 +102,26 @@
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.NoAnimation">
 
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--                 <category android:name="android.intent.category.HOME" /> -->
-<!--                 <category android:name="android.intent.category.DEFAULT" /> -->
-<!--             </intent-filter> -->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- <category android:name="android.intent.category.HOME" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.Launcher">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                <category android:name="android.intent.category.HOME" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- <category android:name="android.intent.category.HOME" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".ui.FileDownloadActivity"
@@ -158,15 +163,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="userLandscape"
             android:theme="@style/AppTheme.Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-                 <category android:name="android.intent.category.HOME" />
-                 <category android:name="android.intent.category.DEFAULT" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
@@ -202,9 +205,7 @@
             <intent-filter>
                 <action android:name="com.wyt.ybx.register" />
             </intent-filter>
-        </receiver>
-
-        <!-- 消息接收监听器 （用户可自主扩展） -->
+        </receiver> <!-- 消息接收监听器 （用户可自主扩展） -->
         <receiver
             android:name=".push.APushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ubtrobot.smartprojector.widgets.SystemCardView
+        android:id="@+id/card_settings_system_infant"
+        android:layout_width="@dimen/_359dp"
+        android:layout_height="@dimen/_454dp"
+        android:layout_marginStart="@dimen/_85dp"
+        app:scv_systemType="infant"
+        android:background="@drawable/shape_settings_bg_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.ubtrobot.smartprojector.widgets.SystemCardView
+        android:id="@+id/card_settings_system_elementary"
+        android:layout_width="@dimen/_359dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_16dp"
+        app:scv_systemType="elementary"
+        app:layout_constraintBottom_toBottomOf="@+id/card_settings_system_infant"
+        app:layout_constraintStart_toEndOf="@+id/card_settings_system_infant"
+        app:layout_constraintTop_toTopOf="@+id/card_settings_system_infant" />
+
+    <com.ubtrobot.smartprojector.widgets.SystemCardView
+        android:id="@+id/card_settings_system_secondary"
+        android:layout_width="@dimen/_359dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_85dp"
+        app:scv_systemType="secondary"
+        app:layout_constraintBottom_toBottomOf="@+id/card_settings_system_elementary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/card_settings_system_elementary"
+        app:layout_constraintTop_toTopOf="@+id/card_settings_system_elementary" />
+</androidx.constraintlayout.widget.ConstraintLayout>

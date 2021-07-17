@@ -106,6 +106,7 @@
 	<dimen name="option_view_height">27.40dp</dimen>
 	<dimen name="option_view_width">94.76dp</dimen>
 	<dimen name="main_card_height">403.01dp</dimen>
+	<dimen name="main_card_padding_top">52.52dp</dimen>
 	<dimen name="_2dp">1.14dp</dimen>
 	<dimen name="_3dp">1.71dp</dimen>
 	<dimen name="_4dp">2.28dp</dimen>

@@ -23,12 +23,15 @@ import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
 import com.ubtrobot.smartprojector.ui.call.BaseCallActivity
+import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity
 import com.ubtrobot.smartprojector.ui.elementary.ElementarySystemFragment
 import com.ubtrobot.smartprojector.ui.elementary.ElementayMainFragment
+import com.ubtrobot.smartprojector.ui.infant.InfantMainFragment
 import com.ubtrobot.smartprojector.ui.infant.InfantSystemFragment
 import com.ubtrobot.smartprojector.ui.secondary.SecondarySystemFragment
 import com.ubtrobot.smartprojector.ui.profile.ProfileActivity
 import com.ubtrobot.smartprojector.ui.restrict.ScreenLockActivity
+import com.ubtrobot.smartprojector.ui.settings.AppSettingsActivity
 import com.ubtrobot.smartprojector.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -41,7 +44,11 @@ import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
-class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActionListener, ElementayMainFragment.OnFragmentActionListener {
+class MainActivity : BaseCallActivity(),
+    ElementarySystemFragment.OnFragmentActionListener,
+    ElementayMainFragment.OnFragmentActionListener,
+    InfantSystemFragment.OnFragmentActionListener
+{
 
     companion object {
 
@@ -111,7 +118,7 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         }
     }
 
-    private var pageTitles = arrayOf("智能学习", "语文", "英语", "数学", "编程", "直播")
+    private var pageTitles: List<String> = emptyList()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -138,8 +145,7 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         elementarySystemFragment = ElementarySystemFragment.newInstance()
         replaceFragment(elementarySystemFragment, R.id.main_fragment_container)
         initialStatusBar()
-
-        binding.tvPageTitle.text = pageTitles[0]
+        initialHeader()
 
         AppManager.getInstance(this).getAllApps()
         AppManager.getInstance(this).addUpdateListener { apps ->
@@ -167,11 +173,6 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         registerReceiver(receiver, intentFilter)
 
         initialAgoraToken()
-
-        Glide.with(this)
-            .load(R.mipmap.ic_launcher_bg)
-            .centerCrop()
-            .into(binding.ivMainBackground)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -180,11 +181,46 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         loadSystem()
     }
 
+    private fun initialHeader() {
+        binding.btnVideoCall.setOnClickListener {
+            startPlainActivity(CallWithParentActivity::class.java)
+        }
+        binding.btnSettings.setOnClickListener {
+            startPlainActivity(AppSettingsActivity::class.java)
+        }
+        binding.btnAppMarket.setOnClickListener {
+            ToastUtil.showToast(this, "应用市场")
+        }
+    }
+
     private fun loadSystem() {
         when(systemType) {
             SYSTEM_INFANT -> replaceFragment(InfantSystemFragment.newInstance(), R.id.main_fragment_container)
             SYSTEM_ELEMENTARY -> replaceFragment(ElementarySystemFragment.newInstance(), R.id.main_fragment_container)
             SYSTEM_SECONDARY -> replaceFragment(SecondarySystemFragment.newInstance(), R.id.main_fragment_container)
+        }
+    }
+
+    private fun loadBackground(page: Int? = null) {
+        when (systemType) {
+            SYSTEM_INFANT -> {
+                val bg: Int = when (page) {
+                    0 -> R.mipmap.ic_infant_bg_1
+                    1 -> R.mipmap.ic_infant_bg_2
+                    else -> R.mipmap.ic_launcher_bg
+                }
+                Glide.with(this)
+                    .load(bg)
+                    .centerCrop()
+                    .into(binding.ivMainBackground)
+            }
+            SYSTEM_ELEMENTARY -> {
+                Glide.with(this)
+                    .load(R.mipmap.ic_launcher_bg)
+                    .centerCrop()
+                    .into(binding.ivMainBackground)
+            }
+            SYSTEM_SECONDARY -> {}
         }
     }
 
@@ -384,6 +420,21 @@ class MainActivity : BaseCallActivity(), ElementarySystemFragment.OnFragmentActi
         if (position < pageTitles.size) {
             binding.tvPageTitle.text = pageTitles[position]
         }
+    }
+
+    override fun loadInfantMainBackground(page: Int) {
+        binding.containerAvatar.setImageResource(R.mipmap.ic_infant_system_avatar)
+        loadBackground(page)
+    }
+
+    override fun loadElementarySystemBackground() {
+        binding.containerAvatar.setImageResource(R.mipmap.ic_assistant_avatar)
+        loadBackground()
+    }
+
+    override fun setPageTitles(titles: List<String>) {
+        pageTitles = titles
+        binding.tvPageTitle.text = pageTitles[0]
     }
 
     // -------------------------- OnFragmentActionListener Method End -------------------------------

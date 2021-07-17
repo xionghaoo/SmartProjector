@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.children
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.ubtrobot.smartprojector.R
 import kotlin.math.roundToInt
 
@@ -62,6 +63,33 @@ class PagerIndicator : LinearLayout {
 //                }
 //            }
 //        })
+
+    }
+
+    fun setViewPager(vp: ViewPager2) {
+        if (vp.adapter != null) {
+            updateItems(vp.adapter!!.itemCount)
+        }
+        vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//                Timber.d("position: $position, offset: $positionOffset, positionOffsetPixels: $positionOffsetPixels")
+            }
+
+            override fun onPageSelected(position: Int) {
+                currentSelectedPage = position
+                children.forEach { child ->
+                    child.background = resources.getDrawable(R.drawable.shape_indicator_normal)
+                }
+                val item = getChildAt(position)
+                if (item != null) {
+                    item.background = resources.getDrawable(R.drawable.shape_indicator_highlight)
+                }
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+        })
 
     }
 

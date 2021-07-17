@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_359dp"
+    android:layout_height="@dimen/_454dp"
+    android:background="@drawable/shape_settings_bg_normal">
+
+
+    <TextView
+        android:id="@+id/widget_tv_system_card_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#EBEBEB"
+        android:textSize="@dimen/_32sp"
+        android:text="小学系统"
+        android:layout_marginBottom="@dimen/_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/widget_iv_system_card_role"
+        android:layout_width="@dimen/_136dp"
+        android:layout_height="@dimen/_250dp"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:src="@mipmap/ic_settings_system_infant"
+        app:layout_constraintBottom_toTopOf="@+id/widget_tv_system_card_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/widget_system_card_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_settings_system_card_overlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/widget_system_card_mark"
+        android:layout_width="@dimen/_209dp"
+        android:layout_height="@dimen/_125dp"
+        android:src="@mipmap/ic_settings_current_system_mark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

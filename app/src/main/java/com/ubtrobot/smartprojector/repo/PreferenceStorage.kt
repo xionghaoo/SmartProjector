@@ -28,6 +28,7 @@ interface PreferenceStorage {
     var rtmToken: String?
     var rtcToken: String?
     var userID: String?
+    var systemType: Int
 }
 
 class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: Context) : PreferenceStorage {
@@ -55,6 +56,7 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
     override var rtmToken: String? by StringPreference(prefs, PREF_RTM_TOKEN, null)
     override var rtcToken: String? by StringPreference(prefs, PREF_RTC_TOKEN, null)
     override var userID: String? by StringPreference(prefs, PREF_USER_ID, null)
+    override var systemType: Int by IntPreference(prefs, PREF_SYSTEM_TYPE, 1)
 
     init {
 //        deviceId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
@@ -83,6 +85,7 @@ class SharedPreferenceStorage @Inject constructor(@ApplicationContext context: C
         const val PREF_RTM_TOKEN = "pref_rtm_token"
         const val PREF_RTC_TOKEN = "pref_rtc_token"
         const val PREF_USER_ID = "pref_user_id"
+        const val PREF_SYSTEM_TYPE = "pref_system_type"
     }
 }
 

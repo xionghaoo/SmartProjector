@@ -41,5 +41,8 @@
     <color name="color_clock_card">#4D4E4C5F</color>
     <color name="color_main_page">#7EE2FF</color>
 
+    <color name="color_system_card_overlay">#4D216EEF</color>
+    <color name="color_system_card_selected">#2C790A</color>
+
 
 </resources>

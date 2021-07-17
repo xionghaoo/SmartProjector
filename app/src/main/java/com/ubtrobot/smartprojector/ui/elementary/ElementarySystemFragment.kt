@@ -23,7 +23,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class ElementarySystemFragment : Fragment() {
 
-    private var pageTitles = arrayOf("智能学习", "语文", "英语", "数学", "编程", "直播")
+    private var pageTitles = listOf("智能学习", "语文", "英语", "数学", "编程", "直播")
 
     private lateinit var binding: FragmentElementarySystemBinding
 
@@ -60,6 +60,8 @@ class ElementarySystemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        listener?.setPageTitles(pageTitles)
+
         AppManager.getInstance(requireContext()).getAllApps()
         AppManager.getInstance(requireContext()).addUpdateListener { apps ->
             screenAdapter.setAppNum(apps.size)
@@ -88,6 +90,8 @@ class ElementarySystemFragment : Fragment() {
 
             }
         })
+
+        listener?.loadElementarySystemBackground()
     }
 
 //    private fun initialStatusBar() {
@@ -203,6 +207,10 @@ class ElementarySystemFragment : Fragment() {
     interface OnFragmentActionListener {
         fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int)
         fun onPageSelected(position: Int)
+
+        fun loadElementarySystemBackground()
+
+        fun setPageTitles(titles: List<String>)
     }
 
     companion object {

@@ -43,8 +43,8 @@ class AgoraCallManager(
         rtmClient.setLogFile(FileUtil.rtmLogFile(context))
 
         if (isDebug) {
-            rtcEngine.setParameters("{\"rtc.log_filter\":65535}")
-            rtmClient.setParameters("{\"rtm.log_filter\":65535}")
+//            rtcEngine.setParameters("{\"rtc.log_filter\":65535}")
+//            rtmClient.setParameters("{\"rtm.log_filter\":65535}")
         }
 
         rtmCallManager = rtmClient.rtmCallManager

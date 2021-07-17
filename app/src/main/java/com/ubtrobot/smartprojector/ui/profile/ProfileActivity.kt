@@ -1,27 +1,22 @@
 package com.ubtrobot.smartprojector.ui.profile
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Typeface
 import android.os.Bundle
-import android.provider.Settings
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.AbsoluteSizeSpan
+import android.text.style.StyleSpan
+import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
-import com.ubtrobot.smartprojector.*
+import androidx.appcompat.app.AppCompatActivity
+import com.ubtrobot.smartprojector.GlideApp
+import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.ActivityProfileBinding
-import com.ubtrobot.smartprojector.ui.MainActivity
-import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity
-import com.ubtrobot.smartprojector.ui.call.CallingActivity
-import com.ubtrobot.smartprojector.ui.settings.SettingsActivity
 import com.ubtrobot.smartprojector.utils.SystemUtil
-import com.ubtrobot.smartprojector.utils.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
-import io.agora.rtm.ErrorInfo
-import io.agora.rtm.ResultCallback
-import timber.log.Timber
-import xh.zero.agora_call.AgoraCallManager
 import xh.zero.voice.TencentVoiceManager
-import java.util.HashSet
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class ProfileActivity : AppCompatActivity() {
@@ -44,41 +39,70 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.setTitle("个人中心")
-        binding.toolbar.configBackButton(this)
+        GlideApp.with(this)
+            .load(R.mipmap.img_profile_bg)
+            .centerCrop()
+            .into(binding.ivProfileBg)
 
-        binding.btnSettings.setOnClickListener {
-            startPlainActivity(SettingsActivity::class.java)
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
         }
 
-        binding.btnCallWithParent.setOnClickListener {
-            startPlainActivity(CallWithParentActivity::class.java)
-        }
+//        val sp = SpannableString("今天学习时长 6 小时")
+//        val sizeSpan = AbsoluteSizeSpan(resources.getDimension(R.dimen._40sp).toInt(), true)
+//        sp.setSpan(sizeSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//        val boldSpan = StyleSpan(Typeface.BOLD_ITALIC) //加粗
+//        sp.setSpan(boldSpan, 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//        binding.tvProfileTodayLearnTime.text = sp
 
-        binding.tvTestInfo.text = "屏幕信息：${SystemUtil.displayInfo(this)}"
+        setSpanText(binding.tvProfileTodayLearnTime, "今天学习时长 6 小时", 7, 8)
+        setSpanText(binding.tvProfileTotalLearnTime, "学习总天数 12 天", 6, 9)
 
-        binding.tvUserName.text = "用户名：台灯${viewModel.prefs().userID}"
 
-        binding.btnVoiceTest.setOnClickListener {
-            if (Settings.canDrawOverlays(this)) {
-                voiceManager.startRecognize()
-            } else {
-                try {
-                    startActivityForResult(
-                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION
-                    )
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-        }
+//        binding.toolbar.setTitle("个人中心")
+//        binding.toolbar.configBackButton(this)
+//
+//        binding.btnSettings.setOnClickListener {
+//            startPlainActivity(SettingsActivity::class.java)
+//        }
+//
+//        binding.btnCallWithParent.setOnClickListener {
+//            startPlainActivity(CallWithParentActivity::class.java)
+//        }
+//
+//        binding.tvTestInfo.text = "屏幕信息：${SystemUtil.displayInfo(this)}"
+//
+//        binding.tvUserName.text = "用户名：台灯${viewModel.prefs().userID}"
+//
+//        binding.btnVoiceTest.setOnClickListener {
+//            if (Settings.canDrawOverlays(this)) {
+//                voiceManager.startRecognize()
+//            } else {
+//                try {
+//                    startActivityForResult(
+//                        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION), RC_SYSTEM_ALERT_WINDOW_PERMISSION
+//                    )
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
+//        }
+//
+//        binding.btnElementarySystem.setOnClickListener {
+//            MainActivity.startWithSingleTop(this, MainActivity.SYSTEM_ELEMENTARY)
+//        }
+//        binding.btnInfantSystem.setOnClickListener {
+//            MainActivity.startWithSingleTop(this, MainActivity.SYSTEM_INFANT)
+//        }
+    }
 
-        binding.btnElementarySystem.setOnClickListener {
-            MainActivity.startWithSingleTop(this, MainActivity.SYSTEM_ELEMENTARY)
-        }
-        binding.btnInfantSystem.setOnClickListener {
-            MainActivity.startWithSingleTop(this, MainActivity.SYSTEM_INFANT)
-        }
+    private fun setSpanText(tv: TextView, txt: String, start: Int, end: Int) {
+        val sp = SpannableString(txt)
+        val sizeSpan = AbsoluteSizeSpan(resources.getDimension(R.dimen._40sp).toInt(), true)
+        sp.setSpan(sizeSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val boldSpan = StyleSpan(Typeface.BOLD_ITALIC) //加粗
+        sp.setSpan(boldSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tv.text = sp
     }
 
 }
