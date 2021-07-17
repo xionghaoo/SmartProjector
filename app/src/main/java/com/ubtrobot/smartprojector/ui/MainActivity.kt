@@ -159,11 +159,6 @@ class MainActivity : BaseCallActivity(),
             ScreenLockActivity.lock(this)
         }
 
-        // 头像跳转
-        binding.containerAvatar.setOnClickListener {
-            startPlainActivity(ProfileActivity::class.java)
-        }
-
         initialTuyaHome()
 
         initialAgoraToken()
@@ -174,8 +169,13 @@ class MainActivity : BaseCallActivity(),
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Timber.d("onNewIntent")
+        initialStatusBar()
+        initialHeader()
 
-        systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, SYSTEM_ELEMENTARY)
+        systemType = intent.getIntExtra(EXTRA_DATA_SYSTEM, -1)
+        if (systemType == -1) {
+            systemType = viewModel.prefs().systemType
+        }
         loadSystem()
     }
 
@@ -188,6 +188,11 @@ class MainActivity : BaseCallActivity(),
         }
         binding.btnAppMarket.setOnClickListener {
             ToastUtil.showToast(this, "应用市场")
+        }
+
+        // 头像跳转
+        binding.containerAvatar.setOnClickListener {
+            startPlainActivity(ProfileActivity::class.java)
         }
     }
 
@@ -443,13 +448,14 @@ class MainActivity : BaseCallActivity(),
     }
 
     override fun onPageSelected(position: Int) {
-        if (position == pageTitles.size - 1) {
+        if (position <= pageTitles.size - 1) {
             val tranX = binding.containerMainHeader.translationX
             if (tranX != 0f) {
                 binding.containerMainHeader.animate().cancel()
-                binding.containerMainHeader.animate()
-                    .translationX(0f)
-                    .start()
+//                binding.containerMainHeader.animate()
+//                    .translationX(0f)
+//                    .start()
+                binding.containerMainHeader.translationX = 0f
             }
         }
         if (position < pageTitles.size) {
@@ -463,13 +469,6 @@ class MainActivity : BaseCallActivity(),
     }
 
     override fun loadElementarySystemBackground() {
-//        val intentFilter = IntentFilter()
-//        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
-//        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL)
-//        intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
-//        intentFilter.addDataScheme("package")
-//        registerReceiver(receiver, intentFilter)
-
         binding.containerAvatar.setImageResource(R.mipmap.ic_assistant_avatar)
         loadBackground()
     }
