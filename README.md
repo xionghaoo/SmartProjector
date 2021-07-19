@@ -18,12 +18,9 @@ display info: DisplayMetrics{density=1.0, width=1920, height=1080, scaledDensity
 DisplayMetrics{density=2.0, width=1920, height=1104, scaledDensity=2.0, xdpi=284.859, ydpi=283.534}
 ```
 
-## 待确认
+## 待开发
 
-1. launcher App卸载
- - 长按进行App管理，删除，移动位置，合并App图标
-5. 图像识别(查题)
-6. 儿歌模块
+1. 提分系统
 
 ## 相关资源
 

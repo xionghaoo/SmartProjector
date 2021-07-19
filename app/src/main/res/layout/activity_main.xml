@@ -107,16 +107,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-        <ImageView
-            android:id="@+id/btn_app_market"
-            android:layout_width="@dimen/_76dp"
-            android:layout_height="@dimen/_76dp"
-            android:src="@mipmap/ic_header_app_market"
-            android:layout_marginStart="@dimen/_30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_video_call"
-            app:layout_constraintStart_toEndOf="@+id/btn_video_call"
-            app:layout_constraintTop_toTopOf="@+id/btn_video_call" />
-
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="@dimen/_178dp"
@@ -172,13 +162,22 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
+            android:id="@+id/btn_my_knowledge_points"
+            android:layout_width="@dimen/_76dp"
+            android:layout_height="@dimen/_76dp"
+            android:src="@mipmap/ic_header_my_study"
+            android:layout_marginStart="@dimen/_11dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout2" />
+
+        <ImageView
             android:id="@+id/btn_video_call"
             android:layout_width="@dimen/_76dp"
             android:layout_height="@dimen/_76dp"
-            android:layout_marginStart="@dimen/_11dp"
+            android:layout_marginStart="@dimen/_30dp"
             android:src="@mipmap/ic_header_video_call"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2" />
+            app:layout_constraintStart_toEndOf="@+id/btn_my_knowledge_points" />
 
         <ImageView
             android:id="@+id/btn_settings"
@@ -189,6 +188,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_app_market"
             app:layout_constraintTop_toTopOf="@+id/btn_app_market" />
+
+        <ImageView
+            android:id="@+id/btn_app_market"
+            android:layout_width="@dimen/_76dp"
+            android:layout_height="@dimen/_76dp"
+            android:layout_marginStart="@dimen/_30dp"
+            android:src="@mipmap/ic_header_app_market"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_video_call"
+            app:layout_constraintStart_toEndOf="@+id/btn_video_call"
+            app:layout_constraintTop_toTopOf="@+id/btn_video_call" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

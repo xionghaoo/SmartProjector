@@ -22,6 +22,7 @@ import com.ubtrobot.smartprojector.core.vo.Status
 import com.ubtrobot.smartprojector.databinding.ActivityMainBinding
 import com.ubtrobot.smartprojector.launcher.AppManager
 import com.ubtrobot.smartprojector.receivers.ConnectionStateMonitor
+import com.ubtrobot.smartprojector.test.DemoImageActivity
 import com.ubtrobot.smartprojector.ui.call.BaseCallActivity
 import com.ubtrobot.smartprojector.ui.call.CallWithParentActivity
 import com.ubtrobot.smartprojector.ui.elementary.ElementarySystemFragment
@@ -193,6 +194,9 @@ class MainActivity : BaseCallActivity(),
         // 头像跳转
         binding.containerAvatar.setOnClickListener {
             startPlainActivity(ProfileActivity::class.java)
+        }
+        binding.btnMyKnowledgePoints.setOnClickListener {
+            DemoImageActivity.start(this, DemoImageActivity.KNOWLEDGE_MY)
         }
     }
 
@@ -465,11 +469,13 @@ class MainActivity : BaseCallActivity(),
 
     override fun loadInfantMainBackground(page: Int) {
         binding.containerAvatar.setImageResource(R.mipmap.ic_infant_system_avatar)
+        binding.btnMyKnowledgePoints.visibility = View.GONE
         loadBackground(page)
     }
 
     override fun loadElementarySystemBackground() {
         binding.containerAvatar.setImageResource(R.mipmap.ic_assistant_avatar)
+        binding.btnMyKnowledgePoints.visibility = View.VISIBLE
         loadBackground()
     }
 

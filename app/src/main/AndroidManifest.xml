@@ -38,7 +38,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.settings.AppSettingsActivity"></activity>
+        <activity android:name=".test.DemoImageActivity"
+            android:screenOrientation="userLandscape"/>
+        <activity android:name=".ui.settings.AppSettingsActivity"
+            android:screenOrientation="userLandscape"/>
 
         <meta-data
             android:name="com.alibaba.app.appkey"

@@ -98,7 +98,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun setSpanText(tv: TextView, txt: String, start: Int, end: Int) {
         val sp = SpannableString(txt)
-        val sizeSpan = AbsoluteSizeSpan(resources.getDimension(R.dimen._40sp).toInt(), true)
+        val sizeSpan = AbsoluteSizeSpan(resources.getDimension(R.dimen._40sp).toInt(), false)
         sp.setSpan(sizeSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         val boldSpan = StyleSpan(Typeface.BOLD_ITALIC) //加粗
         sp.setSpan(boldSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

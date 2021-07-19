@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.ubtrobot.smartprojector.MockData
 import com.ubtrobot.smartprojector.R
 import com.ubtrobot.smartprojector.databinding.*
+import com.ubtrobot.smartprojector.test.DemoImageActivity
 import com.ubtrobot.smartprojector.ui.HomeMenuData
 import com.ubtrobot.smartprojector.ui.HomeMenuDialog
 import com.ubtrobot.smartprojector.ui.MainViewModel
@@ -387,6 +388,7 @@ class ElementayMainFragment : Fragment() {
         OnceClickStrategy.onceClick(bindingPageFour.cardMathematicsClassic) {
             listener?.onItemSelected(it, HomeMenuDialog.Align.RIGHT_BOTTOM, arrayListOf(
                 HomeMenuData(R.mipmap.ic_chinese_classic_book_explain, "知识点精讲") {
+                    jxwAppManager.startSyncAssistPage(requireContext(), "数学")
                 },
                 HomeMenuData(R.mipmap.ic_math_classic_graph, "数学图形") {
                     jxwAppManager.startFixDataPage(requireContext(), "小学数学图形")
@@ -402,6 +404,7 @@ class ElementayMainFragment : Fragment() {
                     jxwAppManager.startSyncAssistPage(requireContext(), "数学")
                 },
                 HomeMenuData(R.mipmap.ic_english_tool_error_book, "错题本") {
+                    DemoImageActivity.start(requireContext(), DemoImageActivity.KNOWLEDGE_MATH_WRONG_BOOK)
                 },
                 HomeMenuData(R.mipmap.ic_chinese_after_school_exam, "同步测试") {
                 }
@@ -424,7 +427,7 @@ class ElementayMainFragment : Fragment() {
             ))
         }
         OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsKnowledgePoints) {
-            ToastUtil.showToast(requireContext(), "知识点图谱")
+            DemoImageActivity.start(requireContext(), DemoImageActivity.KNOWLEDGE_MATH)
         }
         OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsOlympic) {
             jxwAppManager.startFixDataPage(requireContext(), "小学奥数训练")
@@ -442,7 +445,7 @@ class ElementayMainFragment : Fragment() {
             jxwAppManager.startFixDataPage(requireContext(), "小学数的运算")
         }
         OnceClickStrategy.onceClick(bindingPageFour.btnMathematicsToolErrorBook) {
-            ToastUtil.showToast(requireContext(), "错题本")
+            DemoImageActivity.start(requireContext(), DemoImageActivity.KNOWLEDGE_MATH_WRONG_BOOK)
         }
     }
 
