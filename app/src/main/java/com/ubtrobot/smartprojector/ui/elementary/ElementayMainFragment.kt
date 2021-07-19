@@ -149,6 +149,10 @@ class ElementayMainFragment : Fragment() {
             jxwAppManager.startFingerRead(requireContext(), "keben")
         }
 
+        OnceClickStrategy.onceClick(bindingPageOne.btnAssistantAdvanceFingerWord) {
+            jxwAppManager.startOtherPage(requireContext(), JxwAppType.ZHIJIAN_CAHCI)
+        }
+
         OnceClickStrategy.onceClick(bindingPageOne.btnAssistantAdvanceStudy) {
             // App推荐，推荐的App需要考虑有没有安装，如果没有安装那么需要跳转到应用市场详情页
             listener?.onItemSelected(it, HomeMenuDialog.Align.LEFT_BOTTOM, arrayListOf(

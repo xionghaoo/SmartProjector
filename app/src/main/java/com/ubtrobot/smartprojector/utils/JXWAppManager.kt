@@ -19,7 +19,7 @@ enum class JxwAppType {
     LEARN_CHINESE, ZICI_LISTEN, CHINESE_INTEREST, ORAL_ENGLISH_TEST,
     MATH_LEARN_NUMBER, MATH_FORMULA, CHINESE_ANIME_IDIOM, CHINESE_ANIME_GUOXUE,
     CHINESE_DICT, MATH_ARITHMETIC, MATH_FOCUS_PRACTISE, ENGLISH_MEMORIZE_WORDS,
-    CHINESE_EXTENSION, TRANSLATE
+    CHINESE_EXTENSION, TRANSLATE, ZHIJIAN_CAHCI
 }
 
 class JXWAppManager(private val prefs: PreferenceStorage) {
@@ -93,6 +93,10 @@ class JXWAppManager(private val prefs: PreferenceStorage) {
             // 中英互译
             JxwAppType.TRANSLATE -> {
                 startOtherApp(context, "com.tech.translate", "com.tech.translate.MainActivity")
+            }
+            // 指尖查词
+            JxwAppType.ZHIJIAN_CAHCI -> {
+                startOtherApp(context, "com.jxw.zncd", "com.jxw.zncd.MainActivity")
             }
         }
     }
