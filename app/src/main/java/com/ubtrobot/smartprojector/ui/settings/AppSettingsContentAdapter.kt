@@ -2,9 +2,11 @@ package com.ubtrobot.smartprojector.ui.settings
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.tuya.smart.utils.ToastUtil
 import com.ubtrobot.smartprojector.R
@@ -81,7 +83,9 @@ class AppSettingsContentAdapter(
                 }
             }
             1 -> {
-
+                holder.itemView.findViewById<Button>(R.id.btn_demo_network).setOnClickListener {
+                    context.startActivity(Intent(context, SettingsActivity::class.java))
+                }
             }
         }
     }

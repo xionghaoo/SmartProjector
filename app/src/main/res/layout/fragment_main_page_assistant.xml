@@ -276,7 +276,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/textView47"
+            android:id="@+id/btn_assistant_advance_finger_word"
             android:layout_width="@dimen/_74dp"
             android:layout_height="@dimen/_74dp"
             android:layout_marginTop="@dimen/_228dp"
@@ -286,7 +286,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/btn_assistant_advance_finger_word"
+            android:id="@+id/textView48"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查单词"
@@ -296,7 +296,7 @@
             android:layout_marginTop="@dimen/_36dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView47" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_assistant_advance_finger_word" />
 
         <LinearLayout
             android:id="@+id/btn_assistant_advance_study"
